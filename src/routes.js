@@ -26,6 +26,7 @@ import Icon from "@mui/material/Icon";
 
 // @mui icons
 import GitHubIcon from "@mui/icons-material/GitHub";
+import AboutUsIcon from "@mui/icons-material/AccountCircleOutlined"
 
 // // Pages
 // import AboutUs from "layouts/pages/landing-pages/about-us";
@@ -55,9 +56,9 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 
 const routes = [
   {
-    name: "github",
-    icon: <GitHubIcon />,
-    href: "https://www.github.com/creativetimofficial/material-kit-react",
+    name: "About",
+    icon: <AboutUsIcon />,
+    href: "/about",
   },
   // {
   //   name: "pages",

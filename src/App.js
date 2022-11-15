@@ -9,7 +9,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 // Theme
 import theme from "assets/theme";
-import Hero from "pages/Hero";
+import LandingPage from "pages/LandingPage";
 
 // Material Kit 2 React routes
 import routes from "routes";
@@ -41,8 +41,7 @@ export default function App() {
       <CssBaseline />
       <Routes>
         {getRoutes(routes)}
-        <Route path="/home" element={<Hero />} />
-        <Route path="/" element={<Hero />} />
+        <Route path="/" element={<LandingPage />} />
       </Routes>
     </ThemeProvider>
   );
