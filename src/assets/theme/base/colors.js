@@ -53,10 +53,9 @@ export default {
     main: "#7b809a",
     focus: "#8f93a9",
   },
-
   info: {
     main: "#3d5e2b",
-    focus: "#3d5e2b",
+    focus: "#000E2F",
   },
 
   success: {
@@ -83,8 +82,9 @@ export default {
     main: "#344767",
     focus: "#2c3c58",
   },
-
   grey: {
+    main: "#adb5bd",
+    focus: "#adb5bd",
     100: "#f8f9fa",
     200: "#f0f2f5",
     300: "#dee2e6",

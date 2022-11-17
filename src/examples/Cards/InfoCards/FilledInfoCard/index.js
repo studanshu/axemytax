@@ -109,7 +109,7 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
             to={action.route}
             variant="body2"
             fontWeight="regular"
-            color={variant === "contained" ? color : "white"}
+            color={"info"}
             sx={buttonStyles}
           >
             {action.label} <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>

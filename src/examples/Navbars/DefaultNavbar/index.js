@@ -478,7 +478,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
             pl={relative || transparent ? 0 : { xs: 0, lg: 1 }}
             sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', alignContent: 'space-around'}}
           >
-            <MKBox
+            <MKBox  mr={{ xs: 4, lg: 0 }}
               component="img"
               src={logo}
               width={100}

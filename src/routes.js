@@ -25,8 +25,10 @@
 import Icon from "@mui/material/Icon";
 
 // @mui icons
-import GitHubIcon from "@mui/icons-material/GitHub";
 import AboutUsIcon from "@mui/icons-material/AccountCircleOutlined"
+import HomeIcon from '@mui/icons-material/Home';
+import BookIcon from '@mui/icons-material/Book';
+import RssFeedIcon from '@mui/icons-material/RssFeed';
 
 // // Pages
 // import AboutUs from "layouts/pages/landing-pages/about-us";
@@ -56,9 +58,24 @@ import AboutUsIcon from "@mui/icons-material/AccountCircleOutlined"
 
 const routes = [
   {
+    name: "Home",
+    icon: <HomeIcon />,
+    href: "/",
+  },
+  {
+    name: "Services",
+    icon: <BookIcon />,
+    href: "/services",
+  },
+  {
     name: "About",
     icon: <AboutUsIcon />,
     href: "/about",
+  },
+  {
+    name: "Blogs",
+    icon: <RssFeedIcon />,
+    href: "/blogs",
   },
   // {
   //   name: "pages",
