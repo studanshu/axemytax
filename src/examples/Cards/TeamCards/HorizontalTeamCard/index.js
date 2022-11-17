@@ -24,7 +24,7 @@ import Grid from "@mui/material/Grid";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
-function HorizontalTeamCard({ image, name, position, description }) {
+function HorizontalTeamCard({ image, name, position, description, color }) {
   return (
     <Card sx={{ mt: 3 }}>
       <Grid container>
@@ -60,6 +60,7 @@ function HorizontalTeamCard({ image, name, position, description }) {
 HorizontalTeamCard.propTypes = {
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  color: PropTypes.string,
   position: PropTypes.shape({
     color: PropTypes.oneOf([
       "primary",

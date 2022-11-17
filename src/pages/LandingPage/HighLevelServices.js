@@ -45,7 +45,7 @@ export default function HighLevelServices() {
               action={{
                 type: "internal",
                 route: "/pages/blogs/author",
-                color: "dark",
+                color: "info",
                 label: "read more",
               }}
             />
@@ -58,7 +58,7 @@ export default function HighLevelServices() {
               action={{
                 type: "internal",
                 route: "/pages/blogs/author",
-                color: "dark",
+                color: "info",
                 label: "read more",
               }}
             />
@@ -71,7 +71,7 @@ export default function HighLevelServices() {
               action={{
                 type: "internal",
                 route: "/pages/blogs/author",
-                color: "dark",
+                color: "info",
                 label: "read more",
               }}
             />
@@ -84,7 +84,7 @@ export default function HighLevelServices() {
               action={{
                 type: "internal",
                 route: "/pages/blogs/author",
-                color: "dark",
+                color: "info",
                 label: "read more",
               }}
             />
