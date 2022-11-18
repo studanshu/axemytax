@@ -472,8 +472,8 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
       >
         <MKBox display="flex" justifyContent="space-around" alignItems="center">
           <MKBox
-            component={Link}
-            to="/"
+            component={MuiLink}
+            href="/"
             py={transparent ? 1.5 : 0.75}
             pl={relative || transparent ? 0 : { xs: 0, lg: 1 }}
             sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', alignContent: 'space-around'}}
@@ -558,7 +558,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
 
 // Setting default values for the props of DefaultNavbar
 DefaultNavbar.defaultProps = {
-  brand: "Axe My Tax",
+  brand: "",
   transparent: false,
   light: false,
   action: false,

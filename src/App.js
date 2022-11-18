@@ -2,6 +2,7 @@ import { useEffect } from "react";
 
 // react-router components
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 // @mui material components
 import { ThemeProvider } from "@mui/material/styles";
@@ -14,14 +15,28 @@ import LandingPage from "pages/LandingPage";
 // Material Kit 2 React routes
 import routes from "routes";
 
+const queryClient = new QueryClient();
+
 export default function App() {
-  const { pathname } = useLocation();
+  const { pathname, hash, key } = useLocation();
 
   // Setting page scroll to 0 when changing the route
   useEffect(() => {
-    document.documentElement.scrollTop = 0;
-    document.scrollingElement.scrollTop = 0;
-  }, [pathname]);
+    // if not a hash link, scroll to top
+    if (hash === '') {
+      window.scrollTo(0, 0);
+    }
+    // else scroll to id
+    else {
+      setTimeout(() => {
+        const id = hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView();
+        }
+      }, 0);
+    }
+  }, [pathname, hash, key]);
 
   const getRoutes = (allRoutes) =>
     allRoutes.map((route) => {
@@ -38,11 +53,14 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Routes>
-        {getRoutes(routes)}
-        <Route path="/" element={<LandingPage />} />
-      </Routes>
+      <QueryClientProvider client={queryClient}>
+        <CssBaseline />
+        <Routes>
+          {getRoutes(routes)}
+          <Route path="/" element={<LandingPage />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+        </QueryClientProvider>
     </ThemeProvider>
   );
 }

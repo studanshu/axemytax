@@ -29,6 +29,7 @@ import AboutUsIcon from "@mui/icons-material/AccountCircleOutlined"
 import HomeIcon from '@mui/icons-material/Home';
 import BookIcon from '@mui/icons-material/Book';
 import RssFeedIcon from '@mui/icons-material/RssFeed';
+import ServicePage from "pages/ServicePage";
 
 // // Pages
 // import AboutUs from "layouts/pages/landing-pages/about-us";
@@ -60,22 +61,23 @@ const routes = [
   {
     name: "Home",
     icon: <HomeIcon />,
-    href: "/",
+    route: "#",
   },
   {
     name: "Services",
     icon: <BookIcon />,
-    href: "/services",
+    route: "/services",
+    component: <ServicePage/>,
   },
   {
     name: "About",
     icon: <AboutUsIcon />,
-    href: "/about",
+    route: "/about",
   },
   {
     name: "Blogs",
     icon: <RssFeedIcon />,
-    href: "/blogs",
+    route: "/blogs",
   },
   // {
   //   name: "pages",

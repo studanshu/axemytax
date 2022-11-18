@@ -1,0 +1,51 @@
+[
+  {
+    "title":"Business Establishment Services",
+    "description": "Check the possible ways of working with our product and the necessary files for building your own project.",
+    "icon": "public",
+    "link": "/tax",
+    "label": "Let's start"
+  },
+  {
+    "title":"Auditing",
+    "description": "Check the possible ways of working with our product and the necessary files for building your own project.",
+    "icon": "public",
+    "link": "/tax",
+    "label": "Let's start"
+  },
+  {
+    "title":"Accounting",
+    "description": "Check the possible ways of working with our product and the necessary files for building your own project.",
+    "icon": "public",
+    "link": "/tax",
+    "label": "Let's start"
+  },
+  {
+    "title":"Direct Tax",
+    "description": "Check the possible ways of working with our product and the necessary files for building your own project.",
+    "icon": "public",
+    "link": "/tax",
+    "label": "Let's start"
+  },
+  {
+    "title":"Company Formation",
+    "description": "Check the possible ways of working with our product and the necessary files for building your own project.",
+    "icon": "public",
+    "link": "/tax",
+    "label": "Let's start"
+  },
+  {
+    "title":"Corporate Tax",
+    "description": "Check the possible ways of working with our product and the necessary files for building your own project.",
+    "icon": "public",
+    "link": "/tax",
+    "label": "Let's start"
+  },
+  {
+    "title":"Taxation for NRIs",
+    "description": "Check the possible ways of working with our product and the necessary files for building your own project.",
+    "icon": "public",
+    "link": "/tax",
+    "label": "Let's start"
+  }
+]
