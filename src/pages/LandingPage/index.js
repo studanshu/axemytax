@@ -26,6 +26,7 @@ import Team from "./Team";
 import Blogs from "./Blogs";
 import Counters from "./Counters";
 import LocateUs from "./LocateUs";
+import ContactIcon from "./ContactIcon";
 
 
 export default function LandingPage() {
@@ -34,6 +35,18 @@ export default function LandingPage() {
       <DefaultNavbar
         brand=""
         logoUrl={logo}
+        routes={routes}
+        action={{
+          type: "external",
+          route: "/",
+          label: "Book Consultation",
+          color: "info",
+        }}
+        center
+        sticky
+      />
+      <ContactIcon
+        brand=""
         routes={routes}
         action={{
           type: "external",
@@ -154,6 +167,7 @@ export default function LandingPage() {
         <LocateUs />
         <Subscribe />
       </Card>
+      
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
       </MKBox>

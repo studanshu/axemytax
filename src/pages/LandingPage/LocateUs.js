@@ -45,7 +45,7 @@ export default function LocateUs() {
             </MKTypography>
             <MKTypography
               component="a"
-              href="https://wa.me/919903133862">
+              href="https://wa.me/919831054784?text=I%27m%20interested%20in%20your%20service.%20I%20want%20to%20Book%20An%20Appointment.">
               <MKBox display="flex" alignItems="center" p={2}>
                 <MKBox
                   width="3rem"
