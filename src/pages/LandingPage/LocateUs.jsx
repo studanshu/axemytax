@@ -2,6 +2,8 @@
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import { Stack } from "@mui/system";
+import { createStyles } from "@mui/material";
+import { makeStyles } from '@mui/styles';
 
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
@@ -14,6 +16,7 @@ import { Icon } from "@mui/material";
 import jsonData from "assets/data/LandingPage/LocateUs";
 
 export default function LocateUs() {
+  const classes = useStyles();
   return (
     <MKBox component="section" py={{ xs: 3, md: 12 }}>
       <Container>
@@ -29,17 +32,7 @@ export default function LocateUs() {
               component="a"
               href={jsonData["whatsapp"]["link"]}>
               <MKBox display="flex" alignItems="center" p={2}>
-                <MKBox
-                  width="3rem"
-                  height="3rem"
-                  variant="gradient"
-                  bgColor="info"
-                  color="white"
-                  coloredShadow="info"
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  borderRadius="xl"
+                <MKBox className={classes.card}
                 >
                   <WhatsApp/>
                 </MKBox>
@@ -54,16 +47,7 @@ export default function LocateUs() {
               {jsonData["sections"].map((data, _) => (
                 <MKBox display="flex" alignItems="center" p={2}>
                   <MKBox
-                    width="3rem"
-                    height="3rem"
-                    variant="gradient"
-                    bgColor="info"
-                    color="white"
-                    coloredShadow="info"
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                    borderRadius="xl"
+                    className={classes.card}
                   >
                     <Icon>{data.icon}</Icon>
                   </MKBox>
@@ -79,3 +63,19 @@ export default function LocateUs() {
     </MKBox>
   );
 }
+
+export const useStyles = makeStyles((theme) =>
+  createStyles({
+    card: {
+      width: "3rem",
+      height: "3rem",
+      color: "white",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: theme.palette.info.main,
+      boxShadow: theme.boxShadows.colored.info,
+      borderRadius: theme.borders.borderRadius.xl,
+    }
+  })
+);

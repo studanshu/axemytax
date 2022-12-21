@@ -28,7 +28,7 @@ export default function Hero() {
       >
         
         <Container >
-          <Grid container  xs={12} lg={8} justifyContent="center" mx="auto" flexDirection="vertical">
+          <Grid container  xs={12} lg={8} justifyContent="center" mx="auto">
             <MKTypography
               item
               variant="h1"

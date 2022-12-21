@@ -16,7 +16,6 @@ import CounterJson from "assets/data/LandingPage/Counters"
 const renderLoader = () => <p>Loading</p>;
 
 function Counters() {
-  console.log(CounterJson)
   return (
     <MKBox component="section" pt={3} pb={8} mt={6}>
       <Container>
