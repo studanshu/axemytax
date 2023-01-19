@@ -17,7 +17,7 @@ const renderLoader = () => <p>Loading</p>;
 
 function Counters() {
   return (
-    <MKBox component="section" pt={3} pb={8} mt={6}>
+    <MKBox component="section" mt={8} id="counters">
       <Container>
         <Grid container justifyContent="center" sx={{ textAlign: "center" }}>
           {
@@ -33,9 +33,6 @@ function Counters() {
               </Suspense>
             ))
           }
-        </Grid>
-        <Grid item mt={1} sx={{visibility: {md:"visible", xs:"hidden"} }} textAlign="center">
-            <KeyboardDoubleArrowDownIcon color="grey" item fontSize="medium" />
         </Grid>
       </Container>
     </MKBox>

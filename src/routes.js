@@ -25,9 +25,9 @@
 import Icon from "@mui/material/Icon";
 
 // @mui icons
-import AboutUsIcon from "@mui/icons-material/AccountCircleOutlined"
+import AboutUsIcon from "@mui/icons-material/AccountCircle"
 import HomeIcon from '@mui/icons-material/Home';
-import BookIcon from '@mui/icons-material/Book';
+import ServiceIcon from '@mui/icons-material/HomeRepairService';
 import RssFeedIcon from '@mui/icons-material/RssFeed';
 import ServicePage from "pages/ServicePage";
 
@@ -65,7 +65,7 @@ const routes = [
   },
   {
     name: "Services",
-    icon: <BookIcon />,
+    icon: <ServiceIcon />,
     route: "/services",
     component: <ServicePage/>,
   },

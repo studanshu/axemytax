@@ -28,7 +28,7 @@ export default function ContactIcon({transparent, light, relative, logo, link}) 
         shadow={transparent ? "none" : "md"}
         color={light ? "white" : "dark"}
         position={relative ? "relative" : "absolute"}
-        left="calc(100% - 100px)"
+        right="0px"
         width={{xs: "0.13", sm: "0.12", md: "0.08", lg: "0.07", xl: "0.06", xxl:"0.05"}}
         zIndex={3}
         bgColor="primary"

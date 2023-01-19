@@ -1,6 +1,6 @@
-import post1 from "assets/images/individual.jpg"
+import post1 from "assets/images/individual.png"
 import post2 from "assets/images/sme.png"
-import post3 from "assets/images/enterprise.jpg"
+import post3 from "assets/images/enterprise.png"
 import post4 from "assets/images/nri.png"
 export const HLLJson = [
   {

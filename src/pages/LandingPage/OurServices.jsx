@@ -16,10 +16,10 @@ const renderLoader = () => <p>Loading</p>;
 
 export default function OurServices() {
   return (
-    <MKBox component="section" py={2}>
+    <MKBox component="section" mt={8} id="services">
       <Container>
         <Grid container item lg={12} justifyContent="center">
-          <MKTypography variant="h3" mb={6} textAlign="center" color="info" >
+          <MKTypography variant="h3" mb={4} textAlign="center" color="info" >
             Our Services
           </MKTypography>
         </Grid>

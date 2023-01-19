@@ -15,7 +15,7 @@ import { blogJson } from "assets/data/LandingPage/Blogs";
 
 export default function Blogs() {
   return (
-    <MKBox component="section" py={2} mt={4}>
+    <MKBox component="section" mt={8} id="blogs">
       <Container>
         <Grid container item xs={12} justifyContent="center">
           <MKTypography variant="h3" mb={6} color="info">

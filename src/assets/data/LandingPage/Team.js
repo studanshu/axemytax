@@ -1,6 +1,6 @@
-import img1 from "assets/images/hemanshu.jpg"
-import img2 from "assets/images/rajendra.jpg"
-import img3 from "assets/images/alok.jpg"
+import img1 from "assets/images/hemanshu.png"
+import img2 from "assets/images/rajendra.png"
+import img3 from "assets/images/alok.png"
 
 export const TeamJson = [
   {

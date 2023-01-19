@@ -18,25 +18,23 @@ export default function Team() {
       sx={{
         p: 4,
         mx: { xs: 2, lg: 3 },
-        mt: 4,
-        backgroundColor: ({ palette: { info }, functions: { rgba } }) => rgba(info.focus, 0.8),
+        mt: 8,
+        backgroundColor: ({ palette: { secondary }, functions: { rgba } }) => rgba(secondary.main, 1),
         backdropFilter: "saturate(200%) blur(30px)",
         boxShadow: ({ boxShadows: { xxl } }) => xxl,
       }}
+      id="team"
     >
       <Container>
         <Grid container>
-          <Grid item xs={12} md={8} lg={12} sx={{ mb: 6 }}>
+          <Grid item xs={12} md={8} lg={12}>
             <MKTypography variant="h3" color="white">
               The Executive Team
             </MKTypography>
-            <MKTypography variant="body2" color="white" opacity={0.8}
+            <MKTypography variant="body2" color="white" mt={2}
               sx = {({ breakpoints, typography: { size } }) => ({
                 [breakpoints.down("lg")]: {
-                  visibility: "hidden",
-                  mt:6,
-                  fontSize: "0",
-                  mb: -6,
+                  visibility: "hidden"
                 },
               })}
               >
@@ -44,7 +42,7 @@ export default function Team() {
             </MKTypography>
           </Grid>
         </Grid>
-        <Grid container spacing={3}>
+        <Grid container spacing={3} mt={4}>
         {TeamJson.map((member, _) => (
           <Grid item xs={12} lg={6}>
             <MKBox mb={1}>

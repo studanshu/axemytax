@@ -27,14 +27,13 @@ export default function Hero() {
         }}
       >
         
-        <Container >
-          <Grid container  xs={12} lg={8} justifyContent="center" mx="auto">
+        <Container>
+          <Grid container xs={12} lg={8} justifyContent="center" mx="auto">
             <MKTypography
               item
               variant="h1"
               color="white"
               mt={-6}
-              mb={1}
               sx={({ breakpoints, typography: { size } }) => ({
                 [breakpoints.down("md")]: {
                   fontSize: size["3xl"],
@@ -50,7 +49,6 @@ export default function Hero() {
               item
               variant="h3"
               color="white"
-              mt={-2}
               px={{ xs: 8, lg: 8 }}
               sx={({ breakpoints, typography: { size } }) => ({
                 [breakpoints.down("md")]: {
@@ -69,7 +67,7 @@ export default function Hero() {
               color="white"
               textAlign="center"
               px={{ xs: 8, xl: 12 }}
-              mt={1.5}
+              mt={2}
               sx={({ breakpoints, typography: { size } }) => ({
                 [breakpoints.down("md")]: {
                   fontSize:  size["xxs"]
@@ -82,7 +80,7 @@ export default function Hero() {
               With over 35 years of experience, AxeMyTax provides high-quality Accounting, Auditing, Bookeeping, Taxation  Services to Business Houses, Startups, and Individuals.
             </MKTypography>
           </Grid>
-          <Grid container justifyContent="center" mt={2} gap={2}
+          <Grid container justifyContent="center" mt={4} gap={2}
                 sx={({ breakpoints }) => ({
                   [breakpoints.down("sm")]: {
                     mt: -4,
@@ -93,6 +91,7 @@ export default function Hero() {
                   variant={"outlined"}
                   color={"white"}
                   item
+                  href="#services"
                 >
                   Our Services
             </MKButton>

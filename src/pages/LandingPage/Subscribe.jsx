@@ -29,15 +29,15 @@ import macbook from "assets/images/wordcloud.png";
 
 export default function Subscribe() {
   return (
-    <MKBox component="section" mb={3}>
+    <MKBox component="section" mt={8} id="subscribe">
       <Container>
         <Grid container alignItems="center" >
           <Grid item xs={12} md={6} sx={{ mb: { xs: 12, md: 0 } }}>
-            <MKTypography variant="h4" color="info">Get Your Latest Tax Updates</MKTypography>
-            <MKTypography variant="body2" color="main" mb={3}>
+            <MKTypography variant="h3" color="info">Get Your Latest Tax Updates</MKTypography>
+            <MKTypography variant="body2" color="main" mt={2}>
             Get to know about important Government Compliances, Tax Saving Schemes, GST Rules, and many more.
             </MKTypography>
-            <Grid container spacing={1}>
+            <Grid container spacing={1} mt={4}>
               <Grid item xs={8}>
                 <MKInput type="email" label="Email Here..." fullWidth />
               </Grid>

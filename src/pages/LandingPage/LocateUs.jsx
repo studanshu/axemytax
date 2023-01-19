@@ -18,14 +18,14 @@ import jsonData from "assets/data/LandingPage/LocateUs";
 export default function LocateUs() {
   const classes = useStyles();
   return (
-    <MKBox component="section" py={{ xs: 3, md: 12 }}>
+    <MKBox component="section" py={{ xs: 3, md: 12 }} id="locate" mt={8}>
       <Container>
         <Grid container direction="row" alignItems="center" justifyContent="center">
           <Grid item xs={12} lg={7}>
-            <MKTypography variant="h3" my={1} color="info">
+            <MKTypography variant="h3" color="info">
               Contact Us
             </MKTypography>
-            <MKTypography variant="body2" color="main" mb={2}>
+            <MKTypography variant="body2" color="main" mb={4} mt={2}>
             { jsonData["description"] }
             </MKTypography>
             <MKTypography
