@@ -22,13 +22,13 @@
 */
 
 // @mui material components
-import ServiceIcon from '@mui/icons-material/HomeRepairServiceOutlined';
-import SolutionIcon from "@mui/icons-material/EmojiObjectsOutlined"
-import PricingIcon from "@mui/icons-material/PaymentsOutlined"
-import ResourcesIcon from '@mui/icons-material/AssignmentOutlined';
-
+import HomeIcon from "@mui/icons-material/Home";
+import ServiceIcon from "@mui/icons-material/HomeRepairServiceOutlined";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import RssFeedIcon from "@mui/icons-material/RssFeed";
 
 // // Pages
+import LandingPage from "pages/LandingPage";
 import ServicePage from "pages/ServicePage";
 // import ContactUs from "layouts/pages/landing-pages/contact-us";
 // import Author from "layouts/pages/landing-pages/author";
@@ -56,24 +56,25 @@ import ServicePage from "pages/ServicePage";
 
 const routes = [
   {
-    name: "Solutions",
-    icon:  <SolutionIcon />,
-    route: "#",
+    name: "Home",
+    icon: <HomeIcon />,
+    route: "/",
+    component: <LandingPage />,
   },
   {
     name: "Services",
-    icon:  <ServiceIcon />,
+    icon: <ServiceIcon />,
     route: "/services",
     component: <ServicePage />,
   },
   {
-    name: "Pricing",
-    icon: <PricingIcon/>,
+    name: "About",
+    icon: <AccountCircleIcon />,
     route: "/about",
   },
   {
-    name: "Resources",
-    icon:  <ResourcesIcon/>,
+    name: "Blogs",
+    icon: <RssFeedIcon />,
     route: "/blogs",
   },
   // {
