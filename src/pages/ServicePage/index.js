@@ -7,6 +7,7 @@ import footerRoutes from "footer.routes";
 import Hero from "./Hero";
 import SubService from "./SubService";
 import Testimonial from "./Testimonial";
+import WhyUs from "./WhyUs";
 
 export default function ServicePage() {
   return (
@@ -14,6 +15,7 @@ export default function ServicePage() {
       <Hero />
       <SubService />
       <Testimonial />
+      <WhyUs />
 
       {/* <Card
         sx={{
