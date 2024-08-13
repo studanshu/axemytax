@@ -67,7 +67,7 @@ function SubService() {
         </Box>
 
         <Box
-          maxWidth="70%"
+          maxWidth="968px"
           height="100%"
           display="flex"
           gap={6}
