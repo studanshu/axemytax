@@ -44,6 +44,26 @@ export default {
     focus: "#000000",
   },
 
+  blackAlt: {
+    main: "#272B28",
+    focus: "#272B28",
+  },
+
+  blue: {
+    main: "#008CC6",
+    focus: "#008CC6",
+  },
+
+  darkBlue: {
+    main: "#006088",
+    focus: "#006088",
+  },
+
+  lightGreen: {
+    main: "#F9FCF7",
+    focus: "#F9FCF7",
+  },
+
   primary: {
     main: "#8EDB67",
     focus: "#67DB95",
@@ -53,8 +73,9 @@ export default {
     main: "#344766",
     focus: "#C0CCDF",
   },
+
   info: {
-    main: "#3d5e2b",
+    main: "#479420",
     focus: "#70A84E",
   },
 
@@ -82,6 +103,7 @@ export default {
     main: "#344767",
     focus: "#2c3c58",
   },
+
   grey: {
     main: "#adb5bd",
     focus: "#adb5bd",
@@ -108,8 +130,8 @@ export default {
     },
 
     info: {
-      main: "#3d5e2b",
-      state: "#3d5e2b",
+      main: "#479420",
+      state: "#479420",
     },
 
     success: {
@@ -212,8 +234,8 @@ export default {
     },
 
     info: {
-      background: "#3d5e2b",
-      text: "#3d5e2b",
+      background: "#479420",
+      text: "#479420",
     },
 
     success: {
@@ -245,7 +267,7 @@ export default {
   coloredShadows: {
     primary: "#e91e62",
     secondary: "#110e0e",
-    info: "#3d5e2b",
+    info: "#479420",
     success: "#4caf4f",
     warning: "#ff9900",
     error: "#f44336",
