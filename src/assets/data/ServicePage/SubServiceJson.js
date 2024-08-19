@@ -11,7 +11,6 @@ import colors from "assets/theme/base/colors";
 import ctaImage from "assets/images/tax_image.png";
 
 const iconStyle = {
-  fontSize: `36px !important`,
   color: colors.info.main,
 };
 

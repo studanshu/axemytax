@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 
 // @mui material components
-import { Box, Paper } from "@mui/material";
+import { Box, Paper, Container, Grid } from "@mui/material";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
@@ -22,17 +22,18 @@ import MKTypography from "components/MKTypography";
 
 // Import JSON
 import { TestimonialJson } from "assets/data/ServicePage/TestimonialJson";
+import breakpoints from "assets/theme/base/breakpoints";
 
 const renderLoader = () => <p>Loading</p>;
 
-const { size, fontWeightRegular, fontWeightMedium } = typography;
-const { info, white, blackAlt } = colors;
+const { size } = typography;
+const { info, white } = colors;
 
 const settings = {
   dots: true,
   infinite: true,
-  speed: 500,
   slidesToShow: 3,
+  speed: 500,
   slidesToScroll: 1,
   nextArrow: (
     <button>
@@ -44,10 +45,24 @@ const settings = {
       <ArrowForwardIosIcon />
     </button>
   ),
+  responsive: [
+    {
+      breakpoint: breakpoints.values.lg,
+      settings: {
+        slidesToShow: 1
+      },
+    },
+    {
+      breakpoint: breakpoints.values.xl,
+      settings: {
+        slidesToShow: 2,
+      },
+    },
+  ],
 };
 
 const boxShadow =
-  "0px 2.77px 2.21px 0px #00000005, 0px 6.65px 5.32px 0px #00000007, 0px 12.52px 10.02px 0px #00000009, 0px 22.34px 17.87px 0px #0000000B, 0px 41.78px 33.42px 0px #0000000D, 0px 100px 80px 0px #00000012";
+  "0px 95.6292495727539px 76.50340270996094px 0px rgba(0, 0, 0, 7%), 0px 39.95161819458008px 31.96129035949707px 0px rgba(0, 0, 0, 5%), 0px 21.36004638671875px 17.088037490844727px 0px rgba(0, 0, 0, 4%), 0px 11.97426700592041px 9.579413414001465px 0px rgba(0, 0, 0, 4%), 0px 6.359442710876465px 5.087554454803467px 0px rgba(0, 0, 0, 3%), 0px 2.6463067531585693px 2.1170451641082764px 0px rgba(0, 0, 0, 2%);";
 
 const slickStyling = {
   "& .slick-track": {
@@ -87,57 +102,45 @@ const slickStyling = {
 function Testimonial() {
   return (
     <Suspense fallback={renderLoader()}>
+      <Container>
       <Box
-        // height="100vh"
         display="flex"
         flexDirection="column"
         p={8}
         sx={{ background: white.main, placeItems: "center" }}
       >
-        <Box>
-          <MKTypography
-            variant="h6"
-            color="info"
-            sx={{
-              fontWeight: fontWeightMedium,
-              textTransform: "uppercase",
-            }}
-          >
-            {TestimonialJson.caption}
-          </MKTypography>
-          <MKTypography variant="d5" pt={1} color="darkBlue">
-            {TestimonialJson.title}
-          </MKTypography>
-        </Box>
+        <Grid container alignItems="center" display="flex" flexDirection="column">
+          <Grid item display="flex" flexDirection="column" gap={1}>
+            <MKTypography item variant="caption" color="info">
+              {TestimonialJson.caption}
+            </MKTypography>
+            <MKTypography item variant="h3" color="secondary">
+              {TestimonialJson.title}
+            </MKTypography>
+          </Grid>
+        </Grid>
 
-        <Box py={6} maxWidth="1200px" sx={slickStyling}>
+        <Box mt={6} maxWidth="100%" sx={slickStyling}>
           <Slider {...settings}>
             {TestimonialJson.reviews.map((testimonial) => (
               <Paper
-                sx={{ m: 3, p: 5, maxWidth: "340px", borderRadius: 2 }}
-                elevation={8}
+                sx={{ mx: 4, my: 6, px: 3, py:4, borderRadius: 2 }}
+                elevation={16}
               >
                 <MKTypography
-                  variant="subtitle1"
-                  color="darkBlue"
-                  sx={{
-                    fontWeight: fontWeightRegular,
-                    textTransform: "capitalize",
-                  }}
+                  variant="h5Light"
+                  color="secondary"
                 >
                   {testimonial.name}
                 </MKTypography>
 
                 <MKTypography
-                  variant="subtitle2"
+                  variant="subtitle1"
+                  color="black75"
                   sx={{
-                    mt: 0.5,
                     display: "flex",
                     placeItems: "center",
-                    gap: 0.5,
-                    fontWeight: fontWeightRegular,
-                    fontSize: size.sm,
-                    color: rgba(blackAlt.main, "0.75"),
+                    gap: 1
                   }}
                 >
                   <AccessTimeIcon sx={{ fontSize: `${size.md} !important` }} />
@@ -145,12 +148,10 @@ function Testimonial() {
                 </MKTypography>
 
                 <MKTypography
-                  variant="subtitle2"
+                  variant="body1"
+                  color="black50"
                   sx={{
-                    mt: 3,
-                    mb: 2,
-                    fontWeight: fontWeightRegular,
-                    color: rgba(blackAlt.main, "0.5"),
+                    mt: 3
                   }}
                 >
                   {testimonial.comment}
@@ -170,6 +171,7 @@ function Testimonial() {
           </Slider>
         </Box>
       </Box>
+      </Container>
     </Suspense>
   );
 }

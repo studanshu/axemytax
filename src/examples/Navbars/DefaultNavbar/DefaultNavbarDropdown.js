@@ -54,8 +54,9 @@ function DefaultNavbarDropdown({
     <>
       <MKBox
         {...rest}
+        mt={2}
         mx={1}
-        p={1}
+        px={1}
         display="flex"
         alignItems="baseline"
         color={light ? "white" : "dark"}

@@ -1,14 +1,9 @@
-// @mui material components
-import { Box, Container } from "@mui/material";
+import { Box, Container, Grid } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import SaveAltIcon from "@mui/icons-material/SaveAlt";
 
 // Material Kit 2 React base styles
 import typography from "assets/theme/base/typography";
-import colors from "assets/theme/base/colors";
-
-// Material Kit 2 React helper functions
-import rgba from "assets/theme/functions/rgba";
 
 // Material Kit 2 React components
 import MKButton from "components/MKButton";
@@ -17,91 +12,67 @@ import TopLayout from "pages/utils/TopLayout";
 
 // Images
 import servicePageTaxImage from "assets/images/service_page_tax.png";
-import companiesImage from "assets/images/Companies.png";
 
-const { size, fontWeightRegular, fontWeightMedium } = typography;
+const { size } = typography;
 
 function Hero() {
   return (
     <>
       <TopLayout />
-      <Box height="100vh" sx={{ background: colors.white.main }}>
-        <Container sx={{ height: "100%" }}>
-          <Box display="flex" px={4} pt={16} pb={12} gap={8}>
-            <Box flex={1}>
-              <MKTypography
-                variant="h6"
-                color="info"
-                sx={{
-                  fontWeight: fontWeightMedium,
-                  textTransform: "uppercase",
-                }}
-              >
-                Filing Returns Made Easy
-              </MKTypography>
-
-              <MKTypography
-                variant="d2"
-                color="blackAlt"
-                pt={1}
-                sx={{ fontWeight: fontWeightMedium }}
-              >
-                Using Our Expertise, Save Your Taxes
-              </MKTypography>
-
-              <MKTypography
-                variant="subtitle1"
-                pt={6}
-                sx={{
-                  fontWeight: fontWeightRegular,
-                  color: rgba(colors.blackAlt.main, "0.75"),
-                }}
-              >
-                Leave the stress of taxes to us and let us handle it for you.
-                Not only will we handle the task, but we'll also file your
-                returns seamlessly.
-              </MKTypography>
-
-              <Box display="flex" gap={3} pt={12}>
-                <MKButton
-                  size="large"
-                  variant={"contained"}
-                  color={"info"}
-                  item
-                  sx={{ textTransform: "capitalize", fontSize: size.lg }}
-                  fullWidth
-                >
-                  Start Filling &nbsp; <SendIcon />
-                </MKButton>
-                <MKButton
-                  size="large"
-                  variant={"outlined"}
-                  color={"blue"}
-                  item
-                  href="#services"
-                  sx={{ textTransform: "capitalize", fontSize: size.lg }}
-                  fullWidth
-                >
-                  Download Guide &nbsp; <SaveAltIcon />
-                </MKButton>
+      <Container>
+        <Box pt={24} sx={{ pl: {xl: 4}, px: {xs: 4} }}>
+          <Grid container spacing={8}>
+            <Grid item xs={12} lg={6}>
+              <Box display="flex" flexDirection="column" gap={6}>
+                <Box display="flex" flexDirection="column" gap={1}>
+                  <MKTypography variant="caption" color="info">
+                    Filing Returns Made Easy
+                  </MKTypography>
+                  <MKTypography variant="h2" color="black" pt={1}>
+                    Using Our Expertise, Save Your Taxes
+                  </MKTypography>
+                </Box>
+                <MKTypography variant="body1" color="black75">
+                  Leave the stress of taxes to us and let us handle it for you.
+                  Not only will we handle the task, but we'll also file your
+                  returns seamlessly.
+                </MKTypography>
               </Box>
-            </Box>
-
-            <Box
-              display="flex"
-              flex={1}
-              alignItems="center"
-              alignContent="center"
-            >
-              <img src={servicePageTaxImage} alt="" />
-            </Box>
-          </Box>
-
-          <Box display="flex" px={4} alignItems="center" alignContent="center">
-            <img src={companiesImage} alt="" />
-          </Box>
-        </Container>
-      </Box>
+            </Grid>
+            <Grid item xs={12} lg={6}>
+              <img src={servicePageTaxImage} style={{ maxWidth: "100%", height: "auto" }} />
+            </Grid>
+          </Grid>
+          <Grid container spacing={3} mt={8}
+            sx={{ width: { lg: "50%" } }}
+          >
+            <Grid item xs={12} md={6}>
+              <MKButton
+                size="large"
+                variant="contained"
+                color="info"
+                sx={{ textTransform: "capitalize", fontSize: size.lg, width: "100%", boxShadow:
+          "0px 105.68352508544922px 84.54682159423828px 0px rgba(0, 0, 0, 7%), 0px 44.15205383300781px 35.3216438293457px 0px rgba(0, 0, 0, 5%), 0px 23.605802536010742px 18.884639739990234px 0px rgba(0, 0, 0, 4%), 0px 13.2332181930542px 10.586573600769043px 0px rgba(0, 0, 0, 4%), 0px 7.0280632972717285px 5.62244987487793px 0px rgba(0, 0, 0, 3%), 0px 2.924534320831299px 2.339627265930176px 0px rgba(0, 0, 0, 2%);" }}
+                endIcon={<SendIcon />}
+              >
+                Start Filing
+              </MKButton>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <MKButton
+                size="large"
+                variant="outlined"
+                color="lightBlue"
+                href="#services"
+                sx={{ textTransform: "capitalize", fontSize: size.lg, width: "100%"}}
+                endIcon={<SaveAltIcon />}
+              >
+                Download Guide
+              </MKButton>
+            </Grid>
+          </Grid>
+        </Box>
+      </Container>
     </>
   );
 }

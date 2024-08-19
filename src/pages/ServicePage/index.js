@@ -2,6 +2,7 @@
 import MKBox from "components/MKBox";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 import footerRoutes from "footer.routes";
+import { Box, Container, Grid } from "@mui/material";
 
 // Self - Created
 import Hero from "./Hero";
@@ -29,9 +30,9 @@ export default function ServicePage() {
           boxShadow: ({ boxShadows: { info } }) => info,
         }}
       ></Card> */}
-      <MKBox pt={6} px={1} mt={6}>
+      {/* <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
-      </MKBox>
+      </MKBox> */}
     </>
   );
 }

@@ -23,7 +23,7 @@ import MKTypographyRoot from "components/MKTypography/MKTypographyRoot";
 
 const MKTypography = forwardRef(
   (
-    { color, fontWeight, textTransform, verticalAlign, textGradient, opacity, children, ...rest },
+    { color, fontWeight, textTransform, verticalAlign, textGradient, opacity, children, letterSpacing, ...rest },
     ref
   ) => (
     <MKTypographyRoot
@@ -36,6 +36,7 @@ const MKTypography = forwardRef(
         fontWeight,
         opacity,
         textGradient,
+        letterSpacing
       }}
     >
       {children}
@@ -47,10 +48,11 @@ const MKTypography = forwardRef(
 MKTypography.defaultProps = {
   color: "dark",
   fontWeight: false,
-  textTransform: "none",
+  textTransform: false,
   verticalAlign: "unset",
   textGradient: false,
   opacity: 1,
+  letterSpacing: 0
 };
 
 // Typechecking props for the MKTypography
@@ -67,9 +69,10 @@ MKTypography.propTypes = {
     "dark",
     "text",
     "white",
+    "blackAlt"
   ]),
   fontWeight: PropTypes.oneOf([false, "light", "regular", "medium", "bold"]),
-  textTransform: PropTypes.oneOf(["none", "capitalize", "uppercase", "lowercase"]),
+  textTransform: PropTypes.oneOf([false, "none", "capitalize", "uppercase", "lowercase"]),
   verticalAlign: PropTypes.oneOf([
     "unset",
     "baseline",
@@ -84,6 +87,7 @@ MKTypography.propTypes = {
   textGradient: PropTypes.bool,
   children: PropTypes.node.isRequired,
   opacity: PropTypes.number,
+  letterSpacing: PropTypes.number
 };
 
 export default MKTypography;

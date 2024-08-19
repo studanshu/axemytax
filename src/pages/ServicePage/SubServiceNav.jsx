@@ -1,5 +1,5 @@
 // @mui material components
-import { Box } from "@mui/material";
+import { Grid } from "@mui/material";
 
 // Material Kit 2 React base styles
 import colors from "assets/theme/base/colors";
@@ -10,47 +10,65 @@ import rgba from "assets/theme/functions/rgba";
 
 // Material Kit 2 React components
 import MKButton from "components/MKButton";
+import MKTypography from "components/MKTypography";
 
 const { size } = typography;
 
 function SubServiceNav({ subServicesList, selSubService, setSelSubService }) {
   return (
-    <Box
+    <Grid
+      container
       display="flex"
-      my={6}
       py={1}
       px={2}
+      justifyContent="space-around"
+      alignContent="space-between"
+      gap={8}
       sx={{
         background: colors.white.main,
         borderRadius: 8,
+        gap: {xs: 2, xl: 6},
         boxShadow:
           "0px 1.82px 1.46px 0px #00000005, 0px 4.37px 3.5px 0px #00000007, 0px 8.23px 6.59px 0px #00000009",
       }}
     >
       {subServicesList.map((subService, index) => (
-        <MKButton
-          sx={{
-            py: 0,
-            width: "240px",
-            borderRadius: 8,
-            fontSize: size.md,
-            fontWeight: 500,
-            lineHeight: "normal",
-            border:
-              index === selSubService
-                ? `2px solid ${colors.blue.main}`
-                : `2px solid ${colors.white.main}`,
-            color:
-              index === selSubService
-                ? colors.blue.main
-                : rgba(colors.blackAlt.main, "0.5"),
-          }}
-          onClick={() => setSelSubService(index)}
-        >
+        <Grid items>
+          <MKButton
+            sx={{
+              py: 1,
+              borderRadius: 8,
+              border:
+                index === selSubService
+                  ? `2px solid ${colors.lightBlue.main}`
+                  : `2px solid ${colors.white.main}`,
+              color:
+                index === selSubService
+                  ? colors.lightBlue.main
+                  : rgba(colors.black.main, "0.5"),
+            }}
+            onClick={() => setSelSubService(index)}
+          >
+            {
+              index === selSubService ? 
+              <MKTypography 
+              variant="body2"
+              color="lightBlue"
+              >
+            {subService}
+            </MKTypography> :
+            <MKTypography 
+            variant="body1"
+            color="black50"
+            >
           {subService}
-        </MKButton>
+          </MKTypography>
+            }
+            
+          </MKButton>
+        </Grid>
       ))}
-    </Box>
+    </Grid>
   );
 }
 

@@ -19,7 +19,7 @@ import { WhyUsJson } from "assets/data/ServicePage/WhyUsJson";
 const renderLoader = () => <p>Loading</p>;
 
 const { size, fontWeightRegular, fontWeightMedium } = typography;
-const { info, lightGreen, white, blackAlt } = colors;
+const { info, light, white, black } = colors;
 
 function WhyUs() {
   return (
@@ -29,7 +29,7 @@ function WhyUs() {
         display="flex"
         flexDirection="column"
         p={8}
-        sx={{ background: lightGreen.main, placeItems: "center" }}
+        sx={{ background: light.main, placeItems: "center" }}
       >
         <Box>
           <MKTypography
@@ -42,7 +42,7 @@ function WhyUs() {
           >
             {WhyUsJson.caption}
           </MKTypography>
-          <MKTypography variant="d5" pt={1} color="darkBlue">
+          <MKTypography variant="d5" pt={1} color="secondary">
             {WhyUsJson.title}
           </MKTypography>
         </Box>
@@ -68,7 +68,7 @@ function WhyUs() {
                   sx={{
                     fontWeight: "500",
                     textTransform: "capitalize",
-                    color: rgba(blackAlt.main, "0.75"),
+                    color: rgba(black.main, "0.75"),
                   }}
                 >
                   {reason.title}
@@ -81,7 +81,7 @@ function WhyUs() {
                     placeItems: "center",
                     gap: 0.5,
                     fontSize: size.sm,
-                    color: rgba(blackAlt.main, "0.5"),
+                    color: rgba(black.main, "0.5"),
                   }}
                 >
                   {reason.des}
