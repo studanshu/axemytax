@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 // react-router components
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient,QueryClientProvider } from "react-query";
 
 // @mui material components
 import { ThemeProvider } from "@mui/material/styles";
