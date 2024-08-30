@@ -1,7 +1,8 @@
 import { Suspense } from "react";
 
 // @mui material components
-import { Box, Paper, Container, Grid } from "@mui/material";
+import { Box, Paper, Container } from "@mui/material";
+import { Grid2 as Grid } from "@mui/material";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
@@ -14,11 +15,11 @@ import "slick-carousel/slick/slick-theme.css";
 import typography from "assets/theme/base/typography";
 import colors from "assets/theme/base/colors";
 
-// Material Kit 2 React helper functions
-import rgba from "assets/theme/functions/rgba";
 
 // Material Kit 2 React components
 import MKTypography from "components/MKTypography";
+
+import SectionHeader from "components/Custom/SectionHeader";
 
 // Import JSON
 import { TestimonialJson } from "assets/data/ServicePage/TestimonialJson";
@@ -106,19 +107,13 @@ function Testimonial() {
       <Box
         display="flex"
         flexDirection="column"
-        p={8}
+        p={16}
         sx={{ background: white.main, placeItems: "center" }}
       >
-        <Grid container alignItems="center" display="flex" flexDirection="column">
-          <Grid item display="flex" flexDirection="column" gap={1}>
-            <MKTypography item variant="caption" color="info">
-              {TestimonialJson.caption}
-            </MKTypography>
-            <MKTypography item variant="h3" color="secondary">
-              {TestimonialJson.title}
-            </MKTypography>
-          </Grid>
-        </Grid>
+        <SectionHeader
+          caption={TestimonialJson.caption}
+          title={TestimonialJson.title}
+        />
 
         <Box mt={6} maxWidth="100%" sx={slickStyling}>
           <Slider {...settings}>

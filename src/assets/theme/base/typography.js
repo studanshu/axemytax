@@ -80,7 +80,7 @@ const typography = {
     lineHeight: 1.1,
     letterSpacing: 0.02,
     fontWeight: baseProperties.fontWeightBold,
-    color: dark.main
+    color: dark.main,
   },
 
   h3: {
@@ -88,7 +88,7 @@ const typography = {
     fontSize: pxToRem(48.88),
     lineHeight: 1.25,
     letterSpacing: -0.05,
-    fontWeight: baseProperties.fontWeightLight
+    fontWeight: baseProperties.fontWeightLight,
   },
 
   h4: {
@@ -96,7 +96,7 @@ const typography = {
     fontSize: pxToRem(42),
     lineHeight: 1.375,
     letterSpacing: -0.03,
-    fontWeight: baseProperties.fontWeightRegular
+    fontWeight: baseProperties.fontWeightRegular,
   },
 
   h4Light: {
@@ -104,7 +104,7 @@ const typography = {
     fontSize: pxToRem(42),
     lineHeight: 1.375,
     letterSpacing: -0.03,
-    fontWeight: baseProperties.fontWeightLight
+    fontWeight: baseProperties.fontWeightLight,
   },
 
   h5: {
@@ -112,7 +112,7 @@ const typography = {
     fontSize: pxToRem(28),
     lineHeight: 1.375,
     letterSpacing: 0,
-    fontWeight: baseProperties.fontWeightMedium
+    fontWeight: baseProperties.fontWeightMedium,
   },
 
   h5Light: {
@@ -120,16 +120,15 @@ const typography = {
     fontSize: pxToRem(26.8),
     lineHeight: 1.375,
     letterSpacing: 0,
-    fontWeight: baseProperties.fontWeightLight
+    fontWeight: baseProperties.fontWeightLight,
   },
-
 
   h6: {
     fontFamily: baseProperties.fontFamily1,
     fontSize: pxToRem(16.5),
     lineHeight: 1.625,
     letterSpacing: -0.05,
-    fontWeight: baseProperties.fontWeightBold
+    fontWeight: baseProperties.fontWeightBold,
   },
 
   h6Light: {
@@ -137,15 +136,15 @@ const typography = {
     fontSize: pxToRem(16.5),
     lineHeight: 1.625,
     letterSpacing: -0.05,
-    fontWeight: baseProperties.fontWeightLight
+    fontWeight: baseProperties.fontWeightLight,
   },
 
   subtitle1: {
     fontFamily: baseProperties.fontFamily2,
-    fontSize: baseProperties.fontSizeMD,
+    fontSize: pxToRem(16),
     lineHeight: 1.625,
     letterSpacing: 0,
-    fontWeight: baseProperties.fontWeightRegular
+    fontWeight: baseProperties.fontWeightRegular,
   },
 
   subtitle2: {
@@ -153,7 +152,7 @@ const typography = {
     fontSize: pxToRem(10.82),
     lineHeight: 1.6,
     letterSpacing: 0,
-    fontWeight: baseProperties.fontWeightRegular
+    fontWeight: baseProperties.fontWeightRegular,
   },
 
   body1: {
@@ -161,7 +160,7 @@ const typography = {
     fontSize: pxToRem(19.69),
     fontWeight: baseProperties.fontWeightRegular,
     lineHeight: 1.625,
-    letterSpacing: 0
+    letterSpacing: 0,
   },
 
   body2: {
@@ -169,7 +168,7 @@ const typography = {
     fontSize: pxToRem(19.69),
     fontWeight: baseProperties.fontWeightMedium,
     lineHeight: 1.625,
-    letterSpacing: 0
+    letterSpacing: 0,
   },
 
   button: {
@@ -185,7 +184,7 @@ const typography = {
     fontSize: baseProperties.fontSizeMD,
     fontWeight: baseProperties.fontWeightBold,
     lineHeight: 1.75,
-    letterSpacing: 0
+    letterSpacing: 0,
   },
 
   button2: {
@@ -193,7 +192,7 @@ const typography = {
     fontSize: pxToRem(20),
     lineHeight: 1.5,
     letterSpacing: 0,
-    fontWeight: baseProperties.fontWeightSemiBold
+    fontWeight: baseProperties.fontWeightSemiBold,
   },
 
   caption: {
@@ -202,7 +201,7 @@ const typography = {
     fontSize: baseProperties.fontSizeMD,
     fontWeight: baseProperties.fontWeightSemiBold,
     lineHeight: 1.25,
-    letterSpacing: 0.03
+    letterSpacing: 0.03,
   },
 
   overline: {
@@ -220,8 +219,11 @@ const typography = {
   },
 
   d3: {
-    fontSize: pxToRem(64),
-    ...baseDisplayProperties,
+    fontFamily: baseProperties.fontFamily2,
+    fontSize: pxToRem(48.88),
+    lineHeight: 1.25,
+    letterSpacing: -0.05,
+    fontWeight: baseProperties.fontWeightLight,
   },
 
   d4: {
@@ -235,8 +237,11 @@ const typography = {
   },
 
   d6: {
-    fontSize: pxToRem(40),
-    ...baseDisplayProperties,
+    fontFamily: baseProperties.fontFamily1,
+    fontSize: pxToRem(16.5),
+    lineHeight: 1.625,
+    letterSpacing: -0.05,
+    fontWeight: baseProperties.fontWeightBold,
   },
 
   size: {

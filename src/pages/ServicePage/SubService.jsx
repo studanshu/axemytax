@@ -20,6 +20,7 @@ import SubServiceNav from "./SubServiceNav";
 
 // Import JSON
 import { SubServiceJson } from "assets/data/ServicePage/SubServiceJson";
+import SectionHeader from "components/Custom/SectionHeader";
 
 const renderLoader = () => <p>Loading</p>;
 
@@ -38,18 +39,11 @@ function SubService() {
       <Box mt={16} sx={{ background: light.main }}>
         <Container>
           <Grid container display="flex" flexDirection="column" alignItems="center" justifyContent="space-evenly" sx={{ gap: { xs: 4, xl: 5 } }}>
-            <Grid items display="flex" flexDirection="column" gap={1} sx={{ mt: { xs: 2, lg: 6 }, px: { xs: 5, lg: 0 } }}>
-              <MKTypography
-                variant="caption"
-                color="info"
-              >
-                {SubServiceJson.caption}
-              </MKTypography>
-
-              <MKTypography variant="h3" color="secondary">
-                {SubServiceJson.title}
-              </MKTypography>
-            </Grid>
+            <SectionHeader
+              caption={SubServiceJson.caption}
+              title={SubServiceJson.title}
+              sx={{ mt: { xs: 2, lg: 6 }, px: { xs: 5, lg: 0 } }}
+            />
             <Grid container width="100%" display="flex" flexDirection="column" sx={{ px: { xs: 5, lg: 16 }, gap: { xs: 2, xl: 9 } }}>
               <Grid items>
                 <SubServiceNav

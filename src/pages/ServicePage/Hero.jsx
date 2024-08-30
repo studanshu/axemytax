@@ -12,6 +12,7 @@ import TopLayout from "pages/utils/TopLayout";
 
 // Images
 import servicePageTaxImage from "assets/images/service_page_tax.png";
+import SectionHeader from "components/Custom/SectionHeader";
 
 const { size } = typography;
 
@@ -24,14 +25,12 @@ function Hero() {
           <Grid container spacing={8}>
             <Grid item xs={12} lg={6}>
               <Box display="flex" flexDirection="column" gap={6}>
-                <Box display="flex" flexDirection="column" gap={1}>
-                  <MKTypography variant="caption" color="info">
-                    Filing Returns Made Easy
-                  </MKTypography>
-                  <MKTypography variant="h2" color="black" pt={1}>
-                    Using Our Expertise, Save Your Taxes
-                  </MKTypography>
-                </Box>
+                <SectionHeader
+                  caption="Filing Returns Made Easy"
+                  title="Using Our Expertise, Save Your Taxes"
+                  variant="h2"
+                  color="black"
+                />
                 <MKTypography variant="body1" color="black75">
                   Leave the stress of taxes to us and let us handle it for you.
                   Not only will we handle the task, but we'll also file your
