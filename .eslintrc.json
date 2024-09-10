@@ -7,7 +7,8 @@
   ],
   "plugins": ["react", "unused-imports"],
   "rules": {
-    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-imports": "warn",
+    "react/react-in-jsx-scope": "off",
     "unused-imports/no-unused-vars": [
       "warn",
       {

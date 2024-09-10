@@ -1,15 +1,14 @@
 import { Suspense, useState } from "react";
 
 // @mui material components
-import { Box, Container, Grid } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
+import { Box, Container, Grid } from "@mui/material";
 
 // Material Kit 2 React base styles
-import typography from "assets/theme/base/typography";
 import colors from "assets/theme/base/colors";
+import typography from "assets/theme/base/typography";
 
 // Material Kit 2 React helper functions
-import rgba from "assets/theme/functions/rgba";
 
 // Material Kit 2 React components
 import MKButton from "components/MKButton";
@@ -24,8 +23,8 @@ import SectionHeader from "components/Custom/SectionHeader";
 
 const renderLoader = () => <p>Loading</p>;
 
-const { size, fontWeightRegular, fontWeightMedium } = typography;
-const { light, white, black } = colors;
+const { size, fontWeightMedium } = typography;
+const { light, white } = colors;
 
 function SubService() {
   const [selSubService, setSelSubService] = useState(1);
@@ -38,13 +37,26 @@ function SubService() {
     <Suspense fallback={renderLoader()}>
       <Box mt={16} sx={{ background: light.main }}>
         <Container>
-          <Grid container display="flex" flexDirection="column" alignItems="center" justifyContent="space-evenly" sx={{ gap: { xs: 4, xl: 5 } }}>
+          <Grid
+            container
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="space-evenly"
+            sx={{ gap: { xs: 4, xl: 5 } }}
+          >
             <SectionHeader
               caption={SubServiceJson.caption}
               title={SubServiceJson.title}
               sx={{ mt: { xs: 2, lg: 6 }, px: { xs: 5, lg: 0 } }}
             />
-            <Grid container width="100%" display="flex" flexDirection="column" sx={{ px: { xs: 5, lg: 16 }, gap: { xs: 2, xl: 9 } }}>
+            <Grid
+              container
+              width="100%"
+              display="flex"
+              flexDirection="column"
+              sx={{ px: { xs: 5, lg: 16 }, gap: { xs: 2, xl: 9 } }}
+            >
               <Grid items>
                 <SubServiceNav
                   subServicesList={SubServiceJson.subServicesList}
@@ -53,8 +65,23 @@ function SubService() {
                 />
               </Grid>
               <Grid items sx={{ mx: { xs: 3, xl: 7 } }}>
-                <Grid container display="flex" justifyContent="space-between" alignItems="center" sx={{ mb: { xs: 2, lg: 6 }, gap: {xs: 4, xxl: 16}, flexWrap: {xs: "wrap", xl:"nowrap"} }}>
-                  <Grid items className="ctaLeft" xl={5} sx={{mx: {md: 12, xl: 0}}}>
+                <Grid
+                  container
+                  display="flex"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  sx={{
+                    mb: { xs: 2, lg: 6 },
+                    gap: { xs: 4, xxl: 16 },
+                    flexWrap: { xs: "wrap", xl: "nowrap" },
+                  }}
+                >
+                  <Grid
+                    items
+                    className="ctaLeft"
+                    xl={5}
+                    sx={{ mx: { md: 12, xl: 0 } }}
+                  >
                     <Grid
                       container
                       position="relative"
@@ -77,7 +104,8 @@ function SubService() {
                         backgroundSize: "cover", // Cover the entire container
                         backgroundPosition: "center", // Center the image
                         backgroundRepeat: "no-repeat", // Prevent the image from repeating
-                        boxShadow: "0px 61.498477935791016px 49.19877624511719px 0px rgba(0, 0, 0, 7%), 0px 25.69259262084961px 20.554075241088867px 0px rgba(0, 0, 0, 5%), 0px 13.736489295959473px 10.989192008972168px 0px rgba(0, 0, 0, 4%), 0px 7.700563907623291px 6.160450458526611px 0px rgba(0, 0, 0, 4%), 0px 4.089711666107178px 3.2717692852020264px 0px rgba(0, 0, 0, 3%), 0px 1.7018204927444458px 1.3614563941955566px 0px rgba(0, 0, 0, 2%);"
+                        boxShadow:
+                          "0px 61.498477935791016px 49.19877624511719px 0px rgba(0, 0, 0, 7%), 0px 25.69259262084961px 20.554075241088867px 0px rgba(0, 0, 0, 5%), 0px 13.736489295959473px 10.989192008972168px 0px rgba(0, 0, 0, 4%), 0px 7.700563907623291px 6.160450458526611px 0px rgba(0, 0, 0, 4%), 0px 4.089711666107178px 3.2717692852020264px 0px rgba(0, 0, 0, 3%), 0px 1.7018204927444458px 1.3614563941955566px 0px rgba(0, 0, 0, 2%);",
                       }}
                     >
                       <MKTypography
@@ -130,7 +158,14 @@ function SubService() {
                       alignItems="space-evenly"
                     >
                       {content.map((item, index) => (
-                        <Grid item key={index} display="flex" flexDirection="column" gap={1} xs={4}>
+                        <Grid
+                          item
+                          key={index}
+                          display="flex"
+                          flexDirection="column"
+                          gap={1}
+                          xs={4}
+                        >
                           {item.icon}
 
                           <MKTypography
@@ -143,10 +178,7 @@ function SubService() {
                             {item.title}
                           </MKTypography>
 
-                          <MKTypography
-                            variant="subtitle2"
-                            color="black50"
-                          >
+                          <MKTypography variant="subtitle2" color="black50">
                             {item.des}
                           </MKTypography>
                         </Grid>

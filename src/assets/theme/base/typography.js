@@ -29,7 +29,6 @@ const { dark } = colors;
 
 const baseProperties = {
   fontFamily: '"Noto Sans SC", sans-serif',
-  fontFamily: '"Noto Sans SC", sans-serif',
   fontFamily2: '"Inter", sans-serif',
   fontWeightLighter: 100,
   fontWeightLight: 300,

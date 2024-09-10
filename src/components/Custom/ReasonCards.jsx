@@ -1,4 +1,5 @@
 import { Grid } from "@mui/material";
+import PropTypes from "prop-types";
 import MKTypography from "components/MKTypography";
 
 const ReasonCards = ({ reasons }) => (
@@ -51,5 +52,9 @@ const ReasonCards = ({ reasons }) => (
     ))}
   </Grid>
 );
+
+ReasonCards.propTypes = {
+  reasons: PropTypes.array.isRequired,
+};
 
 export default ReasonCards;
