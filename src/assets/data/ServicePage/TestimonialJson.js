@@ -9,7 +9,7 @@ export const TestimonialJson = {
       name: "Sumeeet Gupta",
       duration: "1 day ago",
       comment:
-        "“ Hemanshu has great knowledge and understanding about the returns and technical matters. He was extremely helpful in filing up the return. Great work. Keep going. ”",
+        "“ Hemanshu has great knowledge and understanding about the returns and technical matters. He was extremely helpful in filing up the return. Great work. Keep going.!”",
       rating: <Rating name="read-only" value={4.5} precision={0.5} readOnly />,
     },
     {

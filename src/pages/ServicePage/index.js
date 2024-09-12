@@ -1,10 +1,7 @@
 // Material Kit 2 React components
-import MKBox from "components/MKBox";
-import DefaultFooter from "examples/Footers/DefaultFooter";
-import footerRoutes from "footer.routes";
-import { Box, Container, Grid } from "@mui/material";
 
 // Self - Created
+import Faq from "./Faq";
 import Hero from "./Hero";
 import SubService from "./SubService";
 import Testimonial from "./Testimonial";
@@ -17,7 +14,7 @@ export default function ServicePage() {
       <SubService />
       <Testimonial />
       <WhyUs />
-
+      <Faq />
       {/* <Card
         sx={{
           p: 2,

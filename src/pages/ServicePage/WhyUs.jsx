@@ -39,7 +39,7 @@ function WhyUs() {
             flexDirection="column"
             alignItems="center"
             className="WhyUs"
-            sx={{ gap: { xs: 6, xl: 12 } }}
+            sx={{ gap: { xs: 6, xl: 12 }, px: { xl: 2 } }}
           >
             <Grid
               container

@@ -1,20 +1,19 @@
+/* eslint-disable react/jsx-key */
 import { Suspense } from "react";
 
 // @mui material components
-import { Box, Paper, Container } from "@mui/material";
-import { Grid2 as Grid } from "@mui/material";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { Box, Container, Paper } from "@mui/material";
 
 // react-slick
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 
 // Material Kit 2 React base styles
-import typography from "assets/theme/base/typography";
 import colors from "assets/theme/base/colors";
-
+import typography from "assets/theme/base/typography";
 
 // Material Kit 2 React components
 import MKTypography from "components/MKTypography";
@@ -50,7 +49,7 @@ const settings = {
     {
       breakpoint: breakpoints.values.lg,
       settings: {
-        slidesToShow: 1
+        slidesToShow: 1,
       },
     },
     {
@@ -104,68 +103,72 @@ function Testimonial() {
   return (
     <Suspense fallback={renderLoader()}>
       <Container>
-      <Box
-        display="flex"
-        flexDirection="column"
-        p={16}
-        sx={{ background: white.main, placeItems: "center" }}
-      >
-        <SectionHeader
-          caption={TestimonialJson.caption}
-          title={TestimonialJson.title}
-        />
+        <Box
+          display="flex"
+          flexDirection="column"
+          sx={{
+            background: white.main,
+            placeItems: "center",
+            marginY: { xs: 10, xl: 16 },
+            marginX: { sm: 2 },
+          }}
+        >
+          <SectionHeader
+            caption={TestimonialJson.caption}
+            title={TestimonialJson.title}
+          />
 
-        <Box mt={6} maxWidth="100%" sx={slickStyling}>
-          <Slider {...settings}>
-            {TestimonialJson.reviews.map((testimonial) => (
-              <Paper
-                sx={{ mx: 4, my: 6, px: 3, py:4, borderRadius: 2 }}
-                elevation={16}
-              >
-                <MKTypography
-                  variant="h5Light"
-                  color="secondary"
+          <Box mt={6} maxWidth="100%" sx={slickStyling}>
+            <Slider {...settings}>
+              {TestimonialJson.reviews.map((testimonial) => (
+                <Paper
+                  sx={{ mx: 4, my: 6, px: 3, py: 4, borderRadius: 2 }}
+                  elevation={16}
+                  height="100%"
                 >
-                  {testimonial.name}
-                </MKTypography>
+                  <MKTypography variant="h5Light" color="secondary">
+                    {testimonial.name}
+                  </MKTypography>
 
-                <MKTypography
-                  variant="subtitle1"
-                  color="black75"
-                  sx={{
-                    display: "flex",
-                    placeItems: "center",
-                    gap: 1
-                  }}
-                >
-                  <AccessTimeIcon sx={{ fontSize: `${size.md} !important` }} />
-                  {testimonial.duration}
-                </MKTypography>
+                  <MKTypography
+                    variant="subtitle1"
+                    color="black75"
+                    sx={{
+                      display: "flex",
+                      placeItems: "center",
+                      gap: 1,
+                    }}
+                  >
+                    <AccessTimeIcon
+                      sx={{ fontSize: `${size.md} !important` }}
+                    />
+                    {testimonial.duration}
+                  </MKTypography>
 
-                <MKTypography
-                  variant="body1"
-                  color="black50"
-                  sx={{
-                    mt: 3
-                  }}
-                >
-                  {testimonial.comment}
-                </MKTypography>
+                  <MKTypography
+                    variant="body1"
+                    color="black50"
+                    sx={{
+                      mt: 3,
+                    }}
+                  >
+                    {testimonial.comment}
+                  </MKTypography>
 
-                <Box
-                  sx={{
-                    "& .MuiRating-iconFilled": {
-                      color: info.main,
-                    },
-                  }}
-                >
-                  {testimonial.rating}
-                </Box>
-              </Paper>
-            ))}
-          </Slider>
+                  <Box
+                    sx={{
+                      "& .MuiRating-iconFilled": {
+                        color: info.main,
+                      },
+                    }}
+                  >
+                    {testimonial.rating}
+                  </Box>
+                </Paper>
+              ))}
+            </Slider>
+          </Box>
         </Box>
-      </Box>
       </Container>
     </Suspense>
   );

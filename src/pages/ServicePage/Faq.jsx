@@ -1,0 +1,69 @@
+/* eslint-disable no-unused-vars */
+import { Box, Container, Grid } from "@mui/material";
+import { FaqJson } from "assets/data/ServicePage/FaqJson";
+import colors from "assets/theme/base/colors";
+import typography from "assets/theme/base/typography";
+import FaqQuestion from "components/Custom/FaqQuestion";
+import SectionHeader from "components/Custom/SectionHeader";
+import { Suspense } from "react";
+const renderLoader = () => <p>Loading</p>;
+const { size } = typography;
+
+const { light } = colors;
+
+function Faq() {
+  return (
+    <Suspense fallback={renderLoader()}>
+      <Box className="rootFaq">
+        <Container>
+          <Grid
+            container
+            alignItems="center"
+            className="Faq"
+            justifyContent="space-between"
+            sx={{ py: { xs: 10, xl: 16 }, px: { lg: 2 } }}
+          >
+            <Grid
+              item
+              xs={0}
+              lg={5}
+              sx={{
+                display: { xs: "none", lg: "block" },
+              }}
+            >
+              <img
+                src={FaqJson.image}
+                alt="FAQ"
+                style={{ maxWidth: "100%", height: "auto" }}
+              />
+            </Grid>
+            <Grid item xs={12} lg={6}>
+              <Grid container spacing={6} className="faqContent">
+                <Grid item xs={12}>
+                  <SectionHeader
+                    caption={FaqJson.caption}
+                    title={FaqJson.title}
+                    alignItems="flex-end"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  {FaqJson.faqs.map((faq, index) => (
+                    <Box key={index} mb={1}>
+                      <FaqQuestion
+                        key={index}
+                        question={faq.q}
+                        answer={faq.a}
+                      />
+                    </Box>
+                  ))}
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+    </Suspense>
+  );
+}
+
+export default Faq;
