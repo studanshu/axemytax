@@ -21,8 +21,8 @@ import PropTypes from "prop-types";
 
 // @mui material components
 import Card from "@mui/material/Card";
-import MuiLink from "@mui/material/Link";
 import Icon from "@mui/material/Icon";
+import MuiLink from "@mui/material/Link";
 
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
@@ -48,15 +48,19 @@ function BackgroundBlogCard({ image, title, description, action }) {
   return (
     <Card
       sx={{
-        backgroundImage: ({ palette: { black }, functions: { linearGradient, rgba } }) =>
+        backgroundImage: ({
+          palette: { black },
+          functions: { linearGradient, rgba },
+        }) =>
           `${linearGradient(rgba(black.main, 0.5), rgba(black.main, 0.5))}, url(${image})`,
-        backgroundSize: "cover",
+        backgroundSize: "cover", // Cover the entire container
+        backgroundPosition: "center", // Center the image
       }}
     >
       <MKBox p={3}>
         <MKBox minHeight="20.625rem" my="auto" py={3}>
           <MKTypography
-            variant="h2"
+            variant="h5Light"
             color="white"
             mb={1}
             sx={({ breakpoints, typography: { size } }) => ({
@@ -67,14 +71,14 @@ function BackgroundBlogCard({ image, title, description, action }) {
           >
             {title}
           </MKTypography>
-          <MKTypography variant="body2" color="white" my={3}>
+          <MKTypography variant="body1" color="white" my={3}>
             {description}
           </MKTypography>
           {action.type === "internal" ? (
             <MKTypography
               component={Link}
               to={action.route}
-              variant="body2"
+              variant="subtitle1"
               fontWeight="regular"
               color="white"
               textTransform="capitalize"
@@ -89,7 +93,7 @@ function BackgroundBlogCard({ image, title, description, action }) {
               href={action.route}
               target="_blank"
               rel="noreferrer"
-              variant="body2"
+              variant="subtitle1"
               fontWeight="regular"
               color="white"
               textTransform="capitalize"

@@ -64,7 +64,7 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
     >
       <MKTypography
         display="block"
-        variant="h3"
+        variant="h4"
         color={iconColor}
         textGradient={variant === "contained"}
         mt={-0.625}
@@ -74,8 +74,10 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
       <MKBox pt={{ xs: 3, md: 0 }} pl={{ xs: 0, md: 2 }} lineHeight={1}>
         <MKTypography
           display="block"
-          variant="5"
-          color={variant === "contained" || color === "light" ? "dark" : "white"}
+          variant="h5"
+          color={
+            variant === "contained" || color === "light" ? "black75" : "white"
+          }
           fontWeight="bold"
           mb={1}
         >
@@ -83,8 +85,10 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
         </MKTypography>
         <MKTypography
           display="block"
-          variant="body2"
-          color={variant === "contained" || color === "light" ? "text" : "white"}
+          variant="subtitle1"
+          color={
+            variant === "contained" || color === "light" ? "text" : "white"
+          }
           mb={2}
         >
           {description}
@@ -95,24 +99,26 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
             href={action.route}
             target="_blank"
             rel="noreferrer"
-            variant="body2"
+            variant="subtitle1"
             fontWeight="regular"
             color={variant === "contained" ? color : "white"}
             sx={buttonStyles}
           >
-            {action.label} <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
+            {action.label}{" "}
+            <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
           </MKTypography>
         ) : null}
         {action && action.type === "internal" ? (
           <MKTypography
             component={Link}
             to={action.route}
-            variant="body2"
+            variant="subtitle1"
             fontWeight="regular"
             color={"info"}
             sx={buttonStyles}
           >
-            {action.label} <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
+            {action.label}{" "}
+            <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
           </MKTypography>
         ) : null}
       </MKBox>

@@ -1,8 +1,12 @@
 // Material Kit 2 React components
 
 // Self - Created
+import MKBox from "components/MKBox";
+import DefaultFooter from "examples/Footers/DefaultFooter";
+import footerRoutes from "footer.routes";
 import Faq from "./Faq";
 import Hero from "./Hero";
+import { Resources } from "./Resources";
 import SubService from "./SubService";
 import Testimonial from "./Testimonial";
 import WhyUs from "./WhyUs";
@@ -15,6 +19,7 @@ export default function ServicePage() {
       <Testimonial />
       <WhyUs />
       <Faq />
+      <Resources />
       {/* <Card
         sx={{
           p: 2,
@@ -27,9 +32,9 @@ export default function ServicePage() {
           boxShadow: ({ boxShadows: { info } }) => info,
         }}
       ></Card> */}
-      {/* <MKBox pt={6} px={1} mt={6}>
+      <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
-      </MKBox> */}
+      </MKBox>
     </>
   );
 }

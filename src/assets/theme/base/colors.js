@@ -113,12 +113,12 @@ export default {
 
   gradients: {
     primary: {
-      main: "#EC407A",
+      main: "#479420",
       state: "#D81B60",
     },
 
     secondary: {
-      main: "#747b8a",
+      main: "#006088",
       state: "#495361",
     },
 

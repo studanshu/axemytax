@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 // @mui material components
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
@@ -11,7 +12,6 @@ import CenteredBlogCard from "examples/Cards/BlogCards/CenteredBlogCard";
 
 // json data
 import { blogJson } from "assets/data/LandingPage/Blogs";
-
 
 export default function Blogs() {
   return (

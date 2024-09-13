@@ -1,8 +1,8 @@
 // @mui icons
 import FacebookIcon from "@mui/icons-material/Facebook";
+import LinkedIn from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import YouTubeIcon from "@mui/icons-material/YouTube";
-import LinkedIn from "@mui/icons-material/LinkedIn";
 
 // Material Kit 2 React components
 import MKTypography from "components/MKTypography";
@@ -55,8 +55,14 @@ export default {
       name: "help & support",
       items: [
         { name: "contact us", href: "https://www.axemytax.in/contact-us" },
-        { name: "knowledge center", href: "https://www.axemytax.in/knowledge-center" },
-        { name: "custom development", href: "https://services.creative-tim.com/" },
+        {
+          name: "knowledge center",
+          href: "https://www.axemytax.in/knowledge-center",
+        },
+        {
+          name: "custom development",
+          href: "https://services.creative-tim.com/",
+        },
         { name: "sponsorships", href: "https://www.axemytax.in/sponsorships" },
       ],
     },
@@ -70,15 +76,15 @@ export default {
     },
   ],
   copyright: (
-    <MKTypography variant="button" fontWeight="regular">
+    <MKTypography variant="subtitle1" color="secondary">
       All rights reserved. Copyright &copy; {date} AxeMyTax by{" "}
       <MKTypography
         component="a"
         href="https://www.axemytax.in"
         target="_blank"
         rel="noreferrer"
-        variant="button"
-        fontWeight="regular"
+        variant="subtitle1"
+        color="secondary"
       >
         Bahety & Goenka
       </MKTypography>

@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 /**
 =========================================================
 * Material Kit 2 React React - v1.0.0
