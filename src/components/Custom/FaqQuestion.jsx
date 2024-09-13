@@ -1,10 +1,9 @@
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
-import { Collapse, Divider, Grid, IconButton } from "@mui/material";
+import { Collapse, Divider, Grid } from "@mui/material";
 import colors from "assets/theme/base/colors";
 import MKTypography from "components/MKTypography";
 import PropTypes from "prop-types";
 import { useState } from "react";
+import FaqButton from "./FaqButton";
 
 const FaqQuestion = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,32 +17,11 @@ const FaqQuestion = ({ question, answer }) => {
       <Grid item>
         <Grid container flexDirection="column" sx={{ gap: 2 }}>
           <Grid item>
-            <Grid
-              container
-              alignItems="center"
-              justifyContent="space-between"
-              flexWrap="nowrap"
-            >
-              <MKTypography
-                variant={isOpen ? "body2" : "body1"}
-                color={isOpen ? "secondary" : "black75"}
-                onClick={toggleAnswer}
-                sx={{ cursor: "pointer" }}
-              >
-                {question}
-              </MKTypography>
-              <IconButton
-                color="primary"
-                aria-label="toggle question"
-                onClick={toggleAnswer}
-              >
-                {isOpen ? (
-                  <RemoveCircleOutlineIcon />
-                ) : (
-                  <AddCircleOutlineIcon />
-                )}
-              </IconButton>
-            </Grid>
+            <FaqButton
+              isOpen={isOpen}
+              question={question}
+              toggleAnswer={toggleAnswer}
+            />
           </Grid>
           <Collapse in={isOpen} timeout="auto" unmountOnExit>
             <Grid item px={1}>
