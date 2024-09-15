@@ -22,12 +22,13 @@
 */
 
 // @mui material components
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HomeIcon from "@mui/icons-material/Home";
 import ServiceIcon from "@mui/icons-material/HomeRepairServiceOutlined";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import RssFeedIcon from "@mui/icons-material/RssFeed";
 
 // // Pages
+import ServiceSpecificJson from "assets/data/ServicePage/TaxService/ServiceSpecificJson";
 import LandingPage from "pages/LandingPage";
 import ServicePage from "pages/ServicePage";
 // import ContactUs from "layouts/pages/landing-pages/contact-us";
@@ -64,8 +65,17 @@ const routes = [
   {
     name: "Services",
     icon: <ServiceIcon />,
-    route: "/services",
-    component: <ServicePage />,
+    // columns: 1,
+    // rowsPerColumn: 2,
+    // route: "/services/tax-service",
+    // component: <ServicePage ServiceSpecificJson={ServiceSpecificJson} />,
+    collapse: [
+      {
+        name: "Tax Service",
+        route: "/services/tax-service",
+        component: <ServicePage ServiceSpecificJson={ServiceSpecificJson} />,
+      },
+    ],
   },
   {
     name: "About",

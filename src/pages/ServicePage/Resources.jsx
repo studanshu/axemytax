@@ -1,10 +1,11 @@
 import { Container, Grid } from "@mui/material";
-import { ResourcesJson } from "assets/data/ServicePage/ResourcesJson";
 import SectionHeader from "components/Custom/SectionHeader";
 import FilledInfoCard from "examples/Cards/InfoCards/FilledInfoCard";
+import PropTypes from "prop-types";
 import { Suspense } from "react";
 const renderLoader = () => <p>Loading</p>;
-export const Resources = () => {
+export const Resources = ({ jsonData }) => {
+  const ResourcesJson = jsonData;
   return (
     <Suspense fallback={renderLoader()}>
       <Container>
@@ -44,3 +45,20 @@ export const Resources = () => {
     </Suspense>
   );
 };
+
+Resources.propTypes = {
+  jsonData: PropTypes.shape({
+    caption: PropTypes.string,
+    title: PropTypes.string,
+    resources: PropTypes.arrayOf(
+      PropTypes.shape({
+        icon: PropTypes.string,
+        headline: PropTypes.string,
+        description: PropTypes.string,
+        link: PropTypes.string,
+      })
+    ),
+  }).isRequired,
+};
+
+export default Resources;

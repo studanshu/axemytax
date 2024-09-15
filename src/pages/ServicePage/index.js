@@ -4,6 +4,7 @@
 import MKBox from "components/MKBox";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 import footerRoutes from "footer.routes";
+import PropTypes from "prop-types";
 import Faq from "./Faq";
 import Hero from "./Hero";
 import { Resources } from "./Resources";
@@ -11,15 +12,15 @@ import SubService from "./SubService";
 import Testimonial from "./Testimonial";
 import WhyUs from "./WhyUs";
 
-export default function ServicePage() {
+const ServicePage = ({ ServiceSpecificJson }) => {
   return (
     <>
-      <Hero />
-      <SubService />
-      <Testimonial />
-      <WhyUs />
-      <Faq />
-      <Resources />
+      <Hero jsonData={ServiceSpecificJson.HeroJson} />
+      <SubService jsonData={ServiceSpecificJson.SubServiceJson} />
+      <Testimonial jsonData={ServiceSpecificJson.TestimonialJson} />
+      <WhyUs jsonData={ServiceSpecificJson.WhyUsJson} />
+      <Faq jsonData={ServiceSpecificJson.FaqJson} />
+      <Resources jsonData={ServiceSpecificJson.ResourcesJson} />
       {/* <Card
         sx={{
           p: 2,
@@ -37,4 +38,16 @@ export default function ServicePage() {
       </MKBox>
     </>
   );
-}
+};
+ServicePage.propTypes = {
+  ServiceSpecificJson: PropTypes.shape({
+    HeroJson: PropTypes.object.isRequired,
+    SubServiceJson: PropTypes.object.isRequired,
+    TestimonialJson: PropTypes.object.isRequired,
+    WhyUsJson: PropTypes.object.isRequired,
+    FaqJson: PropTypes.object.isRequired,
+    ResourcesJson: PropTypes.object.isRequired,
+  }).isRequired,
+};
+
+export default ServicePage;

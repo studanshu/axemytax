@@ -21,6 +21,8 @@ const FaqQuestion = ({ question, answer }) => {
               isOpen={isOpen}
               question={question}
               toggleAnswer={toggleAnswer}
+              variant={isOpen ? "body2" : "body1"}
+              color={isOpen ? "secondary" : "black75"}
             />
           </Grid>
           <Collapse in={isOpen} timeout="auto" unmountOnExit>

@@ -1,5 +1,5 @@
 import { Box, Container } from "@mui/material";
-import { HeroJson } from "assets/data/ServicePage/HeroJson";
+import PropTypes from "prop-types";
 
 // Material Kit 2 React base styles
 import HeroContent from "components/Custom/HeroContent";
@@ -7,7 +7,8 @@ import HeroContent from "components/Custom/HeroContent";
 // Material Kit 2 React components
 import TopLayout from "pages/utils/TopLayout";
 
-function Hero() {
+function Hero({ jsonData }) {
+  const HeroJson = jsonData;
   return (
     <>
       <TopLayout />
@@ -22,5 +23,11 @@ function Hero() {
     </>
   );
 }
+
+Hero.propTypes = {
+  jsonData: PropTypes.shape({
+    flexDirection: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default Hero;

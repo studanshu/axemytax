@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-key */
-/* eslint-disable react/prop-types */
 // @mui material components
 import { Grid } from "@mui/material";
 
@@ -13,42 +11,41 @@ import rgba from "assets/theme/functions/rgba";
 import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
 
+import PropTypes from "prop-types";
+
 function SubServiceNav({ subServicesList, selSubService, setSelSubService }) {
   return (
     <Grid
       container
       display="flex"
       py={1}
-      px={2}
       justifyContent="space-around"
-      alignContent="space-between"
-      gap={8}
       sx={{
         background: colors.white.main,
         borderRadius: 8,
-        gap: { xs: 2, xl: 6 },
+        px: 2,
         boxShadow:
           "0px 1.82px 1.46px 0px #00000005, 0px 4.37px 3.5px 0px #00000007, 0px 8.23px 6.59px 0px #00000009",
       }}
     >
       {subServicesList.map((subService, index) => (
-        <Grid items>
+        <Grid item key={index}>
           <MKButton
             sx={{
               py: 1,
               borderRadius: 8,
               border:
-                index === selSubService
+                subService === selSubService
                   ? `2px solid ${colors.lightBlue.main}`
                   : `2px solid ${colors.white.main}`,
               color:
-                index === selSubService
+                subService === selSubService
                   ? colors.lightBlue.main
                   : rgba(colors.black.main, "0.5"),
             }}
-            onClick={() => setSelSubService(index)}
+            onClick={() => setSelSubService(subService)}
           >
-            {index === selSubService ? (
+            {subService === selSubService ? (
               <MKTypography variant="body2" color="lightBlue">
                 {subService}
               </MKTypography>
@@ -63,5 +60,10 @@ function SubServiceNav({ subServicesList, selSubService, setSelSubService }) {
     </Grid>
   );
 }
+SubServiceNav.propTypes = {
+  subServicesList: PropTypes.arrayOf(PropTypes.string).isRequired,
+  selSubService: PropTypes.string.isRequired,
+  setSelSubService: PropTypes.func.isRequired,
+};
 
 export default SubServiceNav;

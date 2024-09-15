@@ -1,9 +1,7 @@
-/* eslint-disable no-unused-vars */
 import { KeyboardArrowDownOutlined } from "@mui/icons-material";
 import SendIcon from "@mui/icons-material/Send";
 import { Box, Container, Grid, MenuItem, Select } from "@mui/material";
 import FormGroup from "@mui/material/FormGroup";
-import { WhyUsJson } from "assets/data/ServicePage/WhyUsJson";
 import colors from "assets/theme/base/colors";
 import typography from "assets/theme/base/typography";
 import CheckBoxGridDisplay from "components/Custom/CheckboxGridDisplay";
@@ -11,13 +9,15 @@ import ReasonCards from "components/Custom/ReasonCards";
 import SectionHeader from "components/Custom/SectionHeader";
 import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
+import PropTypes from "prop-types";
 import React, { Suspense } from "react";
 const renderLoader = () => <p>Loading</p>;
 const { size } = typography;
 
 const { light } = colors;
 
-function WhyUs() {
+function WhyUs({ jsonData }) {
+  const WhyUsJson = jsonData;
   const [businessType, setBusinessType] = React.useState("I am an Individual");
   const [budget, setBudget] = React.useState("My budget is < Rs. 10,000/-");
 
@@ -164,5 +164,24 @@ function WhyUs() {
     </Suspense>
   );
 }
+
+WhyUs.propTypes = {
+  jsonData: PropTypes.shape({
+    caption: PropTypes.string,
+    title: PropTypes.string,
+    reasons: PropTypes.arrayOf(
+      PropTypes.shape({
+        icon: PropTypes.string,
+        title: PropTypes.string,
+        description: PropTypes.string,
+      })
+    ),
+    secondaryCaption: PropTypes.string,
+    secondaryTitle: PropTypes.string,
+    options: PropTypes.arrayOf(PropTypes.string),
+    dropdownBusiness: PropTypes.arrayOf(PropTypes.string),
+    dropdownBudget: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
+};
 
 export default WhyUs;

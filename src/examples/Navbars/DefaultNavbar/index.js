@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 // react-router components
 import { Link } from "react-router-dom";
@@ -24,17 +24,17 @@ import PropTypes from "prop-types";
 
 // @mui material components
 import Container from "@mui/material/Container";
-import Icon from "@mui/material/Icon";
-import Popper from "@mui/material/Popper";
-import Grow from "@mui/material/Grow";
-import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
+import Grid from "@mui/material/Grid";
+import Grow from "@mui/material/Grow";
+import Icon from "@mui/material/Icon";
 import MuiLink from "@mui/material/Link";
+import Popper from "@mui/material/Popper";
 
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
 import MKButton from "components/MKButton";
+import MKTypography from "components/MKTypography";
 
 // Material Kit 2 React example components
 import DefaultNavbarDropdown from "examples/Navbars/DefaultNavbar/DefaultNavbarDropdown";
@@ -62,7 +62,7 @@ function DefaultNavbar({
   const [nestedDropdown, setNestedDropdown] = useState("");
   const [nestedDropdownEl, setNestedDropdownEl] = useState("");
   const [nestedDropdownName, setNestedDropdownName] = useState("");
-  const [arrowRef, setArrowRef] = useState(null);
+  // const [arrowRef, setArrowRef] = useState(null);
   const [mobileNavbar, setMobileNavbar] = useState(false);
   const [mobileView, setMobileView] = useState(false);
 
@@ -119,7 +119,6 @@ function DefaultNavbar({
   const renderRoutes = routes.map(
     ({ name, collapse, columns, rowsPerColumn }) => {
       let template;
-
       // Render the dropdown menu that should be display as columns
       if (collapse && columns && name === dropdownName) {
         const calculateColumns = collapse.reduce((resultArray, item, index) => {
@@ -318,15 +317,15 @@ function DefaultNavbar({
       placement="top-start"
       transition
       style={{ zIndex: 10 }}
-      modifiers={[
-        {
-          name: "arrow",
-          enabled: true,
-          options: {
-            element: arrowRef,
-          },
-        },
-      ]}
+      // modifiers={[
+      //   {
+      //     name: "arrow",
+      //     enabled: true,
+      //     options: {
+      //       element: arrowRef,
+      //     },
+      //   },
+      // ]}
       onMouseEnter={() => setDropdown(dropdownEl)}
       onMouseLeave={() => {
         if (!nestedDropdown) {
@@ -344,11 +343,11 @@ function DefaultNavbar({
           }}
         >
           <MKBox borderRadius="lg">
-            <MKTypography variant="h1" color="white">
+            {/* <MKTypography variant="body1" color="white">
               <Icon ref={setArrowRef} sx={{ mt: -3 }}>
                 arrow_drop_up
               </Icon>
-            </MKTypography>
+            </MKTypography> */}
             <MKBox shadow="lg" borderRadius="lg" p={2} mt={2}>
               {renderRoutes}
             </MKBox>
@@ -489,7 +488,7 @@ function DefaultNavbar({
   return (
     <Container sx={sticky ? { position: "sticky", top: 0, zIndex: 10 } : null}>
       <MKBox
-        py={1}
+        py={2}
         px={{ xs: 4, sm: transparent ? 2 : 3, lg: transparent ? 0 : 2 }}
         my={relative ? 0 : 4}
         width={"100%"}

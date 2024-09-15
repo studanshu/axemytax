@@ -1,28 +1,21 @@
-/* eslint-disable react/jsx-key */
 import { Suspense } from "react";
 
-// @mui material components
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Box, Container, Paper } from "@mui/material";
 
-// react-slick
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 
-// Material Kit 2 React base styles
 import colors from "assets/theme/base/colors";
 import typography from "assets/theme/base/typography";
 
-// Material Kit 2 React components
 import MKTypography from "components/MKTypography";
 
-import SectionHeader from "components/Custom/SectionHeader";
-
-// Import JSON
-import { TestimonialJson } from "assets/data/ServicePage/TestimonialJson";
 import breakpoints from "assets/theme/base/breakpoints";
+import SectionHeader from "components/Custom/SectionHeader";
+import PropTypes from "prop-types";
 
 const renderLoader = () => <p>Loading</p>;
 
@@ -99,7 +92,8 @@ const slickStyling = {
   },
 };
 
-function Testimonial() {
+function Testimonial({ jsonData }) {
+  const TestimonialJson = jsonData;
   return (
     <Suspense fallback={renderLoader()}>
       <Container>
@@ -122,6 +116,7 @@ function Testimonial() {
             <Slider {...settings}>
               {TestimonialJson.reviews.map((testimonial) => (
                 <Paper
+                  key={testimonial.name}
                   sx={{ mx: 4, my: 6, px: 3, py: 4, borderRadius: 2 }}
                   elevation={16}
                   height="100%"
@@ -173,5 +168,20 @@ function Testimonial() {
     </Suspense>
   );
 }
+
+Testimonial.propTypes = {
+  jsonData: PropTypes.shape({
+    caption: PropTypes.string,
+    title: PropTypes.string,
+    reviews: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+        duration: PropTypes.string,
+        comment: PropTypes.string,
+        rating: PropTypes.node,
+      })
+    ),
+  }).isRequired,
+};
 
 export default Testimonial;

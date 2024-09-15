@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Suspense, useState } from "react";
 
 // @mui material components
@@ -18,20 +19,18 @@ import MKTypography from "components/MKTypography";
 import SubServiceNav from "./SubServiceNav";
 
 // Import JSON
-import { SubServiceJson } from "assets/data/ServicePage/SubServiceJson";
 import SectionHeader from "components/Custom/SectionHeader";
 
 const renderLoader = () => <p>Loading</p>;
 
 const { size, fontWeightMedium } = typography;
 const { light, white } = colors;
-
-function SubService() {
-  const [selSubService, setSelSubService] = useState(1);
-
-  const currentSubService = SubServiceJson.subServicesList[selSubService];
-  const cta = SubServiceJson.cta[currentSubService] || {};
-  const content = SubServiceJson.content[currentSubService] || [];
+const SubService = ({ jsonData }) => {
+  const SubServiceJson = jsonData;
+  const ctaKeys = Object.keys(SubServiceJson.cta);
+  const [selSubService, setSelSubService] = useState(ctaKeys[1]);
+  const cta = SubServiceJson.cta[selSubService] || {};
+  const content = cta["content"] || [];
 
   return (
     <Suspense fallback={renderLoader()}>
@@ -55,16 +54,17 @@ function SubService() {
               width="100%"
               display="flex"
               flexDirection="column"
-              sx={{ px: { xs: 5, lg: 16 }, gap: { xs: 2, xl: 9 } }}
+              px={5}
+              sx={{ gap: { xs: 2, xl: 9 } }}
             >
               <Grid items>
                 <SubServiceNav
-                  subServicesList={SubServiceJson.subServicesList}
+                  subServicesList={ctaKeys}
                   selSubService={selSubService}
                   setSelSubService={setSelSubService}
                 />
               </Grid>
-              <Grid items sx={{ mx: { xs: 3, xl: 7 } }}>
+              <Grid items sx={{ mx: { xs: 3, xl: 15 } }}>
                 <Grid
                   container
                   display="flex"
@@ -193,6 +193,14 @@ function SubService() {
       </Box>
     </Suspense>
   );
-}
+};
+
+SubService.propTypes = {
+  jsonData: PropTypes.shape({
+    caption: PropTypes.string,
+    cta: PropTypes.object.isRequired,
+    title: PropTypes.string,
+  }).isRequired,
+};
 
 export default SubService;

@@ -1,17 +1,12 @@
-/* eslint-disable no-unused-vars */
 import { Box, Container, Grid } from "@mui/material";
-import { FaqJson } from "assets/data/ServicePage/FaqJson";
-import colors from "assets/theme/base/colors";
-import typography from "assets/theme/base/typography";
 import FaqQuestion from "components/Custom/FaqQuestion";
 import SectionHeader from "components/Custom/SectionHeader";
+import PropTypes from "prop-types";
 import { Suspense } from "react";
 const renderLoader = () => <p>Loading</p>;
-const { size } = typography;
 
-const { light } = colors;
-
-function Faq() {
+function Faq({ jsonData }) {
+  const FaqJson = jsonData;
   return (
     <Suspense fallback={renderLoader()}>
       <Box className="rootFaq">
@@ -65,5 +60,18 @@ function Faq() {
     </Suspense>
   );
 }
+Faq.propTypes = {
+  jsonData: PropTypes.shape({
+    image: PropTypes.string,
+    caption: PropTypes.string,
+    title: PropTypes.string,
+    faqs: PropTypes.arrayOf(
+      PropTypes.shape({
+        q: PropTypes.string,
+        a: PropTypes.string,
+      })
+    ),
+  }).isRequired,
+};
 
 export default Faq;

@@ -54,7 +54,6 @@ function DefaultNavbarDropdown({
     <>
       <MKBox
         {...rest}
-        mt={2}
         mx={1}
         px={1}
         display="flex"
@@ -66,7 +65,7 @@ function DefaultNavbarDropdown({
         {...(href && linkComponent)}
       >
         <MKTypography
-          variant="body2"
+          variant="body1"
           lineHeight={1}
           color="inherit"
           sx={{ alignSelf: "center", "& *": { verticalAlign: "middle" } }}
@@ -82,7 +81,11 @@ function DefaultNavbarDropdown({
         >
           {name}
         </MKTypography>
-        <MKTypography variant="body2" color={light ? "white" : "dark"} ml="auto">
+        <MKTypography
+          variant="body2"
+          color={light ? "white" : "dark"}
+          ml="auto"
+        >
           <Icon sx={{ fontWeight: "normal", verticalAlign: "middle" }}>
             {collapse && "keyboard_arrow_down"}
           </Icon>
