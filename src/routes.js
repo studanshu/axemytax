@@ -28,9 +28,11 @@ import ServiceIcon from "@mui/icons-material/HomeRepairServiceOutlined";
 import RssFeedIcon from "@mui/icons-material/RssFeed";
 
 // // Pages
-import ServiceSpecificJson from "assets/data/ServicePage/TaxService/ServiceSpecificJson";
+import TaxServiceJsonData from "assets/data/ServicePage/TaxService";
+import DirectTaxServiceJsonData from "assets/data/SubServicePage/TaxService/DirectTaxation";
 import LandingPage from "pages/LandingPage";
 import ServicePage from "pages/ServicePage";
+import SubServicePage from "pages/SubServicePage";
 // import ContactUs from "layouts/pages/landing-pages/contact-us";
 // import Author from "layouts/pages/landing-pages/author";
 // import SignIn from "layouts/pages/authentication/sign-in";
@@ -65,15 +67,20 @@ const routes = [
   {
     name: "Services",
     icon: <ServiceIcon />,
-    // columns: 1,
-    // rowsPerColumn: 2,
-    // route: "/services/tax-service",
-    // component: <ServicePage ServiceSpecificJson={ServiceSpecificJson} />,
+    columns: 1,
+    rowsPerColumn: 2,
     collapse: [
       {
         name: "Tax Service",
         route: "/services/tax-service",
-        component: <ServicePage ServiceSpecificJson={ServiceSpecificJson} />,
+        component: <ServicePage jsonData={TaxServiceJsonData} />,
+        collapse: [
+          {
+            name: "Direct Taxation",
+            route: "/services/tax-service/direct-taxation",
+            component: <SubServicePage jsonData={DirectTaxServiceJsonData} />,
+          },
+        ],
       },
     ],
   },

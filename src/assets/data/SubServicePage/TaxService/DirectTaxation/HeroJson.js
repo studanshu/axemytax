@@ -3,7 +3,7 @@ import { SaveAltOutlined } from "@mui/icons-material";
 import SendIcon from "@mui/icons-material/Send";
 import HeroImage from "assets/images/service_page_tax.png";
 
-export const DefaultHeroJson = {
+export const HeroJson = {
   caption: "Get to know more about",
   title: "Direct Taxation",
   image: HeroImage,

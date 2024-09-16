@@ -39,12 +39,9 @@ export default function App() {
 
   const getRoutes = (allRoutes) =>
     allRoutes.map((route) => {
-      if (route.collapse) {
-        return getRoutes(route.collapse);
-      }
-
+      let allRoutes = [];
       if (route.route) {
-        return (
+        allRoutes.push(
           <Route
             exact
             path={route.route}
@@ -54,7 +51,11 @@ export default function App() {
         );
       }
 
-      return null;
+      if (route.collapse) {
+        allRoutes = allRoutes.concat(getRoutes(route.collapse));
+      }
+
+      return allRoutes.length === 0 ? null : allRoutes;
     });
 
   return (

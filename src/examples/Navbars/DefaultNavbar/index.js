@@ -62,7 +62,7 @@ function DefaultNavbar({
   const [nestedDropdown, setNestedDropdown] = useState("");
   const [nestedDropdownEl, setNestedDropdownEl] = useState("");
   const [nestedDropdownName, setNestedDropdownName] = useState("");
-  // const [arrowRef, setArrowRef] = useState(null);
+  const [arrowRef, setArrowRef] = useState(null);
   const [mobileNavbar, setMobileNavbar] = useState(false);
   const [mobileView, setMobileView] = useState(false);
 
@@ -317,15 +317,15 @@ function DefaultNavbar({
       placement="top-start"
       transition
       style={{ zIndex: 10 }}
-      // modifiers={[
-      //   {
-      //     name: "arrow",
-      //     enabled: true,
-      //     options: {
-      //       element: arrowRef,
-      //     },
-      //   },
-      // ]}
+      modifiers={[
+        {
+          name: "arrow",
+          enabled: true,
+          options: {
+            element: arrowRef,
+          },
+        },
+      ]}
       onMouseEnter={() => setDropdown(dropdownEl)}
       onMouseLeave={() => {
         if (!nestedDropdown) {
@@ -343,11 +343,11 @@ function DefaultNavbar({
           }}
         >
           <MKBox borderRadius="lg">
-            {/* <MKTypography variant="body1" color="white">
+            <MKTypography variant="body1" color="white">
               <Icon ref={setArrowRef} sx={{ mt: -3 }}>
                 arrow_drop_up
               </Icon>
-            </MKTypography> */}
+            </MKTypography>
             <MKBox shadow="lg" borderRadius="lg" p={2} mt={2}>
               {renderRoutes}
             </MKBox>

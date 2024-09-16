@@ -5,7 +5,7 @@ import { SubServiceJson } from "./SubServiceJson.js";
 import { TestimonialJson } from "./TestimonialJson.js";
 import { WhyUsJson } from "./WhyUsJson.js";
 
-export const ServiceSpecificJson = {
+const JsonData = {
   HeroJson: HeroJson,
   SubServiceJson: SubServiceJson,
   TestimonialJson: TestimonialJson,
@@ -14,4 +14,4 @@ export const ServiceSpecificJson = {
   ResourcesJson: ResourcesJson,
 };
 
-export default ServiceSpecificJson;
+export default JsonData;

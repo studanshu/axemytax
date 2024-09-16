@@ -12,27 +12,15 @@ import SubService from "./SubService";
 import Testimonial from "./Testimonial";
 import WhyUs from "./WhyUs";
 
-const ServicePage = ({ ServiceSpecificJson }) => {
+const ServicePage = ({ jsonData }) => {
   return (
     <>
-      <Hero jsonData={ServiceSpecificJson.HeroJson} />
-      <SubService jsonData={ServiceSpecificJson.SubServiceJson} />
-      <Testimonial jsonData={ServiceSpecificJson.TestimonialJson} />
-      <WhyUs jsonData={ServiceSpecificJson.WhyUsJson} />
-      <Faq jsonData={ServiceSpecificJson.FaqJson} />
-      <Resources jsonData={ServiceSpecificJson.ResourcesJson} />
-      {/* <Card
-        sx={{
-          p: 2,
-          mx: { xs: 2, lg: 3 },
-          mt: -8,
-          mb: 4,
-          backgroundColor: ({ palette: { white }, functions: { rgba } }) =>
-            rgba(white.main, 0.5),
-          backdropFilter: "saturate(200%) blur(30px)",
-          boxShadow: ({ boxShadows: { info } }) => info,
-        }}
-      ></Card> */}
+      <Hero jsonData={jsonData.HeroJson} />
+      <SubService jsonData={jsonData.SubServiceJson} />
+      <Testimonial jsonData={jsonData.TestimonialJson} />
+      <WhyUs jsonData={jsonData.WhyUsJson} />
+      <Faq jsonData={jsonData.FaqJson} />
+      <Resources jsonData={jsonData.ResourcesJson} />
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
       </MKBox>
@@ -40,7 +28,7 @@ const ServicePage = ({ ServiceSpecificJson }) => {
   );
 };
 ServicePage.propTypes = {
-  ServiceSpecificJson: PropTypes.shape({
+  jsonData: PropTypes.shape({
     HeroJson: PropTypes.object.isRequired,
     SubServiceJson: PropTypes.object.isRequired,
     TestimonialJson: PropTypes.object.isRequired,
