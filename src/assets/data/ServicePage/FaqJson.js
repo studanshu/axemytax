@@ -1,5 +1,5 @@
 // Images
-import FaqImage from "assets/images/FAQ.png";
+import FaqImage from "assets/images/default/FAQ.png";
 
 export const FaqJson = {
   caption: "We handle your concerns",

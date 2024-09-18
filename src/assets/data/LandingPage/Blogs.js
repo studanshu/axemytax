@@ -1,7 +1,7 @@
-import post3 from "assets/images/enterprise.png";
-import post1 from "assets/images/individual.png";
-import post4 from "assets/images/nri.png";
-import post2 from "assets/images/sme.png";
+import post3 from "assets/images/LandingPage/enterprise.png";
+import post1 from "assets/images/LandingPage/individual.png";
+import post4 from "assets/images/LandingPage/nri.png";
+import post2 from "assets/images/LandingPage/sme.png";
 
 export const blogJson = [
   {

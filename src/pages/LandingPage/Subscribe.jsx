@@ -25,7 +25,7 @@ import MKInput from "components/MKInput";
 import MKButton from "components/MKButton";
 
 // Images
-import macbook from "assets/images/wordcloud.png";
+import macbook from "assets/images/LandingPage/wordcloud.png";
 
 export default function Subscribe() {
   return (

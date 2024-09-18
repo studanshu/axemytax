@@ -1,6 +1,6 @@
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 // import routes from "routes";
-import logo from "assets/images/axemytax-logo-transparent.png";
+import logo from "assets/images/default/axemytax-logo-transparent.png";
 import routes from "routes";
 import ContactIcon from "./ContactIcon";
 

@@ -1,9 +1,9 @@
 import { Grid } from "@mui/material";
-import PropTypes from "prop-types";
 import MKTypography from "components/MKTypography";
+import PropTypes from "prop-types";
 
 const ReasonCards = ({ reasons }) => (
-  <Grid container spacing={2} className="mainContent" justifyContent="center">
+  <Grid container spacing={8} className="mainContent" justifyContent="center">
     {reasons.map((reason, index) => (
       <Grid
         item
@@ -19,7 +19,7 @@ const ReasonCards = ({ reasons }) => (
           flexDirection="column"
           alignItems="center"
           justifyContent="space-evenly"
-          sx={{ gap: { xs: 1, lg: 4 } }}
+          sx={{ gap: 1 }}
         >
           <Grid item className="icon">
             <img
@@ -54,7 +54,13 @@ const ReasonCards = ({ reasons }) => (
 );
 
 ReasonCards.propTypes = {
-  reasons: PropTypes.array.isRequired,
+  reasons: PropTypes.arrayOf(
+    PropTypes.shape({
+      image: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      des: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default ReasonCards;

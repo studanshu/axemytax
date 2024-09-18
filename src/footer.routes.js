@@ -8,7 +8,7 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import MKTypography from "components/MKTypography";
 
 // Images
-import logoCT from "assets/images/axemytax-logo-transparent.png";
+import logoCT from "assets/images/default/axemytax-logo-transparent.png";
 
 const date = new Date().getFullYear();
 

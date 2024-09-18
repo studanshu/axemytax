@@ -3,7 +3,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Images
-import bgImage from "assets/images/bg-presentation.webp";
+import bgImage from "assets/images/LandingPage/bg-presentation.webp";
 
 // Material Kit 2 React components
 import MKBox from "components/MKBox";

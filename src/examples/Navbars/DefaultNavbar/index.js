@@ -40,7 +40,7 @@ import MKTypography from "components/MKTypography";
 import DefaultNavbarDropdown from "examples/Navbars/DefaultNavbar/DefaultNavbarDropdown";
 import DefaultNavbarMobile from "examples/Navbars/DefaultNavbar/DefaultNavbarMobile";
 
-import defaultLogo from "assets/images/axemytax-logo-dark.png";
+import defaultLogo from "assets/images/default/axemytax-logo-dark.png";
 
 // Material Kit 2 React base styles
 import breakpoints from "assets/theme/base/breakpoints";

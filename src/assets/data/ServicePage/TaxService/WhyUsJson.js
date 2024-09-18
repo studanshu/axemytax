@@ -1,7 +1,7 @@
 // Images
-import reasonOne from "assets/images/reason_1.png";
-import reasonTwo from "assets/images/reason_2.png";
-import reasonThree from "assets/images/reason_3.png";
+import reasonOne from "assets/images/default/reason_1.png";
+import reasonTwo from "assets/images/default/reason_2.png";
+import reasonThree from "assets/images/default/reason_3.png";
 
 export const WhyUsJson = {
   caption: "Expert service, unmatched",
