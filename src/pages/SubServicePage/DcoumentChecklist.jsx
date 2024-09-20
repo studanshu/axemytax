@@ -51,15 +51,18 @@ function DocumentChecklist({ jsonData }) {
               className="inputFields"
               xs={12}
               lg={8}
-              sx={{ gap: { xs: 2, lg: 6 } }}
+              spacing={2}
               alignItems="center"
               justifyContent="center"
             >
               <Grid item className="name">
-                <MKInput label="Name*" variant="outlined" />
+                <MKInput label="Name *" variant="outlined" />
               </Grid>
               <Grid item className="phone">
-                <MKInput label="Phone Number*" variant="outlined" />
+                <MKInput label="Phone Number *" variant="outlined" />
+              </Grid>
+              <Grid item className="email">
+                <MKInput label="Email address" variant="outlined" />
               </Grid>
             </Grid>
             <Grid item className="button">

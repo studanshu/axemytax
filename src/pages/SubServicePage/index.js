@@ -24,6 +24,7 @@ SubServicePage.propTypes = {
   jsonData: PropTypes.shape({
     HeroJson: PropTypes.object.isRequired,
     DocumentChecklist: PropTypes.object.isRequired,
+    Considerations: PropTypes.object.isRequired,
   }).isRequired,
 };
 
