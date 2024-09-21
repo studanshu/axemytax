@@ -1,23 +1,24 @@
-// Material Kit 2 React components
-
-// Self - Created
 import MKBox from "components/MKBox";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 import footerRoutes from "footer.routes";
 import PropTypes from "prop-types";
+import { Suspense } from "react";
+import Considerations from "./Considerations";
 import DocumentChecklist from "./DcoumentChecklist";
 import Hero from "./Hero";
+const renderLoader = () => <p>Loading</p>;
 
 const SubServicePage = ({ jsonData }) => {
   console.log(jsonData);
   return (
-    <>
+    <Suspense fallback={renderLoader()}>
       <Hero jsonData={jsonData.HeroJson} />
       <DocumentChecklist jsonData={jsonData.DocumentChecklist} />
+      <Considerations jsonData={jsonData.Considerations} />
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
       </MKBox>
-    </>
+    </Suspense>
   );
 };
 SubServicePage.propTypes = {

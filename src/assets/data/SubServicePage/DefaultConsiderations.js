@@ -1,26 +1,23 @@
+import {
+  KeyboardArrowDownOutlined,
+  KeyboardArrowUpOutlined,
+  SendOutlined,
+} from "@mui/icons-material";
 import AnalyticsOutlinedIcon from "@mui/icons-material/AnalyticsOutlined";
 import CalculateOutlinedIcon from "@mui/icons-material/CalculateOutlined";
 import CenterFocusStrongOutlinedIcon from "@mui/icons-material/CenterFocusStrongOutlined";
 import FactCheckOutlinedIcon from "@mui/icons-material/FactCheckOutlined";
-import SendIcon from "@mui/icons-material/SendOutlined";
-
-import colors from "assets/theme/base/colors";
-
-const leftIconColor = {
-  color: colors.primary.main,
-};
-
-const rightIconColor = {
-  color: colors.secondary.main,
-};
 
 export const DefaultConsiderations = {
   caption: "Key Focus Areas",
   title: "Essential Considerations",
   considerationList: [
     {
-      leftIcon: <CenterFocusStrongOutlinedIcon sx={leftIconColor} />,
-      rightIcon: <SendIcon sx={rightIconColor} />,
+      leftIcon: CenterFocusStrongOutlinedIcon,
+      rightOpenIcon: [SendOutlined, KeyboardArrowUpOutlined],
+      rightCloseIcon: [SendOutlined, KeyboardArrowDownOutlined],
+      leftIconColor: "primary",
+      rightIconColor: "secondary",
       heading: "Verifying Tax Deductions",
       bullets: [
         "Ensure that all tax deductions are verified and accounted for.",
@@ -31,8 +28,11 @@ export const DefaultConsiderations = {
       ],
     },
     {
-      leftIcon: <FactCheckOutlinedIcon sx={leftIconColor} />,
-      rightIcon: <SendIcon sx={rightIconColor} />,
+      leftIcon: FactCheckOutlinedIcon,
+      rightOpenIcon: [SendOutlined, KeyboardArrowUpOutlined],
+      rightCloseIcon: [SendOutlined, KeyboardArrowDownOutlined],
+      leftIconColor: "primary",
+      rightIconColor: "secondary",
       heading: "Reviewing Tax Credits",
       bullets: [
         "Ensure that all tax credits are reviewed and accounted for.",
@@ -43,8 +43,11 @@ export const DefaultConsiderations = {
       ],
     },
     {
-      leftIcon: <CalculateOutlinedIcon sx={leftIconColor} />,
-      rightIcon: <SendIcon sx={rightIconColor} />,
+      leftIcon: CalculateOutlinedIcon,
+      rightOpenIcon: [SendOutlined, KeyboardArrowUpOutlined],
+      rightCloseIcon: [SendOutlined, KeyboardArrowDownOutlined],
+      leftIconColor: "primary",
+      rightIconColor: "secondary",
       heading: "Calculating Tax Liability",
       bullets: [
         "Ensure that the tax liability is calculated accurately.",
@@ -55,8 +58,11 @@ export const DefaultConsiderations = {
       ],
     },
     {
-      leftIcon: <AnalyticsOutlinedIcon sx={leftIconColor} />,
-      rightIcon: <SendIcon sx={rightIconColor} />,
+      leftIcon: AnalyticsOutlinedIcon,
+      rightOpenIcon: [SendOutlined, KeyboardArrowUpOutlined],
+      rightCloseIcon: [SendOutlined, KeyboardArrowDownOutlined],
+      leftIconColor: "primary",
+      rightIconColor: "secondary",
       heading: "Analyzing Tax Returns",
       bullets: [
         "Ensure that the tax returns are analyzed thoroughly.",
@@ -67,8 +73,11 @@ export const DefaultConsiderations = {
       ],
     },
     {
-      leftIcon: <CenterFocusStrongOutlinedIcon sx={leftIconColor} />,
-      rightIcon: <SendIcon sx={rightIconColor} />,
+      leftIcon: CenterFocusStrongOutlinedIcon,
+      rightOpenIcon: [SendOutlined, KeyboardArrowUpOutlined],
+      rightCloseIcon: [SendOutlined, KeyboardArrowDownOutlined],
+      leftIconColor: "primary",
+      rightIconColor: "secondary",
       heading: "Filing Tax Returns",
       bullets: [
         "Ensure that the tax returns are filed on time.",

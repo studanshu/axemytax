@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable unused-imports/no-unused-vars */
 /* eslint-disable no-param-reassign */
 /**
 =========================================================
@@ -149,6 +151,14 @@ function DefaultNavbar({
                   {cols.map((col, index) => (
                     <Fragment key={col.name}>
                       <MKTypography
+                        {...(col.route
+                          ? { component: Link, to: col.route }
+                          : {
+                              component: MuiLink,
+                              href: name.href,
+                              target: "_blank",
+                              rel: "noreferrer",
+                            })}
                         display="block"
                         variant="button"
                         fontWeight="bold"

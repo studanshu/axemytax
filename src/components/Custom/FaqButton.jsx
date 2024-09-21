@@ -80,6 +80,9 @@ FaqButton.propTypes = {
 };
 
 FaqButton.defaultProps = {
+  isOpen: false,
+  question: "",
+  toggleAnswer: () => {},
   variant: "body1",
   color: "black75",
   iconDict: {

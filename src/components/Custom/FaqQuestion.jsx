@@ -2,16 +2,15 @@ import { Collapse, Divider, Grid } from "@mui/material";
 import colors from "assets/theme/base/colors";
 import MKTypography from "components/MKTypography";
 import PropTypes from "prop-types";
-import { useState } from "react";
 import FaqButton from "./FaqButton";
 
-const FaqQuestion = ({ question, answer }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleAnswer = () => {
-    setIsOpen(!isOpen);
-  };
-
+const FaqQuestion = ({
+  question,
+  answer,
+  isOpen,
+  toggleAnswer,
+  ...FaqButtonProps
+}) => {
   return (
     <Grid container flexDirection="column" spacing={2}>
       <Grid item>
@@ -23,6 +22,7 @@ const FaqQuestion = ({ question, answer }) => {
               toggleAnswer={toggleAnswer}
               variant={isOpen ? "body2" : "body1"}
               color={isOpen ? "secondary" : "black75"}
+              {...FaqButtonProps}
             />
           </Grid>
           <Collapse in={isOpen} timeout="auto" unmountOnExit>
@@ -37,19 +37,20 @@ const FaqQuestion = ({ question, answer }) => {
       <Grid item>
         <Divider
           sx={{
-            borderColor: colors.lightBlue.main,
-            borderWidth: "0.12rem",
-            borderRadius: "0.05rem",
+            borderColor: colors.secondary.main,
+            borderWidth: isOpen ? "0.24rem" : "0.12rem",
+            borderRadius: "10.05rem",
           }}
         />
       </Grid>
     </Grid>
   );
 };
-
 FaqQuestion.propTypes = {
   question: PropTypes.string.isRequired,
-  answer: PropTypes.string.isRequired,
+  answer: PropTypes.string,
+  isOpen: PropTypes.bool.isRequired,
+  toggleAnswer: PropTypes.func.isRequired,
 };
 
 export default FaqQuestion;
