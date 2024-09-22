@@ -7,7 +7,7 @@ const renderLoader = () => <p>Loading</p>;
 function Contact({ jsonData }) {
   return (
     <Suspense fallback={renderLoader()}>
-      <Container sx={{ mt: 24 }}>
+      <Container sx={{ my: 24 }}>
         <Box px={4}>
           <InlineForm
             FormJson={jsonData}
