@@ -25,7 +25,7 @@ export default function OurServices() {
         </Grid>
         <Grid container spacing={1}>
           {ServiceJson.map((service, _) => (
-            <Suspense fallback={renderLoader()}>
+            <Suspense fallback={renderLoader()} key={service.title}>
               <Grid item xs={12} sm={6} lg={3}>
                 <FilledInfoCard
                   color="info"

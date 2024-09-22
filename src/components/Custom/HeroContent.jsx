@@ -27,7 +27,7 @@ const HeroContent = ({ HeroJson, flexDirection }) => {
         <Grid item xs={12} lg={6}>
           <img
             src={HeroJson.image}
-            alt="Tax Service Image"
+            alt="Hero Section Image"
             style={{ maxWidth: "100%", height: "auto" }}
           />
         </Grid>

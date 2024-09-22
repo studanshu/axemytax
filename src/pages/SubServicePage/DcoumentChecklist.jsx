@@ -94,9 +94,7 @@ function DocumentChecklist({ jsonData }) {
 }
 
 DocumentChecklist.propTypes = {
-  jsonData: PropTypes.shape({
-    flexDirection: PropTypes.string.isRequired,
-  }).isRequired,
+  jsonData: PropTypes.object.isRequired,
 };
 
 export default DocumentChecklist;

@@ -4,6 +4,7 @@ import footerRoutes from "footer.routes";
 import PropTypes from "prop-types";
 import { Suspense } from "react";
 import Considerations from "./Considerations";
+import Contact from "./Contact";
 import DocumentChecklist from "./DcoumentChecklist";
 import Faq from "./Faq";
 import Hero from "./Hero";
@@ -14,11 +15,12 @@ const SubServicePage = ({ jsonData }) => {
   console.log(jsonData);
   return (
     <Suspense fallback={renderLoader()}>
-      <Hero jsonData={jsonData.HeroJson} />
+      <Hero jsonData={jsonData.Hero} />
       <DocumentChecklist jsonData={jsonData.DocumentChecklist} />
       <Considerations jsonData={jsonData.Considerations} />
       <Resources jsonData={jsonData.Resources} />
       <Faq jsonData={jsonData.Faq} />
+      <Contact jsonData={jsonData.Contact} />
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
       </MKBox>
@@ -27,11 +29,12 @@ const SubServicePage = ({ jsonData }) => {
 };
 SubServicePage.propTypes = {
   jsonData: PropTypes.shape({
-    HeroJson: PropTypes.object.isRequired,
+    Hero: PropTypes.object.isRequired,
     DocumentChecklist: PropTypes.object.isRequired,
     Considerations: PropTypes.object.isRequired,
     Resources: PropTypes.object.isRequired,
     Faq: PropTypes.object.isRequired,
+    Contact: PropTypes.object.isRequired,
   }).isRequired,
 };
 

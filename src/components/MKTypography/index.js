@@ -44,6 +44,8 @@ const MKTypography = forwardRef(
   )
 );
 
+MKTypography.displayName = "MKTypography";
+
 // Setting default values for the props of MKTypography
 MKTypography.defaultProps = {
   color: "dark",

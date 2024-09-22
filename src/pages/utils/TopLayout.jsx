@@ -5,7 +5,6 @@ import routes from "routes";
 import ContactIcon from "./ContactIcon";
 
 export default function TopLayout() {
-  console.log(routes);
   return (
     <>
       <DefaultNavbar

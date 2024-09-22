@@ -23,9 +23,7 @@ function Hero({ jsonData }) {
 }
 
 Hero.propTypes = {
-  jsonData: PropTypes.shape({
-    flexDirection: PropTypes.string.isRequired,
-  }).isRequired,
+  jsonData: PropTypes.object.isRequired,
 };
 
 export default Hero;
