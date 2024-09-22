@@ -21,7 +21,7 @@ function Faq({ jsonData }) {
             alignItems="center"
             className="Faq"
             justifyContent="space-between"
-            sx={{ py: { xs: 10, xl: 16 }, px: { lg: 2 } }}
+            sx={{ my: { xs: 10, xl: 24 }, px: { lg: 2 } }}
           >
             <Grid
               item
