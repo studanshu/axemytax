@@ -81,9 +81,9 @@ const slickStyling = {
   },
 };
 
-const CustomSlider = ({ children }) => {
+const CustomSlider = ({ children, sx }) => {
   return (
-    <Box maxWidth="100%" sx={slickStyling}>
+    <Box maxWidth="100%" sx={{ ...slickStyling, ...sx }}>
       <Slider {...settings}>{children}</Slider>
     </Box>
   );
@@ -91,6 +91,7 @@ const CustomSlider = ({ children }) => {
 
 CustomSlider.propTypes = {
   children: PropTypes.node.isRequired,
+  sx: PropTypes.object,
 };
 
 export default CustomSlider;

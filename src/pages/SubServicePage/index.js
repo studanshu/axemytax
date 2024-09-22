@@ -5,7 +5,9 @@ import PropTypes from "prop-types";
 import { Suspense } from "react";
 import Considerations from "./Considerations";
 import DocumentChecklist from "./DcoumentChecklist";
+import Faq from "./Faq";
 import Hero from "./Hero";
+import Resources from "./Resources";
 const renderLoader = () => <p>Loading</p>;
 
 const SubServicePage = ({ jsonData }) => {
@@ -15,6 +17,8 @@ const SubServicePage = ({ jsonData }) => {
       <Hero jsonData={jsonData.HeroJson} />
       <DocumentChecklist jsonData={jsonData.DocumentChecklist} />
       <Considerations jsonData={jsonData.Considerations} />
+      <Resources jsonData={jsonData.Resources} />
+      <Faq jsonData={jsonData.Faq} />
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
       </MKBox>
@@ -26,6 +30,8 @@ SubServicePage.propTypes = {
     HeroJson: PropTypes.object.isRequired,
     DocumentChecklist: PropTypes.object.isRequired,
     Considerations: PropTypes.object.isRequired,
+    Resources: PropTypes.object.isRequired,
+    Faq: PropTypes.object.isRequired,
   }).isRequired,
 };
 

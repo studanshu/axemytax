@@ -5,7 +5,7 @@ import HeroImage from "assets/images/SubServicePage/TaxService/DirectTaxation/he
 
 export const DefaultHeroJson = {
   caption: "Get to know more about",
-  title: "Direct Taxation",
+  title: "Government Regulations",
   image: HeroImage,
   description:
     "Direct Taxation is a tax that is paid directly to the government by the taxpayer. It is a tax applied to individuals and organizations directly by the government e.g. income tax, corporation tax, wealth tax etc. Direct tax is a type of tax where the impact and the incidence fall on the same entity.",

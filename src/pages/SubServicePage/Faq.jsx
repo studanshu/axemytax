@@ -2,10 +2,15 @@ import { Box, Container, Grid } from "@mui/material";
 import FaqQuestion from "components/Custom/FaqQuestion";
 import SectionHeader from "components/Custom/SectionHeader";
 import PropTypes from "prop-types";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 const renderLoader = () => <p>Loading</p>;
 
 function Faq({ jsonData }) {
+  const [openQuestionIndex, setOpenQuestionIndex] = useState(null);
+
+  const handleToggle = (index) => {
+    setOpenQuestionIndex(openQuestionIndex === index ? null : index);
+  };
   const FaqJson = jsonData;
   return (
     <Suspense fallback={renderLoader()}>
@@ -48,6 +53,8 @@ function Faq({ jsonData }) {
                         key={index}
                         question={faq.q}
                         answer={faq.a}
+                        isOpen={openQuestionIndex === index}
+                        toggleAnswer={() => handleToggle(index)}
                       />
                     </Box>
                   ))}

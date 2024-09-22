@@ -39,8 +39,7 @@ function Testimonial({ jsonData }) {
             caption={TestimonialJson.caption}
             title={TestimonialJson.title}
           />
-
-          <CustomSlider>
+          <CustomSlider sx={{ mt: 6 }}>
             {TestimonialJson.reviews.map((testimonial) => (
               <Paper
                 key={testimonial.name}
