@@ -28,8 +28,10 @@ import ServiceIcon from "@mui/icons-material/HomeRepairServiceOutlined";
 import RssFeedIcon from "@mui/icons-material/RssFeed";
 
 // // Pages
+import AboutJsonData from "assets/data/About";
 import TaxServiceJsonData from "assets/data/ServicePage/TaxService";
 import DirectTaxServiceJsonData from "assets/data/SubServicePage/TaxService/DirectTaxation";
+import About from "pages/About";
 import LandingPage from "pages/LandingPage";
 import ServicePage from "pages/ServicePage";
 import SubServicePage from "pages/SubServicePage";
@@ -88,6 +90,7 @@ const routes = [
     name: "About",
     icon: <AccountCircleIcon />,
     route: "/about",
+    component: <About jsonData={AboutJsonData} />,
   },
   {
     name: "Blogs",

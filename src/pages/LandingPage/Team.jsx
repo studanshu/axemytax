@@ -8,9 +8,9 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
 // Material Kit 2 React examples
-import HorizontalTeamCard from "examples/Cards/TeamCards/HorizontalTeamCard";
 
 import { TeamJson } from "assets/data/LandingPage/Team.js";
+import HorizontalTeamCard from "examples/Cards/TeamCards/HorizontalTeamCard";
 
 export default function Team() {
   return (
@@ -59,6 +59,8 @@ export default function Team() {
                   name={member.name}
                   position={{ color: "info", label: member.qualification }}
                   description={member.description}
+                  mail="mailto:bajet@gsdf.com"
+                  linkedIn="https://www.linkedin.com"
                 />
               </MKBox>
             </Grid>

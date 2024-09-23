@@ -28,7 +28,13 @@ import MuiLink from "@mui/material/Link";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
-function TransparentBlogCard({ image, title, description, action }) {
+function TransparentBlogCard({
+  image,
+  title,
+  description,
+  action,
+  roundedImage,
+}) {
   const cardActionStyles = {
     display: "flex",
     alignItems: "center",
@@ -51,14 +57,14 @@ function TransparentBlogCard({ image, title, description, action }) {
         component="img"
         src={image}
         alt={title}
-        borderRadius="lg"
+        borderRadius={roundedImage ? "section" : "lg"}
         shadow="md"
         width="100%"
         position="relative"
         zIndex={1}
       />
       <MKBox
-        borderRadius="lg"
+        borderRadius={roundedImage ? "section" : "lg"}
         shadow="md"
         width="100%"
         height="100%"
@@ -168,6 +174,7 @@ TransparentBlogCard.propTypes = {
       "text",
     ]).isRequired,
   }).isRequired,
+  roundedImage: PropTypes.bool,
 };
 
 export default TransparentBlogCard;

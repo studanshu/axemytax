@@ -26,7 +26,7 @@ import theme from "assets/theme";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
-function HorizontalTeamCard({
+function VerticalTeamCard({
   image,
   name,
   position,
@@ -37,15 +37,9 @@ function HorizontalTeamCard({
 }) {
   const { palette } = theme;
   return (
-    <Card
-      sx={{
-        mt: 3,
-        backgroundColor:
-          color === undefined ? palette["light"].main : palette[color].main,
-      }}
-    >
-      <Grid container>
-        <Grid item xs={12} md={6} lg={4} sx={{ mt: -6 }}>
+    <Card sx={{ mt: 3, backgroundColor: palette[color].main }}>
+      <Grid container flexDirection="column" alignContent="center">
+        <Grid item sx={{ mt: -6 }}>
           <MKBox width="100%" pt={2} pb={1} px={2}>
             <MKBox
               component="img"
@@ -57,26 +51,28 @@ function HorizontalTeamCard({
             />
           </MKBox>
         </Grid>
-        <Grid item xs={12} md={6} lg={8} sx={{ my: "auto" }}>
-          <MKBox
-            pt={{ xs: 1, lg: 2.5 }}
-            pb={2.5}
-            pr={4}
-            pl={{ xs: 4, lg: 1 }}
-            lineHeight={1}
-          >
-            <MKTypography variant="h5Light">{name}</MKTypography>
-            <MKTypography variant="subtitle2" color={position.color} mb={1}>
+        <Grid item xs={12}>
+          <MKBox py={8} px={2} lineHeight={1} my="auto">
+            <MKTypography
+              variant="h5"
+              color="secondary"
+              align="center"
+              fontWeight="light"
+            >
+              {name}
+            </MKTypography>
+            <MKTypography
+              variant="subtitle2"
+              color={position.color}
+              mb={1}
+              align="center"
+            >
               {position.label}
             </MKTypography>
-            <MKTypography variant="subtitle1" color="text">
+            <MKTypography variant="subtitle1" color="black50" mb={2}>
               {description}
             </MKTypography>
-            <Grid
-              container
-              justifyContent="flex-end"
-              sx={{ gap: 2, pt: { xs: 1, lg: 2.5 } }}
-            >
+            <Grid container justifyContent="center" sx={{ gap: 2 }}>
               {mail && (
                 <Grid item>
                   <MKTypography component="a" href={mail} color="primary">
@@ -99,8 +95,8 @@ function HorizontalTeamCard({
   );
 }
 
-// Typechecking props for the HorizontalTeamCard
-HorizontalTeamCard.propTypes = {
+// Typechecking props for the VerticalTeamCard
+VerticalTeamCard.propTypes = {
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   color: PropTypes.string,
@@ -122,4 +118,4 @@ HorizontalTeamCard.propTypes = {
   linkedIn: PropTypes.string,
 };
 
-export default HorizontalTeamCard;
+export default VerticalTeamCard;
