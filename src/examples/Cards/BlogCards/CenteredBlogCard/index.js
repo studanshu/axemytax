@@ -30,7 +30,7 @@ import MKTypography from "components/MKTypography";
 
 function CenteredBlogCard({ image, title, description, action }) {
   return (
-    <Card>
+    <Card sx={{ height: "100%" }}>
       <MKBox position="relative" borderRadius="lg" mx={2} mt={-3}>
         <MKBox
           component="img"

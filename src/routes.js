@@ -29,9 +29,11 @@ import RssFeedIcon from "@mui/icons-material/RssFeed";
 
 // // Pages
 import AboutJsonData from "assets/data/About";
+import BlogOverviewJsonData from "assets/data/BlogOverview";
 import TaxServiceJsonData from "assets/data/ServicePage/TaxService";
 import DirectTaxServiceJsonData from "assets/data/SubServicePage/TaxService/DirectTaxation";
 import About from "pages/About";
+import BlogOverview from "pages/BlogOverview";
 import LandingPage from "pages/LandingPage";
 import ServicePage from "pages/ServicePage";
 import SubServicePage from "pages/SubServicePage";
@@ -96,6 +98,7 @@ const routes = [
     name: "Blogs",
     icon: <RssFeedIcon />,
     route: "/blogs",
+    component: <BlogOverview jsonData={BlogOverviewJsonData} />,
   },
   // {
   //   name: "pages",

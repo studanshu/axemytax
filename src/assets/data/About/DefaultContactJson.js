@@ -29,5 +29,5 @@ export const DefaultContactJson = {
     },
   ],
   buttonText: "Send Inquiry",
-  flexDirection: "row",
+  flexDirection: "row-reverse",
 };

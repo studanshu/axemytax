@@ -19,7 +19,7 @@ const InlineForm = ({ FormJson, flexDirection }) => {
               caption={FormJson.caption}
               title={FormJson.title}
               variant="h2"
-              color="black"
+              color="secondary"
             />
             <Grid
               container
@@ -41,14 +41,14 @@ const InlineForm = ({ FormJson, flexDirection }) => {
                     />
                   ) : (
                     <MKInput
-                      label={`${input.label} ${input.required ? "*" : ""}`}
+                      placeholder={`${input.label} ${input.required ? "*" : ""}`}
                       variant="outlined"
                       sx={{ width: "100%" }}
                     />
                   )}
                 </Grid>
               ))}
-              <Grid item xs={6}>
+              <Grid item xs={12} lg={6}>
                 <MKButton
                   size="large"
                   variant="contained"
