@@ -39,7 +39,7 @@ const SectionHeader = ({
 
 // Add prop types validation
 SectionHeader.propTypes = {
-  caption: PropTypes.string.isRequired,
+  caption: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
   alignItems: PropTypes.string,
   variant: PropTypes.string,
