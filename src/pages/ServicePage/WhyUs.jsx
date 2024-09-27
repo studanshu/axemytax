@@ -1,34 +1,22 @@
-import { KeyboardArrowDownOutlined } from "@mui/icons-material";
 import SendIcon from "@mui/icons-material/Send";
-import { Box, Container, Grid, MenuItem, Select } from "@mui/material";
+import { Box, Container, Grid } from "@mui/material";
 import FormGroup from "@mui/material/FormGroup";
 import colors from "assets/theme/base/colors";
 import typography from "assets/theme/base/typography";
 import CheckBoxGridDisplay from "components/Custom/CheckboxGridDisplay";
 import ReasonCards from "components/Custom/ReasonCards";
+import RenderDropdown from "components/Custom/RenderDropdown";
 import SectionHeader from "components/Custom/SectionHeader";
 import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
 import PropTypes from "prop-types";
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 const renderLoader = () => <p>Loading</p>;
 const { size } = typography;
 
 const { light } = colors;
 
 function WhyUs({ jsonData }) {
-  const WhyUsJson = jsonData;
-  const [businessType, setBusinessType] = React.useState("I am an Individual");
-  const [budget, setBudget] = React.useState("My budget is < Rs. 10,000/-");
-
-  const handleBusinessChange = (event) => {
-    console.log(event.target.value);
-    setBusinessType(event.target.value);
-  };
-
-  const handleBudgetChange = (event) => {
-    setBudget(event.target.value);
-  };
   return (
     <Suspense fallback={renderLoader()}>
       <Box sx={{ background: light.main, py: { xs: 3, xl: 6 } }}>
@@ -50,11 +38,11 @@ function WhyUs({ jsonData }) {
               className="whyUsContent"
             >
               <SectionHeader
-                caption={WhyUsJson.caption}
-                title={WhyUsJson.title}
+                caption={jsonData.caption}
+                title={jsonData.title}
                 sx={{ px: { xs: 5, lg: 0 } }}
               />
-              <ReasonCards reasons={WhyUsJson.reasons} />
+              <ReasonCards reasons={jsonData.reasons} />
             </Grid>
             <FormGroup sx={{ minWidth: "100%" }}>
               <Grid
@@ -76,14 +64,14 @@ function WhyUs({ jsonData }) {
                       sx={{ alignSelf: { xs: "flex-end", md: "flex-start" } }}
                     >
                       <SectionHeader
-                        caption={WhyUsJson.secondaryCaption}
-                        title={WhyUsJson.secondaryTitle}
+                        caption={jsonData.secondaryCaption}
+                        title={jsonData.secondaryTitle}
                         variant="h4Light"
                       />
                     </Grid>
                     <Grid item className="checkboxes">
                       <CheckBoxGridDisplay
-                        items={WhyUsJson.options}
+                        items={jsonData.options}
                         itemsPerColumn={3}
                       />
                     </Grid>
@@ -102,38 +90,16 @@ function WhyUs({ jsonData }) {
                     sx={{ gap: { xs: 2, lg: 4 } }}
                   >
                     <Grid item>
-                      <Select
-                        fullWidth
-                        IconComponent={KeyboardArrowDownOutlined}
-                        id="select-business-type"
-                        value={businessType}
-                        onChange={handleBusinessChange}
-                      >
-                        {WhyUsJson.dropdownBusiness.map((option) => (
-                          <MenuItem key={option} value={option}>
-                            <MKTypography variant="h6Light" color="secondary">
-                              {option}
-                            </MKTypography>
-                          </MenuItem>
-                        ))}
-                      </Select>
+                      <RenderDropdown
+                        options={jsonData.dropdownBusiness}
+                        label="Select Business"
+                      />
                     </Grid>
                     <Grid item>
-                      <Select
-                        fullWidth
-                        IconComponent={KeyboardArrowDownOutlined}
-                        id="select-budget-range"
-                        value={budget}
-                        onChange={handleBudgetChange}
-                      >
-                        {WhyUsJson.dropdownBudget.map((option) => (
-                          <MenuItem key={option} value={option}>
-                            <MKTypography variant="h6Light" color="secondary">
-                              {option}
-                            </MKTypography>
-                          </MenuItem>
-                        ))}
-                      </Select>
+                      <RenderDropdown
+                        options={jsonData.dropdownBudget}
+                        label="Select Budget"
+                      />
                     </Grid>
                     <Grid item>
                       <MKButton

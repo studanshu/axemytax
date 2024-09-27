@@ -22,6 +22,7 @@
 */
 
 // @mui material components
+import { ContactPageOutlined } from "@mui/icons-material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HomeIcon from "@mui/icons-material/Home";
 import ServiceIcon from "@mui/icons-material/HomeRepairServiceOutlined";
@@ -29,11 +30,13 @@ import RssFeedIcon from "@mui/icons-material/RssFeed";
 
 // // Pages
 import AboutJsonData from "assets/data/About";
-import BlogOverviewJsonData from "assets/data/BlogOverview";
+import BlogOverviewJsonData from "assets/data/Blog/BlogOverview";
+import ContactUsJsonData from "assets/data/ContactUs";
 import TaxServiceJsonData from "assets/data/ServicePage/TaxService";
 import DirectTaxServiceJsonData from "assets/data/SubServicePage/TaxService/DirectTaxation";
 import About from "pages/About";
 import BlogOverview from "pages/BlogOverview";
+import ContactUsPage from "pages/ContactUs";
 import LandingPage from "pages/LandingPage";
 import ServicePage from "pages/ServicePage";
 import SubServicePage from "pages/SubServicePage";
@@ -99,6 +102,12 @@ const routes = [
     icon: <RssFeedIcon />,
     route: "/blogs",
     component: <BlogOverview jsonData={BlogOverviewJsonData} />,
+  },
+  {
+    name: "Contact",
+    icon: <ContactPageOutlined />,
+    route: "/contact",
+    component: <ContactUsPage jsonData={ContactUsJsonData} />,
   },
   // {
   //   name: "pages",
