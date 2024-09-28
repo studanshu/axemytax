@@ -3,6 +3,8 @@ export const AuditForBusiness2 = {
   duration: "1 min read",
   author: "Amelia Smith",
   title: "AuditForBusiness2 Tax Benefits",
+  description: "AuditForBusiness2 Tax Benefits",
+  img: "https://source.unsplash.com/800x600/?AuditForBusiness2",
   content: [
     {
       type: "headingBig",

@@ -3,6 +3,8 @@ export const AuditForBusiness1 = {
   duration: "1 min read",
   author: "Amelia Smith",
   title: "AuditForBusiness1 Tax Benefits",
+  description: "AuditForBusiness1 Tax Benefits",
+  img: "https://source.unsplash.com/800x600/?AuditForBusiness1",
   content: [
     {
       type: "headingBig",
@@ -28,8 +30,7 @@ export const AuditForBusiness1 = {
     },
     {
       type: "img",
-      value:
-        "https://source.unsplash.com/800x600/?AuditForBusiness1 Tax-economy",
+      value: "https://source.unsplash.com/800x600/?AuditForBusiness1",
       label: "AuditForBusiness1 Tax Economy",
       alt: "AuditForBusiness1 Tax Economy",
     },

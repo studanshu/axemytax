@@ -12,6 +12,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "assets/theme";
 
 // Material Kit 2 React routes
+import BlogContent from "pages/BlogContent";
 import routes from "routes";
 
 const queryClient = new QueryClient();
@@ -54,6 +55,13 @@ export default function App() {
       if (route.collapse) {
         allRoutes = allRoutes.concat(getRoutes(route.collapse));
       }
+
+      allRoutes.push(
+        <Route
+          path="/blog/:category/:relatedType/:contentId"
+          element={<BlogContent />}
+        />
+      );
 
       return allRoutes.length === 0 ? null : allRoutes;
     });

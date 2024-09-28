@@ -3,6 +3,8 @@ export const CorporateTaxingSystem = {
   duration: "1 min read",
   author: "Amelia Smith",
   title: "Corporate Income Tax Benefits",
+  description: "Sample description for ${title}",
+  img: "https://source.unsplash.com/800x600/?${title}",
   content: [
     {
       type: "headingBig",

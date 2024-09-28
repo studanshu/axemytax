@@ -3,6 +3,8 @@ export const MidIncomeTaxBenefits = {
   duration: "1 min read",
   author: "Amelia Smith",
   title: "Mid Income Tax Benefits",
+  description: "Sample description for ${title}",
+  img: "https://source.unsplash.com/800x600/?${title}",
   content: [
     {
       type: "headingBig",

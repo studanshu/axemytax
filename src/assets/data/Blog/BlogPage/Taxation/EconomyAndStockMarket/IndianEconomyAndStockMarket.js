@@ -3,6 +3,8 @@ export const IndianEconomyAndStockMarket = {
   duration: "1 min read",
   author: "Amelia Smith",
   title: "Indian Economy and the Stock Market",
+  description: "Sample description for ${title}",
+  img: "https://source.unsplash.com/800x600/?${title}",
   content: [
     {
       type: "headingBig",

@@ -3,6 +3,8 @@ export const InternalAudit2 = {
   duration: "1 min read",
   author: "Amelia Smith",
   title: "InternalAudit2 Economy and the Stock Market",
+  description: "InternalAudit2 Economy and the Stock Market",
+  img: "https://source.unsplash.com/800x600/?InternalAudit2",
   content: [
     {
       type: "headingBig",
