@@ -7,10 +7,16 @@ export const DefaultSubscribeJson = {
   image: HeroImage,
   inputs: [
     {
+      type: "text",
+      fieldType: "input",
+      spacing: "half",
       label: "Name",
       required: false,
     },
     {
+      type: "email",
+      fieldType: "input",
+      spacing: "half",
       label: "Email",
       required: true,
     },

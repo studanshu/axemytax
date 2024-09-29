@@ -9,6 +9,8 @@ const ParseContent = ({ mainContent }) => {
         const commonProps = {
           key: index,
           color: content.color,
+          textAlign: "justify",
+          listStylePosition: "inside",
         };
 
         switch (content.type) {
@@ -62,7 +64,11 @@ const ParseContent = ({ mainContent }) => {
             return <br key={index} />;
           case "ul":
             return (
-              <Box key={index} component="ul" sx={{ mb: { xs: 2, lg: 4 } }}>
+              <Box
+                key={index}
+                component="ul"
+                sx={{ mb: { xs: 2, lg: 4 }, ...commonProps }}
+              >
                 {content.value.map((item, idx) => (
                   <li key={idx}>{item}</li>
                 ))}
@@ -70,7 +76,11 @@ const ParseContent = ({ mainContent }) => {
             );
           case "ol":
             return (
-              <Box key={index} component="ol" sx={{ mb: { xs: 2, lg: 4 } }}>
+              <Box
+                key={index}
+                component="ol"
+                sx={{ mb: { xs: 2, lg: 4 }, ...commonProps }}
+              >
                 {content.value.map((item, idx) => (
                   <li key={idx}>{item}</li>
                 ))}
