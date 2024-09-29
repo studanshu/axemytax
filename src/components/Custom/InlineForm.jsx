@@ -2,7 +2,7 @@ import { Box, Grid } from "@mui/material";
 
 import SectionHeader from "components/Custom/SectionHeader";
 import PropTypes from "prop-types";
-import CustomForm from "./CustomForm";
+import CustomForm from "./Form/CustomForm";
 
 const InlineForm = ({ FormJson, flexDirection }) => {
   return (

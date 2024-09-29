@@ -2,7 +2,7 @@ import { Box, Container, Grid } from "@mui/material";
 import TopLayout from "pages/utils/TopLayout";
 import PropTypes from "prop-types";
 
-import CustomForm from "components/Custom/CustomForm";
+import CustomForm from "components/Custom/Form/CustomForm";
 import SectionHeader from "components/Custom/SectionHeader";
 import { Suspense } from "react";
 const renderLoader = () => <p>Loading</p>;
@@ -56,7 +56,16 @@ ContactField.propTypes = {
     caption: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     image: PropTypes.object.isRequired,
-    inputs: PropTypes.arrayOf(PropTypes.object).isRequired,
+    inputs: PropTypes.arrayOf(
+      PropTypes.shape({
+        type: PropTypes.oneOf(["text", "email", "tel", "nestedEnum", "enum"]),
+        label: PropTypes.string.isRequired,
+        formLabel: PropTypes.string,
+        required: PropTypes.bool,
+        fieldType: PropTypes.oneOf(["input", "dropdown", "textarea"]),
+        spacing: PropTypes.oneOf(["half", "full"]),
+      })
+    ).isRequired,
     buttonText: PropTypes.string.isRequired,
   }).isRequired,
 };

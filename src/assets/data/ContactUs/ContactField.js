@@ -7,6 +7,7 @@ export const ContactFieldJson = {
     {
       type: "text",
       label: "Name",
+      formLabel: "name",
       required: true,
       fieldType: "input",
       spacing: "half",
@@ -14,6 +15,7 @@ export const ContactFieldJson = {
     {
       type: "tel",
       label: "Phone",
+      formLabel: "phone",
       required: true,
       fieldType: "input",
       spacing: "half",
@@ -21,6 +23,7 @@ export const ContactFieldJson = {
     {
       type: "email",
       label: "Email",
+      formLabel: "email",
       required: false,
       fieldType: "input",
       spacing: "half",
@@ -28,6 +31,7 @@ export const ContactFieldJson = {
     {
       type: "text",
       label: "Company Name",
+      formLabel: "companyName",
       required: false,
       fieldType: "input",
       spacing: "half",
@@ -35,11 +39,13 @@ export const ContactFieldJson = {
     {
       type: "nestedEnum",
       label: "Select Service",
+      formLabel: "service",
       required: true,
       fieldType: "dropdown",
       spacing: "full",
       options: {
         label: "Select Sub-Service",
+        formLabel: "subService",
         Taxation: [
           "Income Tax",
           "GST",
@@ -68,6 +74,7 @@ export const ContactFieldJson = {
     {
       type: "enum",
       label: "Select Business Type",
+      formLabel: "businessType",
       required: false,
       fieldType: "dropdown",
       spacing: "full",
@@ -76,6 +83,7 @@ export const ContactFieldJson = {
     {
       type: "enum",
       label: "Select Budget",
+      formLabel: "budget",
       required: false,
       fieldType: "dropdown",
       spacing: "full",
@@ -88,6 +96,7 @@ export const ContactFieldJson = {
     {
       type: "text",
       label: "Type In Your Query",
+      formLabel: "query",
       required: true,
       fieldType: "textarea",
       spacing: "full",
