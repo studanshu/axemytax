@@ -11,7 +11,6 @@ import Team from "./Team";
 const renderLoader = () => <p>Loading</p>;
 
 const About = ({ jsonData }) => {
-  console.log(jsonData);
   return (
     <Suspense fallback={renderLoader()}>
       <Hero jsonData={jsonData.Hero} />

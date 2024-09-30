@@ -20,7 +20,6 @@ const commonProps = {
 };
 
 const RenderInputField = ({ input }) => {
-  console.log(input);
   const { register } = useFormContext();
   switch (input.label) {
     case "name":

@@ -64,6 +64,7 @@ ContactField.propTypes = {
         required: PropTypes.bool,
         fieldType: PropTypes.oneOf(["input", "dropdown", "textarea"]),
         spacing: PropTypes.oneOf(["half", "full"]),
+        options: PropTypes.oneOf(PropTypes.string, PropTypes.object),
       })
     ).isRequired,
     buttonText: PropTypes.string.isRequired,

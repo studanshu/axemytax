@@ -11,8 +11,6 @@ const renderLoader = () => <p>Loading</p>;
 
 function Content({ jsonData }) {
   let blogContent = jsonData.content;
-  console.log("jsonData", jsonData);
-  console.log("blogContent", blogContent);
   return (
     <Suspense fallback={renderLoader()}>
       <Container>

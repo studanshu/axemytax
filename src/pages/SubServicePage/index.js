@@ -12,7 +12,6 @@ import Resources from "./Resources";
 const renderLoader = () => <p>Loading</p>;
 
 const SubServicePage = ({ jsonData }) => {
-  console.log(jsonData);
   return (
     <Suspense fallback={renderLoader()}>
       <Hero jsonData={jsonData.Hero} />

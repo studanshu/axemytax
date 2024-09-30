@@ -1,26 +1,12 @@
 // Images
+import { getFieldPayload } from "assets/data/Form/DefaultFormFields";
 import HeroImage from "assets/images/SubServicePage/TaxService/DirectTaxation/hero.png";
 
 export const DefaultSubscribeJson = {
   caption: "Enjoyed Reading the Blog",
   title: "Subscribe",
   image: HeroImage,
-  inputs: [
-    {
-      type: "text",
-      fieldType: "input",
-      spacing: "half",
-      label: "Name",
-      required: false,
-    },
-    {
-      type: "email",
-      fieldType: "input",
-      spacing: "half",
-      label: "Email",
-      required: true,
-    },
-  ],
+  inputs: [getFieldPayload("name", false), getFieldPayload("email", true)],
   buttonText: "Subscribe",
   flexDirection: "row-reverse",
 };

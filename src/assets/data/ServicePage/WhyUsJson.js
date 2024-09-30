@@ -2,6 +2,7 @@
 import reasonOne from "assets/images/default/reason_1.png";
 import reasonTwo from "assets/images/default/reason_2.png";
 import reasonThree from "assets/images/default/reason_3.png";
+import DefaultFormFields from "../Form/DefaultFormFields";
 
 export const WhyUsJson = {
   caption: "Expert service, unmatched",
@@ -25,18 +26,7 @@ export const WhyUsJson = {
   ],
   secondaryCaption: "Select all that apply",
   secondaryTitle: "I require help with",
-  options: [
-    "GST Filing",
-    "Statutory Audit",
-    "Company Audit",
-    "Income Tax Returns",
-    "FEMA Filing",
-    "Bookeeping Service",
-  ],
-  dropdownBusiness: ["I am an Individual", "I am an SME", "I am a Corporate"],
-  dropdownBudget: [
-    "My budget is < Rs. 10,000/-",
-    "My budget is < Rs. 50,000/-",
-    "My budget is < Rs. 1,00,000/-",
-  ],
+  options: DefaultFormFields.service.options.Taxation.options,
+  dropdownBusiness: DefaultFormFields.businessType,
+  dropdownBudget: DefaultFormFields.budget,
 };

@@ -3,7 +3,7 @@ const formValidations = ({ type, required }) => {
     case "text":
       return (input) => {
         if (input.length > 3000) {
-          return "Query should be less than 3000 characters";
+          return "Text should be less than 3000 characters";
         }
       };
     case "email":

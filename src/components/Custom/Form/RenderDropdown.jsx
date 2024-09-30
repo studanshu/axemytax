@@ -5,9 +5,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 
-const OptionsToIgnore = ["label", "formLabel"];
-
-const RenderDropdown = ({ options, label, spacing, isRequired, formLabel }) => {
+const RenderDropdown = ({ input, gap }) => {
   const { register } = useFormContext();
   const [selectedOption, setSelectedOption] = useState("");
 
@@ -15,39 +13,35 @@ const RenderDropdown = ({ options, label, spacing, isRequired, formLabel }) => {
     setSelectedOption(event.target.value);
   };
 
-  const isNestedDropdown =
-    typeof options === "object" && !Array.isArray(options);
+  const isNestedDropdown = input.type === "nestedEnum";
 
   const renderMenuItems = () => {
     let optionList = [];
     if (isNestedDropdown) {
-      optionList = Object.keys(options);
+      optionList = Object.keys(input.options);
     } else {
-      optionList = options;
+      optionList = input.options;
     }
 
-    return optionList.map(
-      (key, index) =>
-        OptionsToIgnore.indexOf(key) === -1 && (
-          <MenuItem key={index} value={key}>
-            <MKTypography variant="h6Light" color="secondary">
-              {key}
-            </MKTypography>
-          </MenuItem>
-        )
-    );
+    return optionList.map((key, index) => (
+      <MenuItem key={index} value={key}>
+        <MKTypography variant="h6Light" color="secondary">
+          {key}
+        </MKTypography>
+      </MenuItem>
+    ));
   };
 
   return (
-    <Grid container spacing={spacing} flexDirection="column">
+    <Grid container spacing={gap} flexDirection="column">
       <Grid item>
         <FormControl fullWidth>
           <TextField
             value={selectedOption}
             onChange={handleOptionChange}
             select
-            label={label}
-            required={isRequired}
+            label={`${input.label} ${input.required ? "*" : ""}`}
+            required={input.isRequired || false}
           >
             {renderMenuItems()}
           </TextField>
@@ -55,33 +49,28 @@ const RenderDropdown = ({ options, label, spacing, isRequired, formLabel }) => {
       </Grid>
       {isNestedDropdown && selectedOption && (
         <Grid item>
-          <RenderDropdown
-            options={options[selectedOption]}
-            spacing={spacing}
-            label={options.label}
-            required={isRequired}
-            formLabel={options.formLabel}
-          />
+          <RenderDropdown input={input.options[selectedOption]} gap={gap} />
         </Grid>
       )}
     </Grid>
   );
 };
 RenderDropdown.propTypes = {
-  options: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.string),
-    PropTypes.objectOf(PropTypes.array),
-  ]).isRequired,
-  spacing: PropTypes.number,
-  label: PropTypes.string,
-  isRequired: PropTypes.bool,
-  formLabel: PropTypes.string,
+  input: PropTypes.instanceOf({
+    type: PropTypes.string.isRequired,
+    fieldType: PropTypes.string.isRequired,
+    spacing: PropTypes.oneOf(["half", "full"]),
+    label: PropTypes.string.isRequired,
+    formLabel: PropTypes.string.isRequired,
+    required: PropTypes.bool,
+    options: PropTypes.oneOfType([PropTypes.array, PropTypes.object])
+      .isRequired,
+  }).isRequired,
+  gap: PropTypes.number,
 };
 
 RenderDropdown.defaultProps = {
-  spacing: 2,
-  label: "Select Option",
-  isRequired: false,
+  gap: 2,
 };
 
 export default RenderDropdown;

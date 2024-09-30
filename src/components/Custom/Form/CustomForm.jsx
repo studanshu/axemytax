@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
+import { zodResolver } from "@hookform/resolvers/zod";
 import { SendOutlined } from "@mui/icons-material";
 import { Grid, TextField } from "@mui/material";
 import typography from "assets/theme/base/typography";
@@ -7,13 +8,17 @@ import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
 import PropTypes from "prop-types";
 import { Form, FormProvider, useForm } from "react-hook-form";
-import formValidations from "./formValidations";
+import createSchema from "./CreateSchema";
 import RenderDropdown from "./RenderDropdown";
 
 const { size } = typography;
 
 const CustomForm = ({ jsonData }) => {
-  const methods = useForm();
+  // const methods = useForm();
+  const customSchema = createSchema(jsonData.inputs);
+  const methods = useForm({
+    resolver: zodResolver(customSchema),
+  });
   const {
     register,
     handleSubmit,
@@ -23,8 +28,8 @@ const CustomForm = ({ jsonData }) => {
   } = methods;
 
   const onSubmit = async (data) => {
-    console.log(data);
-    console.log(errors);
+    console.log("Submitted Data", data);
+    console.log("Errors: ", errors);
     await new Promise((resolve) => setTimeout(resolve, 2000));
     reset();
   };
@@ -54,7 +59,19 @@ const CustomForm = ({ jsonData }) => {
               >
                 {input.fieldType === "input" ||
                 input.fieldType === "textarea" ? (
-                  <TextField
+                  <>
+                    <TextField
+                      fullWidth
+                      placeholder={`${input.label} ${input.required ? "*" : ""}`}
+                      multiline={input.fieldType === "textarea"}
+                      rows={input.fieldType === "textarea" ? 4 : undefined}
+                      error={errors[input.formLabel]}
+                      helperText={errorText(errors[input.formLabel]?.message)}
+                      {...register(input.formLabel)}
+                      variant="outlined"
+                      type={input.type}
+                    />
+                    {/* <TextField
                     fullWidth
                     placeholder={`${input.label} ${input.required ? "*" : ""}`}
                     multiline={input.fieldType === "textarea"}
@@ -75,15 +92,10 @@ const CustomForm = ({ jsonData }) => {
                     })}
                     variant="outlined"
                     type={input.type}
-                  />
+                  /> */}
+                  </>
                 ) : input.fieldType === "dropdown" ? (
-                  <RenderDropdown
-                    options={input.options}
-                    label={input.label}
-                    formLabel={input.formLabel}
-                    spacing={4}
-                    isRequired={input.required}
-                  />
+                  <RenderDropdown input={input} gap={4} />
                 ) : (
                   <></>
                 )}
