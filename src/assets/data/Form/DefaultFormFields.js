@@ -53,7 +53,7 @@ const DefaultFormFields = {
         label: "Select Sub-Service",
         required: false,
         spacing: "full",
-        formLabel: "taxSubService",
+        formLabel: "subService",
         options: [
           "Income Tax",
           "GST",
@@ -68,7 +68,7 @@ const DefaultFormFields = {
         label: "Select Sub-Service",
         required: false,
         spacing: "full",
-        formLabel: "auditSubService",
+        formLabel: "subService",
         options: [
           "Statutory Audit",
           "Internal Audit",
@@ -82,7 +82,7 @@ const DefaultFormFields = {
         label: "Select Sub-Service",
         required: false,
         spacing: "full",
-        formLabel: "accountingSubService",
+        formLabel: "subService",
         options: ["Bookkeeping", "Financial Reporting", "Payroll", "Other"],
       },
       Advisory: {
@@ -90,7 +90,7 @@ const DefaultFormFields = {
         label: "Select Sub-Service",
         required: false,
         spacing: "full",
-        formLabel: "advisorySubService",
+        formLabel: "subService",
         options: [
           "Corporate Advisory",
           "Tax Advisory",
@@ -103,7 +103,7 @@ const DefaultFormFields = {
         label: "Select Sub-Service",
         required: false,
         spacing: "full",
-        formLabel: "complianceSubService",
+        formLabel: "subService",
         options: ["Company Law", "Secretarial", "FEMA", "Other"],
       },
     },

@@ -2,16 +2,16 @@
 import { FormControl, Grid, MenuItem, TextField } from "@mui/material";
 import MKTypography from "components/MKTypography"; // Ensure this path is correct
 import PropTypes from "prop-types";
-import { useState } from "react";
-import { useFormContext } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
+import { errorText } from "./utils";
 
 const RenderDropdown = ({ input, gap }) => {
-  const { register } = useFormContext();
-  const [selectedOption, setSelectedOption] = useState("");
-
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
+  const {
+    control,
+    formState: { errors },
+    watch,
+  } = useFormContext();
+  const selectedOption = watch(input.formLabel);
 
   const isNestedDropdown = input.type === "nestedEnum";
 
@@ -36,15 +36,22 @@ const RenderDropdown = ({ input, gap }) => {
     <Grid container spacing={gap} flexDirection="column">
       <Grid item>
         <FormControl fullWidth>
-          <TextField
-            value={selectedOption}
-            onChange={handleOptionChange}
-            select
-            label={`${input.label} ${input.required ? "*" : ""}`}
-            required={input.isRequired || false}
-          >
-            {renderMenuItems()}
-          </TextField>
+          <Controller
+            control={control}
+            name={input.formLabel}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                select
+                label={`${input.label} ${input.required ? "*" : ""}`}
+                required={input.isRequired || false}
+                error={errors[input.formLabel]}
+                helperText={errorText(errors[input.formLabel]?.message)}
+              >
+                {renderMenuItems()}
+              </TextField>
+            )}
+          />
         </FormControl>
       </Grid>
       {isNestedDropdown && selectedOption && (

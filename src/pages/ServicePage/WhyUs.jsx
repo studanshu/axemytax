@@ -11,13 +11,15 @@ import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
 import PropTypes from "prop-types";
 import { Suspense } from "react";
-import { FormProvider } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 const renderLoader = () => <p>Loading</p>;
 const { size } = typography;
 
 const { light } = colors;
 
 function WhyUs({ jsonData }) {
+  let methods = useForm();
+
   return (
     <Suspense fallback={renderLoader()}>
       <Box sx={{ background: light.main, py: { xs: 3, xl: 6 } }}>
@@ -45,7 +47,7 @@ function WhyUs({ jsonData }) {
               />
               <ReasonCards reasons={jsonData.reasons} />
             </Grid>
-            <FormProvider>
+            <FormProvider {...methods}>
               <FormGroup sx={{ minWidth: "100%" }}>
                 <Grid
                   container

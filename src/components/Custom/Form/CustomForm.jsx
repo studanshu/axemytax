@@ -5,26 +5,33 @@ import { SendOutlined } from "@mui/icons-material";
 import { Grid, TextField } from "@mui/material";
 import typography from "assets/theme/base/typography";
 import MKButton from "components/MKButton";
-import MKTypography from "components/MKTypography";
 import PropTypes from "prop-types";
 import { Form, FormProvider, useForm } from "react-hook-form";
+import { z } from "zod";
 import createSchema from "./CreateSchema";
 import RenderDropdown from "./RenderDropdown";
+import { errorText } from "./utils";
 
 const { size } = typography;
 
 const CustomForm = ({ jsonData }) => {
-  // const methods = useForm();
-  const customSchema = createSchema(jsonData.inputs);
+  const customSchema = z.object(
+    createSchema(jsonData.inputs) // To avoid modifying the original data
+  );
+  console.log("Custom Schema", customSchema.shape);
   const methods = useForm({
     resolver: zodResolver(customSchema),
+    defaultValues: {
+      service: "",
+      businessType: "",
+      budget: "",
+    },
   });
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
-    getValues,
   } = methods;
 
   const onSubmit = async (data) => {
@@ -33,12 +40,6 @@ const CustomForm = ({ jsonData }) => {
     await new Promise((resolve) => setTimeout(resolve, 2000));
     reset();
   };
-
-  const errorText = (message) => (
-    <MKTypography variant="subtitle2" color="red">
-      {message}
-    </MKTypography>
-  );
 
   return (
     <FormProvider {...methods}>
@@ -71,28 +72,6 @@ const CustomForm = ({ jsonData }) => {
                       variant="outlined"
                       type={input.type}
                     />
-                    {/* <TextField
-                    fullWidth
-                    placeholder={`${input.label} ${input.required ? "*" : ""}`}
-                    multiline={input.fieldType === "textarea"}
-                    rows={input.fieldType === "textarea" ? 4 : undefined}
-                    error={errors[input.formLabel]}
-                    helperText={
-                      errors[input.formLabel] &&
-                      errorText(errors[input.formLabel].message)
-                    }
-                    {...register(input.formLabel, {
-                      required: input.required
-                        ? `${input.label} is required`
-                        : false,
-                      validate: formValidations({
-                        type: input.type,
-                        required: input.required,
-                      }),
-                    })}
-                    variant="outlined"
-                    type={input.type}
-                  /> */}
                   </>
                 ) : input.fieldType === "dropdown" ? (
                   <RenderDropdown input={input} gap={4} />

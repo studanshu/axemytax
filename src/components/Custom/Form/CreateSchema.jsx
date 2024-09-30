@@ -6,11 +6,47 @@ function asOptionalField(schema) {
   return schema.optional().or(emptyStringToUndefined);
 }
 
-const createSchema = (JsonData) => {
+const enumErrorMap = {
+  errorMap: () => {
+    return { message: "Invalid Option Selected" };
+  },
+};
+
+function flattenNestedEnum(NestedEnumObject, JsonData) {
+  if (NestedEnumObject.type === "nestedEnum") {
+    Object.entries(NestedEnumObject.options).map(([_, value]) => {
+      JsonData.push(value);
+      flattenNestedEnum(value, JsonData);
+    });
+  }
+}
+
+function getCurrentOptions(data, currentType) {
+  if (currentType === "nestedEnum") {
+    return Object.keys(data.options);
+  } else if (currentType === "enum") {
+    return data.options;
+  }
+  return [];
+}
+
+function updateZodSchemaWithEnum(currentLabel, zodSchema, currentOptions) {
+  if (currentLabel in zodSchema) {
+    zodSchema[currentLabel] = zodSchema[currentLabel].or(
+      z.nativeEnum(currentOptions)
+    );
+  } else {
+    zodSchema[currentLabel] = z.nativeEnum(currentOptions, enumErrorMap);
+  }
+}
+
+const createSchema = (inputData) => {
+  let JsonData = JSON.parse(JSON.stringify(inputData));
   let zodSchema = {};
   for (let i = 0; i < JsonData.length; i++) {
     let currentLabel = JsonData[i].formLabel;
     let currentType = JsonData[i].type;
+    let currentOptions = getCurrentOptions(JsonData[i], currentType);
     switch (currentType) {
       case "text":
         zodSchema[currentLabel] = z
@@ -28,11 +64,8 @@ const createSchema = (JsonData) => {
         break;
       case "enum":
       case "nestedEnum":
-        zodSchema[currentLabel] = z.enum(
-          JsonData[i].options,
-          "Invalid Option Selected."
-        );
-        zodSchema[currentLabel] = z.string();
+        updateZodSchemaWithEnum(currentLabel, zodSchema, currentOptions);
+        flattenNestedEnum(JsonData[i], JsonData);
         break;
       default:
         zodSchema[currentLabel] = z.string();
@@ -43,7 +76,7 @@ const createSchema = (JsonData) => {
       zodSchema[currentLabel] = asOptionalField(zodSchema[currentLabel]);
     }
   }
-  return z.object(zodSchema);
+  return zodSchema;
 };
 
 export default createSchema;
