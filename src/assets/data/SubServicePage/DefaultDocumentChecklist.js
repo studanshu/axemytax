@@ -4,6 +4,7 @@ import DrivingLicenseImage from "assets/images/default/driving_license.png";
 import PanCardImage from "assets/images/default/pan_card.png";
 import PassportImage from "assets/images/default/passport.png";
 import VoterIdCardImage from "assets/images/default/voter_id_card.png";
+import DefaultFormFields from "../Form/DefaultFormFields";
 export const DefaultDocumentChecklist = {
   caption: "Prepare with confidence",
   title: "Required Documents Checklist",
@@ -33,6 +34,11 @@ export const DefaultDocumentChecklist = {
       des: "A driving license is an official document that states that a person may operate one or more types of motorized vehicles, such as a motorcycle, car, truck, or a bus, on a public roadway.",
       image: DrivingLicenseImage,
     },
+  ],
+  inputs: [
+    DefaultFormFields.name,
+    DefaultFormFields.phone,
+    DefaultFormFields.email,
   ],
   buttonText: "Request Callback",
 };

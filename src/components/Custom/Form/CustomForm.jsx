@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SendOutlined } from "@mui/icons-material";
-import { Grid, TextField } from "@mui/material";
+import { Grid } from "@mui/material";
 import { useFormSubmit } from "api/form/useFromSubmit";
 import typography from "assets/theme/base/typography";
 import MKButton from "components/MKButton";
@@ -11,7 +11,7 @@ import { z } from "zod";
 import createSchema from "./CreateSchema";
 import CustomSnackbar from "./CustomSnackbar";
 import RenderDropdown from "./RenderDropdown";
-import { errorText } from "./utils";
+import RenderTextField from "./RenderTextField";
 
 const { size } = typography;
 
@@ -28,9 +28,8 @@ const CustomForm = ({ jsonData, defaultValues, parentName }) => {
   });
 
   const {
-    register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { isSubmitting },
     reset,
   } = methods;
 
@@ -78,19 +77,7 @@ const CustomForm = ({ jsonData, defaultValues, parentName }) => {
               >
                 {input.fieldType === "input" ||
                 input.fieldType === "textarea" ? (
-                  <>
-                    <TextField
-                      fullWidth
-                      placeholder={`${input.label} ${input.required ? "*" : ""}`}
-                      multiline={input.fieldType === "textarea"}
-                      rows={input.fieldType === "textarea" ? 4 : undefined}
-                      error={errors[input.formLabel]}
-                      helperText={errorText(errors[input.formLabel]?.message)}
-                      {...register(input.formLabel)}
-                      variant="outlined"
-                      type={input.type}
-                    />
-                  </>
+                  <RenderTextField input={input} />
                 ) : input.fieldType === "dropdown" ? (
                   <RenderDropdown input={input} gap={4} />
                 ) : (

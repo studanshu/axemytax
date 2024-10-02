@@ -1,10 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import SendIcon from "@mui/icons-material/Send";
-import { Grid, TextField } from "@mui/material";
+import { Grid } from "@mui/material";
 import { useFormSubmit } from "api/form/useFromSubmit";
 import typography from "assets/theme/base/typography";
+import createSchema from "components/Custom/Form/CreateSchema";
 import CustomSnackbar from "components/Custom/Form/CustomSnackbar";
-import { errorText } from "components/Custom/Form/utils";
+import RenderTextField from "components/Custom/Form/RenderTextField";
 import MKButton from "components/MKButton";
 import PropTypes from "prop-types";
 import { Suspense, useEffect, useRef } from "react";
@@ -13,18 +14,12 @@ import { z } from "zod";
 const { size } = typography;
 const renderLoader = () => <p>Loading</p>;
 
-function ChecklistAction({ parentName }) {
+function ChecklistAction({ inputs, parentName }) {
   const methods = useForm({
-    resolver: zodResolver(
-      z.object({
-        name: z.string().min(5, "Name should be atleast 5 characters."),
-        phone: z.string().regex(/^\d{10}$/, "Invalid Phone Number"),
-        email: z.string().email("Invalid Email"),
-      })
-    ),
+    resolver: zodResolver(z.object(createSchema(inputs))),
   });
 
-  const { register, handleSubmit, formState, reset } = methods;
+  const { handleSubmit, formState, reset } = methods;
   const { submitForm, status } = useFormSubmit();
 
   const snackbarRef = useRef();
@@ -32,7 +27,7 @@ function ChecklistAction({ parentName }) {
     if (status === "success") {
       reset();
       snackbarRef.current.showSnackbar(
-        "Query received! We'll get in touch with you.",
+        "Inquiry received! We'll get in touch with you.",
         "success"
       );
     } else if (status === "error") {
@@ -54,41 +49,22 @@ function ChecklistAction({ parentName }) {
   return (
     <Suspense fallback={renderLoader()}>
       <FormProvider {...methods}>
-        <form onSubmit={handleSubmit(onSubmit)} style={{ width: "`100%" }}>
+        <form onSubmit={handleSubmit(onSubmit)} style={{ width: "100%" }}>
           <Grid
             container
             item
             className="ctaArea"
             justifyContent="center"
             sx={{ gap: { xs: 2, lg: 4 } }}
-            px={12}
           >
             <Grid item className="name">
-              <TextField
-                label="Name *"
-                variant="outlined"
-                {...register("name")}
-                error={formState.errors["name"]}
-                helperText={errorText(formState.errors["name"]?.message)}
-              />
+              <RenderTextField input={inputs[0]} />
             </Grid>
             <Grid item className="phone">
-              <TextField
-                label="Phone Number *"
-                variant="outlined"
-                {...register("phone")}
-                error={formState.errors["phone"]}
-                helperText={errorText(formState.errors["phone"]?.message)}
-              />
+              <RenderTextField input={inputs[1]} />
             </Grid>
             <Grid item className="email">
-              <TextField
-                label="Email address *"
-                variant="outlined"
-                {...register("email")}
-                error={formState.errors["email"]}
-                helperText={errorText(formState.errors["email"]?.message)}
-              />
+              <RenderTextField input={inputs[2]} />
             </Grid>
             <Grid item className="button">
               <MKButton
@@ -118,6 +94,7 @@ function ChecklistAction({ parentName }) {
 
 ChecklistAction.propTypes = {
   parentName: PropTypes.string,
+  inputs: PropTypes.array.isRequired,
 };
 
 ChecklistAction.defaultProps = {

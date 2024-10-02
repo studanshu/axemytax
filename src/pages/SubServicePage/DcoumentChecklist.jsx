@@ -37,52 +37,10 @@ function DocumentChecklist({ jsonData }) {
                 <ReasonCards reasons={DocumentChecklistData.documents} />
               </Grid>
             </Grid>
-            {/* <Grid
-              container
-              item
-              className="ctaArea"
-              justifyContent="space-around"
-              sx={{ gap: { xs: 2, lg: 4 } }}
-              px={12}
-            >
-              <Grid
-                item
-                container
-                className="inputFields"
-                xs={12}
-                lg={8}
-                spacing={2}
-                justifyContent="center"
-              >
-                <Grid item className="name">
-                  <MKInput label="Name *" variant="outlined" />
-                </Grid>
-                <Grid item className="phone">
-                  <MKInput label="Phone Number *" variant="outlined" />
-                </Grid>
-                <Grid item className="email">
-                  <MKInput label="Email address" variant="outlined" />
-                </Grid>
-              </Grid>
-              <Grid item className="button">
-                <MKButton
-                  size="large"
-                  variant="contained"
-                  color="primary"
-                  sx={{
-                    textTransform: "capitalize",
-                    fontSize: size.lg,
-                    width: "100%",
-                    boxShadow:
-                      "0px 105.68352508544922px 84.54682159423828px 0px rgba(0, 0, 0, 7%), 0px 44.15205383300781px 35.3216438293457px 0px rgba(0, 0, 0, 5%), 0px 23.605802536010742px 18.884639739990234px 0px rgba(0, 0, 0, 4%), 0px 13.2332181930542px 10.586573600769043px 0px rgba(0, 0, 0, 4%), 0px 7.0280632972717285px 5.62244987487793px 0px rgba(0, 0, 0, 3%), 0px 2.924534320831299px 2.339627265930176px 0px rgba(0, 0, 0, 2%);",
-                  }}
-                  endIcon={<SendIcon />}
-                >
-                  Request Callback
-                </MKButton>
-              </Grid>
-            </Grid> */}
-            <ChecklistAction parentName="SubServicePage" />
+            <ChecklistAction
+              inputs={jsonData.inputs}
+              parentName="SubServicePage"
+            />
           </Grid>
         </Container>
       </Box>
