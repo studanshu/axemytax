@@ -59,7 +59,7 @@ const CustomForm = ({ jsonData, parentName }) => {
       );
     } else if (status === "error") {
       snackbarRef.current.showSnackbar(
-        "Error submitting form: " + error.message,
+        "We are unable to take in your request. Please reach out to us by phone or email.",
         "error"
       );
     } else if (status === "loading") {
