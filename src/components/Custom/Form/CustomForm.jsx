@@ -3,30 +3,37 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SendOutlined } from "@mui/icons-material";
 import { Grid, TextField } from "@mui/material";
+import { useFormSubmit } from "api/form/useFromSubmit";
 import typography from "assets/theme/base/typography";
 import MKButton from "components/MKButton";
 import PropTypes from "prop-types";
+import { useEffect, useRef } from "react";
 import { Form, FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import createSchema from "./CreateSchema";
+import CustomSnackbar from "./CustomSnackbar";
 import RenderDropdown from "./RenderDropdown";
 import { errorText } from "./utils";
 
 const { size } = typography;
 
-const CustomForm = ({ jsonData }) => {
+const CustomForm = ({ jsonData, parentName }) => {
   const customSchema = z.object(
     createSchema(jsonData.inputs) // To avoid modifying the original data
   );
-  console.log("Custom Schema", customSchema.shape);
+
+  // console.log("Custom Schema", customSchema.shape);
+
   const methods = useForm({
     resolver: zodResolver(customSchema),
     defaultValues: {
       service: "",
+      subService: "",
       businessType: "",
       budget: "",
     },
   });
+
   const {
     register,
     handleSubmit,
@@ -34,12 +41,31 @@ const CustomForm = ({ jsonData }) => {
     reset,
   } = methods;
 
+  const { submitForm, status, error } = useFormSubmit();
+
+  const snackbarRef = useRef();
+
   const onSubmit = async (data) => {
-    console.log("Submitted Data", data);
-    console.log("Errors: ", errors);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    reset();
+    data["source"] = parentName;
+    await submitForm(data);
   };
+
+  useEffect(() => {
+    if (status === "success") {
+      reset();
+      snackbarRef.current.showSnackbar(
+        "Form submitted successfully! We will get back to you soon.",
+        "success"
+      );
+    } else if (status === "error") {
+      snackbarRef.current.showSnackbar(
+        "Error submitting form: " + error.message,
+        "error"
+      );
+    } else if (status === "loading") {
+      snackbarRef.current.showSnackbar("Taking in your request", "info");
+    }
+  }, [status]);
 
   return (
     <FormProvider {...methods}>
@@ -101,6 +127,7 @@ const CustomForm = ({ jsonData }) => {
           </Grid>
         </Grid>
       </Form>
+      <CustomSnackbar ref={snackbarRef} />
     </FormProvider>
   );
 };
@@ -110,6 +137,11 @@ CustomForm.propTypes = {
     inputs: PropTypes.arrayOf(PropTypes.object).isRequired,
     buttonText: PropTypes.string.isRequired,
   }).isRequired,
+  parentName: PropTypes.string,
+};
+
+CustomForm.defaultProps = {
+  parentName: "",
 };
 
 export default CustomForm;

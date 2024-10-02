@@ -41,7 +41,7 @@ function ContactField({ jsonData }) {
               </Grid>
             </Grid>
             <Grid item xs={12} lg={6} className="formContent">
-              <CustomForm jsonData={jsonData} />
+              <CustomForm jsonData={jsonData} parentName={"ContactUs"} />
             </Grid>
           </Grid>
         </Box>

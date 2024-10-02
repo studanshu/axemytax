@@ -30,7 +30,7 @@ const DefaultFormFields = {
     spacing: "half",
     label: "Email",
     formLabel: "email",
-    required: false,
+    required: true,
   },
   query: {
     type: "text",
@@ -115,7 +115,7 @@ const DefaultFormFields = {
     required: false,
     fieldType: "dropdown",
     spacing: "full",
-    options: ["I am an Individual", "I am an SME", "I am an Corporate"],
+    options: ["I am an Individual", "I am an SME", "I am a Corporate"],
   },
   budget: {
     type: "enum",
