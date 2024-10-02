@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SendOutlined } from "@mui/icons-material";
 import { Grid, TextField } from "@mui/material";
@@ -17,7 +15,7 @@ import { errorText } from "./utils";
 
 const { size } = typography;
 
-const CustomForm = ({ jsonData, parentName }) => {
+const CustomForm = ({ jsonData, defaultValues, parentName }) => {
   const customSchema = z.object(
     createSchema(jsonData.inputs) // To avoid modifying the original data
   );
@@ -26,12 +24,7 @@ const CustomForm = ({ jsonData, parentName }) => {
 
   const methods = useForm({
     resolver: zodResolver(customSchema),
-    defaultValues: {
-      service: "",
-      subService: "",
-      businessType: "",
-      budget: "",
-    },
+    defaultValues: defaultValues,
   });
 
   const {
@@ -41,15 +34,14 @@ const CustomForm = ({ jsonData, parentName }) => {
     reset,
   } = methods;
 
-  const { submitForm, status, error } = useFormSubmit();
-
-  const snackbarRef = useRef();
+  const { submitForm, status } = useFormSubmit();
 
   const onSubmit = async (data) => {
     data["source"] = parentName;
     await submitForm(data);
   };
 
+  const snackbarRef = useRef();
   useEffect(() => {
     if (status === "success") {
       reset();
@@ -138,10 +130,17 @@ CustomForm.propTypes = {
     buttonText: PropTypes.string.isRequired,
   }).isRequired,
   parentName: PropTypes.string,
+  defaultValues: PropTypes.object,
 };
 
 CustomForm.defaultProps = {
   parentName: "",
+  defaultValues: {
+    service: "",
+    subService: "",
+    businessType: "",
+    budget: "",
+  },
 };
 
 export default CustomForm;

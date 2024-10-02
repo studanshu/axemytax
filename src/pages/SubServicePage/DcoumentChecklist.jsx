@@ -1,14 +1,10 @@
-import SendIcon from "@mui/icons-material/Send";
 import { Box, Container, Grid } from "@mui/material";
 import colors from "assets/theme/base/colors";
-import typography from "assets/theme/base/typography";
 import ReasonCards from "components/Custom/ReasonCards";
 import SectionHeader from "components/Custom/SectionHeader";
-import MKButton from "components/MKButton";
-import MKInput from "components/MKInput";
 import PropTypes from "prop-types";
 import { Suspense } from "react";
-const { size } = typography;
+import ChecklistAction from "./ChecklistAction";
 const renderLoader = () => <p>Loading</p>;
 
 function DocumentChecklist({ jsonData }) {
@@ -41,7 +37,7 @@ function DocumentChecklist({ jsonData }) {
                 <ReasonCards reasons={DocumentChecklistData.documents} />
               </Grid>
             </Grid>
-            <Grid
+            {/* <Grid
               container
               item
               className="ctaArea"
@@ -85,7 +81,8 @@ function DocumentChecklist({ jsonData }) {
                   Request Callback
                 </MKButton>
               </Grid>
-            </Grid>
+            </Grid> */}
+            <ChecklistAction parentName="SubServicePage" />
           </Grid>
         </Container>
       </Box>
