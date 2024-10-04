@@ -99,7 +99,11 @@ function Considerations({ jsonData }) {
                       jsonData.considerationList[openQuestionIndex].bullets.map(
                         (bullet, index) => (
                           <Grid item key={index}>
-                            <MKTypography variant="h6Light" color="black75">
+                            <MKTypography
+                              variant="h6Light"
+                              color="black75"
+                              textAlign="justify"
+                            >
                               {index + 1}. {bullet}
                             </MKTypography>
                           </Grid>

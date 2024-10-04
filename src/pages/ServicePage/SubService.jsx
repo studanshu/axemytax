@@ -135,13 +135,16 @@ const SubService = ({ jsonData }) => {
                           variant="text"
                           color="secondary"
                           item
-                          href="#services"
+                          // href="#services"
                           sx={{
                             textTransform: "capitalize",
                             fontSize: size.xs,
                             background: `${white.main} !important`,
                           }}
                           endIcon={<SendIcon />}
+                          onClick={() => {
+                            window.location.href += cta.href;
+                          }}
                         >
                           {cta.action}
                         </MKButton>

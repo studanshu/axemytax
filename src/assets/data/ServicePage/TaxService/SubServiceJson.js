@@ -23,7 +23,8 @@ export const SubServiceJson = {
       image: ctaImage,
       title: "Let Us Take Care Of Filing Your Return",
       des: "Leave the complexity of tax laws to the professionals, and let us file your return accurately while maximizing your savings.",
-      action: "Start GST Filing",
+      action: "See How It Works",
+      href: "/direct-taxation",
       content: [
         {
           icon: <CenterFocusStrongOutlinedIcon sx={iconStyle} />,
