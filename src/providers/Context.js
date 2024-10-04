@@ -7,3 +7,7 @@ export const ServiceContext = createContext({
 export const SubServiceContext = createContext({
   name: "",
 });
+
+export const PageContext = createContext({
+  name: undefined,
+});

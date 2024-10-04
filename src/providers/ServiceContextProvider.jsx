@@ -7,14 +7,13 @@ const SERVICE_FIELD = "service";
 const OPTIONS_FIELD = "options";
 
 const ServiceContextProvider = ({ dict, children }) => {
-  console.log("Service Context Provider", dict);
   return (
     <ServiceContext.Provider value={dict}>{children}</ServiceContext.Provider>
   );
 };
 
 ServiceContextProvider.propTypes = {
-  dict: PropTypes.instanceOf({
+  dict: PropTypes.oneOf({
     name: PropTypes.oneOf(
       Object.keys(DefaultFormFields[SERVICE_FIELD][OPTIONS_FIELD]).isRequired
     ),

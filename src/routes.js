@@ -40,6 +40,7 @@ import ContactUsPage from "pages/ContactUs";
 import LandingPage from "pages/LandingPage";
 import ServicePage from "pages/ServicePage";
 import SubServicePage from "pages/SubServicePage";
+import PageContextProvider from "providers/PageContextProvider";
 import ServiceContextProvider from "providers/ServiceContextProvider";
 import SubServiceContextProvider from "providers/SubServiceContextProvider";
 // import ContactUs from "layouts/pages/landing-pages/contact-us";
@@ -107,19 +108,31 @@ const routes = [
     name: "About",
     icon: <AccountCircleIcon />,
     route: "/about",
-    component: <About jsonData={AboutJsonData} />,
+    component: (
+      <PageContextProvider dict={{ name: "About" }}>
+        <About jsonData={AboutJsonData} />
+      </PageContextProvider>
+    ),
   },
   {
     name: "Blogs",
     icon: <RssFeedIcon />,
     route: "/blogs",
-    component: <BlogOverview jsonData={BlogOverviewJsonData} />,
+    component: (
+      <PageContextProvider dict={{ name: "BlogOverview" }}>
+        <BlogOverview jsonData={BlogOverviewJsonData} />
+      </PageContextProvider>
+    ),
   },
   {
     name: "Contact",
     icon: <ContactPageOutlined />,
     route: "/contact",
-    component: <ContactUsPage jsonData={ContactUsJsonData} />,
+    component: (
+      <PageContextProvider dict={{ name: "Contact" }}>
+        <ContactUsPage jsonData={ContactUsJsonData} />
+      </PageContextProvider>
+    ),
   },
   // {
   //   name: "pages",

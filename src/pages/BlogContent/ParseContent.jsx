@@ -1,4 +1,5 @@
 import Box from "@mui/material/Box";
+import colors from "assets/theme/base/colors";
 import MKTypography from "components/MKTypography";
 import PropTypes from "prop-types";
 
@@ -70,7 +71,9 @@ const ParseContent = ({ mainContent }) => {
                 sx={{ mb: { xs: 2, lg: 4 }, ...commonProps }}
               >
                 {content.value.map((item, idx) => (
-                  <li key={idx}>{item}</li>
+                  <li key={idx} style={{ color: colors[content.color].main }}>
+                    {item}
+                  </li>
                 ))}
               </Box>
             );
@@ -82,7 +85,9 @@ const ParseContent = ({ mainContent }) => {
                 sx={{ mb: { xs: 2, lg: 4 }, ...commonProps }}
               >
                 {content.value.map((item, idx) => (
-                  <li key={idx}>{item}</li>
+                  <li key={idx} style={{ color: colors[content.color].main }}>
+                    {item}
+                  </li>
                 ))}
               </Box>
             );

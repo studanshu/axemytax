@@ -5,7 +5,11 @@ import { useFormSubmit } from "api/form/useFromSubmit";
 import typography from "assets/theme/base/typography";
 import MKButton from "components/MKButton";
 import PropTypes from "prop-types";
-import { ServiceContext, SubServiceContext } from "providers/Context";
+import {
+  PageContext,
+  ServiceContext,
+  SubServiceContext,
+} from "providers/Context";
 import { useContext, useEffect, useRef } from "react";
 import { Form, FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
@@ -23,6 +27,7 @@ const CustomForm = ({ jsonData }) => {
 
   const subServiceData = useContext(SubServiceContext);
   const serviceData = useContext(ServiceContext);
+  const pageContext = useContext(PageContext);
 
   const serviceName = subServiceData.serviceName || serviceData.name;
   const subServiceName = subServiceData.name;
@@ -48,7 +53,12 @@ const CustomForm = ({ jsonData }) => {
   const { submitForm, status } = useFormSubmit();
 
   const onSubmit = async (data) => {
-    data["source"] = `${serviceName}-${subServiceName}`;
+    if (pageContext !== undefined) {
+      data["source"] = `page-${pageContext.name}`;
+    } else {
+      data["source"] = `${serviceName}-${subServiceName}`;
+    }
+    console.log("Form Data to submit:", data);
     await submitForm(data);
   };
 

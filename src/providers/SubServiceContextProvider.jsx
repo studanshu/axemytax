@@ -33,7 +33,7 @@ const SubServiceContextProvider = ({ dict, children }) => {
 };
 
 SubServiceContextProvider.propTypes = {
-  dict: PropTypes.typeOf({
+  dict: PropTypes.objectOf({
     serviceName: PropTypes.oneOf(
       Object.keys(DefaultFormFields[SERVICE_FIELD][OPTIONS_FIELD])
     ).isRequired,

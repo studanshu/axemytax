@@ -4,6 +4,7 @@ import MKBox from "components/MKBox";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 import footerRoutes from "footer.routes";
 import TopLayout from "pages/utils/TopLayout";
+import PageContextProvider from "providers/PageContextProvider";
 import { Suspense } from "react";
 import { useParams } from "react-router-dom";
 import Content from "./Content";
@@ -31,12 +32,16 @@ const BlogContent = () => {
 
   return (
     <Suspense fallback={renderLoader()}>
-      <TopLayout />
-      <Content jsonData={contentData} />
-      <Subscribe jsonData={DefaultSubscribeJson} />
-      <MKBox pt={6} px={1} mt={6}>
-        <DefaultFooter content={footerRoutes} />
-      </MKBox>
+      <PageContextProvider
+        dict={{ name: `${category}-${relatedType}-${contentId}` }}
+      >
+        <TopLayout />
+        <Content jsonData={contentData} />
+        <Subscribe jsonData={DefaultSubscribeJson} />
+        <MKBox pt={6} px={1} mt={6}>
+          <DefaultFooter content={footerRoutes} />
+        </MKBox>
+      </PageContextProvider>
     </Suspense>
   );
 };
