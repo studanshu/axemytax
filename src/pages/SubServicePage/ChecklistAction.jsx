@@ -8,13 +8,14 @@ import CustomSnackbar from "components/Custom/Form/CustomSnackbar";
 import RenderTextField from "components/Custom/Form/RenderTextField";
 import MKButton from "components/MKButton";
 import PropTypes from "prop-types";
-import { Suspense, useEffect, useRef } from "react";
+import { SubServiceContext } from "providers/Context";
+import { Suspense, useContext, useEffect, useRef } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 const { size } = typography;
 const renderLoader = () => <p>Loading</p>;
 
-function ChecklistAction({ inputs, parentName }) {
+function ChecklistAction({ inputs }) {
   const methods = useForm({
     resolver: zodResolver(z.object(createSchema(inputs))),
   });
@@ -38,11 +39,15 @@ function ChecklistAction({ inputs, parentName }) {
     } else if (status === "loading") {
       snackbarRef.current.showSnackbar("Taking in your request", "info");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
 
+  const subServiceContextData = useContext(SubServiceContext);
+
   const onSubmit = async (data) => {
+    data["source"] =
+      `${subServiceContextData.serviceName}-${subServiceContextData.name}`;
     console.log(data);
-    data["source"] = parentName;
     await submitForm(data);
   };
 
@@ -93,12 +98,7 @@ function ChecklistAction({ inputs, parentName }) {
 }
 
 ChecklistAction.propTypes = {
-  parentName: PropTypes.string,
   inputs: PropTypes.array.isRequired,
-};
-
-ChecklistAction.defaultProps = {
-  parentName: "SubServicePage",
 };
 
 export default ChecklistAction;

@@ -56,6 +56,7 @@ const DefaultFormFields = {
         formLabel: "subService",
         options: [
           "Income Tax",
+          "Direct Taxation",
           "GST",
           "TDS",
           "Transfer Pricing",

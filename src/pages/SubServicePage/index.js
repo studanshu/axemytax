@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { Suspense } from "react";
 import Considerations from "./Considerations";
 import Contact from "./Contact";
-import DocumentChecklist from "./DcoumentChecklist";
+import DocumentChecklist from "./DocumentChecklist";
 import Faq from "./Faq";
 import Hero from "./Hero";
 import Resources from "./Resources";

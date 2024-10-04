@@ -15,7 +15,6 @@ function Subscribe({ jsonData }) {
             <InlineForm
               FormJson={jsonData}
               flexDirection={jsonData.flexDirection}
-              parentName={"BlogOverview"}
             />
           </Box>
         </Container>

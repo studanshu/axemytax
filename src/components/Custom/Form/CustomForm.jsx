@@ -5,7 +5,8 @@ import { useFormSubmit } from "api/form/useFromSubmit";
 import typography from "assets/theme/base/typography";
 import MKButton from "components/MKButton";
 import PropTypes from "prop-types";
-import { useEffect, useRef } from "react";
+import { ServiceContext, SubServiceContext } from "providers/Context";
+import { useContext, useEffect, useRef } from "react";
 import { Form, FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import createSchema from "./CreateSchema";
@@ -15,16 +16,27 @@ import RenderTextField from "./RenderTextField";
 
 const { size } = typography;
 
-const CustomForm = ({ jsonData, defaultValues, parentName }) => {
+const CustomForm = ({ jsonData }) => {
   const customSchema = z.object(
     createSchema(jsonData.inputs) // To avoid modifying the original data
   );
+
+  const subServiceData = useContext(SubServiceContext);
+  const serviceData = useContext(ServiceContext);
+
+  const serviceName = subServiceData.serviceName || serviceData.name;
+  const subServiceName = subServiceData.name;
 
   // console.log("Custom Schema", customSchema.shape);
 
   const methods = useForm({
     resolver: zodResolver(customSchema),
-    defaultValues: defaultValues,
+    defaultValues: {
+      service: serviceName,
+      subService: subServiceName,
+      budget: "",
+      businessType: "",
+    },
   });
 
   const {
@@ -36,7 +48,7 @@ const CustomForm = ({ jsonData, defaultValues, parentName }) => {
   const { submitForm, status } = useFormSubmit();
 
   const onSubmit = async (data) => {
-    data["source"] = parentName;
+    data["source"] = `${serviceName}-${subServiceName}`;
     await submitForm(data);
   };
 
@@ -116,18 +128,6 @@ CustomForm.propTypes = {
     inputs: PropTypes.arrayOf(PropTypes.object).isRequired,
     buttonText: PropTypes.string.isRequired,
   }).isRequired,
-  parentName: PropTypes.string,
-  defaultValues: PropTypes.object,
-};
-
-CustomForm.defaultProps = {
-  parentName: "",
-  defaultValues: {
-    service: "",
-    subService: "",
-    businessType: "",
-    budget: "",
-  },
 };
 
 export default CustomForm;

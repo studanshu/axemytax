@@ -4,7 +4,7 @@ import SectionHeader from "components/Custom/SectionHeader";
 import PropTypes from "prop-types";
 import CustomForm from "./Form/CustomForm";
 
-const InlineForm = ({ FormJson, flexDirection, parentName }) => {
+const InlineForm = ({ FormJson, flexDirection }) => {
   return (
     <>
       <Grid container spacing={8} direction={flexDirection}>
@@ -16,7 +16,7 @@ const InlineForm = ({ FormJson, flexDirection, parentName }) => {
               variant="h2"
               color="secondary"
             />
-            <CustomForm jsonData={FormJson} parentName={parentName} />
+            <CustomForm jsonData={FormJson} />
           </Box>
         </Grid>
         <Grid
@@ -54,12 +54,10 @@ InlineForm.propTypes = {
     buttonText: PropTypes.string.isRequired,
   }).isRequired,
   flexDirection: PropTypes.oneOf(["row", "row-reverse"]),
-  parentName: PropTypes.string,
 };
 
 InlineForm.defaultProps = {
   flexDirection: "row",
-  parentName: "",
 };
 
 export default InlineForm;

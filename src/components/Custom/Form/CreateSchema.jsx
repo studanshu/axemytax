@@ -14,7 +14,7 @@ const enumErrorMap = {
 
 function flattenNestedEnum(NestedEnumObject, JsonData) {
   if (NestedEnumObject.type === "nestedEnum") {
-    Object.entries(NestedEnumObject.options).map(([_, value]) => {
+    Object.entries(NestedEnumObject.options).forEach(([_, value]) => {
       JsonData.push(value);
       flattenNestedEnum(value, JsonData);
     });

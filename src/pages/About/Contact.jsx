@@ -12,7 +12,6 @@ function Contact({ jsonData }) {
           <InlineForm
             FormJson={jsonData}
             flexDirection={jsonData.flexDirection}
-            parentName={"AboutUs"}
           />
         </Box>
       </Container>

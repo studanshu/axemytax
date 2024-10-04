@@ -39,7 +39,6 @@ function DocumentChecklist({ jsonData }) {
             </Grid>
             <ChecklistAction
               inputs={jsonData.inputs}
-              parentName="SubServicePage"
             />
           </Grid>
         </Container>

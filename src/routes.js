@@ -40,6 +40,8 @@ import ContactUsPage from "pages/ContactUs";
 import LandingPage from "pages/LandingPage";
 import ServicePage from "pages/ServicePage";
 import SubServicePage from "pages/SubServicePage";
+import ServiceContextProvider from "providers/ServiceContextProvider";
+import SubServiceContextProvider from "providers/SubServiceContextProvider";
 // import ContactUs from "layouts/pages/landing-pages/contact-us";
 // import Author from "layouts/pages/landing-pages/author";
 // import SignIn from "layouts/pages/authentication/sign-in";
@@ -78,14 +80,24 @@ const routes = [
     rowsPerColumn: 2,
     collapse: [
       {
-        name: "Tax Service",
-        route: "/services/tax-service",
-        component: <ServicePage jsonData={TaxServiceJsonData} />,
+        name: "Taxation",
+        route: "/services/taxation",
+        component: (
+          <ServiceContextProvider dict={{ name: "Taxation" }}>
+            <ServicePage jsonData={TaxServiceJsonData} />
+          </ServiceContextProvider>
+        ),
         collapse: [
           {
             name: "Direct Taxation",
-            route: "/services/tax-service/direct-taxation",
-            component: <SubServicePage jsonData={DirectTaxServiceJsonData} />,
+            route: "/services/taxation/direct-taxation",
+            component: (
+              <SubServiceContextProvider
+                dict={{ name: "Direct Taxation", serviceName: "Taxation" }}
+              >
+                <SubServicePage jsonData={DirectTaxServiceJsonData} />
+              </SubServiceContextProvider>
+            ),
           },
         ],
       },

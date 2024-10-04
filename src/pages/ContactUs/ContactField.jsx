@@ -41,7 +41,7 @@ function ContactField({ jsonData }) {
               </Grid>
             </Grid>
             <Grid item xs={12} lg={6} className="formContent">
-              <CustomForm jsonData={jsonData} parentName={"ContactUs"} />
+              <CustomForm jsonData={jsonData} />
             </Grid>
           </Grid>
         </Box>
@@ -64,7 +64,7 @@ ContactField.propTypes = {
         required: PropTypes.bool,
         fieldType: PropTypes.oneOf(["input", "dropdown", "textarea"]),
         spacing: PropTypes.oneOf(["half", "full"]),
-        options: PropTypes.oneOf(PropTypes.string, PropTypes.object),
+        options: PropTypes.oneOf([PropTypes.string, PropTypes.object]),
       })
     ).isRequired,
     buttonText: PropTypes.string.isRequired,
