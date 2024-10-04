@@ -3,13 +3,14 @@ import PropTypes from "prop-types";
 import { useFormContext } from "react-hook-form";
 import { errorText } from "./utils";
 
-const RenderTextField = ({ input }) => {
+const RenderTextField = ({ input, props, children }) => {
   const {
     register,
     formState: { errors },
   } = useFormContext();
   return (
     <TextField
+      {...props}
       fullWidth
       label={`${input.label} ${input.required ? "*" : ""}`}
       multiline={input.fieldType === "textarea"}
@@ -19,7 +20,9 @@ const RenderTextField = ({ input }) => {
       {...register(input.formLabel)}
       variant="outlined"
       type={input.type}
-    />
+    >
+      {children}
+    </TextField>
   );
 };
 
@@ -31,6 +34,13 @@ RenderTextField.propTypes = {
     formLabel: PropTypes.string.isRequired,
     type: PropTypes.string,
   }).isRequired,
+  props: PropTypes.object,
+  children: PropTypes.node,
+};
+
+RenderTextField.defaultProps = {
+  props: {},
+  children: null,
 };
 
 export default RenderTextField;

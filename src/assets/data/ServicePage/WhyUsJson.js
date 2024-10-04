@@ -26,7 +26,10 @@ export const WhyUsJson = {
   ],
   secondaryCaption: "Select all that apply",
   secondaryTitle: "I require help with",
-  options: DefaultFormFields.service.options.Taxation.options,
-  dropdownBusiness: DefaultFormFields.businessType,
-  dropdownBudget: DefaultFormFields.budget,
+  checkboxes: {
+    ...DefaultFormFields.checkboxCollection,
+    options: DefaultFormFields.service.options.Taxation.options,
+  },
+  dropdownBusiness: { ...DefaultFormFields.businessType, required: true },
+  email: DefaultFormFields.email,
 };

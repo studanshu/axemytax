@@ -131,6 +131,20 @@ const DefaultFormFields = {
       "My Budget is < Rs. 1,00,000/-",
     ],
   },
+  checkboxCollection: {
+    type: "multipleChoice",
+    label: "Select All That Apply",
+    formLabel: "checkboxCollection",
+    required: false,
+    fieldType: "checkbox",
+    spacing: "full",
+    options: [
+      "I am a new customer",
+      "I am an existing customer",
+      "I am a supplier",
+      "I am a partner",
+    ],
+  },
 };
 
 function getFieldPayload(field, required = false) {

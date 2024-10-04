@@ -24,7 +24,7 @@ function flattenNestedEnum(NestedEnumObject, JsonData) {
 function getCurrentOptions(data, currentType) {
   if (currentType === "nestedEnum") {
     return Object.keys(data.options);
-  } else if (currentType === "enum") {
+  } else if (currentType === "enum" || currentType === "multipleChoice") {
     return data.options;
   }
   return [];
@@ -38,6 +38,19 @@ function updateZodSchemaWithEnum(currentLabel, zodSchema, currentOptions) {
   } else {
     zodSchema[currentLabel] = z.nativeEnum(currentOptions, enumErrorMap);
   }
+}
+
+function constructMultiChoiceSchema(currentOptions, zodSchema, currentLabel) {
+  currentOptions.forEach((option) => {
+    zodSchema[`${currentLabel}-${option}`] = z.boolean();
+  });
+}
+
+function markMultipleChoiceAsOptional(currentOptions, zodSchema, currentLabel) {
+  currentOptions.forEach((option) => {
+    const optionWithLabel = `${currentLabel}-${option}`;
+    zodSchema[optionWithLabel] = asOptionalField(zodSchema[optionWithLabel]);
+  });
 }
 
 const createSchema = (inputData) => {
@@ -67,13 +80,20 @@ const createSchema = (inputData) => {
         updateZodSchemaWithEnum(currentLabel, zodSchema, currentOptions);
         flattenNestedEnum(JsonData[i], JsonData);
         break;
+      case "multipleChoice":
+        constructMultiChoiceSchema(currentOptions, zodSchema, currentLabel);
+        break;
       default:
         zodSchema[currentLabel] = z.string();
         break;
     }
 
     if (JsonData[i].required === false) {
-      zodSchema[currentLabel] = asOptionalField(zodSchema[currentLabel]);
+      if (currentType === "multipleChoice") {
+        markMultipleChoiceAsOptional(currentOptions, zodSchema, currentLabel);
+      } else {
+        zodSchema[currentLabel] = asOptionalField(zodSchema[currentLabel]);
+      }
     }
   }
   return zodSchema;

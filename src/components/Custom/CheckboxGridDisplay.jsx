@@ -2,6 +2,7 @@ import { Checkbox, FormControlLabel, Grid } from "@mui/material";
 import MKTypography from "components/MKTypography";
 
 import PropTypes from "prop-types";
+import { Controller, useFormContext } from "react-hook-form";
 
 const CheckboxGridDisplay = ({
   items,
@@ -9,6 +10,7 @@ const CheckboxGridDisplay = ({
   sxGap = { xs: 2, md: 4 },
 }) => {
   const numColumns = Math.ceil(items.length / itemsPerColumn);
+  const { control } = useFormContext();
   return (
     <Grid
       container
@@ -29,13 +31,20 @@ const CheckboxGridDisplay = ({
               .slice(colIndex * itemsPerColumn, (colIndex + 1) * itemsPerColumn)
               .map((item, rowIndex) => (
                 <Grid item key={rowIndex} className="single-row-item-checkbox">
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label={
-                      <MKTypography variant="body1" color="black75">
-                        {item}
-                      </MKTypography>
-                    }
+                  <Controller
+                    control={control}
+                    name={`checkboxCollection-${item}`}
+                    render={({ field }) => (
+                      <FormControlLabel
+                        {...field}
+                        control={<Checkbox />}
+                        label={
+                          <MKTypography variant="body1" color="black75">
+                            {item}
+                          </MKTypography>
+                        }
+                      />
+                    )}
                   />
                 </Grid>
               ))}
