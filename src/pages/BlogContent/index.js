@@ -1,15 +1,11 @@
 import BlogContentMap from "assets/data/Blog/BlogPage";
 import { DefaultSubscribeJson } from "assets/data/Blog/BlogPage/DefaultSubscribeJson";
 import MKBox from "components/MKBox";
-import DefaultFooter from "examples/Footers/DefaultFooter";
 import footerRoutes from "footer.routes";
-import TopLayout from "pages/utils/TopLayout";
 import PageContextProvider from "providers/PageContextProvider";
-import { Suspense } from "react";
+import React, { lazy, Suspense } from "react";
 import { useParams } from "react-router-dom";
-import Content from "./Content";
-import Subscribe from "./Subscribe";
-const renderLoader = () => <p>Loading</p>;
+const renderLoader = () => <></>;
 
 const flatten = (dict, contentId) => {
   const filteredEntries = Object.entries(dict)
@@ -23,26 +19,55 @@ const flatten = (dict, contentId) => {
 
 const BlogContent = () => {
   const { category, relatedType, contentId } = useParams();
-  let relatedBlogs = flatten(
-    BlogContentMap[category]?.[relatedType],
-    contentId
+  let relatedBlogs = React.useMemo(
+    () => flatten(BlogContentMap[category]?.[relatedType], contentId),
+    [category, relatedType, contentId]
   );
+
   let contentData = BlogContentMap[category]?.[relatedType]?.[contentId];
   contentData["relatedBlogs"] = relatedBlogs;
 
+  const components = [
+    { component: lazy(() => import("pages/utils/TopLayout")), props: {} },
+    {
+      component: lazy(() => import("./Content")),
+      props: { jsonData: contentData },
+    },
+    {
+      component: lazy(() => import("./Subscribe")),
+      props: { jsonData: DefaultSubscribeJson },
+    },
+    {
+      component: lazy(() => import("examples/Footers/DefaultFooter")),
+      props: { content: footerRoutes },
+      wrapper: MKBox,
+      wrapperProps: { pt: 6, px: 1, mt: 6 },
+    },
+  ];
+
   return (
-    <Suspense fallback={renderLoader()}>
+    <>
       <PageContextProvider
         dict={{ name: `${category}-${relatedType}-${contentId}` }}
       >
-        <TopLayout />
-        <Content jsonData={contentData} />
-        <Subscribe jsonData={DefaultSubscribeJson} />
-        <MKBox pt={6} px={1} mt={6}>
-          <DefaultFooter content={footerRoutes} />
-        </MKBox>
+        {components.map(
+          (
+            { component: Component, props, wrapper: Wrapper, wrapperProps },
+            index
+          ) => (
+            <Suspense key={index} fallback={renderLoader()}>
+              {Wrapper ? (
+                <Wrapper {...wrapperProps}>
+                  <Component {...props} />
+                </Wrapper>
+              ) : (
+                <Component {...props} />
+              )}
+            </Suspense>
+          )
+        )}
       </PageContextProvider>
-    </Suspense>
+    </>
   );
 };
 export default BlogContent;

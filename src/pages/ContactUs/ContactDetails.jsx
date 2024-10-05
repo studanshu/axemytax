@@ -4,7 +4,7 @@ import ReasonCards from "components/Custom/ReasonCards";
 import SectionHeader from "components/Custom/SectionHeader";
 import PropTypes from "prop-types";
 import { Suspense } from "react";
-const renderLoader = () => <p>Loading</p>;
+const renderLoader = () => <></>;
 
 const { light } = colors;
 

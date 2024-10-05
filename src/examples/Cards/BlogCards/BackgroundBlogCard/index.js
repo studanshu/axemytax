@@ -58,7 +58,15 @@ function BackgroundBlogCard({ image, title, description, action }) {
       }}
     >
       <MKBox p={3}>
-        <MKBox minHeight="20.625rem" my="auto" py={3}>
+        <MKBox
+          minHeight="20.625rem"
+          my="auto"
+          py={3}
+          display="flex"
+          flexDirection="column"
+          justifyContent="space-around"
+          flexGrow={1}
+        >
           <MKTypography
             variant="h5Light"
             color="white"

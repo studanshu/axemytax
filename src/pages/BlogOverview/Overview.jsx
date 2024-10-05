@@ -7,9 +7,10 @@ import PropTypes from "prop-types";
 import { Suspense } from "react";
 
 import { useState } from "react";
-const renderLoader = () => <p>Loading</p>;
+const renderLoader = () => <></>;
 
 function Overview({ jsonData }) {
+  console.log(jsonData);
   const ITEMS_PER_PAGE = 6;
   const blogCategories = Object.keys(jsonData.blogOverview);
   const [selectedCategoryButton, setselectedCategoryButton] = useState(

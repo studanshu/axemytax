@@ -2,6 +2,7 @@ import Box from "@mui/material/Box";
 import colors from "assets/theme/base/colors";
 import MKTypography from "components/MKTypography";
 import PropTypes from "prop-types";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const ParseContent = ({ mainContent }) => {
   return (
@@ -54,7 +55,12 @@ const ParseContent = ({ mainContent }) => {
           case "img":
             return (
               <>
-                <img key={index} src={content.value} alt={content.alt} />
+                <LazyLoadImage
+                  key={index}
+                  src={content.value}
+                  alt={content.alt}
+                  effect="blur"
+                />
                 <br />
                 <MKTypography variant="subtitle2" color="black50" mb={1}>
                   {content.label}

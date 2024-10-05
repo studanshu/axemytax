@@ -13,7 +13,7 @@ import { Suspense, useContext, useEffect, useRef } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 const { size } = typography;
-const renderLoader = () => <p>Loading</p>;
+const renderLoader = () => <></>;
 
 function ChecklistAction({ inputs }) {
   const methods = useForm({
@@ -21,7 +21,7 @@ function ChecklistAction({ inputs }) {
   });
 
   const { handleSubmit, formState, reset } = methods;
-  const { submitForm, status } = useFormSubmit();
+  const { submitForm, status, isLoading } = useFormSubmit();
 
   const snackbarRef = useRef();
   useEffect(() => {
@@ -47,10 +47,9 @@ function ChecklistAction({ inputs }) {
   const onSubmit = async (data) => {
     data["source"] =
       `${subServiceContextData.serviceName}-${subServiceContextData.name}`;
-    console.log(data);
+    console.log("Form data to submit:", data);
     await submitForm(data);
   };
-
   return (
     <Suspense fallback={renderLoader()}>
       <FormProvider {...methods}>
@@ -74,7 +73,9 @@ function ChecklistAction({ inputs }) {
             <Grid item className="button">
               <MKButton
                 size="large"
-                variant={formState.isSubmitting ? "disabled" : "contained"}
+                variant={
+                  formState.isSubmitting || isLoading ? "disabled" : "contained"
+                }
                 color="primary"
                 type="submit"
                 sx={{

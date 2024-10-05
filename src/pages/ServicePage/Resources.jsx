@@ -3,7 +3,7 @@ import SectionHeader from "components/Custom/SectionHeader";
 import FilledInfoCard from "examples/Cards/InfoCards/FilledInfoCard";
 import PropTypes from "prop-types";
 import { Suspense } from "react";
-const renderLoader = () => <p>Loading</p>;
+const renderLoader = () => <></>;
 export const Resources = ({ jsonData }) => {
   const ResourcesJson = jsonData;
   return (

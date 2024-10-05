@@ -8,7 +8,7 @@ import HeroContent from "components/Custom/HeroContent";
 import TopLayout from "pages/utils/TopLayout";
 
 import { Suspense } from "react";
-const renderLoader = () => <p>Loading</p>;
+const renderLoader = () => <></>;
 
 function Hero({ jsonData }) {
   const HeroJson = jsonData;

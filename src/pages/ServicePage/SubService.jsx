@@ -21,7 +21,7 @@ import SubServiceNav from "./SubServiceNav";
 // Import JSON
 import SectionHeader from "components/Custom/SectionHeader";
 
-const renderLoader = () => <p>Loading</p>;
+const renderLoader = () => <></>;
 
 const { size, fontWeightMedium } = typography;
 const { light, white } = colors;
@@ -135,16 +135,13 @@ const SubService = ({ jsonData }) => {
                           variant="text"
                           color="secondary"
                           item
-                          // href="#services"
                           sx={{
                             textTransform: "capitalize",
                             fontSize: size.xs,
                             background: `${white.main} !important`,
                           }}
                           endIcon={<SendIcon />}
-                          onClick={() => {
-                            window.location.href += cta.href;
-                          }}
+                          href={window.location.href + cta.href}
                         >
                           {cta.action}
                         </MKButton>

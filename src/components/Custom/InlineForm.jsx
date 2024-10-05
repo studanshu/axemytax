@@ -2,6 +2,7 @@ import { Box, Grid } from "@mui/material";
 
 import SectionHeader from "components/Custom/SectionHeader";
 import PropTypes from "prop-types";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import CustomForm from "./Form/CustomForm";
 
 const InlineForm = ({ FormJson, flexDirection }) => {
@@ -26,10 +27,11 @@ const InlineForm = ({ FormJson, flexDirection }) => {
           lg={6}
           sx={{ display: { xs: "none", lg: "block" } }}
         >
-          <img
+          <LazyLoadImage
             src={FormJson.image}
             alt="Form Image"
             style={{ maxWidth: "100%", height: "auto" }}
+            effect="blur"
           />
         </Grid>
       </Grid>

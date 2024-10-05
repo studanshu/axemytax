@@ -1,13 +1,17 @@
 import { Box, Container, Grid } from "@mui/material";
 import { IsUpLgScreen } from "assets/theme/functions/breakpoints";
 import SectionHeader from "components/Custom/SectionHeader";
-import HorizontalTeamCard from "examples/Cards/TeamCards/HorizontalTeamCard";
-import VerticalTeamCard from "examples/Cards/TeamCards/VerticalTeamCard";
 import PropTypes from "prop-types";
-import { Suspense } from "react";
-const renderLoader = () => <p>Loading</p>;
+import { lazy, Suspense } from "react";
+const renderLoader = () => <></>;
 
 function Team({ jsonData }) {
+  const VerticalTeamCard = lazy(
+    () => import("examples/Cards/TeamCards/VerticalTeamCard")
+  );
+  const HorizontalTeamCard = lazy(
+    () => import("examples/Cards/TeamCards/HorizontalTeamCard")
+  );
   let DisplayCard = IsUpLgScreen() ? VerticalTeamCard : HorizontalTeamCard;
   return (
     <Suspense fallback={renderLoader()}>
@@ -29,18 +33,20 @@ function Team({ jsonData }) {
               <Grid container justifyContent="space-around" spacing={8}>
                 {jsonData.team.map((member, index) => (
                   <Grid item xs={12} lg={3.5} key={index}>
-                    <DisplayCard
-                      color="light"
-                      image={member.img}
-                      name={member.name}
-                      position={{
-                        color: "primary",
-                        label: member.qualification,
-                      }}
-                      description={member.description}
-                      mail={member.email}
-                      linkedIn={member.linkedIn}
-                    />
+                    <Suspense>
+                      <DisplayCard
+                        color="light"
+                        image={member.img}
+                        name={member.name}
+                        position={{
+                          color: "primary",
+                          label: member.qualification,
+                        }}
+                        description={member.description}
+                        mail={member.email}
+                        linkedIn={member.linkedIn}
+                      />
+                    </Suspense>
                   </Grid>
                 ))}
               </Grid>

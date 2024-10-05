@@ -1,6 +1,7 @@
 import { Grid } from "@mui/material";
 import MKTypography from "components/MKTypography";
 import PropTypes from "prop-types";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const ReasonCards = ({ reasons }) => (
   <Grid container spacing={8} className="mainContent" justifyContent="center">
@@ -22,9 +23,10 @@ const ReasonCards = ({ reasons }) => (
           sx={{ gap: 1 }}
         >
           <Grid item className="icon">
-            <img
+            <LazyLoadImage
               src={reason.image}
               alt={reason.title}
+              effect="blur"
               style={{ width: "90%", height: "100%" }}
             />
           </Grid>

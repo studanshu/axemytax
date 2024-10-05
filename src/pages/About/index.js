@@ -2,26 +2,32 @@ import MKBox from "components/MKBox";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 import footerRoutes from "footer.routes";
 import PropTypes from "prop-types";
-import { Suspense } from "react";
-import Clients from "./Clients";
-import Contact from "./Contact";
-import Hero from "./Hero";
-import Mission from "./Mission";
-import Team from "./Team";
-const renderLoader = () => <p>Loading</p>;
+import { lazy, Suspense } from "react";
+const renderLoader = () => <p></p>;
 
 const About = ({ jsonData }) => {
+  const components = {
+    Hero: lazy(() => import("./Hero")),
+    Mission: lazy(() => import("./Mission")),
+    Team: lazy(() => import("./Team")),
+    Clients: lazy(() => import("./Clients")),
+    Contact: lazy(() => import("./Contact")),
+  };
+
   return (
-    <Suspense fallback={renderLoader()}>
-      <Hero jsonData={jsonData.Hero} />
-      <Mission jsonData={jsonData.Mission} />
-      <Team jsonData={jsonData.Team} />
-      <Clients jsonData={jsonData.Clients} />
-      <Contact jsonData={jsonData.Contact} />
+    <>
+      {Object.keys(components).map((key) => {
+        const Component = components[key];
+        return (
+          <Suspense fallback={renderLoader()} key={key}>
+            <Component jsonData={jsonData[key]} />
+          </Suspense>
+        );
+      })}
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
       </MKBox>
-    </Suspense>
+    </>
   );
 };
 About.propTypes = {

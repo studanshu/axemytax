@@ -11,7 +11,7 @@ import MKTypography from "components/MKTypography";
 import { PropTypes } from "prop-types";
 import { Suspense, useState } from "react";
 const { size } = typography;
-const renderLoader = () => <p>Loading</p>;
+const renderLoader = () => <></>;
 
 function Considerations({ jsonData }) {
   const [openQuestionIndex, setOpenQuestionIndex] = useState(0);

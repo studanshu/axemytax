@@ -1,5 +1,5 @@
 export const AuditForBusiness1 = {
-  date: "2021-10-01",
+  date: "2021-10-30",
   duration: "1 min read",
   author: "Amelia Smith",
   title: "AuditForBusiness1 Tax Benefits",

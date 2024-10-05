@@ -12,7 +12,7 @@ import FilledInfoCard from "examples/Cards/InfoCards/FilledInfoCard";
 // import json
 import ServiceJson from "assets/data/LandingPage/OurServices";
 import { Suspense } from "react";
-const renderLoader = () => <p>Loading</p>;
+const renderLoader = () => <></>;
 
 export default function OurServices() {
   return (

@@ -72,7 +72,15 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
       >
         {typeof icon === "string" ? <Icon>{icon}</Icon> : icon}
       </MKTypography>
-      <MKBox pt={{ xs: 3, md: 0 }} pl={{ xs: 0, md: 2 }} lineHeight={1}>
+      <MKBox
+        pt={{ xs: 3, md: 0 }}
+        pl={{ xs: 0, md: 2 }}
+        lineHeight={1}
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-around"
+        flexGrow={1}
+      >
         <MKTypography
           display="block"
           variant="h5"

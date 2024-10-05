@@ -1,17 +1,16 @@
 import blogHieraData from "assets/data/Blog/BlogPage";
 const blogModulesPerCategory = () => {
-  return Object.keys(blogHieraData).reduce((blogsPerCategory, cat) => {
-    blogsPerCategory[cat] = Object.keys(blogHieraData[cat]).reduce(
-      (acc, type) => {
-        Object.keys(blogHieraData[cat][type]).forEach((id) => {
-          let content = blogHieraData[cat][type][id];
-          acc.push(content);
-          blogHieraData[cat][type][id]["href"] = `/blog/${cat}/${type}/${id}`;
-        });
-        return acc;
-      },
-      []
-    );
+  const tempData = JSON.parse(JSON.stringify(blogHieraData));
+  return Object.keys(tempData).reduce((blogsPerCategory, cat) => {
+    blogsPerCategory[cat] = Object.keys(tempData[cat]).reduce((acc, type) => {
+      Object.keys(tempData[cat][type]).forEach((id) => {
+        let currentBlogDict = tempData[cat][type][id];
+        delete currentBlogDict["content"];
+        acc.push(currentBlogDict);
+        tempData[cat][type][id]["href"] = `/blog/${cat}/${type}/${id}`;
+      });
+      return acc;
+    }, []);
     return blogsPerCategory;
   }, {});
 };

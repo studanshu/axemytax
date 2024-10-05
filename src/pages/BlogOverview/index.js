@@ -1,23 +1,48 @@
 import MKBox from "components/MKBox";
-import DefaultFooter from "examples/Footers/DefaultFooter";
 import footerRoutes from "footer.routes";
-import TopLayout from "pages/utils/TopLayout";
 import PropTypes from "prop-types";
-import { Suspense } from "react";
-import Overview from "./Overview";
-import Subscribe from "./Subscribe";
-const renderLoader = () => <p>Loading</p>;
+import { lazy, Suspense } from "react";
+const renderLoader = () => <></>;
 
 const BlogOverview = ({ jsonData }) => {
+  const LazyTopLayout = lazy(() => import("pages/utils/TopLayout"));
+  const LazyOverview = lazy(() => import("./Overview"));
+  const LazySubscribe = lazy(() => import("./Subscribe"));
+  const LazyDefaultFooter = lazy(
+    () => import("examples/Footers/DefaultFooter")
+  );
+
+  const components = [
+    { component: LazyTopLayout, props: {} },
+    { component: LazyOverview, props: { jsonData: jsonData.Overview } },
+    { component: LazySubscribe, props: { jsonData: jsonData.Subscribe } },
+    {
+      component: LazyDefaultFooter,
+      props: { content: footerRoutes },
+      wrapper: MKBox,
+      wrapperProps: { pt: 6, px: 1, mt: 6 },
+    },
+  ];
+
   return (
-    <Suspense fallback={renderLoader()}>
-      <TopLayout />
-      <Overview jsonData={jsonData.Overview} />
-      <Subscribe jsonData={jsonData.Subscribe} />
-      <MKBox pt={6} px={1} mt={6}>
-        <DefaultFooter content={footerRoutes} />
-      </MKBox>
-    </Suspense>
+    <>
+      {components.map(
+        (
+          { component: Component, props, wrapper: Wrapper, wrapperProps },
+          index
+        ) => (
+          <Suspense key={index} fallback={renderLoader()}>
+            {Wrapper ? (
+              <Wrapper {...wrapperProps}>
+                <Component {...props} />
+              </Wrapper>
+            ) : (
+              <Component {...props} />
+            )}
+          </Suspense>
+        )
+      )}
+    </>
   );
 };
 BlogOverview.propTypes = {

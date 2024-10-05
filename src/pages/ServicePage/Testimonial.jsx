@@ -15,7 +15,7 @@ import CustomSlider from "components/Custom/CustomSlider";
 import SectionHeader from "components/Custom/SectionHeader";
 import PropTypes from "prop-types";
 
-const renderLoader = () => <p>Loading</p>;
+const renderLoader = () => <></>;
 
 const { size } = typography;
 const { info, white } = colors;

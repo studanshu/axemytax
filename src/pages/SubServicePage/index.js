@@ -2,28 +2,48 @@ import MKBox from "components/MKBox";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 import footerRoutes from "footer.routes";
 import PropTypes from "prop-types";
-import { Suspense } from "react";
-import Considerations from "./Considerations";
-import Contact from "./Contact";
-import DocumentChecklist from "./DocumentChecklist";
-import Faq from "./Faq";
-import Hero from "./Hero";
-import Resources from "./Resources";
-const renderLoader = () => <p>Loading</p>;
+import { lazy, Suspense } from "react";
+const renderLoader = () => <></>;
 
 const SubServicePage = ({ jsonData }) => {
+  const components = [
+    {
+      component: lazy(() => import("./Hero")),
+      props: { jsonData: jsonData.Hero },
+    },
+    {
+      component: lazy(() => import("./DocumentChecklist")),
+      props: { jsonData: jsonData.DocumentChecklist },
+    },
+    {
+      component: lazy(() => import("./Considerations")),
+      props: { jsonData: jsonData.Considerations },
+    },
+    {
+      component: lazy(() => import("./Resources")),
+      props: { jsonData: jsonData.Resources },
+    },
+    {
+      component: lazy(() => import("./Faq")),
+      props: { jsonData: jsonData.Faq },
+    },
+    {
+      component: lazy(() => import("./Contact")),
+      props: { jsonData: jsonData.Contact },
+    },
+  ];
+
   return (
-    <Suspense fallback={renderLoader()}>
-      <Hero jsonData={jsonData.Hero} />
-      <DocumentChecklist jsonData={jsonData.DocumentChecklist} />
-      <Considerations jsonData={jsonData.Considerations} />
-      <Resources jsonData={jsonData.Resources} />
-      <Faq jsonData={jsonData.Faq} />
-      <Contact jsonData={jsonData.Contact} />
+    <>
+      {components.map(({ component: Component, props }, index) => (
+        <Suspense key={index} fallback={renderLoader()}>
+          <Component {...props} />
+        </Suspense>
+      ))}
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
       </MKBox>
-    </Suspense>
+    </>
   );
 };
 SubServicePage.propTypes = {

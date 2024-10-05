@@ -29,7 +29,13 @@ export default function RenderForm({ jsonData }) {
     resolver: zodResolver(z.object(formSchema)),
   });
 
-  const { submitForm, status } = useFormSubmit();
+  const {
+    handleSubmit,
+    formState: { isSubmitting },
+    reset,
+  } = methods;
+
+  const { submitForm, status, isLoading } = useFormSubmit();
   const serviceContextData = useContext(ServiceContext);
 
   const onSubmit = async (data) => {
@@ -55,7 +61,7 @@ export default function RenderForm({ jsonData }) {
   const snackbarRef = useRef();
   useEffect(() => {
     if (status === "success") {
-      methods.reset();
+      reset();
       snackbarRef.current.showSnackbar(
         "Form submitted successfully! We will get back to you soon.",
         "success"
@@ -73,7 +79,7 @@ export default function RenderForm({ jsonData }) {
   return (
     <FormProvider {...methods}>
       <FormGroup sx={{ minWidth: "100%" }}>
-        <Form onSubmit={methods.handleSubmit(onSubmit)}>
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <Grid
             container
             className="ctaArea"
@@ -127,8 +133,10 @@ export default function RenderForm({ jsonData }) {
                 <Grid item>
                   <MKButton
                     size="large"
-                    variant="contained"
-                    color="info"
+                    variant={
+                      isSubmitting || isLoading ? "disabled" : "contained"
+                    }
+                    color="primary"
                     type="submit"
                     sx={{
                       textTransform: "capitalize",

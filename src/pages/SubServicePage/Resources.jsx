@@ -2,10 +2,13 @@ import { Box, Container, Grid } from "@mui/material";
 import colors from "assets/theme/base/colors";
 import CustomSlider from "components/Custom/CustomSlider";
 import SectionHeader from "components/Custom/SectionHeader";
-import TransparentBlogCard from "examples/Cards/BlogCards/TransparentBlogCard";
 import PropTypes from "prop-types";
-import { Suspense } from "react";
-const renderLoader = () => <p>Loading</p>;
+import React, { Suspense } from "react";
+const renderLoader = () => <></>;
+
+const TransparentBlogCard = React.lazy(
+  () => import("examples/Cards/BlogCards/TransparentBlogCard")
+);
 export const Resources = ({ jsonData }) => {
   const ResourcesJson = jsonData;
   return (
@@ -32,19 +35,21 @@ export const Resources = ({ jsonData }) => {
                     elevation={8}
                     height="100%"
                   >
-                    <TransparentBlogCard
-                      key={index}
-                      color="secondary"
-                      image={resource.image}
-                      title={resource.title}
-                      description={resource.description}
-                      action={{
-                        type: "external",
-                        route: resource.link,
-                        color: "secondary",
-                        label: "Read More",
-                      }}
-                    />
+                    <Suspense>
+                      <TransparentBlogCard
+                        key={index}
+                        color="secondary"
+                        image={resource.image}
+                        title={resource.title}
+                        description={resource.description}
+                        action={{
+                          type: "external",
+                          route: resource.link,
+                          color: "secondary",
+                          label: "Read More",
+                        }}
+                      />
+                    </Suspense>
                   </Box>
                 ))}
               </CustomSlider>

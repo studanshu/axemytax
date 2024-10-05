@@ -2,7 +2,7 @@ import { Box, Container } from "@mui/material";
 import InlineForm from "components/Custom/InlineForm";
 import PropTypes from "prop-types";
 import { Suspense } from "react";
-const renderLoader = () => <p>Loading</p>;
+const renderLoader = () => <></>;
 
 function Contact({ jsonData }) {
   return (

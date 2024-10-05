@@ -11,19 +11,19 @@ import DefaultCounterCard from "examples/Cards/CounterCards/DefaultCounterCard";
 
 //json
 import CounterJson from "assets/data/LandingPage/Counters";
-const renderLoader = () => <p>Loading</p>;
+const renderLoader = () => <></>;
 
 function Counters() {
   return (
     <MKBox component="section" mt={8} id="counters">
       <Container>
-        <Grid container justifyContent="center" sx={{ textAlign: "center" }}>
+        <Grid container justifyContent="space-around" textAlign="center">
           {CounterJson.map((c, index) => (
-            <Suspense fallback={renderLoader()} key={index}>
-              <Grid item xs={12} md={3}>
+            <Grid item key={index}>
+              <Suspense fallback={renderLoader()}>
                 <DefaultCounterCard count={c.count} suffix="+" title={c.name} />
-              </Grid>
-            </Suspense>
+              </Suspense>
+            </Grid>
           ))}
         </Grid>
       </Container>

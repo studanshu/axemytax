@@ -5,17 +5,44 @@ import MKBox from "components/MKBox";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 import footerRoutes from "footer.routes";
 import PropTypes from "prop-types";
-import ContactDetails from "./ContactDetails";
-import ContactField from "./ContactField";
+import { Suspense, lazy } from "react";
 
 const ContactUs = ({ jsonData }) => {
+  const components = [
+    {
+      component: lazy(() => import("./ContactField")),
+      props: { jsonData: jsonData.Field },
+    },
+    {
+      component: lazy(() => import("./ContactDetails")),
+      props: { jsonData: jsonData.Details },
+    },
+    {
+      component: DefaultFooter,
+      props: { content: footerRoutes },
+      wrapper: MKBox,
+      wrapperProps: { pt: 6, px: 1, mt: 6 },
+    },
+  ];
+
   return (
     <>
-      <ContactField jsonData={jsonData.Field} />
-      <ContactDetails jsonData={jsonData.Details} />
-      <MKBox pt={6} px={1} mt={6}>
-        <DefaultFooter content={footerRoutes} />
-      </MKBox>
+      {components.map(
+        (
+          { component: Component, props, wrapper: Wrapper, wrapperProps },
+          index
+        ) => (
+          <Suspense key={index} fallback={<></>}>
+            {Wrapper ? (
+              <Wrapper {...wrapperProps}>
+                <Component {...props} />
+              </Wrapper>
+            ) : (
+              <Component {...props} />
+            )}
+          </Suspense>
+        )
+      )}
     </>
   );
 };

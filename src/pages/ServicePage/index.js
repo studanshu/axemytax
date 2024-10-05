@@ -5,22 +5,43 @@ import MKBox from "components/MKBox";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 import footerRoutes from "footer.routes";
 import PropTypes from "prop-types";
-import Faq from "./Faq";
-import Hero from "./Hero";
-import { Resources } from "./Resources";
-import SubService from "./SubService";
-import Testimonial from "./Testimonial";
-import WhyUs from "./WhyUs";
+import { Suspense, lazy } from "react";
 
 const ServicePage = ({ jsonData }) => {
+  const components = [
+    {
+      component: lazy(() => import("./Hero")),
+      props: { jsonData: jsonData.HeroJson },
+    },
+    {
+      component: lazy(() => import("./SubService")),
+      props: { jsonData: jsonData.SubServiceJson },
+    },
+    {
+      component: lazy(() => import("./Testimonial")),
+      props: { jsonData: jsonData.TestimonialJson },
+    },
+    {
+      component: lazy(() => import("./WhyUs")),
+      props: { jsonData: jsonData.WhyUsJson },
+    },
+    {
+      component: lazy(() => import("./Faq")),
+      props: { jsonData: jsonData.FaqJson },
+    },
+    {
+      component: lazy(() => import("./Resources")),
+      props: { jsonData: jsonData.ResourcesJson },
+    },
+  ];
+
   return (
     <>
-      <Hero jsonData={jsonData.HeroJson} />
-      <SubService jsonData={jsonData.SubServiceJson} />
-      <Testimonial jsonData={jsonData.TestimonialJson} />
-      <WhyUs jsonData={jsonData.WhyUsJson} />
-      <Faq jsonData={jsonData.FaqJson} />
-      <Resources jsonData={jsonData.ResourcesJson} />
+      {components.map(({ component: Component, props }, index) => (
+        <Suspense key={index}>
+          <Component {...props} />
+        </Suspense>
+      ))}
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
       </MKBox>

@@ -2,10 +2,12 @@ import { Box, Container, Grid } from "@mui/material";
 import colors from "assets/theme/base/colors";
 import CustomSlider from "components/Custom/CustomSlider";
 import SectionHeader from "components/Custom/SectionHeader";
-import TransparentBlogCard from "examples/Cards/BlogCards/TransparentBlogCard";
 import PropTypes from "prop-types";
-import { Suspense } from "react";
-const renderLoader = () => <p>Loading</p>;
+import React, { Suspense } from "react";
+const renderLoader = () => <></>;
+const TransparentBlogCard = React.lazy(
+  () => import("examples/Cards/BlogCards/TransparentBlogCard")
+);
 
 function Clients({ jsonData }) {
   return (
@@ -32,18 +34,20 @@ function Clients({ jsonData }) {
                     elevation={8}
                     height="100%"
                   >
-                    <TransparentBlogCard
-                      key={index}
-                      color="secondary"
-                      image={client.img}
-                      action={{
-                        type: "external",
-                        route: client.link,
-                        color: "secondary",
-                        label: client.name,
-                      }}
-                      roundedImage
-                    />
+                    <Suspense>
+                      <TransparentBlogCard
+                        key={index}
+                        color="secondary"
+                        image={client.img}
+                        action={{
+                          type: "external",
+                          route: client.link,
+                          color: "secondary",
+                          label: client.name,
+                        }}
+                        roundedImage
+                      />
+                    </Suspense>
                   </Box>
                 ))}
               </CustomSlider>

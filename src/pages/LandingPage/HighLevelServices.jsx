@@ -11,7 +11,7 @@ import TransparentBlogCard from "examples/Cards/BlogCards/TransparentBlogCard";
 //json
 import { HLLJson } from "assets/data/LandingPage/HighLevelServices.js";
 import { Suspense } from "react";
-const renderLoader = () => <p>Loading</p>;
+const renderLoader = () => <></>;
 
 export default function HighLevelServices() {
   return (

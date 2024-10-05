@@ -3,7 +3,7 @@ import FaqQuestion from "components/Custom/FaqQuestion";
 import SectionHeader from "components/Custom/SectionHeader";
 import PropTypes from "prop-types";
 import { Suspense, useState } from "react";
-const renderLoader = () => <p>Loading</p>;
+const renderLoader = () => <></>;
 
 function Faq({ jsonData }) {
   const [openQuestionIndex, setOpenQuestionIndex] = useState(null);

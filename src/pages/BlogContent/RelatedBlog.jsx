@@ -1,24 +1,28 @@
 import PropTypes from "prop-types";
+import { lazy, Suspense } from "react";
 
 const { Grid, Container, Box } = require("@mui/material");
 const { IsUpLgScreen } = require("assets/theme/functions/breakpoints");
 const { default: CustomSlider } = require("components/Custom/CustomSlider");
-const {
-  default: CenteredBlogCard,
-} = require("examples/Cards/BlogCards/CenteredBlogCard");
+
+const CenteredBlogCard = lazy(
+  () => import("examples/Cards/BlogCards/CenteredBlogCard")
+);
 
 const BlogCard = ({ blog, isInternal }) => (
-  <CenteredBlogCard
-    image={blog.img}
-    title={blog.title}
-    description={blog.description}
-    action={{
-      type: isInternal ? "internal" : "external",
-      route: blog.href,
-      color: isInternal ? "white" : "secondary",
-      label: "Read More",
-    }}
-  />
+  <Suspense>
+    <CenteredBlogCard
+      image={blog.img}
+      title={blog.title}
+      description={blog.description}
+      action={{
+        type: isInternal ? "internal" : "external",
+        route: blog.href,
+        color: isInternal ? "white" : "secondary",
+        label: "Read More",
+      }}
+    />
+  </Suspense>
 );
 
 BlogCard.propTypes = {
@@ -36,7 +40,7 @@ const RelatedBlog = ({ relatedBlogs }) => {
     <Grid container flexDirection="column" sx={{ gap: 4 }}>
       {relatedBlogs.map((blog) => (
         <Grid item key={blog.title}>
-          <BlogCard blog={blog} isInternal={true} />
+          <BlogCard blog={blog} />
         </Grid>
       ))}
     </Grid>
@@ -50,7 +54,7 @@ const RelatedBlog = ({ relatedBlogs }) => {
             elevation={8}
             // height="100%"
           >
-            <BlogCard blog={blog} isInternal={false} />
+            <BlogCard blog={blog} />
           </Box>
         ))}
       </CustomSlider>

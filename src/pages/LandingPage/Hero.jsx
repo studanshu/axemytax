@@ -12,12 +12,13 @@ import MKTypography from "components/MKTypography";
 import TopLayout from "pages/utils/TopLayout";
 
 export default function Hero() {
-  return(
-  <>
-    <TopLayout/>
-    <MKBox
+  return (
+    <>
+      <TopLayout />
+      <MKBox
         minHeight="75vh"
         width="100%"
+        mt={-4}
         sx={{
           backgroundImage: `url(${bgImage})`,
           backgroundSize: "cover",
@@ -26,85 +27,65 @@ export default function Hero() {
           placeItems: "center",
         }}
       >
-        
         <Container>
-          <Grid container xs={12} lg={8} justifyContent="center" mx="auto">
-            <MKTypography
-              item
-              variant="h1"
-              color="white"
-              mt={-6}
-              sx={({ breakpoints, typography: { size } }) => ({
-                [breakpoints.down("md")]: {
-                  fontSize: size["3xl"],
-                },
-                [breakpoints.down("sm")]: {
-                  fontSize: size["2xl"],
-                },
-              })}
+          <Grid
+            container
+            xs={12}
+            lg={8}
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            mx="auto"
+            mt={4}
+            sx={{ gap: 4 }}
+          >
+            <Grid
+              container
+              sx={{ gap: 2 }}
+              flexDirection="column"
+              alignItems="center"
             >
-              We Handle Your Taxes,{" "}
-            </MKTypography>
+              <MKTypography item variant="h2" color="white" textAlign="center">
+                Let Us Manage Compliances,
+              </MKTypography>
+              <MKTypography
+                item
+                variant="h5Light"
+                color="white"
+                textAlign="center"
+                px={{ xs: 8, lg: 8 }}
+              >
+                And Grow Your Business Stress-Free
+              </MKTypography>
+            </Grid>
             <MKTypography
               item
-              variant="h3"
-              color="white"
-              px={{ xs: 8, lg: 8 }}
-              sx={({ breakpoints, typography: { size } }) => ({
-                [breakpoints.down("md")]: {
-                  fontSize: size["xl"],
-                },
-                [breakpoints.down("sm")]: {
-                  fontSize: size["md"],
-                },
-              })}
-            >
-              So You Can Run Business
-            </MKTypography>
-            <MKTypography
-              item
-              variant="caption"
+              variant="subtitle1"
               color="white"
               textAlign="center"
               px={{ xs: 8, xl: 12 }}
-              mt={2}
-              sx={({ breakpoints, typography: { size } }) => ({
-                [breakpoints.down("md")]: {
-                  fontSize:  size["xxs"]
-                },
-                [breakpoints.down("sm")]: {
-                  visibility: "hidden"
-                },
-              })}
+              sx={{ display: { xs: "none", lg: "block" } }}
             >
-              With over 35 years of experience, AxeMyTax provides high-quality Accounting, Auditing, Bookeeping, Taxation  Services to Business Houses, Startups, and Individuals.
+              With over 35 years of experience, AxeMyTax provides high-quality
+              Accounting, Auditing, Bookeeping, Taxation Services to Business
+              Houses, Startups, and Individuals.
             </MKTypography>
           </Grid>
-          <Grid container justifyContent="center" mt={4} gap={2}
-                sx={({ breakpoints }) => ({
-                  [breakpoints.down("sm")]: {
-                    mt: -4,
-                  },
-                })}
-          >
+          <Grid container justifyContent="center" mt={6} sx={{ gap: 2 }}>
             <MKButton
-                  variant={"outlined"}
-                  color={"white"}
-                  item
-                  href="#services"
-                >
-                  Our Services
-            </MKButton>
-            <MKButton
-              variant={"contained"}
-              color={"info"}
+              variant={"outlined"}
+              color={"white"}
               item
+              href="#services"
             >
+              Our Services
+            </MKButton>
+            <MKButton variant={"contained"} color={"info"} item href="/contact">
               Book consultation
             </MKButton>
           </Grid>
         </Container>
       </MKBox>
-      </>
+    </>
   );
 }

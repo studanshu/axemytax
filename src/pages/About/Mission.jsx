@@ -3,7 +3,7 @@ import colors from "assets/theme/base/colors";
 import HeroContent from "components/Custom/HeroContent";
 import PropTypes from "prop-types";
 import { Suspense } from "react";
-const renderLoader = () => <p>Loading</p>;
+const renderLoader = () => <></>;
 
 function Mission({ jsonData }) {
   return (

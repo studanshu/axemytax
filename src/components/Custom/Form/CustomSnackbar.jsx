@@ -18,14 +18,15 @@ const CustomSnackbar = forwardRef((props, ref) => {
   const handleClose = () => {
     setOpen(false);
   };
+  console.log("CustomSnackbar");
 
   return (
     <Snackbar
-      {...props}
       open={open}
       autoHideDuration={6000}
       onClose={handleClose}
       anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      {...props}
     >
       <Alert onClose={handleClose} severity={severity}>
         {message}

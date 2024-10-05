@@ -3,7 +3,8 @@ import FaqQuestion from "components/Custom/FaqQuestion";
 import SectionHeader from "components/Custom/SectionHeader";
 import PropTypes from "prop-types";
 import { Suspense, useState } from "react";
-const renderLoader = () => <p>Loading</p>;
+import { LazyLoadImage } from "react-lazy-load-image-component";
+const renderLoader = () => <></>;
 
 function Faq({ jsonData }) {
   const [openQuestionIndex, setOpenQuestionIndex] = useState(null);
@@ -31,9 +32,10 @@ function Faq({ jsonData }) {
                 display: { xs: "none", lg: "block" },
               }}
             >
-              <img
+              <LazyLoadImage
                 src={FaqJson.image}
                 alt="FAQ"
+                effect="blur"
                 style={{ maxWidth: "100%", height: "auto" }}
               />
             </Grid>

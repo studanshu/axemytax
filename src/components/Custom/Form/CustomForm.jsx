@@ -50,7 +50,7 @@ const CustomForm = ({ jsonData }) => {
     reset,
   } = methods;
 
-  const { submitForm, status } = useFormSubmit();
+  const { submitForm, status, isLoading } = useFormSubmit();
 
   const onSubmit = async (data) => {
     if (pageContext !== undefined) {
@@ -110,7 +110,7 @@ const CustomForm = ({ jsonData }) => {
             <Grid item xs={12} lg={6}>
               <MKButton
                 size="large"
-                variant={isSubmitting ? "disabled" : "contained"}
+                variant={isSubmitting || isLoading ? "disabled" : "contained"}
                 color="primary"
                 type="submit"
                 sx={{

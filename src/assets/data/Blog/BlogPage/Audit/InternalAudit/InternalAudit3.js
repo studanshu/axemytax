@@ -1,5 +1,5 @@
 export const InternalAudit3 = {
-  date: "2021-10-01",
+  date: "2021-11-01",
   duration: "1 min read",
   author: "Amelia Smith",
   title: "InternalAudit3 Economy and the Stock Market",

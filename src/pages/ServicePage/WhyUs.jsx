@@ -5,7 +5,7 @@ import SectionHeader from "components/Custom/SectionHeader";
 import PropTypes from "prop-types";
 import { Suspense } from "react";
 import RenderForm from "./RenderForm";
-const renderLoader = () => <p>Loading</p>;
+const renderLoader = () => <></>;
 
 const { light } = colors;
 

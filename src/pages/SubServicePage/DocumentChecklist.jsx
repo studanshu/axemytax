@@ -5,7 +5,7 @@ import SectionHeader from "components/Custom/SectionHeader";
 import PropTypes from "prop-types";
 import { Suspense } from "react";
 import ChecklistAction from "./ChecklistAction";
-const renderLoader = () => <p>Loading</p>;
+const renderLoader = () => <></>;
 
 function DocumentChecklist({ jsonData }) {
   const DocumentChecklistData = jsonData;
@@ -37,9 +37,7 @@ function DocumentChecklist({ jsonData }) {
                 <ReasonCards reasons={DocumentChecklistData.documents} />
               </Grid>
             </Grid>
-            <ChecklistAction
-              inputs={jsonData.inputs}
-            />
+            <ChecklistAction inputs={jsonData.inputs} />
           </Grid>
         </Container>
       </Box>

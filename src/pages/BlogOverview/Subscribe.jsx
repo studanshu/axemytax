@@ -4,7 +4,7 @@ import InlineForm from "components/Custom/InlineForm";
 import MKBox from "components/MKBox";
 import PropTypes from "prop-types";
 import { Suspense } from "react";
-const renderLoader = () => <p>Loading</p>;
+const renderLoader = () => <></>;
 
 function Subscribe({ jsonData }) {
   return (

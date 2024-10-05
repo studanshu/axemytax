@@ -7,7 +7,7 @@ import BlogMetaContent from "./BlogMetaContent";
 import ParseContent from "./ParseContent";
 import RelatedBlog from "./RelatedBlog";
 
-const renderLoader = () => <p>Loading</p>;
+const renderLoader = () => <></>;
 
 function Content({ jsonData }) {
   let blogContent = jsonData.content;

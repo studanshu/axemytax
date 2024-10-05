@@ -4,6 +4,7 @@ import SectionHeader from "components/Custom/SectionHeader";
 import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
 import PropTypes from "prop-types";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const { size } = typography;
 
@@ -25,9 +26,10 @@ const HeroContent = ({ HeroJson, flexDirection }) => {
           </Box>
         </Grid>
         <Grid item xs={12} lg={6}>
-          <img
+          <LazyLoadImage
             src={HeroJson.image}
             alt="Hero Section Image"
+            effect="blur"
             style={{ maxWidth: "100%", height: "auto" }}
           />
         </Grid>

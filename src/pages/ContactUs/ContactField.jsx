@@ -5,7 +5,8 @@ import PropTypes from "prop-types";
 import CustomForm from "components/Custom/Form/CustomForm";
 import SectionHeader from "components/Custom/SectionHeader";
 import { Suspense } from "react";
-const renderLoader = () => <p>Loading</p>;
+import { LazyLoadImage } from "react-lazy-load-image-component";
+const renderLoader = () => <></>;
 
 function ContactField({ jsonData }) {
   return (
@@ -19,7 +20,7 @@ function ContactField({ jsonData }) {
                 container
                 flexDirection="column"
                 alignItems="flex-start"
-                sx={{ gap: 12, py: 6 }}
+                sx={{ gap: 12, pb: 6 }}
               >
                 <Grid item className="header">
                   <SectionHeader
@@ -32,9 +33,10 @@ function ContactField({ jsonData }) {
                   className="header"
                   sx={{ display: { xs: "none", lg: "block" } }}
                 >
-                  <img
+                  <LazyLoadImage
                     src={jsonData.image}
                     alt="Contact Us Image"
+                    effect="blur"
                     style={{ maxWidth: "90%", height: "auto" }}
                   />
                 </Grid>
