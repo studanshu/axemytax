@@ -26,14 +26,14 @@ export default function Blogs() {
     [DefaultOverviewJson]
   );
   return (
-    <MKBox component="section" mt={8} id="blogs">
+    <MKBox component="section" mt={24} id="blogs" px={4}>
       <Container>
         <Grid container item xs={12} justifyContent="center">
           <MKTypography variant="h3" mb={6} color="info">
             Latest Blogs
           </MKTypography>
         </Grid>
-        <Grid container spacing={3} mt={0.5}>
+        <Grid container spacing={3} mt={0.5} px={4}>
           {getLatestBlogs.map((data, _) => (
             <Grid item xs={12} sm={6} lg={3}>
               <CenteredBlogCard

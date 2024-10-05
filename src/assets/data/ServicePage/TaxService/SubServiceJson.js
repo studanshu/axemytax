@@ -19,12 +19,11 @@ export const SubServiceJson = {
   title: "Leave Your Tax Filing To The Experts",
   cta: {
     "ITR FILING": {},
-    "GST FILING": {
+    "Direct Taxation": {
       image: ctaImage,
       title: "Let Us Take Care Of Filing Your Return",
       des: "Leave the complexity of tax laws to the professionals, and let us file your return accurately while maximizing your savings.",
       action: "See How It Works",
-      href: "/direct-taxation",
       content: [
         {
           icon: <CenterFocusStrongOutlinedIcon sx={iconStyle} />,

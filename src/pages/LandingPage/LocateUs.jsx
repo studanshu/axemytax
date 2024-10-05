@@ -23,13 +23,14 @@ const cardTheme = {
 
 export default function LocateUs() {
   return (
-    <MKBox component="section" py={{ xs: 3, md: 12 }} id="locate" mt={8}>
+    <MKBox component="section" py={{ xs: 3, md: 12 }} id="locate" mt={24}>
       <Container>
         <Grid
           container
           direction="row"
           alignItems="center"
           justifyContent="center"
+          px={4}
         >
           <Grid item xs={12} lg={7}>
             <MKTypography variant="h3" color="info">

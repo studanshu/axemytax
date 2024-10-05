@@ -4,6 +4,7 @@ import Grid from "@mui/material/Grid";
 
 // Images
 import bgImage from "assets/images/LandingPage/bg-presentation.webp";
+import { IsUpSmScreen } from "assets/theme/functions/breakpoints";
 
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
@@ -17,8 +18,8 @@ export default function Hero() {
       <TopLayout />
       <MKBox
         minHeight="75vh"
+        px={4}
         width="100%"
-        mt={-4}
         sx={{
           backgroundImage: `url(${bgImage})`,
           backgroundSize: "cover",
@@ -45,12 +46,17 @@ export default function Hero() {
               flexDirection="column"
               alignItems="center"
             >
-              <MKTypography item variant="h2" color="white" textAlign="center">
+              <MKTypography
+                item
+                variant={IsUpSmScreen() ? "h2" : "h3"}
+                color="white"
+                textAlign="center"
+              >
                 Let Us Manage Compliances,
               </MKTypography>
               <MKTypography
                 item
-                variant="h5Light"
+                variant={IsUpSmScreen() ? "h5Light" : "h6Light"}
                 color="white"
                 textAlign="center"
                 px={{ xs: 8, lg: 8 }}

@@ -26,7 +26,7 @@ export default function ContactIcon({ light, relative, logo, link }) {
         zIndex: 1000,
         bottom: IsUpSmScreen() ? 160 : 2,
         right: { xs: "auto", sm: 120, xxl: 320 },
-        width: IsUpSmScreen() ? "auto" : "100%",
+        width: "100%",
         display: "flex",
         justifyContent: IsUpSmScreen() ? "flex-end" : "center",
         backgroundColor: "white",

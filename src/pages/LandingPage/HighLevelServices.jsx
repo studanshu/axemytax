@@ -15,9 +15,9 @@ const renderLoader = () => <></>;
 
 export default function HighLevelServices() {
   return (
-    <MKBox component="section" mt={8} id="hllservice">
+    <MKBox component="section" mt={24} id="hllservice">
       <Container>
-        <Grid container spacing={3}>
+        <Grid container spacing={3} px={4}>
           {HLLJson.map((hll, _) => (
             <Suspense fallback={renderLoader()} key={hll.title}>
               <Grid item xs={12} sm={6} lg={3}>

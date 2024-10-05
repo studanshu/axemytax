@@ -9,10 +9,11 @@ import MKTypography from "components/MKTypography";
 
 // Images
 import logoCT from "assets/images/default/axemytax-logo-transparent.png";
+import { routeDict } from "routes";
 
 const date = new Date().getFullYear();
 
-export default {
+const footerRoutes = {
   brand: {
     image: logoCT,
     route: "/",
@@ -39,14 +40,14 @@ export default {
     {
       name: "company",
       items: [
-        { name: "about us", href: "https://www.axemytax.in" },
-        { name: "blog", href: "https://www.axemytax.in/blog" },
+        { name: "about us", href: routeDict["About"] },
+        { name: "blog", href: routeDict["Blogs"] },
       ],
     },
     {
       name: "Services",
       items: [
-        { name: "Taxation", href: "https://www.axemytax.in/" },
+        { name: "Taxation", href: routeDict["Services"]["Taxation"]["target"] },
         { name: "Accounting & Auditing", href: "https://www.axemytax.in/" },
         { name: "FEMA & Bookeeping", href: "https://www.axemytax.in/" },
       ],
@@ -54,24 +55,20 @@ export default {
     {
       name: "help & support",
       items: [
-        { name: "contact us", href: "https://www.axemytax.in/contact-us" },
+        { name: "contact us", href: routeDict["Contact"] },
         {
           name: "knowledge center",
           href: "https://www.axemytax.in/knowledge-center",
         },
-        {
-          name: "custom development",
-          href: "https://services.creative-tim.com/",
-        },
-        { name: "sponsorships", href: "https://www.axemytax.in/sponsorships" },
+        { name: "sitemap", href: "/sitemap.xml" },
       ],
     },
     {
       name: "legal",
       items: [
-        { name: "terms & conditions", href: "https://www.axemytax.in/terms" },
-        { name: "privacy policy", href: "https://www.axemytax.in/privacy" },
-        { name: "licenses", href: "https://www.axemytax.in/license" },
+        { name: "terms & conditions", href: "/terms" },
+        { name: "privacy policy", href: "/privacy" },
+        { name: "licenses", href: "/license" },
       ],
     },
   ],
@@ -92,3 +89,5 @@ export default {
     </MKTypography>
   ),
 };
+
+export default footerRoutes;

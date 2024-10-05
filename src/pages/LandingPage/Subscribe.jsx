@@ -74,11 +74,11 @@ export default function Subscribe() {
   }, [status]);
 
   return (
-    <MKBox component="section" mt={8} id="subscribe">
+    <MKBox component="section" mt={24} id="subscribe">
       <Container>
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Grid container alignItems="center" spacing={2}>
+            <Grid container alignItems="center" spacing={2} px={4}>
               <Grid item xs={12} md={6} sx={{ mb: { xs: 12, md: 0 } }}>
                 <MKTypography variant="h3" color="info">
                   Get Your Latest Tax Updates

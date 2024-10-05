@@ -16,14 +16,14 @@ const renderLoader = () => <></>;
 
 export default function OurServices() {
   return (
-    <MKBox component="section" mt={8} id="services">
+    <MKBox component="section" mt={24} id="services">
       <Container>
         <Grid container item lg={12} justifyContent="center">
           <MKTypography variant="h3" mb={4} textAlign="center" color="info">
             Our Services
           </MKTypography>
         </Grid>
-        <Grid container spacing={1}>
+        <Grid container spacing={2} px={4}>
           {ServiceJson.map((service, _) => (
             <Suspense fallback={renderLoader()} key={service.title}>
               <Grid item xs={12} sm={6} lg={3}>

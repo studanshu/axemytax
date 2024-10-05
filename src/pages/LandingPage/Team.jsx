@@ -17,7 +17,7 @@ export default function Team() {
       sx={{
         p: 4,
         mx: { xs: 2, lg: 3 },
-        mt: 8,
+        mt: 24,
         backgroundColor: ({ palette: { secondary }, functions: { rgba } }) =>
           rgba(secondary.main, 1),
         backdropFilter: "saturate(200%) blur(30px)",
@@ -26,7 +26,7 @@ export default function Team() {
       id="team"
     >
       <Container>
-        <Grid container flexDirection="column" sx={{ gap: 2 }}>
+        <Grid container flexDirection="column" sx={{ gap: 2, px: 4 }}>
           <MKTypography item variant="h4Light" color="white">
             The Executive Team
           </MKTypography>
@@ -42,7 +42,7 @@ export default function Team() {
             taxation, business advisory and financial planning company.
           </MKTypography>
         </Grid>
-        <Grid container spacing={3} mt={4}>
+        <Grid container spacing={3} mt={4} px={4}>
           {TeamJson.team.map((member, _) => (
             <Grid item xs={12} lg={6} key={member.name}>
               <MKBox mb={1}>

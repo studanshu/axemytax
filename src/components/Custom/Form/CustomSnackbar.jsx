@@ -18,7 +18,6 @@ const CustomSnackbar = forwardRef((props, ref) => {
   const handleClose = () => {
     setOpen(false);
   };
-  console.log("CustomSnackbar");
 
   return (
     <Snackbar

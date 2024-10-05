@@ -15,7 +15,7 @@ const renderLoader = () => <></>;
 
 function Counters() {
   return (
-    <MKBox component="section" mt={8} id="counters">
+    <MKBox component="section" mt={8} id="counters" px={4}>
       <Container>
         <Grid container justifyContent="space-around" textAlign="center">
           {CounterJson.map((c, index) => (

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Suspense, useState } from "react";
+import { Suspense, useContext, useMemo, useState } from "react";
 
 // @mui material components
 import SendIcon from "@mui/icons-material/Send";
@@ -20,6 +20,8 @@ import SubServiceNav from "./SubServiceNav";
 
 // Import JSON
 import SectionHeader from "components/Custom/SectionHeader";
+import { ServiceContext } from "providers/Context";
+import routes, { routeDict } from "routes";
 
 const renderLoader = () => <></>;
 
@@ -31,6 +33,9 @@ const SubService = ({ jsonData }) => {
   const [selSubService, setSelSubService] = useState(ctaKeys[1]);
   const cta = SubServiceJson.cta[selSubService] || {};
   const content = cta["content"] || [];
+
+  const currentService = useContext(ServiceContext).name;
+  const serviceRouteDict = useMemo(() => routeDict["Services"], [routes]);
 
   return (
     <Suspense fallback={renderLoader()}>
@@ -141,7 +146,7 @@ const SubService = ({ jsonData }) => {
                             background: `${white.main} !important`,
                           }}
                           endIcon={<SendIcon />}
-                          href={window.location.href + cta.href}
+                          href={serviceRouteDict[currentService][selSubService]}
                         >
                           {cta.action}
                         </MKButton>

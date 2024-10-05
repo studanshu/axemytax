@@ -66,7 +66,6 @@ import SubServiceContextProvider from "providers/SubServiceContextProvider";
 // import ProgressBars from "layouts/sections/elements/progress-bars";
 // import Toggles from "layouts/sections/elements/toggles";
 // import Typography from "layouts/sections/elements/typography";
-
 const routes = [
   {
     name: "Home",
@@ -330,5 +329,24 @@ const routes = [
   //   ],
   // },
 ];
+
+const getRouteDict = (currentRoute) => {
+  return currentRoute.reduce((acc, route) => {
+    if (route.collapse) {
+      acc[route.name] = getRouteDict(route.collapse);
+    }
+
+    if (route.route) {
+      if (typeof acc[route.name] === "object") {
+        acc[route.name]["target"] = route.route;
+      } else {
+        acc[route.name] = route.route;
+      }
+    }
+    return acc;
+  }, {});
+};
+const routeDict = getRouteDict(routes);
+export { routeDict };
 
 export default routes;
