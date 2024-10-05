@@ -45,6 +45,10 @@ MKAvatar.propTypes = {
     "error",
     "light",
     "dark",
+    "blackAlt",
+    "black75",
+    "black50",
+    "lightBlue",
   ]),
   size: PropTypes.oneOf(["xs", "sm", "md", "lg", "xl", "xxl"]),
   shadow: PropTypes.oneOf([

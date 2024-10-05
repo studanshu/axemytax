@@ -60,7 +60,7 @@ WhyUs.propTypes = {
     secondaryCaption: PropTypes.string,
     secondaryTitle: PropTypes.string,
     checkboxes: PropTypes.arrayOf(PropTypes.object),
-    dropdownBusiness: PropTypes.arrayOf(PropTypes.string),
+    dropdownBusiness: PropTypes.object,
   }).isRequired,
 };
 

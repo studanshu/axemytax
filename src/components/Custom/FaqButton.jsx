@@ -6,12 +6,23 @@ import MKTypography from "@mui/material/Typography";
 import PropTypes from "prop-types";
 
 const FaqButton = ({
-  isOpen,
-  question,
-  toggleAnswer,
-  variant,
-  color,
-  iconDict,
+  isOpen = false,
+  question = "",
+  toggleAnswer = () => {},
+  variant = "body1",
+  color = "black75",
+  iconDict = {
+    left: {
+      openIcon: undefined,
+      iconColor: undefined,
+      closeIcon: undefined,
+    },
+    right: {
+      openIcon: RemoveCircleOutlineIcon,
+      iconColor: "primary",
+      closeIcon: AddCircleOutlineIcon,
+    },
+  },
 }) => {
   const {
     left: {
@@ -76,22 +87,7 @@ FaqButton.propTypes = {
       iconColor: PropTypes.string.isRequired,
       closeIcon: PropTypes.elementType.isRequired,
     }).isRequired,
-  }).isRequired,
-};
-
-FaqButton.defaultProps = {
-  isOpen: false,
-  question: "",
-  toggleAnswer: () => {},
-  variant: "body1",
-  color: "black75",
-  iconDict: {
-    right: {
-      openIcon: RemoveCircleOutlineIcon,
-      iconColor: "primary",
-      closeIcon: AddCircleOutlineIcon,
-    },
-  },
+  }),
 };
 
 export default FaqButton;

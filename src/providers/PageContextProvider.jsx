@@ -7,7 +7,7 @@ const PageContextProvider = ({ dict, children }) => {
 };
 
 PageContextProvider.propTypes = {
-  dict: PropTypes.instanceOf({
+  dict: PropTypes.shape({
     name: PropTypes.string.isRequired,
   }).isRequired,
   children: PropTypes.node.isRequired,

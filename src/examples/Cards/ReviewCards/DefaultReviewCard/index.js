@@ -20,8 +20,8 @@ import PropTypes from "prop-types";
 import Icon from "@mui/material/Icon";
 
 // Material Kit 2 React components
-import MKBox from "components/MKBox";
 import MKAvatar from "components/MKAvatar";
+import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
 function DefaultReviewCard({ color, image, name, date, review, rating }) {
@@ -121,7 +121,9 @@ function DefaultReviewCard({ color, image, name, date, review, rating }) {
           display="block"
           variant={image ? "button" : "h6"}
           fontWeight="bold"
-          color={color === "transparent" || color === "light" ? "dark" : "white"}
+          color={
+            color === "transparent" || color === "light" ? "dark" : "white"
+          }
           mb={0.5}
         >
           {name}
@@ -130,7 +132,9 @@ function DefaultReviewCard({ color, image, name, date, review, rating }) {
           variant={image ? "caption" : "button"}
           fontWeight="regular"
           lineHeight={1}
-          color={color === "transparent" || color === "light" ? "text" : "white"}
+          color={
+            color === "transparent" || color === "light" ? "text" : "white"
+          }
           sx={{ display: "flex", alignItems: "center" }}
         >
           <Icon>schedule</Icon>&nbsp;
@@ -181,6 +185,10 @@ DefaultReviewCard.propTypes = {
     "error",
     "dark",
     "light",
+    "blackAlt",
+    "black75",
+    "black50",
+    "lightBlue",
   ]),
   image: PropTypes.string,
   name: PropTypes.string.isRequired,

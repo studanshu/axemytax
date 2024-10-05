@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { Controller, useFormContext } from "react-hook-form";
 import { errorText } from "./utils";
 
-const RenderDropdown = ({ input, gap }) => {
+const RenderDropdown = ({ input, gap = 2 }) => {
   const {
     control,
     formState: { errors },
@@ -43,8 +43,8 @@ const RenderDropdown = ({ input, gap }) => {
               <TextField
                 {...field}
                 select
-                label={`${input.label} ${input.required ? "*" : ""}`}
-                required={input.isRequired || false}
+                label={input.label}
+                required={input.required || false}
                 error={errors[input.formLabel]}
                 helperText={errorText(errors[input.formLabel]?.message)}
               >
@@ -63,7 +63,7 @@ const RenderDropdown = ({ input, gap }) => {
   );
 };
 RenderDropdown.propTypes = {
-  input: PropTypes.instanceOf({
+  input: PropTypes.shape({
     type: PropTypes.string.isRequired,
     fieldType: PropTypes.string.isRequired,
     spacing: PropTypes.oneOf(["half", "full"]),
@@ -75,9 +75,4 @@ RenderDropdown.propTypes = {
   }).isRequired,
   gap: PropTypes.number,
 };
-
-RenderDropdown.defaultProps = {
-  gap: 2,
-};
-
 export default RenderDropdown;

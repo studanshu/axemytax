@@ -62,14 +62,14 @@ const SubService = ({ jsonData }) => {
               px={5}
               sx={{ gap: { xs: 2, xl: 9 } }}
             >
-              <Grid items>
+              <Grid item>
                 <SubServiceNav
                   subServicesList={ctaKeys}
                   selSubService={selSubService}
                   setSelSubService={setSelSubService}
                 />
               </Grid>
-              <Grid items sx={{ mx: { xs: 3, xl: 15 } }}>
+              <Grid item sx={{ mx: { xs: 3, xl: 15 } }}>
                 <Grid
                   container
                   display="flex"
@@ -82,7 +82,7 @@ const SubService = ({ jsonData }) => {
                   }}
                 >
                   <Grid
-                    items
+                    item
                     className="ctaLeft"
                     xl={5}
                     sx={{ mx: { md: 12, xl: 0 } }}

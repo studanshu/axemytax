@@ -27,7 +27,14 @@ import MuiLink from "@mui/material/Link";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
-function FilledInfoCard({ variant, color, icon, title, description, action }) {
+function FilledInfoCard({
+  variant = "contained",
+  color = "info",
+  icon,
+  title,
+  description,
+  action = false,
+}) {
   const buttonStyles = {
     width: "max-content",
     display: "flex",
@@ -135,13 +142,6 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
   );
 }
 
-// Setting default props for the FilledInfoCard
-FilledInfoCard.defaultProps = {
-  variant: "contained",
-  color: "info",
-  action: false,
-};
-
 // Typechecking props for the FilledInfoCard
 FilledInfoCard.propTypes = {
   variant: PropTypes.oneOf(["contained", "gradient"]),
@@ -154,6 +154,10 @@ FilledInfoCard.propTypes = {
     "error",
     "light",
     "dark",
+    "blackAlt",
+    "black75",
+    "black50",
+    "lightBlue",
   ]),
   icon: PropTypes.node.isRequired,
   title: PropTypes.string.isRequired,

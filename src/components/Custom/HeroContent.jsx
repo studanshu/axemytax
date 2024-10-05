@@ -8,7 +8,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const { size } = typography;
 
-const HeroContent = ({ HeroJson, flexDirection }) => {
+const HeroContent = ({ HeroJson, flexDirection = "row" }) => {
   return (
     <>
       <Grid container spacing={8} direction={flexDirection}>
@@ -35,7 +35,7 @@ const HeroContent = ({ HeroJson, flexDirection }) => {
         </Grid>
       </Grid>
       {HeroJson.buttons && HeroJson.buttons.length > 0 && (
-        <Grid container spacing={3} mt={8} xs={12} lg={6}>
+        <Grid item container spacing={3} mt={8} xs={12} lg={6}>
           {HeroJson.buttons.map((button, index) => (
             <Grid item xs={12} md={6} key={index}>
               <MKButton
@@ -80,10 +80,6 @@ HeroContent.propTypes = {
     ),
   }).isRequired,
   flexDirection: PropTypes.oneOf(["row", "row-reverse"]),
-};
-
-HeroContent.defaultProps = {
-  flexDirection: "row",
 };
 
 export default HeroContent;

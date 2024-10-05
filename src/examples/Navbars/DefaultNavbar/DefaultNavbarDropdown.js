@@ -30,11 +30,11 @@ import MKTypography from "components/MKTypography";
 function DefaultNavbarDropdown({
   name,
   icon,
-  children,
-  collapseStatus,
-  light,
-  href,
-  route,
+  children = false,
+  collapseStatus = false,
+  light = false,
+  href = "",
+  route = "",
   collapse,
   ...rest
 }) {
@@ -100,14 +100,7 @@ function DefaultNavbarDropdown({
   );
 }
 
-// Setting default values for the props of DefaultNavbarDropdown
-DefaultNavbarDropdown.defaultProps = {
-  children: false,
-  collapseStatus: false,
-  light: false,
-  href: "",
-  route: "",
-};
+// Removed defaultProps as we are using default parameters
 
 // Typechecking props for the DefaultNavbarDropdown
 DefaultNavbarDropdown.propTypes = {

@@ -13,7 +13,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { forwardRef, createContext, useContext } from "react";
+import { createContext, forwardRef, useContext } from "react";
 
 // prop-types is a library for typechecking of props
 import PropTypes from "prop-types";
@@ -28,7 +28,10 @@ import MKPaginationItemRoot from "components/MKPagination/MKPaginationItemRoot";
 const Context = createContext();
 
 const MKPagination = forwardRef(
-  ({ item, variant, color, size, active, children, placement, ...rest }, ref) => {
+  (
+    { item, variant, color, size, active, children, placement, ...rest },
+    ref
+  ) => {
     const tempContext = useContext(Context);
     const context = item ? tempContext : null;
     const paginationSize = context ? context.size : null;
@@ -69,6 +72,8 @@ const MKPagination = forwardRef(
   }
 );
 
+MKPagination.displayName = "MKPagination";
+
 // Setting default values for the props of MKPagination
 MKPagination.defaultProps = {
   item: false,
@@ -93,6 +98,10 @@ MKPagination.propTypes = {
     "error",
     "light",
     "dark",
+    "blackAlt",
+    "black75",
+    "black50",
+    "lightBlue",
   ]),
   size: PropTypes.oneOf(["small", "medium", "large"]),
   active: PropTypes.bool,

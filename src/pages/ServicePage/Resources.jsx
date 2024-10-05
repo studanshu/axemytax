@@ -52,7 +52,7 @@ Resources.propTypes = {
     title: PropTypes.string,
     resources: PropTypes.arrayOf(
       PropTypes.shape({
-        icon: PropTypes.string,
+        icon: PropTypes.object,
         headline: PropTypes.string,
         description: PropTypes.string,
         link: PropTypes.string,

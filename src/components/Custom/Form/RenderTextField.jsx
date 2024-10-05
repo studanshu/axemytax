@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useFormContext } from "react-hook-form";
 import { errorText } from "./utils";
 
-const RenderTextField = ({ input, props, children }) => {
+const RenderTextField = ({ input, props = {}, children = undefined }) => {
   const {
     register,
     formState: { errors },
@@ -36,11 +36,6 @@ RenderTextField.propTypes = {
   }).isRequired,
   props: PropTypes.object,
   children: PropTypes.node,
-};
-
-RenderTextField.defaultProps = {
-  props: {},
-  children: null,
 };
 
 export default RenderTextField;

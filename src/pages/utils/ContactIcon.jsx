@@ -18,7 +18,12 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const { size } = typography;
 
-export default function ContactIcon({ light, relative, logo, link }) {
+export default function ContactIcon({
+  light = false,
+  relative = false,
+  logo = defaultLogo,
+  link = "/",
+}) {
   return (
     <Container
       sx={{
@@ -72,14 +77,6 @@ export default function ContactIcon({ light, relative, logo, link }) {
     </Container>
   );
 }
-
-ContactIcon.defaultProps = {
-  transparent: false,
-  light: false,
-  relative: false,
-  logo: defaultLogo,
-  link: "/",
-};
 
 // Typechecking props for the DefaultNavbar
 ContactIcon.propTypes = {

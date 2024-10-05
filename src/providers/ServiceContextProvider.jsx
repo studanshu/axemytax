@@ -13,9 +13,9 @@ const ServiceContextProvider = ({ dict, children }) => {
 };
 
 ServiceContextProvider.propTypes = {
-  dict: PropTypes.oneOf({
+  dict: PropTypes.shape({
     name: PropTypes.oneOf(
-      Object.keys(DefaultFormFields[SERVICE_FIELD][OPTIONS_FIELD]).isRequired
+      Object.keys(DefaultFormFields[SERVICE_FIELD][OPTIONS_FIELD])
     ),
   }).isRequired,
   children: PropTypes.node.isRequired,

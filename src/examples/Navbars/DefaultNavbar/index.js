@@ -48,15 +48,15 @@ import defaultLogo from "assets/images/default/axemytax-logo-dark.png";
 import breakpoints from "assets/theme/base/breakpoints";
 
 function DefaultNavbar({
-  brand,
+  brand = "",
   routes,
-  transparent,
-  light,
-  action,
-  sticky,
-  relative,
-  center,
-  logo,
+  transparent = false,
+  light = false,
+  action = false,
+  sticky = false,
+  relative = false,
+  center = false,
+  logo = defaultLogo,
 }) {
   const [dropdown, setDropdown] = useState("");
   const [dropdownEl, setDropdownEl] = useState("");
@@ -617,17 +617,7 @@ function DefaultNavbar({
   );
 }
 
-// Setting default values for the props of DefaultNavbar
-DefaultNavbar.defaultProps = {
-  brand: "",
-  transparent: false,
-  light: false,
-  action: false,
-  sticky: false,
-  relative: false,
-  center: false,
-  logo: defaultLogo,
-};
+// Removed defaultProps as default parameters are now used in the function definition
 
 // Typechecking props for the DefaultNavbar
 DefaultNavbar.propTypes = {
@@ -651,6 +641,10 @@ DefaultNavbar.propTypes = {
         "light",
         "default",
         "white",
+        "blackAlt",
+        "black75",
+        "black50",
+        "lightBlue",
       ]),
       label: PropTypes.string.isRequired,
     }),

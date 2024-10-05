@@ -84,6 +84,10 @@ MKAlert.propTypes = {
     "error",
     "light",
     "dark",
+    "blackAlt",
+    "black75",
+    "black50",
+    "lightBlue"
   ]),
   dismissible: PropTypes.bool,
   children: PropTypes.node.isRequired,
