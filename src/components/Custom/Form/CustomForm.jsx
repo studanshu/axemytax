@@ -78,6 +78,7 @@ const CustomForm = ({ jsonData }) => {
     } else if (status === "loading") {
       snackbarRef.current.showSnackbar("Taking in your request", "info");
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
 
   return (
