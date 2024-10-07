@@ -34,6 +34,7 @@ const CheckboxGridDisplay = ({
                   <Controller
                     control={control}
                     name={`checkboxCollection-${item}`}
+                    defaultValue={false}
                     render={({ field }) => (
                       <FormControlLabel
                         {...field}

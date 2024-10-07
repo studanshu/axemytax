@@ -27,6 +27,10 @@ export default function RenderForm({ jsonData }) {
   ]);
   let methods = useForm({
     resolver: zodResolver(z.object(formSchema)),
+    defaultValues: {
+      email: "",
+      businessType: "",
+    },
   });
 
   const { handleSubmit, reset } = methods;
@@ -34,15 +38,16 @@ export default function RenderForm({ jsonData }) {
   const { submitForm, status, isSubmitting, error } = useFormSubmit();
   const serviceContextData = useContext(ServiceContext);
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (inputData) => {
+    const data = JSON.parse(JSON.stringify(inputData));
     function filterCheckboxCollectionKeys() {
       const prefix = "checkboxCollection";
-      data.meta =
-        "Sub-Services: " +
-        Object.keys(data)
+      data.meta = {
+        subService: Object.keys(data)
           .filter((key) => key.includes(prefix) && data[key])
           .map((key) => key.split("-")[1])
-          .join(", ");
+          .join(", "),
+      };
       Object.keys(data)
         .filter((key) => key.includes(prefix))
         .forEach((key) => delete data[key]);
