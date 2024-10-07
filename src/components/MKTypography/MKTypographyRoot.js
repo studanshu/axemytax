@@ -3,14 +3,29 @@ import { styled } from "@mui/material/styles";
 
 export default styled(Typography)(({ theme, ownerState }) => {
   const { palette, typography, functions } = theme;
-  const { color, textTransform, verticalAlign, fontWeight, opacity, textGradient, letterSpacing } = ownerState;
+  const {
+    color,
+    textTransform,
+    verticalAlign,
+    fontWeight,
+    opacity,
+    textGradient,
+    letterSpacing,
+  } = ownerState;
 
   const { gradients, transparent } = palette;
-  const { fontWeightLight, fontWeightRegular, fontWeightMedium, fontWeightBold } = typography;
+  const {
+    fontWeightLighter,
+    fontWeightLight,
+    fontWeightRegular,
+    fontWeightMedium,
+    fontWeightBold,
+  } = typography;
   const { linearGradient } = functions;
 
   // fontWeight styles
   const fontWeights = {
+    lighter: fontWeightLighter,
     light: fontWeightLight,
     regular: fontWeightRegular,
     medium: fontWeightMedium,
@@ -20,7 +35,10 @@ export default styled(Typography)(({ theme, ownerState }) => {
   // styles for the typography with textGradient={true}
   const gradientStyles = () => ({
     backgroundImage:
-      color !== "inherit" && color !== "text" && color !== "white" && gradients[color]
+      color !== "inherit" &&
+      color !== "text" &&
+      color !== "white" &&
+      gradients[color]
         ? linearGradient(gradients[color].main, gradients[color].state)
         : linearGradient(gradients.dark.main, gradients.dark.state),
     display: "inline-block",
@@ -31,11 +49,13 @@ export default styled(Typography)(({ theme, ownerState }) => {
   });
 
   // color value
-  const colorValue = color === "inherit" || !palette[color] ? "inherit" : palette[color].main;
-  
-  const letterSpacingValue = letterSpacing && typography.fontSize
-  ? `${letterSpacing * parseFloat(typography.fontSize)}px`
-  : undefined;
+  const colorValue =
+    color === "inherit" || !palette[color] ? "inherit" : palette[color].main;
+
+  const letterSpacingValue =
+    letterSpacing && typography.fontSize
+      ? `${letterSpacing * parseFloat(typography.fontSize)}px`
+      : undefined;
 
   return {
     opacity,
