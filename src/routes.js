@@ -346,7 +346,7 @@ const getRouteDict = (currentRoute) => {
     return acc;
   }, {});
 };
-const routeDict = getRouteDict(routes);
+const routeDict = getRouteDict(JSON.parse(JSON.stringify(routes)));
 export { routeDict };
 
 export default routes;
