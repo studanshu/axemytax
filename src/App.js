@@ -62,7 +62,6 @@ export default function App() {
           element={<BlogContent />}
         />
       );
-      console.log("allRoutes", allRoutes);
       return allRoutes.length === 0 ? null : allRoutes;
     });
 
