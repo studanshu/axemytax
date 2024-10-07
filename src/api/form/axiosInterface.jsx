@@ -1,7 +1,7 @@
 import { Constants } from "api/constant";
 
-export const post = (data) => {
-  return fetch(Constants.form.endpoint, {
+export const post = async (data) => {
+  return await fetch(Constants.form.endpoint, {
     method: "POST",
     mode: "no-cors",
     redirect: "follow",

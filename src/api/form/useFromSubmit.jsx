@@ -5,8 +5,8 @@ import { formDto } from "./formDto";
 const className = "[useFormSubmit]";
 export const useFormSubmit = () => {
   const mutation = useMutation({
-    mutationFn: (data) => {
-      return post(data);
+    mutationFn: async (data) => {
+      return await post(data);
     },
   });
 
