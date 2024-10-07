@@ -12,9 +12,9 @@ export const useFormSubmit = () => {
 
   const submitForm = async (data) => {
     try {
-      data["meta"] = {
+      data["meta"] = JSON.stringify({
         environment: process.env.NODE_ENV,
-      };
+      });
       const transformedData = formDto(data);
       console.log(className, "Submit Form Data", transformedData);
       await mutation.mutate(transformedData);
