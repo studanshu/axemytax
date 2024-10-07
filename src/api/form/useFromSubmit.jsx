@@ -6,6 +6,7 @@ const className = "[useFormSubmit]";
 export const useFormSubmit = () => {
   const mutation = useMutation({
     mutationFn: (data) => {
+      console.log("env", process.env);
       return post(data);
     },
   });
