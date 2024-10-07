@@ -8,6 +8,8 @@ export const formDto = ({ ...formInputs }) => {
   transformBusinessType(transformedData);
   transformBudget(transformedData);
 
+  addEnvironmentToMetaData(transformedData);
+
   return transformedData;
 };
 
@@ -33,4 +35,12 @@ function transformBudget(transformedData) {
       transformedData.budget = "less than 100000";
     }
   }
+}
+
+function addEnvironmentToMetaData(transformedData) {
+  if (transformedData["meta"] === undefined) {
+    transformedData["meta"] = {};
+  }
+  transformedData["meta"]["environment"] = process.env.NODE_ENV;
+  transformedData["meta"] = JSON.stringify(transformedData["meta"]);
 }
