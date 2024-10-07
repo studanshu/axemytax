@@ -43,7 +43,7 @@ export default function Subscribe() {
 
   const { handleSubmit, reset } = methods;
 
-  const { submitForm, status, isSubmitting, error } = useFormSubmit();
+  const { submitForm, status, isSubmitting, error, response } = useFormSubmit();
 
   const onSubmit = async (data) => {
     data["source"] = "LandingPage-Subscribe";
@@ -54,6 +54,7 @@ export default function Subscribe() {
   const snackbarRef = useRef();
   useEffect(() => {
     if (status === "success") {
+      console.log("Form submitted successfully", response);
       reset();
       snackbarRef.current.showSnackbar(
         "Form submitted successfully! We will get back to you soon.",
