@@ -47,7 +47,7 @@ export default function Subscribe() {
     reset,
   } = methods;
 
-  const { submitForm, status, isLoading } = useFormSubmit();
+  const { submitForm, status, isLoading, error } = useFormSubmit();
 
   const onSubmit = async (data) => {
     data["source"] = "LandingPage-Subscribe";
@@ -68,6 +68,7 @@ export default function Subscribe() {
         "We are unable to take in your request. Please reach out to us by phone or email.",
         "error"
       );
+      console.error("Error submitting form:", error);
     } else if (status === "loading") {
       snackbarRef.current.showSnackbar("Taking in your request", "info");
     }
