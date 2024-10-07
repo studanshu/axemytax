@@ -44,13 +44,9 @@ const CustomForm = ({ jsonData }) => {
     },
   });
 
-  const {
-    handleSubmit,
-    formState: { isSubmitting },
-    reset,
-  } = methods;
+  const { handleSubmit, reset } = methods;
 
-  const { submitForm, status, isLoading } = useFormSubmit();
+  const { submitForm, status, isSubmitting, error } = useFormSubmit();
 
   const onSubmit = async (data) => {
     if (pageContext !== undefined) {
@@ -75,10 +71,10 @@ const CustomForm = ({ jsonData }) => {
         "We are unable to take in your request. Please reach out to us by phone or email.",
         "error"
       );
-    } else if (status === "loading") {
+      console.error("Error submitting form:", error);
+    } else if (isSubmitting) {
       snackbarRef.current.showSnackbar("Taking in your request", "info");
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
 
   return (
@@ -111,7 +107,7 @@ const CustomForm = ({ jsonData }) => {
             <Grid item xs={12} lg={6}>
               <MKButton
                 size="large"
-                variant={isSubmitting || isLoading ? "disabled" : "contained"}
+                variant={isSubmitting ? "disabled" : "contained"}
                 color="primary"
                 type="submit"
                 sx={{

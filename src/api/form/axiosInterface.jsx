@@ -1,9 +1,10 @@
 import { Constants } from "api/constant";
-import axios from "axios";
 
 export const post = (data) => {
-  return axios.post(Constants.form.endpoint, {
+  return fetch(Constants.form.endpoint, {
     method: "POST",
+    mode: "no-cors",
+    redirect: "follow",
     headers: {
       "Content-Type": "application/json",
     },

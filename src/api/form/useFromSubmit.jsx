@@ -19,9 +19,10 @@ export const useFormSubmit = () => {
       console.error(className, "Error submitting form:", error);
     }
   };
-
+  const isSubmitting = mutation.isPending;
   return {
     submitForm,
+    isSubmitting,
     ...mutation,
   };
 };

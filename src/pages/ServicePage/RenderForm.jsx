@@ -29,13 +29,9 @@ export default function RenderForm({ jsonData }) {
     resolver: zodResolver(z.object(formSchema)),
   });
 
-  const {
-    handleSubmit,
-    formState: { isSubmitting },
-    reset,
-  } = methods;
+  const { handleSubmit, reset } = methods;
 
-  const { submitForm, status, isLoading } = useFormSubmit();
+  const { submitForm, status, isSubmitting, error } = useFormSubmit();
   const serviceContextData = useContext(ServiceContext);
 
   const onSubmit = async (data) => {
@@ -71,7 +67,8 @@ export default function RenderForm({ jsonData }) {
         "We are unable to take in your request. Please reach out to us by phone or email.",
         "error"
       );
-    } else if (status === "loading") {
+      console.error("Error submitting form:", error);
+    } else if (isSubmitting) {
       snackbarRef.current.showSnackbar("Taking in your request", "info");
     }
   }, [status]);
@@ -133,9 +130,7 @@ export default function RenderForm({ jsonData }) {
                 <Grid item>
                   <MKButton
                     size="large"
-                    variant={
-                      isSubmitting || isLoading ? "disabled" : "contained"
-                    }
+                    variant={isSubmitting ? "disabled" : "contained"}
                     color="primary"
                     type="submit"
                     sx={{
