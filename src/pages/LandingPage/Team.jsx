@@ -15,8 +15,8 @@ export default function Team() {
   return (
     <Card
       sx={{
-        p: 4,
-        mx: { xs: 2, lg: 3 },
+        p: { xs: 1, lg: 4 },
+        mx: { xs: 0, lg: 3 },
         mt: 24,
         backgroundColor: ({ palette: { secondary }, functions: { rgba } }) =>
           rgba(secondary.main, 1),
@@ -42,7 +42,7 @@ export default function Team() {
             taxation, business advisory and financial planning company.
           </MKTypography>
         </Grid>
-        <Grid container spacing={3} mt={4} px={4}>
+        <Grid container spacing={3} mt={4} sx={{ px: { xs: 0, sm: 2, lg: 4 } }}>
           {TeamJson.team.map((member, _) => (
             <Grid item xs={12} lg={6} key={member.name}>
               <MKBox mb={1}>

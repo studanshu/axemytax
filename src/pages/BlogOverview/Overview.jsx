@@ -103,7 +103,7 @@ function Overview({ jsonData }) {
                 justifyContent="space-around"
               >
                 {currentBlogs.map((blog) => (
-                  <Grid item xs={5} lg={3} key={blog.title}>
+                  <Grid item xs={12} sm={5} lg={3} key={blog.title}>
                     <CenteredBlogCard
                       image={blog.img}
                       title={blog.title}
