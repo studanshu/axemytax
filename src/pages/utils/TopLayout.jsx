@@ -1,4 +1,4 @@
-import DefaultNavbar from "examples/Navbars/DefaultNavbar";
+import DefaultNavbar from "../../examples/Navbars/DefaultNavbar";
 // import routes from "routes";
 import logo from "assets/images/default/axemytax-logo-transparent.png";
 import routes from "routes";

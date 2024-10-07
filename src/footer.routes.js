@@ -4,12 +4,11 @@ import LinkedIn from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 
-// Material Kit 2 React components
-import MKTypography from "components/MKTypography";
+import MKTypography from "./components/MKTypography";
 
 // Images
-import logoCT from "assets/images/default/axemytax-logo-transparent.png";
 import { routeDict } from "routes";
+import logoCT from "./assets/images/default/axemytax-logo-transparent.png";
 
 const date = new Date().getFullYear();
 

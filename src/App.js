@@ -9,11 +9,11 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 
 // Theme
-import theme from "assets/theme";
+import theme from "./assets/theme";
 
 // Material Kit 2 React routes
-import BlogContent from "pages/BlogContent";
-import routes from "routes";
+import BlogContent from "./pages/BlogContent";
+import routes from "./routes";
 
 const queryClient = new QueryClient();
 
