@@ -35,10 +35,18 @@ import DefaultNavbarDropdown from "examples/Navbars/DefaultNavbar/DefaultNavbarD
 function DefaultNavbarMobile({ routes, open }) {
   const [collapse, setCollapse] = useState("");
 
-  const handleSetCollapse = (name) => (collapse === name ? setCollapse(false) : setCollapse(name));
+  const handleSetCollapse = (name) =>
+    collapse === name ? setCollapse(false) : setCollapse(name);
 
   const renderNavbarItems = routes.map(
-    ({ name, icon, collapse: routeCollapses, href, route, collapse: navCollapse }) => (
+    ({
+      name,
+      icon,
+      collapse: routeCollapses,
+      href,
+      route,
+      collapse: navCollapse,
+    }) => (
       <DefaultNavbarDropdown
         key={name}
         name={name}
@@ -49,7 +57,9 @@ function DefaultNavbarMobile({ routes, open }) {
         route={route}
         collapse={Boolean(navCollapse)}
       >
-        <MKBox sx={{ height: "15rem", maxHeight: "15rem", overflowY: "scroll" }}>
+        <MKBox
+          sx={{ height: "15rem", maxHeight: "15rem", overflowY: "scroll" }}
+        >
           {routeCollapses &&
             routeCollapses.map((item) => (
               <MKBox key={item.name} px={2}>
@@ -60,6 +70,11 @@ function DefaultNavbarMobile({ routes, open }) {
                       variant="button"
                       fontWeight="bold"
                       textTransform="capitalize"
+                      component={item.route ? Link : MuiLink}
+                      to={item.route ? item.route : ""}
+                      href={item.href ? item.href : ""}
+                      target={item.href ? "_blank" : ""}
+                      rel={item.href ? "noreferrer" : "noreferrer"}
                       py={1}
                       px={0.5}
                     >
@@ -81,7 +96,10 @@ function DefaultNavbarMobile({ routes, open }) {
                         fontWeight="regular"
                         py={0.625}
                         px={2}
-                        sx={({ palette: { grey, dark }, borders: { borderRadius } }) => ({
+                        sx={({
+                          palette: { grey, dark },
+                          borders: { borderRadius },
+                        }) => ({
                           borderRadius: borderRadius.md,
                           cursor: "pointer",
                           transition: "all 300ms linear",
@@ -105,7 +123,10 @@ function DefaultNavbarMobile({ routes, open }) {
                     href={item.href ? item.href : ""}
                     target={item.href ? "_blank" : ""}
                     rel={item.href ? "noreferrer" : "noreferrer"}
-                    sx={({ palette: { grey, dark }, borders: { borderRadius } }) => ({
+                    sx={({
+                      palette: { grey, dark },
+                      borders: { borderRadius },
+                    }) => ({
                       borderRadius: borderRadius.md,
                       cursor: "pointer",
                       transition: "all 300ms linear",
