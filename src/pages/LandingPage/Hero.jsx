@@ -38,19 +38,20 @@ export default function Hero() {
             justifyContent="center"
             mx="auto"
             mt={4}
-            sx={{ gap: 4 }}
+            sx={{ gap: 2 }}
           >
             <Grid
               container
-              sx={{ gap: 2 }}
+              sx={{ gap: 1 }}
               flexDirection="column"
               alignItems="center"
             >
               <MKTypography
                 item
-                variant={IsUpSmScreen() ? "h2" : "h3"}
+                variant={IsUpSmScreen() ? "h3" : "h4"}
                 color="white"
                 textAlign="center"
+                fontWeight="bold"
               >
                 Let Us Manage Compliances,
               </MKTypography>
@@ -59,6 +60,7 @@ export default function Hero() {
                 variant={IsUpSmScreen() ? "h5Light" : "h6Light"}
                 color="white"
                 textAlign="center"
+                fontWeight="medium"
                 px={{ xs: 8, lg: 8 }}
               >
                 And Grow Your Business Stress-Free
@@ -69,6 +71,7 @@ export default function Hero() {
               variant="subtitle1"
               color="white"
               textAlign="center"
+              fontWeight="lighter"
               px={{ xs: 8, xl: 12 }}
               sx={{ display: { xs: "none", lg: "block" } }}
             >
@@ -77,7 +80,7 @@ export default function Hero() {
               Houses, Startups, and Individuals.
             </MKTypography>
           </Grid>
-          <Grid container justifyContent="center" mt={6} sx={{ gap: 2 }}>
+          <Grid container justifyContent="center" mt={8} sx={{ gap: 2 }}>
             <MKButton
               variant={"outlined"}
               color={"white"}

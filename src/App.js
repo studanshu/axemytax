@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 // react-router components
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 // @mui material components
