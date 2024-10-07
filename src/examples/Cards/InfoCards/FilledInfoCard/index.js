@@ -27,7 +27,14 @@ import MuiLink from "@mui/material/Link";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
-function FilledInfoCard({ variant, color, icon, title, description, action }) {
+function FilledInfoCard({
+  variant = "contained",
+  color = "info",
+  icon,
+  title,
+  description,
+  action = false,
+}) {
   const buttonStyles = {
     width: "max-content",
     display: "flex",
@@ -61,21 +68,32 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
       pt={3.5}
       pb={3}
       px={3}
+      height="100%"
     >
       <MKTypography
         display="block"
-        variant="h3"
+        variant="h4"
         color={iconColor}
         textGradient={variant === "contained"}
         mt={-0.625}
       >
         {typeof icon === "string" ? <Icon>{icon}</Icon> : icon}
       </MKTypography>
-      <MKBox pt={{ xs: 3, md: 0 }} pl={{ xs: 0, md: 2 }} lineHeight={1}>
+      <MKBox
+        pt={{ xs: 3, md: 0 }}
+        pl={{ xs: 0, md: 2 }}
+        lineHeight={1}
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-around"
+        flexGrow={1}
+      >
         <MKTypography
           display="block"
-          variant="5"
-          color={variant === "contained" || color === "light" ? "dark" : "white"}
+          variant="h5"
+          color={
+            variant === "contained" || color === "light" ? "black75" : "white"
+          }
           fontWeight="bold"
           mb={1}
         >
@@ -83,8 +101,10 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
         </MKTypography>
         <MKTypography
           display="block"
-          variant="body2"
-          color={variant === "contained" || color === "light" ? "text" : "white"}
+          variant="subtitle1"
+          color={
+            variant === "contained" || color === "light" ? "text" : "white"
+          }
           mb={2}
         >
           {description}
@@ -95,37 +115,32 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
             href={action.route}
             target="_blank"
             rel="noreferrer"
-            variant="body2"
+            variant="subtitle1"
             fontWeight="regular"
             color={variant === "contained" ? color : "white"}
             sx={buttonStyles}
           >
-            {action.label} <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
+            {action.label}{" "}
+            <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
           </MKTypography>
         ) : null}
         {action && action.type === "internal" ? (
           <MKTypography
             component={Link}
             to={action.route}
-            variant="body2"
+            variant="subtitle1"
             fontWeight="regular"
             color={"info"}
             sx={buttonStyles}
           >
-            {action.label} <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
+            {action.label}{" "}
+            <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
           </MKTypography>
         ) : null}
       </MKBox>
     </MKBox>
   );
 }
-
-// Setting default props for the FilledInfoCard
-FilledInfoCard.defaultProps = {
-  variant: "contained",
-  color: "info",
-  action: false,
-};
 
 // Typechecking props for the FilledInfoCard
 FilledInfoCard.propTypes = {
@@ -139,6 +154,10 @@ FilledInfoCard.propTypes = {
     "error",
     "light",
     "dark",
+    "blackAlt",
+    "black75",
+    "black50",
+    "lightBlue",
   ]),
   icon: PropTypes.node.isRequired,
   title: PropTypes.string.isRequired,

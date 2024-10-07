@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 /**
 =========================================================
 * Material Kit 2 React React - v1.0.0
@@ -60,6 +61,10 @@ MKButton.propTypes = {
     "error",
     "light",
     "dark",
+    "lightBlue",
+    "black75",
+    "black50",
+    "lightBlue",
   ]),
   circular: PropTypes.bool,
   iconOnly: PropTypes.bool,

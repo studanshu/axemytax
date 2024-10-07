@@ -22,10 +22,32 @@ import PropTypes from "prop-types";
 import MKBadgeRoot from "components/MKBadge/MKBadgeRoot";
 
 const MKBadge = forwardRef(
-  ({ color, variant, size, circular, indicator, border, container, children, ...rest }, ref) => (
+  (
+    {
+      color,
+      variant,
+      size,
+      circular,
+      indicator,
+      border,
+      container,
+      children,
+      ...rest
+    },
+    ref
+  ) => (
     <MKBadgeRoot
       {...rest}
-      ownerState={{ color, variant, size, circular, indicator, border, container, children }}
+      ownerState={{
+        color,
+        variant,
+        size,
+        circular,
+        indicator,
+        border,
+        container,
+        children,
+      }}
       ref={ref}
       color="default"
     >
@@ -33,6 +55,8 @@ const MKBadge = forwardRef(
     </MKBadgeRoot>
   )
 );
+
+MKBadge.displayName = "MKBadge";
 
 // Setting default values for the props of MKBadge
 MKBadge.defaultProps = {
@@ -58,6 +82,10 @@ MKBadge.propTypes = {
     "error",
     "light",
     "dark",
+    "blackAlt",
+    "black75",
+    "black50",
+    "lightBlue",
   ]),
   variant: PropTypes.oneOf(["gradient", "contained"]),
   size: PropTypes.oneOf(["xs", "sm", "md", "lg"]),

@@ -1,32 +1,62 @@
-import Card from "@mui/material/Card";
-
 // Material Kit 2 React components
+
+// Self - Created
 import MKBox from "components/MKBox";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 import footerRoutes from "footer.routes";
-import TopLayout from "pages/utils/TopLayout";
+import PropTypes from "prop-types";
+import { Suspense, lazy } from "react";
 
+const ServicePage = ({ jsonData }) => {
+  const components = [
+    {
+      component: lazy(() => import("./Hero")),
+      props: { jsonData: jsonData.HeroJson },
+    },
+    {
+      component: lazy(() => import("./SubService")),
+      props: { jsonData: jsonData.SubServiceJson },
+    },
+    {
+      component: lazy(() => import("./Testimonial")),
+      props: { jsonData: jsonData.TestimonialJson },
+    },
+    {
+      component: lazy(() => import("./WhyUs")),
+      props: { jsonData: jsonData.WhyUsJson },
+    },
+    {
+      component: lazy(() => import("./Faq")),
+      props: { jsonData: jsonData.FaqJson },
+    },
+    {
+      component: lazy(() => import("./Resources")),
+      props: { jsonData: jsonData.ResourcesJson },
+    },
+  ];
 
-export default function ServicePage() {
   return (
     <>
-      <TopLayout/>
-      <Card
-        sx={{
-          p: 2,
-          mx: { xs: 2, lg: 3 },
-          mt: -8,
-          mb: 4,
-          backgroundColor: ({ palette: { white }, functions: { rgba } }) => rgba(white.main, 0.5),
-          backdropFilter: "saturate(200%) blur(30px)",
-          boxShadow: ({ boxShadows: { info } }) => info,
-        }}
-      >
-        
-      </Card>
+      {components.map(({ component: Component, props }, index) => (
+        <Suspense key={index}>
+          <Component {...props} />
+        </Suspense>
+      ))}
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
       </MKBox>
     </>
   );
-}
+};
+ServicePage.propTypes = {
+  jsonData: PropTypes.shape({
+    HeroJson: PropTypes.object.isRequired,
+    SubServiceJson: PropTypes.object.isRequired,
+    TestimonialJson: PropTypes.object.isRequired,
+    WhyUsJson: PropTypes.object.isRequired,
+    FaqJson: PropTypes.object.isRequired,
+    ResourcesJson: PropTypes.object.isRequired,
+  }).isRequired,
+};
+
+export default ServicePage;

@@ -30,11 +30,11 @@ import MKTypography from "components/MKTypography";
 function DefaultNavbarDropdown({
   name,
   icon,
-  children,
-  collapseStatus,
-  light,
-  href,
-  route,
+  children = false,
+  collapseStatus = false,
+  light = false,
+  href = "",
+  route = "",
   collapse,
   ...rest
 }) {
@@ -55,7 +55,7 @@ function DefaultNavbarDropdown({
       <MKBox
         {...rest}
         mx={1}
-        p={1}
+        px={1}
         display="flex"
         alignItems="baseline"
         color={light ? "white" : "dark"}
@@ -65,7 +65,7 @@ function DefaultNavbarDropdown({
         {...(href && linkComponent)}
       >
         <MKTypography
-          variant="body2"
+          variant="body1"
           lineHeight={1}
           color="inherit"
           sx={{ alignSelf: "center", "& *": { verticalAlign: "middle" } }}
@@ -81,7 +81,11 @@ function DefaultNavbarDropdown({
         >
           {name}
         </MKTypography>
-        <MKTypography variant="body2" color={light ? "white" : "dark"} ml="auto">
+        <MKTypography
+          variant="body2"
+          color={light ? "white" : "dark"}
+          ml="auto"
+        >
           <Icon sx={{ fontWeight: "normal", verticalAlign: "middle" }}>
             {collapse && "keyboard_arrow_down"}
           </Icon>
@@ -96,14 +100,7 @@ function DefaultNavbarDropdown({
   );
 }
 
-// Setting default values for the props of DefaultNavbarDropdown
-DefaultNavbarDropdown.defaultProps = {
-  children: false,
-  collapseStatus: false,
-  light: false,
-  href: "",
-  route: "",
-};
+// Removed defaultProps as we are using default parameters
 
 // Typechecking props for the DefaultNavbarDropdown
 DefaultNavbarDropdown.propTypes = {

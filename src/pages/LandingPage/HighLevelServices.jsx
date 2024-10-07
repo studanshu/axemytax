@@ -9,18 +9,17 @@ import MKBox from "components/MKBox";
 import TransparentBlogCard from "examples/Cards/BlogCards/TransparentBlogCard";
 
 //json
-import { HLLJson } from "assets/data/LandingPage/HighLevelServices.js"
-import { lazy, Suspense } from "react";
-const renderLoader = () => <p>Loading</p>;
+import { HLLJson } from "assets/data/LandingPage/HighLevelServices.js";
+import { Suspense } from "react";
+const renderLoader = () => <></>;
 
 export default function HighLevelServices() {
   return (
-    <MKBox component="section" mt={8} id="hllservice">
+    <MKBox component="section" mt={24} id="hllservice">
       <Container>
-        <Grid container spacing={3}>
-          {
-            HLLJson.map((hll, _) => (
-            <Suspense fallback={renderLoader()}>
+        <Grid container spacing={3} px={4}>
+          {HLLJson.map((hll, _) => (
+            <Suspense fallback={renderLoader()} key={hll.title}>
               <Grid item xs={12} sm={6} lg={3}>
                 <TransparentBlogCard
                   image={hll.image}
@@ -35,8 +34,7 @@ export default function HighLevelServices() {
                 />
               </Grid>
             </Suspense>
-            ))
-          }
+          ))}
         </Grid>
       </Container>
     </MKBox>

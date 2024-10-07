@@ -14,8 +14,8 @@ Coded by www.creative-tim.com
 */
 
 // Material Kit 2 React Base Styles
-import colors from "assets/theme/base/colors";
 import borders from "assets/theme/base/borders";
+import colors from "assets/theme/base/colors";
 import typography from "assets/theme/base/typography";
 
 // Material Kit 2 React helper functions
@@ -49,13 +49,13 @@ export default {
 
     input: {
       color: grey[700],
-      padding: pxToRem(12),
+      padding: pxToRem(16),
       backgroundColor: transparent.main,
     },
 
     inputSizeSmall: {
       fontSize: size.xs,
-      padding: pxToRem(10),
+      padding: pxToRem(12),
     },
 
     multiline: {

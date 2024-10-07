@@ -24,23 +24,26 @@ import MKTypography from "components/MKTypography";
 // Custom styles for MKProgress
 import MKProgressRoot from "components/MKProgress/MKProgressRoot";
 
-const MKProgress = forwardRef(({ variant, color, value, label, ...rest }, ref) => (
-  <>
-    {label && (
-      <MKTypography variant="button" fontWeight="medium" color="text">
-        {value}%
-      </MKTypography>
-    )}
-    <MKProgressRoot
-      {...rest}
-      ref={ref}
-      variant="determinate"
-      value={value}
-      ownerState={{ color, value, variant }}
-    />
-  </>
-));
+const MKProgress = forwardRef(
+  ({ variant, color, value, label, ...rest }, ref) => (
+    <>
+      {label && (
+        <MKTypography variant="button" fontWeight="medium" color="text">
+          {value}%
+        </MKTypography>
+      )}
+      <MKProgressRoot
+        {...rest}
+        ref={ref}
+        variant="determinate"
+        value={value}
+        ownerState={{ color, value, variant }}
+      />
+    </>
+  )
+);
 
+MKProgress.displayName = "MKProgress";
 // Setting default values for the props of MKProgress
 MKProgress.defaultProps = {
   variant: "contained",
@@ -61,6 +64,10 @@ MKProgress.propTypes = {
     "error",
     "light",
     "dark",
+    "blackAlt",
+    "black75",
+    "black50",
+    "lightBlue",
   ]),
   value: PropTypes.number,
   label: PropTypes.bool,

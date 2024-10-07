@@ -21,7 +21,7 @@ Coded by www.creative-tim.com
 
 export default {
   background: {
-    default: "#f0f2f5",
+    default: "#ffffff",
   },
 
   text: {
@@ -30,7 +30,7 @@ export default {
   },
 
   transparent: {
-    main: "transparent",
+    main: "#00000000",
   },
 
   white: {
@@ -39,22 +39,36 @@ export default {
   },
 
   black: {
-    light: "#000000",
-    main: "#000000",
-    focus: "#000000",
+    light: "#272B28",
+    main: "#272B28",
+    focus: "#272B28",
+  },
+
+  black75: {
+    main: "#5D605E",
+  },
+
+  black50: {
+    main: "#939593",
   },
 
   primary: {
-    main: "#8EDB67",
-    focus: "#67DB95",
+    main: "#479420",
+    focus: "#7eb462",
   },
 
   secondary: {
-    main: "#344766",
-    focus: "#C0CCDF",
+    main: "#006088",
+    focus: "#008CC6",
   },
+
+  lightBlue: {
+    main: "#008CC6",
+    focus: "#006088",
+  },
+
   info: {
-    main: "#3d5e2b",
+    main: "#479420",
     focus: "#70A84E",
   },
 
@@ -69,19 +83,20 @@ export default {
   },
 
   error: {
-    main: "#F44335",
+    main: "#E03E16",
     focus: "#f65f53",
   },
 
   light: {
-    main: "#f0f2f5",
-    focus: "#f0f2f5",
+    main: "#F9FCF7",
+    focus: "#ebf5e4",
   },
 
   dark: {
-    main: "#344767",
+    main: "#272B28",
     focus: "#2c3c58",
   },
+
   grey: {
     main: "#adb5bd",
     focus: "#adb5bd",
@@ -98,18 +113,18 @@ export default {
 
   gradients: {
     primary: {
-      main: "#EC407A",
+      main: "#479420",
       state: "#D81B60",
     },
 
     secondary: {
-      main: "#747b8a",
+      main: "#006088",
       state: "#495361",
     },
 
     info: {
-      main: "#3d5e2b",
-      state: "#3d5e2b",
+      main: "#479420",
+      state: "#479420",
     },
 
     success: {
@@ -212,8 +227,8 @@ export default {
     },
 
     info: {
-      background: "#3d5e2b",
-      text: "#3d5e2b",
+      background: "#479420",
+      text: "#479420",
     },
 
     success: {
@@ -245,7 +260,7 @@ export default {
   coloredShadows: {
     primary: "#e91e62",
     secondary: "#110e0e",
-    info: "#3d5e2b",
+    info: "#479420",
     success: "#4caf4f",
     warning: "#ff9900",
     error: "#f44336",

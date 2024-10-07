@@ -24,8 +24,8 @@ import MuiLink from "@mui/material/Link";
 
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
 import MKButton from "components/MKButton";
+import MKTypography from "components/MKTypography";
 
 function RotatingCard({ color, image, title, description, action }) {
   return (
@@ -42,10 +42,19 @@ function RotatingCard({ color, image, title, description, action }) {
       left={0}
       zIndex={5}
       sx={{
-        backgroundImage: ({ palette: { gradients }, functions: { linearGradient, rgba } }) =>
+        backgroundImage: ({
+          palette: { gradients },
+          functions: { linearGradient, rgba },
+        }) =>
           `${linearGradient(
-            rgba(gradients[color] ? gradients[color].main : gradients.info.main, 0.85),
-            rgba(gradients[color] ? gradients[color].main : gradients.info.main, 0.85)
+            rgba(
+              gradients[color] ? gradients[color].main : gradients.info.main,
+              0.85
+            ),
+            rgba(
+              gradients[color] ? gradients[color].main : gradients.info.main,
+              0.85
+            )
           )}, url(${image})`,
         backgroundSize: "cover",
         backfaceVisibility: "hidden",
@@ -74,7 +83,13 @@ function RotatingCard({ color, image, title, description, action }) {
                 {action.label}
               </MKButton>
             ) : (
-              <MKButton component={Link} to={action.route} color="white" size="small" fullWidth>
+              <MKButton
+                component={Link}
+                to={action.route}
+                color="white"
+                size="small"
+                fullWidth
+              >
                 {action.label}
               </MKButton>
             )}
@@ -101,6 +116,10 @@ RotatingCard.propTypes = {
     "error",
     "dark",
     "light",
+    "blackAlt",
+    "black75",
+    "black50",
+    "lightBlue",
   ]),
   image: PropTypes.string.isRequired,
   title: PropTypes.node.isRequired,

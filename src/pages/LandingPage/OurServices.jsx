@@ -11,21 +11,21 @@ import FilledInfoCard from "examples/Cards/InfoCards/FilledInfoCard";
 
 // import json
 import ServiceJson from "assets/data/LandingPage/OurServices";
-import { lazy, Suspense } from "react";
-const renderLoader = () => <p>Loading</p>;
+import { Suspense } from "react";
+const renderLoader = () => <></>;
 
 export default function OurServices() {
   return (
-    <MKBox component="section" mt={8} id="services">
+    <MKBox component="section" mt={24} id="services">
       <Container>
         <Grid container item lg={12} justifyContent="center">
-          <MKTypography variant="h3" mb={4} textAlign="center" color="info" >
+          <MKTypography variant="h3" mb={4} textAlign="center" color="info">
             Our Services
           </MKTypography>
         </Grid>
-        <Grid container spacing={1}>
+        <Grid container spacing={2} px={4}>
           {ServiceJson.map((service, _) => (
-            <Suspense fallback={renderLoader()}>
+            <Suspense fallback={renderLoader()} key={service.title}>
               <Grid item xs={12} sm={6} lg={3}>
                 <FilledInfoCard
                   color="info"
@@ -35,7 +35,7 @@ export default function OurServices() {
                   action={{
                     type: "internal",
                     route: service.link,
-                    label: service.label
+                    label: service.label,
                   }}
                 />
               </Grid>
@@ -45,4 +45,4 @@ export default function OurServices() {
       </Container>
     </MKBox>
   );
-};
+}

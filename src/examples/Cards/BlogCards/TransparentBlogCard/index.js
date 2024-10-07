@@ -28,7 +28,13 @@ import MuiLink from "@mui/material/Link";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
-function TransparentBlogCard({ image, title, description, action }) {
+function TransparentBlogCard({
+  image,
+  title,
+  description,
+  action,
+  roundedImage,
+}) {
   const cardActionStyles = {
     display: "flex",
     alignItems: "center",
@@ -51,14 +57,14 @@ function TransparentBlogCard({ image, title, description, action }) {
         component="img"
         src={image}
         alt={title}
-        borderRadius="lg"
+        borderRadius={roundedImage ? "section" : "lg"}
         shadow="md"
         width="100%"
         position="relative"
         zIndex={1}
       />
       <MKBox
-        borderRadius="lg"
+        borderRadius={roundedImage ? "section" : "lg"}
         shadow="md"
         width="100%"
         height="100%"
@@ -98,20 +104,25 @@ function TransparentBlogCard({ image, title, description, action }) {
             </MKTypography>
           </Link>
         ) : (
-          <MuiLink href={action.route} target="_blank" rel="noreferrer" sx={cardActionStyles}>
+          <MuiLink
+            href={action.route}
+            target="_blank"
+            rel="noreferrer"
+            sx={cardActionStyles}
+          >
             <MKTypography variant="h5" gutterBottom>
               {title}
             </MKTypography>
           </MuiLink>
         )}
-        <MKTypography variant="body2" component="p" color="text" mb={3}>
+        <MKTypography variant="subtitle1" component="p" color="text" mb={3}>
           {description}
         </MKTypography>
         {action.type === "internal" ? (
           <MKTypography
             component={Link}
             to={action.route}
-            variant="body2"
+            variant="subtitle1"
             fontWeight="regular"
             color={action.color}
             textTransform="capitalize"
@@ -126,7 +137,7 @@ function TransparentBlogCard({ image, title, description, action }) {
             href={action.route}
             target="_blank"
             rel="noreferrer"
-            variant="body2"
+            variant="subtitle1"
             fontWeight="regular"
             color={action.color}
             textTransform="capitalize"
@@ -161,8 +172,13 @@ TransparentBlogCard.propTypes = {
       "light",
       "dark",
       "text",
+      "blackAlt",
+      "black75",
+      "black50",
+      "lightBlue",
     ]).isRequired,
   }).isRequired,
+  roundedImage: PropTypes.bool,
 };
 
 export default TransparentBlogCard;

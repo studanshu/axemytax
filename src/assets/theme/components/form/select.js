@@ -19,14 +19,14 @@ import colors from "assets/theme/base/colors";
 // Material Kit 2 React helper functions
 import pxToRem from "assets/theme/functions/pxToRem";
 
-const { transparent } = colors;
+const { transparent, lightBlue } = colors;
 
 export default {
   styleOverrides: {
     select: {
       display: "grid",
       alignItems: "center",
-      padding: `0 ${pxToRem(12)} !important`,
+      padding: `2 ${pxToRem(16)} !important`,
 
       "& .Mui-selected": {
         backgroundColor: transparent.main,
@@ -41,7 +41,7 @@ export default {
     },
 
     icon: {
-      display: "none",
+      color: lightBlue.main,
     },
   },
 };

@@ -16,8 +16,18 @@ Coded by www.creative-tim.com
 /**
   The pxToRem() function helps you to convert a px unit into a rem unit, 
  */
+import breakpoints from "../base/breakpoints";
+function pxToRem(number) {
+  let baseNumber;
 
-function pxToRem(number, baseNumber = 16) {
+  if (window.innerWidth >= breakpoints.values.lg) {
+    baseNumber = 16;
+  } else if (window.innerWidth >= breakpoints.values.md) {
+    baseNumber = 18;
+  } else {
+    baseNumber = 20;
+  }
+
   return `${number / baseNumber}rem`;
 }
 

@@ -22,14 +22,27 @@
 */
 
 // @mui material components
-import ServiceIcon from '@mui/icons-material/HomeRepairServiceOutlined';
-import SolutionIcon from "@mui/icons-material/EmojiObjectsOutlined"
-import PricingIcon from "@mui/icons-material/PaymentsOutlined"
-import ResourcesIcon from '@mui/icons-material/AssignmentOutlined';
-
+import { ContactPageOutlined } from "@mui/icons-material";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import HomeIcon from "@mui/icons-material/Home";
+import ServiceIcon from "@mui/icons-material/HomeRepairServiceOutlined";
+import RssFeedIcon from "@mui/icons-material/RssFeed";
 
 // // Pages
+import AboutJsonData from "assets/data/About";
+import BlogOverviewJsonData from "assets/data/Blog/BlogOverview";
+import ContactUsJsonData from "assets/data/ContactUs";
+import TaxServiceJsonData from "assets/data/ServicePage/TaxService";
+import DirectTaxServiceJsonData from "assets/data/SubServicePage/TaxService/DirectTaxation";
+import About from "pages/About";
+import BlogOverview from "pages/BlogOverview";
+import ContactUsPage from "pages/ContactUs";
+import LandingPage from "pages/LandingPage";
 import ServicePage from "pages/ServicePage";
+import SubServicePage from "pages/SubServicePage";
+import PageContextProvider from "./providers/PageContextProvider";
+import ServiceContextProvider from "./providers/ServiceContextProvider";
+import SubServiceContextProvider from "./providers/SubServiceContextProvider";
 // import ContactUs from "layouts/pages/landing-pages/contact-us";
 // import Author from "layouts/pages/landing-pages/author";
 // import SignIn from "layouts/pages/authentication/sign-in";
@@ -53,28 +66,72 @@ import ServicePage from "pages/ServicePage";
 // import ProgressBars from "layouts/sections/elements/progress-bars";
 // import Toggles from "layouts/sections/elements/toggles";
 // import Typography from "layouts/sections/elements/typography";
-
 const routes = [
   {
-    name: "Solutions",
-    icon:  <SolutionIcon />,
-    route: "#",
+    name: "Home",
+    icon: <HomeIcon />,
+    route: "/",
+    component: <LandingPage />,
   },
   {
     name: "Services",
-    icon:  <ServiceIcon />,
-    route: "/services",
-    component: <ServicePage />,
+    icon: <ServiceIcon />,
+    columns: 1,
+    rowsPerColumn: 2,
+    collapse: [
+      {
+        name: "Taxation",
+        route: "/services/taxation",
+        component: (
+          <ServiceContextProvider dict={{ name: "Taxation" }}>
+            <ServicePage jsonData={TaxServiceJsonData} />
+          </ServiceContextProvider>
+        ),
+        collapse: [
+          {
+            name: "Direct Taxation",
+            route: "/services/taxation/direct-taxation",
+            component: (
+              <SubServiceContextProvider
+                dict={{ name: "Direct Taxation", serviceName: "Taxation" }}
+              >
+                <SubServicePage jsonData={DirectTaxServiceJsonData} />
+              </SubServiceContextProvider>
+            ),
+          },
+        ],
+      },
+    ],
   },
   {
-    name: "Pricing",
-    icon: <PricingIcon/>,
+    name: "About",
+    icon: <AccountCircleIcon />,
     route: "/about",
+    component: (
+      <PageContextProvider dict={{ name: "About" }}>
+        <About jsonData={AboutJsonData} />
+      </PageContextProvider>
+    ),
   },
   {
-    name: "Resources",
-    icon:  <ResourcesIcon/>,
+    name: "Blogs",
+    icon: <RssFeedIcon />,
     route: "/blogs",
+    component: (
+      <PageContextProvider dict={{ name: "BlogOverview" }}>
+        <BlogOverview jsonData={BlogOverviewJsonData} />
+      </PageContextProvider>
+    ),
+  },
+  {
+    name: "Contact",
+    icon: <ContactPageOutlined />,
+    route: "/contact",
+    component: (
+      <PageContextProvider dict={{ name: "Contact" }}>
+        <ContactUsPage jsonData={ContactUsJsonData} />
+      </PageContextProvider>
+    ),
   },
   // {
   //   name: "pages",
@@ -272,5 +329,24 @@ const routes = [
   //   ],
   // },
 ];
+
+const getRouteDict = (currentRoute) => {
+  return currentRoute.reduce((acc, route) => {
+    if (route.collapse) {
+      acc[route.name] = getRouteDict(route.collapse);
+    }
+
+    if (route.route) {
+      if (typeof acc[route.name] === "object") {
+        acc[route.name]["target"] = route.route;
+      } else {
+        acc[route.name] = route.route;
+      }
+    }
+    return acc;
+  }, {});
+};
+const routeDict = getRouteDict(routes);
+export { routeDict };
 
 export default routes;

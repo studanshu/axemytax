@@ -36,19 +36,24 @@ function DefaultFooter({ content }) {
         <Grid container spacing={3} justifyContent="center">
           <Grid item xs={12} md={3} sx={{ ml: "auto", mb: 3 }}>
             <MKBox item>
-                <MKBox item component="img" src={brand.image} alt={brand.name} maxWidth="80%" 
-                       sx={({ breakpoints}) => ({
-                        [breakpoints.down("2xl")]: {
-                          maxWidth: "20%",
-                        },
-                        [breakpoints.down("lg")]: {
-                          maxWidth: "100%",
-                        },
-                        [breakpoints.down("md")]: {
-                          maxWidth: "40%",
-                        },
-                      })}
-                />
+              <MKBox
+                item
+                component="img"
+                src={brand.image}
+                alt={brand.name}
+                maxWidth="80%"
+                sx={({ breakpoints }) => ({
+                  [breakpoints.down("2xl")]: {
+                    maxWidth: "20%",
+                  },
+                  [breakpoints.down("lg")]: {
+                    maxWidth: "100%",
+                  },
+                  [breakpoints.down("md")]: {
+                    maxWidth: "40%",
+                  },
+                })}
+              />
             </MKBox>
             <MKBox item alignItems="center" mt={3}>
               {socials.map(({ icon, link }, key) => (
@@ -58,8 +63,8 @@ function DefaultFooter({ content }) {
                   href={link}
                   target="_blank"
                   rel="noreferrer"
-                  variant="h5"
-                  color="dark"
+                  variant="h5Light"
+                  color="secondary"
                   opacity={0.8}
                   mr={key === socials.length - 1 ? 0 : 2.5}
                 >
@@ -75,13 +80,20 @@ function DefaultFooter({ content }) {
                 variant="button"
                 fontWeight="bold"
                 textTransform="capitalize"
+                color="secondary"
                 mb={1}
               >
                 {title}
               </MKTypography>
               <MKBox component="ul" p={0} m={0} sx={{ listStyle: "none" }}>
                 {items.map(({ name, route, href }) => (
-                  <MKBox key={name} component="li" p={0} m={0} lineHeight={1.25}>
+                  <MKBox
+                    key={name}
+                    component="li"
+                    p={0}
+                    m={0}
+                    lineHeight={1.25}
+                  >
                     {href ? (
                       <MKTypography
                         component="a"
@@ -89,8 +101,8 @@ function DefaultFooter({ content }) {
                         target="_blank"
                         rel="noreferrer"
                         variant="button"
-                        fontWeight="regular"
                         textTransform="capitalize"
+                        color="black75"
                       >
                         {name}
                       </MKTypography>
@@ -101,6 +113,7 @@ function DefaultFooter({ content }) {
                         variant="button"
                         fontWeight="regular"
                         textTransform="capitalize"
+                        color="black75"
                       >
                         {name}
                       </MKTypography>
@@ -121,7 +134,9 @@ function DefaultFooter({ content }) {
 
 // Typechecking props for the DefaultFooter
 DefaultFooter.propTypes = {
-  content: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.object, PropTypes.array])).isRequired,
+  content: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.object, PropTypes.array])
+  ).isRequired,
 };
 
 export default DefaultFooter;

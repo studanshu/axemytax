@@ -21,12 +21,29 @@ import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 React components
+import { LinkedIn, MailOutlined } from "@mui/icons-material";
+import theme from "assets/theme";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
-function HorizontalTeamCard({ image, name, position, description, color }) {
+function HorizontalTeamCard({
+  image,
+  name,
+  position,
+  description,
+  color,
+  mail,
+  linkedIn,
+}) {
+  const { palette } = theme;
   return (
-    <Card sx={{ mt: 3 }}>
+    <Card
+      sx={{
+        mt: 3,
+        backgroundColor:
+          color === undefined ? palette["light"].main : palette[color].main,
+      }}
+    >
       <Grid container>
         <Grid item xs={12} md={6} lg={4} sx={{ mt: -6 }}>
           <MKBox width="100%" pt={2} pb={1} px={2}>
@@ -41,14 +58,40 @@ function HorizontalTeamCard({ image, name, position, description, color }) {
           </MKBox>
         </Grid>
         <Grid item xs={12} md={6} lg={8} sx={{ my: "auto" }}>
-          <MKBox pt={{ xs: 1, lg: 2.5 }} pb={2.5} pr={4} pl={{ xs: 4, lg: 1 }} lineHeight={1}>
-            <MKTypography variant="h5">{name}</MKTypography>
-            <MKTypography variant="h6" color={position.color} mb={1}>
+          <MKBox
+            pt={{ xs: 1, lg: 2.5 }}
+            pb={2.5}
+            pr={4}
+            pl={{ xs: 4, lg: 1 }}
+            lineHeight={1}
+          >
+            <MKTypography variant="h5Light">{name}</MKTypography>
+            <MKTypography variant="subtitle2" color={position.color} mb={1}>
               {position.label}
             </MKTypography>
-            <MKTypography variant="body2" color="text">
+            <MKTypography variant="subtitle1" color="text">
               {description}
             </MKTypography>
+            <Grid
+              container
+              justifyContent="flex-end"
+              sx={{ gap: 2, pt: { xs: 1, lg: 2.5 } }}
+            >
+              {mail && (
+                <Grid item>
+                  <MKTypography component="a" href={mail} color="primary">
+                    <MailOutlined />
+                  </MKTypography>
+                </Grid>
+              )}
+              {linkedIn && (
+                <Grid>
+                  <MKTypography component="a" href={linkedIn} color="secondary">
+                    <LinkedIn />
+                  </MKTypography>
+                </Grid>
+              )}
+            </Grid>
           </MKBox>
         </Grid>
       </Grid>
@@ -71,10 +114,16 @@ HorizontalTeamCard.propTypes = {
       "error",
       "dark",
       "light",
+      "blackAlt",
+      "black75",
+      "black50",
+      "lightBlue",
     ]),
     label: PropTypes.string.isRequired,
   }).isRequired,
   description: PropTypes.string.isRequired,
+  mail: PropTypes.string,
+  linkedIn: PropTypes.string,
 };
 
 export default HorizontalTeamCard;
