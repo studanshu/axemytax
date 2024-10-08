@@ -58,9 +58,9 @@ const slickStyling = {
     content: '""',
   },
   "& .slick-prev, .slick-next": {
-    width: "60px",
-    height: "60px",
-    fontSize: "32px !important",
+    width: "2.5rem",
+    height: "2.5rem",
+    fontSize: "1.5rem !important",
     display: "flex !important",
     placeContent: "center",
     placeItems: "center",
@@ -69,6 +69,20 @@ const slickStyling = {
     borderRadius: "50%",
     boxShadow: boxShadow,
     zIndex: 1,
+    "@media (min-width: 600px)": {
+      width: "3rem",
+      height: "3rem",
+      fontSize: "1.75rem !important",
+    },
+    "@media (min-width: 960px)": {
+      width: "3.5rem",
+      height: "3.5rem",
+      fontSize: "2rem !important",
+    },
+    "&:focus, &:active": {
+      color: info.main,
+      background: white.main,
+    },
   },
   "& .slick-prev": {
     left: 0,
