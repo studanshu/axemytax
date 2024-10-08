@@ -78,13 +78,14 @@ const SubService = ({ jsonData }) => {
                   sx={{
                     mb: { xs: 2, lg: 6 },
                     gap: { xs: 4, xxl: 16 },
-                    flexWrap: { xs: "wrap", xl: "nowrap" },
+                    flexWrap: { xs: "wrap", lg: "nowrap" },
+                    flexDirection: { xs: "column-reverse", lg: "row" },
                   }}
                 >
                   <Grid
                     item
                     className="ctaLeft"
-                    xl={5}
+                    lg={5}
                     sx={{ mx: { md: 12, xl: 0 } }}
                   >
                     <Grid
@@ -153,7 +154,7 @@ const SubService = ({ jsonData }) => {
                       )}
                     </Grid>
                   </Grid>
-                  <Grid item className="bullets" xl={7}>
+                  <Grid item className="bullets" lg={7}>
                     <Grid
                       container
                       display="flex"
