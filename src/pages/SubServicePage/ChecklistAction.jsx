@@ -20,26 +20,26 @@ function ChecklistAction({ inputs }) {
     resolver: zodResolver(z.object(createSchema(inputs))),
   });
 
-  const { handleSubmit, formState, reset } = methods;
-  const { submitForm, status, isLoading } = useFormSubmit();
+  const { handleSubmit, reset } = methods;
+  const { submitForm, status, isSubmitting, error } = useFormSubmit();
 
   const snackbarRef = useRef();
   useEffect(() => {
     if (status === "success") {
       reset();
       snackbarRef.current.showSnackbar(
-        "Inquiry received! We'll get in touch with you.",
+        "Form submitted successfully! We will get back to you soon.",
         "success"
       );
     } else if (status === "error") {
       snackbarRef.current.showSnackbar(
-        "We are unable to take in your request. Please reach out to us via Contact section.",
+        "We are unable to take in your request. Please reach out to us by phone or email.",
         "error"
       );
-    } else if (status === "loading") {
+      console.error("Error submitting form:", error);
+    } else if (isSubmitting) {
       snackbarRef.current.showSnackbar("Taking in your request", "info");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
 
   const subServiceContextData = useContext(SubServiceContext);
@@ -73,9 +73,7 @@ function ChecklistAction({ inputs }) {
             <Grid item className="button">
               <MKButton
                 size="large"
-                variant={
-                  formState.isSubmitting || isLoading ? "disabled" : "contained"
-                }
+                variant={isSubmitting ? "disabled" : "contained"}
                 color="primary"
                 type="submit"
                 sx={{

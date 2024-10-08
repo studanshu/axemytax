@@ -41,13 +41,9 @@ export default function Subscribe() {
     resolver: zodResolver(z.object(createSchema([emailField]))),
   });
 
-  const {
-    handleSubmit,
-    formState: { isSubmitting },
-    reset,
-  } = methods;
+  const { handleSubmit, reset } = methods;
 
-  const { submitForm, status, isLoading, error } = useFormSubmit();
+  const { submitForm, status, isSubmitting, error, response } = useFormSubmit();
 
   const onSubmit = async (data) => {
     data["source"] = "LandingPage-Subscribe";
@@ -58,6 +54,7 @@ export default function Subscribe() {
   const snackbarRef = useRef();
   useEffect(() => {
     if (status === "success") {
+      console.log("Form submitted successfully", response);
       reset();
       snackbarRef.current.showSnackbar(
         "Form submitted successfully! We will get back to you soon.",
@@ -69,7 +66,7 @@ export default function Subscribe() {
         "error"
       );
       console.error("Error submitting form:", error);
-    } else if (status === "loading") {
+    } else if (isSubmitting) {
       snackbarRef.current.showSnackbar("Taking in your request", "info");
     }
   }, [status]);
@@ -100,9 +97,7 @@ export default function Subscribe() {
                   </Grid>
                   <Grid item xs={4}>
                     <MKButton
-                      variant={
-                        isSubmitting || isLoading ? "disabled" : "contained"
-                      }
+                      variant={isSubmitting ? "disabled" : "contained"}
                       color="primary"
                       type="submit"
                       sx={{ height: "100%", width: "100%" }}

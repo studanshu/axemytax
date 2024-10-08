@@ -27,26 +27,27 @@ export default function RenderForm({ jsonData }) {
   ]);
   let methods = useForm({
     resolver: zodResolver(z.object(formSchema)),
+    defaultValues: {
+      email: "",
+      businessType: "",
+    },
   });
 
-  const {
-    handleSubmit,
-    formState: { isSubmitting },
-    reset,
-  } = methods;
+  const { handleSubmit, reset } = methods;
 
-  const { submitForm, status, isLoading } = useFormSubmit();
+  const { submitForm, status, isSubmitting, error } = useFormSubmit();
   const serviceContextData = useContext(ServiceContext);
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (inputData) => {
+    const data = JSON.parse(JSON.stringify(inputData));
     function filterCheckboxCollectionKeys() {
       const prefix = "checkboxCollection";
-      data.meta =
-        "Sub-Services: " +
-        Object.keys(data)
+      data.meta = {
+        subService: Object.keys(data)
           .filter((key) => key.includes(prefix) && data[key])
           .map((key) => key.split("-")[1])
-          .join(", ");
+          .join(", "),
+      };
       Object.keys(data)
         .filter((key) => key.includes(prefix))
         .forEach((key) => delete data[key]);
@@ -71,7 +72,8 @@ export default function RenderForm({ jsonData }) {
         "We are unable to take in your request. Please reach out to us by phone or email.",
         "error"
       );
-    } else if (status === "loading") {
+      console.error("Error submitting form:", error);
+    } else if (isSubmitting) {
       snackbarRef.current.showSnackbar("Taking in your request", "info");
     }
   }, [status]);
@@ -133,9 +135,7 @@ export default function RenderForm({ jsonData }) {
                 <Grid item>
                   <MKButton
                     size="large"
-                    variant={
-                      isSubmitting || isLoading ? "disabled" : "contained"
-                    }
+                    variant={isSubmitting ? "disabled" : "contained"}
                     color="primary"
                     type="submit"
                     sx={{

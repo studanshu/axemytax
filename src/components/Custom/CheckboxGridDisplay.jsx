@@ -34,10 +34,11 @@ const CheckboxGridDisplay = ({
                   <Controller
                     control={control}
                     name={`checkboxCollection-${item}`}
+                    defaultValue={false}
                     render={({ field }) => (
                       <FormControlLabel
                         {...field}
-                        control={<Checkbox />}
+                        control={<Checkbox checked={field.value} />}
                         label={
                           <MKTypography variant="body1" color="black75">
                             {item}
