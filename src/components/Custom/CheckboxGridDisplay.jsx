@@ -38,7 +38,7 @@ const CheckboxGridDisplay = ({
                     render={({ field }) => (
                       <FormControlLabel
                         {...field}
-                        control={<Checkbox />}
+                        control={<Checkbox checked={field.value} />}
                         label={
                           <MKTypography variant="body1" color="black75">
                             {item}
