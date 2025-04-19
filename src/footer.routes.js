@@ -46,7 +46,7 @@ const footerRoutes = {
     {
       name: "Services",
       items: [
-        { name: "Taxation", href: routeDict["Services"]["Taxation"]["target"] },
+        { name: "Taxation", href: routeDict["Services"]["Direct Taxation"]["target"] },
         { name: "Accounting & Auditing", href: "https://www.axemytax.in/" },
         { name: "FEMA & Bookeeping", href: "https://www.axemytax.in/" },
       ],

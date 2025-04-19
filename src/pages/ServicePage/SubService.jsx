@@ -30,7 +30,7 @@ const { light, white } = colors;
 const SubService = ({ jsonData }) => {
   const SubServiceJson = jsonData;
   const ctaKeys = Object.keys(SubServiceJson.cta);
-  const [selSubService, setSelSubService] = useState(ctaKeys[1]);
+  const [selSubService, setSelSubService] = useState(ctaKeys[0]);
   const cta = SubServiceJson.cta[selSubService] || {};
   const content = cta["content"] || [];
 

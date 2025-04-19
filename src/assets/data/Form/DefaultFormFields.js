@@ -48,13 +48,24 @@ const DefaultFormFields = {
     fieldType: "dropdown",
     spacing: "full",
     options: {
-      Taxation: {
+      "Direct Taxation": {
         type: "enum",
         label: "Select Sub-Service",
         required: false,
         spacing: "full",
         formLabel: "subService",
         options: [
+          "Appeals & Assessment",
+          "Change in Particulars of PAN",
+          "Defective Return",
+          "Fresh ITR Filing",
+          "New PAN",
+          "PAN Activation",
+          "Previous Year's ITR Filing",
+          "Rectification Return",
+          "Relocation of PAN",
+          "Revised Return",
+          "Surrender of PAN",
           "Income Tax",
           "Direct Taxation",
           "GST",

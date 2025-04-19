@@ -32,8 +32,18 @@ import RssFeedIcon from "@mui/icons-material/RssFeed";
 import AboutJsonData from "assets/data/About";
 import BlogOverviewJsonData from "assets/data/Blog/BlogOverview";
 import ContactUsJsonData from "assets/data/ContactUs";
-import TaxServiceJsonData from "assets/data/ServicePage/TaxService";
-import DirectTaxServiceJsonData from "assets/data/SubServicePage/TaxService/DirectTaxation";
+import DirectTaxationServiceJsonData from "assets/data/ServicePage/DirectTaxationService";
+import DirectTaxationAppealsAndAssessmentSubServiceJsonData from "assets/data/SubServicePage/TaxService/Appeals & Assessment";
+import DirectTaxationChangeInParticularsOfPanSubServiceJsonData from "assets/data/SubServicePage/TaxService/Change in Particulars of PAN";
+import DirectTaxationDefectiveReturnSubServiceJsonData from "assets/data/SubServicePage/TaxService/Defective Return";
+import DirectTaxationFreshITRFilingSubServiceJsonData from "assets/data/SubServicePage/TaxService/Fresh ITR Filing";
+import DirectTaxationNewPanSubServiceJsonData from "assets/data/SubServicePage/TaxService/New PAN";
+import DirectTaxationPanActivationSubServiceJsonData from "assets/data/SubServicePage/TaxService/PAN Activation";
+import DirectTaxationPreviousYearsITRSubServiceJsonData from "assets/data/SubServicePage/TaxService/Previous Years ITR Filing";
+import DirectTaxationRectificationReturnSubServiceJsonData from "assets/data/SubServicePage/TaxService/Rectification Return";
+import DirectTaxationRelocationOfPanSubServiceJsonData from "assets/data/SubServicePage/TaxService/Relocation of PAN";
+import DirectTaxationRevisedReturnSubServiceJsonData from "assets/data/SubServicePage/TaxService/Revised Return";
+import DirectTaxationSurrenderOfPanSubServiceJsonData from "assets/data/SubServicePage/TaxService/Surrender of PAN";
 import About from "pages/About";
 import BlogOverview from "pages/BlogOverview";
 import ContactUsPage from "pages/ContactUs";
@@ -43,29 +53,6 @@ import SubServicePage from "pages/SubServicePage";
 import PageContextProvider from "./providers/PageContextProvider";
 import ServiceContextProvider from "./providers/ServiceContextProvider";
 import SubServiceContextProvider from "./providers/SubServiceContextProvider";
-// import ContactUs from "layouts/pages/landing-pages/contact-us";
-// import Author from "layouts/pages/landing-pages/author";
-// import SignIn from "layouts/pages/authentication/sign-in";
-
-// // Sections
-// import PageHeaders from "layouts/sections/page-sections/page-headers";
-// import Features from "layouts/sections/page-sections/featuers";
-// import Navbars from "layouts/sections/navigation/navbars";
-// import NavTabs from "layouts/sections/navigation/nav-tabs";
-// import Pagination from "layouts/sections/navigation/pagination";
-// import Inputs from "layouts/sections/input-areas/inputs";
-// import Forms from "layouts/sections/input-areas/forms";
-// import Alerts from "layouts/sections/attention-catchers/alerts";
-// import Modals from "layouts/sections/attention-catchers/modals";
-// import TooltipsPopovers from "layouts/sections/attention-catchers/tooltips-popovers";
-// import Avatars from "layouts/sections/elements/avatars";
-// import Badges from "layouts/sections/elements/badges";
-// import BreadcrumbsEl from "layouts/sections/elements/breadcrumbs";
-// import Buttons from "layouts/sections/elements/buttons";
-// import Dropdowns from "layouts/sections/elements/dropdowns";
-// import ProgressBars from "layouts/sections/elements/progress-bars";
-// import Toggles from "layouts/sections/elements/toggles";
-// import Typography from "layouts/sections/elements/typography";
 const routes = [
   {
     name: "Home",
@@ -80,25 +67,133 @@ const routes = [
     rowsPerColumn: 2,
     collapse: [
       {
-        name: "Taxation",
-        route: "/services/taxation",
+        name: "Direct Taxation",
+        route: "/services/direct-taxation",
         component: (
-          <ServiceContextProvider dict={{ name: "Taxation" }}>
-            <ServicePage jsonData={TaxServiceJsonData} />
+          <ServiceContextProvider dict={{ name: "Direct Taxation" }}>
+            <ServicePage jsonData={DirectTaxationServiceJsonData} />
           </ServiceContextProvider>
         ),
         collapse: [
           {
-            name: "Direct Taxation",
-            route: "/services/taxation/direct-taxation",
+            name: "Appeals & Assessment",
+            route: "/services/direct-taxation/appeals-and-assessment",
             component: (
               <SubServiceContextProvider
-                dict={{ name: "Direct Taxation", serviceName: "Taxation" }}
+                dict={{ name: "Appeals & Assessment", serviceName: "Direct Taxation" }}
               >
-                <SubServicePage jsonData={DirectTaxServiceJsonData} />
+                <SubServicePage jsonData={DirectTaxationAppealsAndAssessmentSubServiceJsonData} />
               </SubServiceContextProvider>
             ),
           },
+          {
+            name: "Change in Particulars of PAN",
+            route: "/services/direct-taxation/change-in-particulars-of-pan",
+            component: (
+              <SubServiceContextProvider
+                dict={{ name: "Change in Particulars of PAN", serviceName: "Direct Taxation" }}
+              >
+                <SubServicePage jsonData={DirectTaxationChangeInParticularsOfPanSubServiceJsonData} />
+              </SubServiceContextProvider>
+            ),
+          },
+          {
+            name: "Defective Return",
+            route: "/services/direct-taxation/defective-return",
+            component: (
+              <SubServiceContextProvider
+                dict={{ name: "Defective Return", serviceName: "Direct Taxation" }}
+              >
+                <SubServicePage jsonData={DirectTaxationDefectiveReturnSubServiceJsonData} />
+              </SubServiceContextProvider>
+            ),
+          },
+          {
+            name: "Fresh ITR Filing",
+            route: "/services/direct-taxation/fresh-itr-filing",
+            component: (
+              <SubServiceContextProvider
+                dict={{ name: "Fresh ITR Filing", serviceName: "Direct Taxation" }}
+              >
+                <SubServicePage jsonData={DirectTaxationFreshITRFilingSubServiceJsonData} />
+              </SubServiceContextProvider>
+            ),
+          },
+          {
+            name: "New PAN",
+            route: "/services/direct-taxation/new-pan",
+            component: (
+              <SubServiceContextProvider dict={{ name: "New PAN", serviceName: "Direct Taxation" }}>
+                <SubServicePage jsonData={DirectTaxationNewPanSubServiceJsonData} />
+              </SubServiceContextProvider>
+            ),
+          },
+          {
+            name: "PAN Activation",
+            route: "/services/direct-taxation/pan-activation",
+            component: (
+              <SubServiceContextProvider
+                dict={{ name: "PAN Activation", serviceName: "Direct Taxation" }}
+              >
+                <SubServicePage jsonData={DirectTaxationPanActivationSubServiceJsonData} />
+              </SubServiceContextProvider>
+            ),
+          },
+          {
+            name: "Previous Year's ITR Filing",
+            route: "/services/direct-taxation/previous-years-itr-filing",
+            component: (
+              <SubServiceContextProvider
+                dict={{ name: "Previous Year's ITR Filing", serviceName: "Direct Taxation" }}
+              >
+                <SubServicePage jsonData={DirectTaxationPreviousYearsITRSubServiceJsonData} />
+              </SubServiceContextProvider>
+            ),
+          },
+          {
+            name: "Rectification Return",
+            route: "/services/direct-taxation/rectification-return",
+            component: (
+              <SubServiceContextProvider
+                dict={{ name: "Rectification Return", serviceName: "Direct Taxation" }}
+              >
+                <SubServicePage jsonData={DirectTaxationRectificationReturnSubServiceJsonData} />
+              </SubServiceContextProvider>
+            ),
+          },
+          {
+            name: "Relocation of PAN",
+            route: "/services/direct-taxation/relocation-of-pan",
+            component: (
+              <SubServiceContextProvider
+                dict={{ name: "Relocation of PAN", serviceName: "Direct Taxation" }}
+              >
+                <SubServicePage jsonData={DirectTaxationRelocationOfPanSubServiceJsonData} />
+              </SubServiceContextProvider>
+            ),
+          },
+          {
+            name: "Revised Return",
+            route: "/services/direct-taxation/revised-return",
+            component: (
+              <SubServiceContextProvider
+                dict={{ name: "Revised Return", serviceName: "Direct Taxation" }}
+              >
+                <SubServicePage jsonData={DirectTaxationRevisedReturnSubServiceJsonData} />
+              </SubServiceContextProvider>
+            ),
+          },
+          {
+            name: "Surrender of PAN",
+            route: "/services/direct-taxation/surrender-of-pan",
+            component: (
+              <SubServiceContextProvider
+                dict={{ name: "Surrender of PAN", serviceName: "Direct Taxation" }}
+              >
+                <SubServicePage jsonData={DirectTaxationSurrenderOfPanSubServiceJsonData} />
+              </SubServiceContextProvider>
+            ),
+          },  
         ],
       },
     ],
@@ -133,201 +228,6 @@ const routes = [
       </PageContextProvider>
     ),
   },
-  // {
-  //   name: "pages",
-  //   icon: <Icon>dashboard</Icon>,
-  //   columns: 1,
-  //   rowsPerColumn: 2,
-  //   collapse: [
-  //     {
-  //       name: "landing pages",
-  //       collapse: [
-  //         {
-  //           name: "about us",
-  //           route: "/pages/landing-pages/about-us",
-  //           component: <AboutUs />,
-  //         },
-  //         {
-  //           name: "contact us",
-  //           route: "/pages/landing-pages/contact-us",
-  //           component: <ContactUs />,
-  //         },
-  //         {
-  //           name: "author",
-  //           route: "/pages/landing-pages/author",
-  //           component: <Author />,
-  //         },
-  //       ],
-  //     },
-  //     {
-  //       name: "account",
-  //       collapse: [
-  //         {
-  //           name: "sign in",
-  //           route: "/pages/authentication/sign-in",
-  //           component: <SignIn />,
-  //         },
-  //       ],
-  //     },
-  //   ],
-  // },
-  // {
-  //   name: "sections",
-  //   icon: <Icon>view_day</Icon>,
-  //   collapse: [
-  //     {
-  //       name: "page sections",
-  //       description: "See all sections",
-  //       dropdown: true,
-  //       collapse: [
-  //         {
-  //           name: "page headers",
-  //           route: "/sections/page-sections/page-headers",
-  //           component: <PageHeaders />,
-  //         },
-  //         {
-  //           name: "features",
-  //           route: "/sections/page-sections/features",
-  //           component: <Features />,
-  //         },
-  //       ],
-  //     },
-  //     {
-  //       name: "navigation",
-  //       description: "See all navigations",
-  //       dropdown: true,
-  //       collapse: [
-  //         {
-  //           name: "navbars",
-  //           route: "/sections/navigation/navbars",
-  //           component: <Navbars />,
-  //         },
-  //         {
-  //           name: "nav tabs",
-  //           route: "/sections/navigation/nav-tabs",
-  //           component: <NavTabs />,
-  //         },
-  //         {
-  //           name: "pagination",
-  //           route: "/sections/navigation/pagination",
-  //           component: <Pagination />,
-  //         },
-  //       ],
-  //     },
-  //     {
-  //       name: "input areas",
-  //       description: "See all input areas",
-  //       dropdown: true,
-  //       collapse: [
-  //         {
-  //           name: "inputs",
-  //           route: "/sections/input-areas/inputs",
-  //           component: <Inputs />,
-  //         },
-  //         {
-  //           name: "forms",
-  //           route: "/sections/input-areas/forms",
-  //           component: <Forms />,
-  //         },
-  //       ],
-  //     },
-  //     {
-  //       name: "attention catchers",
-  //       description: "See all examples",
-  //       dropdown: true,
-  //       collapse: [
-  //         {
-  //           name: "alerts",
-  //           route: "/sections/attention-catchers/alerts",
-  //           component: <Alerts />,
-  //         },
-  //         {
-  //           name: "modals",
-  //           route: "/sections/attention-catchers/modals",
-  //           component: <Modals />,
-  //         },
-  //         {
-  //           name: "tooltips & popovers",
-  //           route: "/sections/attention-catchers/tooltips-popovers",
-  //           component: <TooltipsPopovers />,
-  //         },
-  //       ],
-  //     },
-  //     {
-  //       name: "elements",
-  //       description: "See all 32 examples",
-  //       dropdown: true,
-  //       collapse: [
-  //         {
-  //           name: "avatars",
-  //           route: "/sections/elements/avatars",
-  //           component: <Avatars />,
-  //         },
-  //         {
-  //           name: "badges",
-  //           route: "/sections/elements/badges",
-  //           component: <Badges />,
-  //         },
-  //         {
-  //           name: "breadcrumbs",
-  //           route: "/sections/elements/breadcrumbs",
-  //           component: <BreadcrumbsEl />,
-  //         },
-  //         {
-  //           name: "buttons",
-  //           route: "/sections/elements/buttons",
-  //           component: <Buttons />,
-  //         },
-  //         {
-  //           name: "dropdowns",
-  //           route: "/sections/elements/dropdowns",
-  //           component: <Dropdowns />,
-  //         },
-  //         {
-  //           name: "progress bars",
-  //           route: "/sections/elements/progress-bars",
-  //           component: <ProgressBars />,
-  //         },
-  //         {
-  //           name: "toggles",
-  //           route: "/sections/elements/toggles",
-  //           component: <Toggles />,
-  //         },
-  //         {
-  //           name: "typography",
-  //           route: "/sections/elements/typography",
-  //           component: <Typography />,
-  //         },
-  //       ],
-  //     },
-  //   ],
-  // },
-  // {
-  //   name: "docs",
-  //   icon: <Icon>article</Icon>,
-  //   collapse: [
-  //     {
-  //       name: "getting started",
-  //       description: "All about overview, quick start, license and contents",
-  //       href: "https://www.creative-tim.com/learning-lab/react/quick-start/material-kit/",
-  //     },
-  //     {
-  //       name: "foundation",
-  //       description: "See our colors, icons and typography",
-  //       href: "https://www.creative-tim.com/learning-lab/react/colors/material-kit/",
-  //     },
-  //     {
-  //       name: "components",
-  //       description: "Explore our collection of fully designed components",
-  //       href: "https://www.creative-tim.com/learning-lab/react/alerts/material-kit/",
-  //     },
-  //     {
-  //       name: "plugins",
-  //       description: "Check how you can integrate our plugins",
-  //       href: "https://www.creative-tim.com/learning-lab/react/datepicker/material-kit/",
-  //     },
-  //   ],
-  // },
 ];
 
 const getRouteDict = (currentRoute) => {
