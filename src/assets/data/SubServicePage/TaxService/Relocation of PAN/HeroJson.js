@@ -5,10 +5,10 @@ import HeroImage from "assets/images/SubServicePage/TaxService/DirectTaxation/he
 
 export const HeroJson = {
   caption: "Get to know more about",
-  title: "Direct Taxation",
+  title: "Relocation of PAN",
   image: HeroImage,
   description:
-    "Direct Taxation is a tax that is paid directly to the government by the taxpayer. It is a tax applied to individuals and organizations directly by the government e.g. income tax, corporation tax, wealth tax etc. Direct tax is a type of tax where the impact and the incidence fall on the same entity.",
+    "Moved to a different state or city in India? You need to relocate your PAN to the new jurisdiction for smoother communication and updates from the Income Tax Department. We handle the entire process on your behalf, hassle-free.",
   buttons: [
     {
       label: "Get Started",

@@ -1,14 +1,14 @@
-// Images
+/// Images
 import { SaveAltOutlined } from "@mui/icons-material";
 import SendIcon from "@mui/icons-material/Send";
 import HeroImage from "assets/images/SubServicePage/TaxService/DirectTaxation/hero.png";
 
 export const HeroJson = {
   caption: "Get to know more about",
-  title: "Direct Taxation",
+  title: "Change in Particulars of PAN",
   image: HeroImage,
   description:
-    "Direct Taxation is a tax that is paid directly to the government by the taxpayer. It is a tax applied to individuals and organizations directly by the government e.g. income tax, corporation tax, wealth tax etc. Direct tax is a type of tax where the impact and the incidence fall on the same entity.",
+    "Need to update your PAN details due to a name change, incorrect date of birth, or address update? We make the process of correcting your PAN details smooth, accurate, and fully compliant with the Income Tax Department.",
   buttons: [
     {
       label: "Get Started",

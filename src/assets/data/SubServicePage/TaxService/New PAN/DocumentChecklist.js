@@ -1,19 +1,26 @@
-import BankStatementImage from "assets/images/SubServicePage/TaxService/DirectTaxation/bank_statement.png";
-import Form16Image from "assets/images/SubServicePage/TaxService/DirectTaxation/form_16.png";
-import { DefaultDocumentChecklist } from "../../DefaultDocumentChecklist";
+
+import AadharCardImage from "assets/images/default/aadhar.png";
+import PassportImage from "assets/images/default/passport.png";
+import DefaultFormFields from "../../../Form/DefaultFormFields";
+
 export const DocumentChecklist = {
-  ...DefaultDocumentChecklist,
+  inputs: [
+    DefaultFormFields.name,
+    DefaultFormFields.phone,
+    DefaultFormFields.email,
+  ],
+  buttonText: "Request Callback",
   documents: [
-    ...DefaultDocumentChecklist.documents,
     {
-      title: "Bank Statements",
-      des: "A bank statement is a summary of financial transactions that occurred at a certain institution during a specific time period.",
-      image: BankStatementImage,
+      title: "Aadhar Card",
+      des: "Aadhar is a 12-digit unique identification number issued by the Unique Identification Authority of India (UIDAI).",
+      image: AadharCardImage,
     },
     {
-      title: "Form 16",
-      des: "Form 16 is a certificate issued by an employer to their employees as proof of the tax deducted at source (TDS) on the salary income.",
-      image: Form16Image,
+      title: "Passport",
+      des: "A passport is a travel document, usually issued by a country's government to its citizens, that certifies the identity",
+      image: PassportImage,
     },
   ],
 };
+

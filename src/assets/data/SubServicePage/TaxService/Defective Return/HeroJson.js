@@ -5,10 +5,10 @@ import HeroImage from "assets/images/SubServicePage/TaxService/DirectTaxation/he
 
 export const HeroJson = {
   caption: "Get to know more about",
-  title: "Direct Taxation",
+  title: "Defective Returns",
   image: HeroImage,
   description:
-    "Direct Taxation is a tax that is paid directly to the government by the taxpayer. It is a tax applied to individuals and organizations directly by the government e.g. income tax, corporation tax, wealth tax etc. Direct tax is a type of tax where the impact and the incidence fall on the same entity.",
+    "Received a notice for defective return under Section 139(9)? Don't worry! A defective return simply means there's an error or missing information in your filed ITR. We help you understand the issue, correct it, and refile on time to avoid penalties.",
   buttons: [
     {
       label: "Get Started",
@@ -24,3 +24,4 @@ export const HeroJson = {
     },
   ],
 };
+

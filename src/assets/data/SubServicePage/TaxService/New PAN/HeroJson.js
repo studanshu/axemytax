@@ -5,10 +5,10 @@ import HeroImage from "assets/images/SubServicePage/TaxService/DirectTaxation/he
 
 export const HeroJson = {
   caption: "Get to know more about",
-  title: "Direct Taxation",
+  title: "New PAN",
   image: HeroImage,
   description:
-    "Direct Taxation is a tax that is paid directly to the government by the taxpayer. It is a tax applied to individuals and organizations directly by the government e.g. income tax, corporation tax, wealth tax etc. Direct tax is a type of tax where the impact and the incidence fall on the same entity.",
+    "Need a new PAN card for yourself or your business? We help you apply for a PAN card quickly and correctly, ensuring all your details are submitted as per Income Tax Department guidelines. Hassle-free and completely online!",
   buttons: [
     {
       label: "Get Started",

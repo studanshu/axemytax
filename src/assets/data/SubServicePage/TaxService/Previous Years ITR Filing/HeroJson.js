@@ -5,10 +5,10 @@ import HeroImage from "assets/images/SubServicePage/TaxService/DirectTaxation/he
 
 export const HeroJson = {
   caption: "Get to know more about",
-  title: "Direct Taxation",
+  title: "Belated ITR",
   image: HeroImage,
   description:
-    "Direct Taxation is a tax that is paid directly to the government by the taxpayer. It is a tax applied to individuals and organizations directly by the government e.g. income tax, corporation tax, wealth tax etc. Direct tax is a type of tax where the impact and the incidence fall on the same entity.",
+    "Missed the deadline to file your Income Tax Return? No worries! You can still file a Belated ITR. We help you file it correctly, avoid further penalties, and stay compliant with the Income Tax Department.",
   buttons: [
     {
       label: "Get Started",

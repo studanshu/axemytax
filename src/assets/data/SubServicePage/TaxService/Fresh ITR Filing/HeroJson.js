@@ -5,10 +5,10 @@ import HeroImage from "assets/images/SubServicePage/TaxService/DirectTaxation/he
 
 export const HeroJson = {
   caption: "Get to know more about",
-  title: "Direct Taxation",
+  title: "Fresh ITR Filing",
   image: HeroImage,
   description:
-    "Direct Taxation is a tax that is paid directly to the government by the taxpayer. It is a tax applied to individuals and organizations directly by the government e.g. income tax, corporation tax, wealth tax etc. Direct tax is a type of tax where the impact and the incidence fall on the same entity.",
+    "Filing your Income Tax Return (ITR) for the first time? We make it easy! Whether you're salaried, self-employed, or have investments, we'll guide you step-by-step to file your return accurately and on time.",
   buttons: [
     {
       label: "Get Started",
