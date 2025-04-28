@@ -1,4 +1,4 @@
-import BankStatementImage from "assets/images/SubServicePage/TaxService/DirectTaxation/bank_statement.png";
+import BankStatementImage from "assets/images/default/bank_statement.png";
 import PanCardImage from "assets/images/default/pan_card.png";
 import DefaultFormFields from "../../../Form/DefaultFormFields";
 

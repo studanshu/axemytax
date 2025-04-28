@@ -31,8 +31,8 @@ function WhyUs({ jsonData }) {
               className="whyUsContent"
             >
               <SectionHeader
-                caption={jsonData.caption}
-                title={jsonData.title}
+                caption={jsonData.caption ? jsonData.caption : "Expert Service, Unmatched"}
+                title={jsonData.title ? jsonData.title : "Why Choose Us?"}
                 sx={{ px: { xs: 5, lg: 0 } }}
               />
               <ReasonCards reasons={jsonData.reasons} />

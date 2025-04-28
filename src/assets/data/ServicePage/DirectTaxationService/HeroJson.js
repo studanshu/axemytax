@@ -1,7 +1,7 @@
 // Images
 import { SaveAltOutlined } from "@mui/icons-material";
 import SendIcon from "@mui/icons-material/Send";
-import HeroImage from "assets/images/ServicePage/TaxService/service_page_tax.png";
+import HeroImage from "assets/images/ServicePage/TaxService/hero.png";
 
 export const HeroJson = {
   caption: "Income Tax Services - Making Taxes Simple for you",

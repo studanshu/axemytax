@@ -12,8 +12,8 @@ const InlineForm = ({ FormJson, flexDirection }) => {
         <Grid item xs={12} lg={6} p={0}>
           <Box display="flex" flexDirection="column" gap={6}>
             <SectionHeader
-              caption={FormJson.caption}
-              title={FormJson.title}
+              caption={FormJson.caption ? FormJson.caption : ""}
+              title={FormJson.title ? FormJson.title : ""}
               variant="h2"
               color="secondary"
             />

@@ -36,8 +36,8 @@ function Testimonial({ jsonData }) {
           }}
         >
           <SectionHeader
-            caption={TestimonialJson.caption}
-            title={TestimonialJson.title}
+            caption={TestimonialJson.caption ? TestimonialJson.caption : "Our Reviews"}
+            title={TestimonialJson.title ? TestimonialJson.title : "What Our Clients Say"}
           />
           <CustomSlider sx={{ mt: 6 }}>
             {TestimonialJson.reviews.map((testimonial) => (
@@ -48,7 +48,7 @@ function Testimonial({ jsonData }) {
                 height="100%"
               >
                 <MKTypography variant="h5Light" color="secondary">
-                  {testimonial.name}
+                  {testimonial.name ? testimonial.name : ""}
                 </MKTypography>
 
                 <MKTypography
@@ -61,7 +61,7 @@ function Testimonial({ jsonData }) {
                   }}
                 >
                   <AccessTimeIcon sx={{ fontSize: `${size.md} !important` }} />
-                  {testimonial.duration}
+                  {testimonial.duration ? testimonial.duration : ""}
                 </MKTypography>
 
                 <MKTypography
@@ -71,7 +71,7 @@ function Testimonial({ jsonData }) {
                     mt: 3,
                   }}
                 >
-                  {testimonial.comment}
+                  {testimonial.comment ? testimonial.comment : ""}
                 </MKTypography>
 
                 <Box
@@ -81,7 +81,7 @@ function Testimonial({ jsonData }) {
                     },
                   }}
                 >
-                  {testimonial.rating}
+                  {testimonial.rating ? testimonial.rating : ""}
                 </Box>
               </Paper>
             ))}
