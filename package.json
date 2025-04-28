@@ -5,8 +5,8 @@
   "author": "Hemanshu Bahety",
   "description": "Tax Consultation Website",
   "engines": {
-    "node": "14 || 15 || 16",
-    "npm": ">=6"
+    "node": "22.x",
+    "npm": ">=10"
   },
   "dependencies": {
     "@emotion/cache": "11.4.0",

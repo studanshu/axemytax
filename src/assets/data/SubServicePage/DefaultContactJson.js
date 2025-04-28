@@ -1,5 +1,5 @@
 // Images
-import HeroImage from "assets/images/SubServicePage/TaxService/DirectTaxation/hero.png";
+import HeroImage from "assets/images/SubServicePage/DirectTaxation/hero.png";
 import DefaultFormFields from "../Form/DefaultFormFields";
 
 export const DefaultContactJson = {

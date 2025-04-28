@@ -16,8 +16,8 @@ export const Resources = ({ jsonData }) => {
         >
           <Grid item>
             <SectionHeader
-              caption={ResourcesJson.caption}
-              title={ResourcesJson.title}
+              caption={ResourcesJson.caption ? ResourcesJson.caption : ""}
+              title={ResourcesJson.title ? ResourcesJson.title : ""}
             />
           </Grid>
           <Grid item>
@@ -26,9 +26,9 @@ export const Resources = ({ jsonData }) => {
                 <Grid item key={index} xs={12} md={5} xl={3}>
                   <FilledInfoCard
                     color="secondary"
-                    icon={resource.icon}
-                    title={resource.headline}
-                    description={resource.description}
+                    icon={resource.icon ? resource.icon : <></>}
+                    title={resource.headline ? resource.headline : ""}
+                    description={resource.description ? resource.description : ""}
                     action={{
                       type: "external",
                       route: resource.link,

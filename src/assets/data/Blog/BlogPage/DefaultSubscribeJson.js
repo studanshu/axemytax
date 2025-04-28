@@ -1,6 +1,6 @@
 // Images
 import { getFieldPayload } from "assets/data/Form/DefaultFormFields";
-import HeroImage from "assets/images/SubServicePage/TaxService/DirectTaxation/hero.png";
+import HeroImage from "assets/images/SubServicePage/DirectTaxation/hero.png";
 
 export const DefaultSubscribeJson = {
   caption: "Enjoyed Reading the Blog",

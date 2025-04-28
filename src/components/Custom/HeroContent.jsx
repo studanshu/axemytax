@@ -11,17 +11,17 @@ const { size } = typography;
 const HeroContent = ({ HeroJson, flexDirection = "row" }) => {
   return (
     <>
-      <Grid container spacing={8} direction={flexDirection}>
+      <Grid container spacing={8} direction={flexDirection ? flexDirection : "row"}>
         <Grid item xs={12} lg={6} p={0}>
           <Box display="flex" flexDirection="column" gap={6}>
             <SectionHeader
-              caption={HeroJson.caption}
-              title={HeroJson.title}
+              caption={HeroJson.caption ? HeroJson.caption : ""}
+              title={HeroJson.title ? HeroJson.title : ""}
               variant="h2"
               color="black"
             />
             <MKTypography variant="body1" color="black75">
-              {HeroJson.description}
+              {HeroJson.description ? HeroJson.description : ""}
             </MKTypography>
           </Box>
         </Grid>
@@ -40,8 +40,8 @@ const HeroContent = ({ HeroJson, flexDirection = "row" }) => {
             <Grid item xs={12} md={6} key={index}>
               <MKButton
                 size="large"
-                variant={button.variant}
-                color={button.color}
+                variant={button.variant ? button.variant : "contained"}
+                color={button.color ? button.color : "primary"}
                 sx={{
                   textTransform: "capitalize",
                   fontSize: size.lg,
@@ -51,9 +51,9 @@ const HeroContent = ({ HeroJson, flexDirection = "row" }) => {
                       ? "0px 105.68352508544922px 84.54682159423828px 0px rgba(0, 0, 0, 7%), 0px 44.15205383300781px 35.3216438293457px 0px rgba(0, 0, 0, 5%), 0px 23.605802536010742px 18.884639739990234px 0px rgba(0, 0, 0, 4%), 0px 13.2332181930542px 10.586573600769043px 0px rgba(0, 0, 0, 4%), 0px 7.0280632972717285px 5.62244987487793px 0px rgba(0, 0, 0, 3%), 0px 2.924534320831299px 2.339627265930176px 0px rgba(0, 0, 0, 2%);"
                       : undefined,
                 }}
-                endIcon={button.icon}
+                endIcon={button.icon ? button.icon : <></>}
               >
-                {button.label}
+                {button.label ? button.label : ""}
               </MKButton>
             </Grid>
           ))}

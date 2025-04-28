@@ -27,10 +27,10 @@ const SectionHeader = ({
         alignItems={alignItems}
       >
         <MKTypography item variant="caption" color="info">
-          {caption}
+          {caption ? caption : ""}
         </MKTypography>
         <MKTypography item variant={variant} color={color}>
-          {title}
+          {title ? title : ""}
         </MKTypography>
       </Grid2>
     </Grid2>
