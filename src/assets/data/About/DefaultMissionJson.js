@@ -1,5 +1,5 @@
 // Images
-import MissionImage from "assets/images/SubServicePage/TaxService/DirectTaxation/hero.png";
+import MissionImage from "assets/images/SubServicePage/DirectTaxation/hero.png";
 
 export const DefaultMissionJson = {
   caption: "What drives us?",

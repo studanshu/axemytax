@@ -30,7 +30,7 @@ const { light, white } = colors;
 const SubService = ({ jsonData }) => {
   const SubServiceJson = jsonData;
   const ctaKeys = Object.keys(SubServiceJson.cta);
-  const [selSubService, setSelSubService] = useState(ctaKeys[1]);
+  const [selSubService, setSelSubService] = useState(ctaKeys[0]);
   const cta = SubServiceJson.cta[selSubService] || {};
   const content = cta["content"] || [];
 
@@ -50,8 +50,8 @@ const SubService = ({ jsonData }) => {
             sx={{ gap: { xs: 4, xl: 5 } }}
           >
             <SectionHeader
-              caption={SubServiceJson.caption}
-              title={SubServiceJson.title}
+              caption={SubServiceJson.caption ? SubServiceJson.caption : "Making Simpler For You"}
+              title={SubServiceJson.title ? SubServiceJson.title : "Our Services"}
               sx={{ mt: { xs: 2, lg: 6 }, px: { xs: 5, lg: 0 } }}
             />
             <Grid
@@ -121,7 +121,7 @@ const SubService = ({ jsonData }) => {
                         sx={{ textAlign: "center", zIndex: 1 }}
                         px={5}
                       >
-                        {cta.title}
+                        {cta.title ? cta.title : ""}
                       </MKTypography>
                       <MKTypography
                         item
@@ -133,7 +133,7 @@ const SubService = ({ jsonData }) => {
                           zIndex: 1,
                         }}
                       >
-                        {cta.des}
+                        {cta.des ? cta.des : ""}
                       </MKTypography>
 
                       {cta.action && (
@@ -149,7 +149,7 @@ const SubService = ({ jsonData }) => {
                           endIcon={<SendIcon />}
                           href={serviceRouteDict[currentService][selSubService]}
                         >
-                          {cta.action}
+                          {cta.action ? cta.action : ""}
                         </MKButton>
                       )}
                     </Grid>
@@ -172,7 +172,7 @@ const SubService = ({ jsonData }) => {
                           gap={1}
                           xs={4}
                         >
-                          {item.icon}
+                          {item.icon ? item.icon : <></>}
 
                           <MKTypography
                             variant="h6"
@@ -181,11 +181,11 @@ const SubService = ({ jsonData }) => {
                               fontWeight: fontWeightMedium,
                             }}
                           >
-                            {item.title}
+                            {item.title ? item.title : ""}
                           </MKTypography>
 
                           <MKTypography variant="subtitle2" color="black50">
-                            {item.des}
+                            {item.des ? item.des : ""}
                           </MKTypography>
                         </Grid>
                       ))}

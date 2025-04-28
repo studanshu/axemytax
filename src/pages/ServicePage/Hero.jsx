@@ -18,8 +18,8 @@ function Hero({ jsonData }) {
       <Container>
         <Box pt={24} px={4}>
           <HeroContent
-            HeroJson={HeroJson}
-            flexDirection={HeroJson.flexDirection}
+            HeroJson={HeroJson || {}}
+            flexDirection={HeroJson && HeroJson.flexDirection ? HeroJson.flexDirection : "row"}
           />
         </Box>
       </Container>

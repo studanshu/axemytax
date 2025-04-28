@@ -39,14 +39,14 @@ const ReasonCards = ({ reasons }) => (
             className="textContent"
           >
             <MKTypography variant="h5" color="black75">
-              {reason.title}
+              {reason.title ? reason.title : ""}
             </MKTypography>
             <MKTypography
               variant="subtitle1"
               color="black50"
               textAlign="center"
             >
-              {reason.des}
+              {reason.des ? reason.des : ""}
             </MKTypography>
           </Grid>
         </Grid>

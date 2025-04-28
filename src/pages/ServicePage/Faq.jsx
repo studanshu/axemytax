@@ -43,8 +43,8 @@ function Faq({ jsonData }) {
               <Grid container spacing={6} className="faqContent">
                 <Grid item xs={12}>
                   <SectionHeader
-                    caption={FaqJson.caption}
-                    title={FaqJson.title}
+                    caption={FaqJson.caption ? FaqJson.caption : "We're here to help!"}
+                    title={FaqJson.title ? FaqJson.title : "Frequently Asked Questions"}
                     alignItems="flex-end"
                   />
                 </Grid>

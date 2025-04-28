@@ -8,7 +8,7 @@ import FactCheckOutlinedIcon from "@mui/icons-material/FactCheckOutlined";
 import colors from "assets/theme/base/colors";
 
 // Images
-import ctaImage from "assets/images/ServicePage/TaxService/tax_image.png";
+import ctaImage from "assets/images/ServicePage/TaxService/sub_service.png";
 
 const iconStyle = {
   color: colors.primary.main,

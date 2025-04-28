@@ -28,7 +28,7 @@ export const WhyUsJson = {
   secondaryTitle: "I require help with",
   checkboxes: {
     ...DefaultFormFields.checkboxCollection,
-    options: DefaultFormFields.service.options.Taxation.options,
+    options: DefaultFormFields.service.options["Direct Taxation"].options,
   },
   dropdownBusiness: { ...DefaultFormFields.businessType, required: true },
   email: DefaultFormFields.email,
