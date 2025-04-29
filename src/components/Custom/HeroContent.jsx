@@ -30,7 +30,7 @@ const HeroContent = ({ HeroJson, flexDirection = "row" }) => {
             src={HeroJson.image}
             alt="Hero Section Image"
             effect="blur"
-            style={{ maxWidth: "100%", height: "auto" }}
+            style={{ maxWidth: "100%", maxHeight: "auto" }}
           />
         </Grid>
       </Grid>

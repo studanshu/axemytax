@@ -1,5 +1,5 @@
 // TestimonialComponent.jsx
-import Grid2 from "@mui/material/Grid2";
+import { Grid } from "@mui/material";
 import PropTypes from "prop-types"; // Import PropTypes library
 import MKTypography from "../MKTypography"; // Adjust the import path as necessary
 
@@ -12,18 +12,18 @@ const SectionHeader = ({
   sx,
 }) => {
   return (
-    <Grid2
+    <Grid
       container
       alignItems={alignItems}
       display="flex"
       flexDirection="column"
       sx={sx}
     >
-      <Grid2
+      <Grid
         item
         display="flex"
         flexDirection="column"
-        gap={1}
+        sx={{ gap: 1 }}
         alignItems={alignItems}
       >
         <MKTypography item variant="caption" color="info">
@@ -32,8 +32,8 @@ const SectionHeader = ({
         <MKTypography item variant={variant} color={color}>
           {title ? title : ""}
         </MKTypography>
-      </Grid2>
-    </Grid2>
+      </Grid>
+    </Grid>
   );
 };
 
