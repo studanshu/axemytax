@@ -97,7 +97,7 @@ const DirectTaxationRoutes = {
       ],
     },
     {
-      name: "Filing Services",
+      name: "ITR Filing",
       collapse: [
         {
           name: "Defective Return",
