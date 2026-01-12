@@ -27,7 +27,7 @@ import pxToRem from "assets/theme/functions/pxToRem";
 
 const { grey } = colors;
 
-export default {
+const borders = {
   borderColor: grey[300],
 
   borderWidth: {
@@ -49,3 +49,5 @@ export default {
     section: pxToRem(160),
   },
 };
+
+export default borders;
