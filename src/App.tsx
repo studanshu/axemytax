@@ -13,7 +13,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "./assets/theme";
 
 // Material Kit 2 React routes
-import BlogContent from "./pages/BlogContent";
+import BlogContent from "./pages/BlogContent/BlogContent";
 import NotFound from "./pages/NotFound";
 import routes from "./routes";
 

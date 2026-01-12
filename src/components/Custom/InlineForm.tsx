@@ -4,7 +4,17 @@ import SectionHeader from "components/Custom/SectionHeader";
 import { FC } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import CustomForm from "./Form/CustomForm";
-import { FormInput } from "./Form/CustomForm";
+
+interface FormInput {
+  id: string;
+  label: string;
+  formLabel: string;
+  type: string;
+  fieldType: string;
+  spacing?: string;
+  required?: boolean;
+  options?: string[];
+}
 
 interface FormJsonData {
   caption?: string;
@@ -12,7 +22,8 @@ interface FormJsonData {
   description?: string;
   image: string;
   inputs: FormInput[];
-  buttonText: string;
+  buttonText?: string;
+  button?: string;
 }
 
 interface InlineFormProps {
@@ -32,7 +43,7 @@ const InlineForm: FC<InlineFormProps> = ({ FormJson, flexDirection = "row" }) =>
               variant="h2"
               color="secondary"
             />
-            <CustomForm jsonData={FormJson} />
+            <CustomForm jsonData={FormJson as any} />
           </Box>
         </Grid>
         <Grid

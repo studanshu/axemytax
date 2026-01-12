@@ -30,8 +30,10 @@ import RssFeedIcon from "@mui/icons-material/RssFeed";
 
 // // Pages
 import AboutJsonData from "assets/data/About/index";
-import BlogOverviewJsonData from "assets/data/Blog/BlogOverview/index";
 import ContactUsJsonData from "assets/data/ContactUs/index";
+
+// CMS-powered components
+import BlogOverview from "pages/BlogOverview/BlogOverview";
 
 // Import all service routes
 import DirectTaxationRoutes from "./routes/DirectTaxationRoutes";
@@ -47,7 +49,6 @@ import ConsultingRoutes from "./routes/ConsultingRoutes";
 import OthersRoutes from "./routes/OthersRoutes";
 
 import About from "pages/About";
-import BlogOverview from "pages/BlogOverview";
 import ContactUsPage from "pages/ContactUs";
 import LandingPage from "pages/LandingPage";
 import PageContextProvider from "./providers/PageContextProvider";
@@ -96,7 +97,7 @@ const routes: Route[] = [
     route: "/blogs",
     component: (
       <PageContextProvider dict={{ name: "BlogOverview" }}>
-        <BlogOverview jsonData={BlogOverviewJsonData} />
+        <BlogOverview />
       </PageContextProvider>
     ),
   },

@@ -4,9 +4,19 @@ import CustomForm from "components/Custom/Form/CustomForm";
 import SectionHeader from "components/Custom/SectionHeader";
 import { Suspense, FC } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { FormInput } from "components/Custom/Form/CustomForm";
 
 const renderLoader = () => <></>;
+
+interface FormInput {
+  id: string;
+  label: string;
+  formLabel: string;
+  type: string;
+  fieldType: string;
+  spacing?: string;
+  required?: boolean;
+  options?: string[];
+}
 
 interface ContactFieldJsonData {
   flexDirection: string;
@@ -14,7 +24,8 @@ interface ContactFieldJsonData {
   title: string;
   image: string;
   inputs: FormInput[];
-  buttonText: string;
+  buttonText?: string;
+  button?: string;
 }
 
 interface ContactFieldProps {
@@ -56,7 +67,7 @@ const ContactField: FC<ContactFieldProps> = ({ jsonData }) => {
               </Grid>
             </Grid>
             <Grid item xs={12} lg={6} className="formContent">
-              <CustomForm jsonData={jsonData} />
+              <CustomForm jsonData={jsonData as any} />
             </Grid>
           </Grid>
         </Box>

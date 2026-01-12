@@ -1,7 +1,16 @@
 import { Box, Container } from "@mui/material";
 import InlineForm from "components/Custom/InlineForm";
 import { Suspense, FC } from "react";
-import { FormInput } from "components/Custom/Form/CustomForm";
+
+interface FormInput {
+  label: string;
+  formLabel: string;
+  type: string;
+  fieldType: string;
+  spacing?: string;
+  required?: boolean;
+  options?: string[];
+}
 
 interface ContactJsonData {
   caption?: string;
@@ -26,7 +35,7 @@ const Contact: FC<ContactProps> = ({ jsonData }) => {
       <Container sx={{ my: 24 }}>
         <Box px={4}>
           <InlineForm
-            FormJson={jsonData}
+            FormJson={jsonData as any}
             flexDirection={jsonData.flexDirection}
           />
         </Box>

@@ -6,8 +6,6 @@ import Grid from "@mui/material/Grid";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
-// json data
-import { DefaultOverviewJson } from "assets/data/Blog/BlogOverview/DefaultOverviewJson";
 import CenteredBlogCard from "examples/Cards/BlogCards/CenteredBlogCard";
 
 interface BlogPost {
@@ -18,13 +16,20 @@ interface BlogPost {
   date: string;
 }
 
+// Placeholder data - replace with usePosts hook from google-sheets-cms
+const placeholderBlogs: BlogPost[] = [
+  {
+    img: "/placeholder-blog.jpg",
+    title: "Getting Started with Tax Planning",
+    description: "Learn the basics of effective tax planning for your business.",
+    href: "/blogs",
+    date: "2026-01-01",
+  },
+];
+
 const Blogs: FC = () => {
   const getLatestBlogs = useMemo(
-    () =>
-      (Object.values(DefaultOverviewJson.blogOverview)
-        .flat() as BlogPost[])
-        .sort((a: BlogPost, b: BlogPost) => new Date(b.date).getTime() - new Date(a.date).getTime())
-        .slice(0, 4),
+    () => placeholderBlogs.slice(0, 4),
     []
   );
 
