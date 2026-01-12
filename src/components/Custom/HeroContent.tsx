@@ -1,0 +1,86 @@
+import { Box, Grid } from "@mui/material";
+import typography from "assets/theme/base/typography";
+import SectionHeader from "components/Custom/SectionHeader";
+import MKButton from "components/MKButton";
+import MKTypography from "components/MKTypography";
+import { FC, ReactElement } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
+const { size } = typography;
+
+interface HeroButton {
+  variant?: string;
+  color?: string;
+  icon?: ReactElement;
+  label?: string;
+}
+
+interface HeroJsonData {
+  caption?: string;
+  title?: string;
+  description?: string;
+  image: string;
+  buttons?: HeroButton[];
+}
+
+interface HeroContentProps {
+  HeroJson: HeroJsonData;
+  flexDirection?: "row" | "row-reverse";
+}
+
+const HeroContent: FC<HeroContentProps> = ({ HeroJson, flexDirection = "row" }) => {
+  return (
+    <>
+      <Grid container spacing={8} direction={flexDirection ? flexDirection : "row"}>
+        <Grid item xs={12} lg={6} p={0}>
+          <Box display="flex" flexDirection="column" gap={6}>
+            <SectionHeader
+              caption={HeroJson.caption ? HeroJson.caption : ""}
+              title={HeroJson.title ? HeroJson.title : ""}
+              variant="h2"
+              color="black"
+            />
+            <MKTypography variant="body1" color="black75">
+              {HeroJson.description ? HeroJson.description : ""}
+            </MKTypography>
+          </Box>
+        </Grid>
+        <Grid item xs={12} lg={6}>
+          <LazyLoadImage
+            src={HeroJson.image}
+            alt="Hero Section Image"
+            effect="blur"
+            style={{ maxWidth: "100%", maxHeight: "auto" }}
+          />
+        </Grid>
+      </Grid>
+      {HeroJson.buttons && HeroJson.buttons.length > 0 && (
+        <Grid item container spacing={3} mt={8} xs={12} lg={6}>
+          {HeroJson.buttons.map((button, index) => (
+            <Grid item xs={12} md={6} key={index}>
+              <MKButton
+                size="large"
+                variant={button.variant ? (button.variant as any) : "contained"}
+                color={button.color ? (button.color as any) : "primary"}
+                sx={{
+                  textTransform: "capitalize",
+                  fontSize: size.lg,
+                  width: "100%",
+                  boxShadow:
+                    button.variant === "contained"
+                      ? "0px 105.68352508544922px 84.54682159423828px 0px rgba(0, 0, 0, 7%), 0px 44.15205383300781px 35.3216438293457px 0px rgba(0, 0, 0, 5%), 0px 23.605802536010742px 18.884639739990234px 0px rgba(0, 0, 0, 4%), 0px 13.2332181930542px 10.586573600769043px 0px rgba(0, 0, 0, 4%), 0px 7.0280632972717285px 5.62244987487793px 0px rgba(0, 0, 0, 3%), 0px 2.924534320831299px 2.339627265930176px 0px rgba(0, 0, 0, 2%);"
+                      : undefined,
+                }}
+                endIcon={button.icon ? button.icon : <></>}
+              >
+                {button.label ? button.label : ""}
+              </MKButton>
+            </Grid>
+          ))}
+        </Grid>
+      )}
+    </>
+  );
+};
+
+export default HeroContent;

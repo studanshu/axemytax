@@ -13,6 +13,7 @@ export interface RouteCollapse {
   key?: string;
   columns?: number;
   rowsPerColumn?: number;
+  href?: string;
 }
 
 export interface Route {
@@ -25,11 +26,13 @@ export interface Route {
   columns?: number;
   rowsPerColumn?: number;
   dropdown?: boolean;
+  href?: string;
 }
 
 export interface FooterLink {
-  href: string;
+  href?: string;
   name: string;
+  route?: string;
 }
 
 export interface FooterSection {
