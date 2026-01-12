@@ -18,11 +18,11 @@ export const Considerations = {
       rightIconColor: "secondary",
       heading: "Our Approach",
       bullets: [
-        "📋 **Initial Assessment** – We begin by reviewing your current financial records and understanding your business structure to create a tailored bookkeeping system.",
-        "📊 **Data Organization** – We sort and categorize all your financial transactions, ensuring each entry is properly classified and documented.",
-        "💼 **Entry Processing** – We meticulously record up to 100 accounting entries, including sales, purchases, expenses, and other financial transactions.",
-        "📝 **Financial Reporting** – We prepare basic financial statements including income statements and balance sheets to give you clear visibility into your business's financial health.",
-        "🔄 **Regular Updates** – We maintain ongoing communication, providing you with updated financial records and answering any questions you may have.",
+        "**Initial Assessment** – We begin by reviewing your current financial records and understanding your business structure to create a tailored bookkeeping system.",
+        "**Data Organization** – We sort and categorize all your financial transactions, ensuring each entry is properly classified and documented.",
+        "**Entry Processing** – We meticulously record up to 100 accounting entries, including sales, purchases, expenses, and other financial transactions.",
+        "**Financial Reporting** – We prepare basic financial statements including income statements and balance sheets to give you clear visibility into your business's financial health.",
+        "**Regular Updates** – We maintain ongoing communication, providing you with updated financial records and answering any questions you may have.",
       ],
     },
     {
@@ -33,8 +33,8 @@ export const Considerations = {
       rightIconColor: "secondary",
       heading: "Timeline & Charges",
       bullets: [
-        "⏳ Time Required: 5-7 business days for initial setup, then ongoing monthly services",
-        "💰 Charges: Starting from ₹3,000 + GST per month for up to 100 entries",
+        "Time Required: 5-7 business days for initial setup, then ongoing monthly services",
+        "Charges: Starting from ₹3,000 + GST per month for up to 100 entries",
       ],
     },
   ],

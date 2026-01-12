@@ -31,8 +31,8 @@ export const Considerations = {
       rightIconColor: "secondary",
       heading: "Timeline & Charges",
       bullets: [
-        "⏳ Time Required: 5 – 7 days",
-        "💰 Charges: ₹5,000 + GST",
+        "Time Required: 5 – 7 days",
+        "Charges: ₹5,000 + GST",
       ],
     },
   ],

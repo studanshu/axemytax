@@ -101,9 +101,15 @@ const CenteredBlogCard: FC<CenteredBlogCardProps> = ({
         {action.type === "external" ? (
           <MKButton
             component={MuiLink}
-            variant={action.variant ? action.variant : "gradient"}
+            variant="text"
             size="small"
-            color={(action.color as any) || "dark"}
+            color="black75"
+            sx={{
+              backgroundColor: "transparent",
+              "&:hover": {
+                backgroundColor: "transparent",
+              },
+            }}
             {...({ href: action.route, target: "_blank", rel: "noreferrer" } as any)}
           >
             {action.label}
@@ -111,9 +117,15 @@ const CenteredBlogCard: FC<CenteredBlogCardProps> = ({
         ) : (
           <MKButton
             component={Link}
-            variant={action.variant ? action.variant : "gradient"}
+            variant="text"
             size="small"
-            color={(action.color as any) || "dark"}
+            color="black75"
+            sx={{
+              backgroundColor: "transparent",
+              "&:hover": {
+                backgroundColor: "transparent",
+              },
+            }}
             {...({ to: action.route } as any)}
           >
             {action.label}

@@ -1,51 +1,51 @@
 [
   {
     "title":"Business Establishment Services",
-    "description": "Check the possible ways of working with our product and the necessary files for building your own project.",
+    "description": "Complete business incorporation solutions including Sole Proprietorship, Partnership, LLP, Private Limited, and Public Limited company formations with end-to-end registration support.",
     "icon": "public",
-    "link": "/tax",
-    "label": "Let's start"
+    "link": "/services/business-incorporation",
+    "label": "Incorporate Now"
   },
   {
     "title":"Auditing & Assurances",
-    "description": "Check the possible ways of working with our product and the necessary files for building your own project.",
+    "description": "Professional audit services including Statutory Audit, Tax Audit, Stock Audit, Internal Audit, and Fixed Asset Verification to ensure compliance and financial accuracy.",
     "icon": "public",
-    "link": "/tax",
-    "label": "Let's start"
+    "link": "/services/auditing",
+    "label": "Book Audit"
   },
   {
     "title":"Accounting & Compliance",
-    "description": "Check the possible ways of working with our product and the necessary files for building your own project.",
+    "description": "Expert bookkeeping and accounting services with accurate financial record maintenance, MIS reporting, and compliance management for businesses of all sizes.",
     "icon": "public",
-    "link": "/tax",
-    "label": "Let's start"
+    "link": "/services/book-keeping",
+    "label": "Get Started"
   },
   {
     "title":"Direct & Indirect Taxation",
-    "description": "Check the possible ways of working with our product and the necessary files for building your own project.",
+    "description": "Comprehensive tax services including ITR filing, GST registration and returns, tax planning, appeals and assessments, and PAN-related services for individuals and businesses.",
     "icon": "public",
-    "link": "/tax",
-    "label": "Let's start"
+    "link": "/services/direct-taxation",
+    "label": "File Taxes"
   },
   {
-    "title":"Company Formation & Registration",
-    "description": "Check the possible ways of working with our product and the necessary files for building your own project.",
+    "title":"TDS Compliance & Filing",
+    "description": "Complete TDS solutions including TAN creation, TDS return filing, correction returns, Form 16A & 16B issuance, and TDS on property transactions and rent payments.",
     "icon": "public",
-    "link": "/tax",
-    "label": "Let's start"
+    "link": "/services/tds",
+    "label": "Manage TDS"
   },
   {
-    "title":"Financial Planning",
-    "description": "Check the possible ways of working with our product and the necessary files for building your own project.",
+    "title":"Investment Advisory",
+    "description": "Strategic investment advisory services including capital gains tax planning, corporate FD creation, and personalized financial planning to help you achieve your wealth goals.",
     "icon": "public",
-    "link": "/tax",
-    "label": "Let's start"
+    "link": "/services/investment-advisory",
+    "label": "Plan Finances"
   },
   {
-    "title":"Taxation for NRIs",
-    "description": "Check the possible ways of working with our product and the necessary files for building your own project.",
+    "title":"Certifications & Attestations",
+    "description": "Professional certification services including Lower TDS Certificate, Repatriation Certificate, Net Worth Certificate, House Property Certificate, and other attestations for compliance needs.",
     "icon": "public",
-    "link": "/tax",
-    "label": "Let's start"
+    "link": "/services/certifications",
+    "label": "Get Certified"
   }
 ]

@@ -17,6 +17,7 @@ interface RenderTextFieldProps {
   children?: ReactNode;
 }
 
+// eslint-disable-next-line react/prop-types
 const RenderTextField = ({ input, props = {}, children = undefined }: RenderTextFieldProps) => {
   const {
     register,
@@ -38,6 +39,13 @@ const RenderTextField = ({ input, props = {}, children = undefined }: RenderText
       {...register(input.formLabel)}
       variant="outlined"
       type={input.type}
+      InputProps={{
+        style: {
+          minHeight: '56px',
+        },
+        // eslint-disable-next-line react/prop-types
+        ...props?.InputProps,
+      }}
     >
       {children}
     </TextField>

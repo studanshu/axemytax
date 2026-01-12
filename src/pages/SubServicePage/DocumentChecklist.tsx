@@ -31,7 +31,7 @@ const DocumentChecklist: FC<DocumentChecklistProps> = ({ jsonData }) => {
     <Suspense fallback={renderLoader()}>
       <Box mt={24} sx={{ backgroundColor: colors.light.main }}>
         <Container>
-          <Grid container sx={{ py: { xs: 3, xl: 6 }, gap: { xs: 4, xl: 8 } }}>
+          <Grid container sx={{ py: { xs: 3, xl: 6 }, gap: { xs: 6, xl: 10 } }}>
             <Grid
               item
               container

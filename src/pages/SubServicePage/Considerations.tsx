@@ -6,6 +6,9 @@ import SectionHeader from "components/Custom/SectionHeader";
 import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
 import { FC, ComponentType, Suspense, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 
 const { size } = typography;
 const renderLoader = () => <></>;
@@ -117,13 +120,51 @@ const Considerations: FC<ConsiderationsProps> = ({ jsonData }) => {
                       jsonData.considerationList[openQuestionIndex].bullets.map(
                         (bullet, index) => (
                           <Grid item key={index}>
-                            <MKTypography
-                              variant={"h6Light" as any}
-                              color="black75"
-                              textAlign="justify"
+                            <Box
+                              sx={{
+                                "& p": {
+                                  margin: 0,
+                                  fontSize: size.md,
+                                  color: "text.secondary",
+                                  textAlign: "justify",
+                                  lineHeight: 1.6,
+                                },
+                                "& strong": {
+                                  fontWeight: 600,
+                                  color: "text.primary",
+                                },
+                                "& em": {
+                                  fontStyle: "italic",
+                                },
+                                "& code": {
+                                  backgroundColor: "grey.100",
+                                  padding: "2px 6px",
+                                  borderRadius: "4px",
+                                  fontSize: "0.9em",
+                                  fontFamily: "monospace",
+                                },
+                                "& a": {
+                                  color: "primary.main",
+                                  textDecoration: "none",
+                                  "&:hover": {
+                                    textDecoration: "underline",
+                                  },
+                                },
+                              }}
                             >
-                              {index + 1}. {bullet}
-                            </MKTypography>
+                              <MKTypography
+                                variant="subtitle1"
+                                color="black75"
+                                component="div"
+                              >
+                                <ReactMarkdown
+                                  remarkPlugins={[remarkGfm]}
+                                  rehypePlugins={[rehypeRaw]}
+                                >
+                                  {`${index + 1}. ${bullet}`}
+                                </ReactMarkdown>
+                              </MKTypography>
+                            </Box>
                           </Grid>
                         )
                       )}
@@ -166,9 +207,49 @@ function renderBulletList(consideration: ConsiderationItem) {
             paddingTop: 12,
           }}
         >
-          <MKTypography variant={"h6Light" as any} color="black75">
-            {bullet}
-          </MKTypography>
+          <Box
+            component="div"
+            sx={{
+              display: "inline",
+              "& p": {
+                display: "inline",
+                margin: 0,
+                fontSize: size.md,
+                color: "text.secondary",
+                lineHeight: 1.6,
+              },
+              "& strong": {
+                fontWeight: 600,
+                color: "text.primary",
+              },
+              "& em": {
+                fontStyle: "italic",
+              },
+              "& code": {
+                backgroundColor: "grey.100",
+                padding: "2px 6px",
+                borderRadius: "4px",
+                fontSize: "0.9em",
+                fontFamily: "monospace",
+              },
+              "& a": {
+                color: "primary.main",
+                textDecoration: "none",
+                "&:hover": {
+                  textDecoration: "underline",
+                },
+              },
+            }}
+          >
+            <MKTypography variant="subtitle1" color="black75" component="span">
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeRaw]}
+              >
+                {bullet}
+              </ReactMarkdown>
+            </MKTypography>
+          </Box>
         </li>
       ))}
     </ul>

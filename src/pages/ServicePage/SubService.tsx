@@ -55,8 +55,8 @@ interface SubServiceProps {
 const SubService: FC<SubServiceProps> = ({ jsonData }) => {
   const SubServiceJson = jsonData;
   const ctaKeys = Object.keys(SubServiceJson.cta);
-  const [selSubService, setSelSubService] = useState(ctaKeys[0]);
-  const cta = SubServiceJson.cta[selSubService] || {};
+  const [selSubService, setSelSubService] = useState(ctaKeys[0] || "");
+  const cta = SubServiceJson.cta[selSubService] || SubServiceJson.cta[ctaKeys[0]] || {};
   const content = cta["content"] || [];
 
   const currentService = useContext(ServiceContext).name;
@@ -87,7 +87,7 @@ const SubService: FC<SubServiceProps> = ({ jsonData }) => {
               px={5}
               sx={{ gap: { xs: 2, xl: 9 } }}
             >
-              <Grid item>
+              <Grid item sx={{ minWidth: 0, width: "100%" }}>
                 <SubServiceNav
                   subServicesList={ctaKeys}
                   selSubService={selSubService}

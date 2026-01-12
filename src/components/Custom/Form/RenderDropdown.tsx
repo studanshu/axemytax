@@ -75,6 +75,17 @@ const RenderDropdown = ({ input, gap = 2 }: RenderDropdownProps) => {
                 required={input.required || false}
                 error={!!error}
                 helperText={errorText(errorMessage)}
+                InputProps={{
+                  style: {
+                    minHeight: '56px',
+                  },
+                }}
+                SelectProps={{
+                  displayEmpty: true,
+                  style: {
+                    minHeight: '40px',
+                  },
+                }}
               >
                 {renderMenuItems()}
               </TextField>

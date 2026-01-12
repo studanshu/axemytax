@@ -17,9 +17,9 @@ export const Considerations = {
       rightIconColor: "secondary",
       heading: "Key Audit Factors",
       bullets: [
-        "🕒 **Timing of the Audit** – Stock audits are most effective when conducted at the end of an accounting period or during periods of low business activity to minimize disruptions.",
-        "📊 **Sampling Techniques** – For large inventories, appropriate sampling methods should be used to achieve reasonable accuracy while maintaining efficiency.",
-        "💹 **Valuation Methods** – Understanding the inventory valuation method (FIFO, LIFO, Weighted Average) is crucial for proper verification of inventory values.",
+        "**Timing of the Audit** – Stock audits are most effective when conducted at the end of an accounting period or during periods of low business activity to minimize disruptions.",
+        "**Sampling Techniques** – For large inventories, appropriate sampling methods should be used to achieve reasonable accuracy while maintaining efficiency.",
+        "**Valuation Methods** – Understanding the inventory valuation method (FIFO, LIFO, Weighted Average) is crucial for proper verification of inventory values.",
       ],
     },
     {

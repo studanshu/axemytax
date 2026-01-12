@@ -31,8 +31,8 @@ export const Considerations = {
       rightIconColor: "secondary",
       heading: "Timeline & Charges",
       bullets: [
-        "⏳ Time Required: 3 – 7 days",
-        `💰 Charges:
+        "Time Required: 3 – 7 days",
+        `Charges:
         • ITR-1: ₹1500 + GST
         • ITR-2: ₹3000 onwards + GST
         • ITR-3: ₹5000 onwards + GST`,

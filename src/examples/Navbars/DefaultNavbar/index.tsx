@@ -394,7 +394,7 @@ const DefaultNavbar: FC<DefaultNavbarProps> = ({
                 arrow_drop_up
               </Icon>
             </MKTypography>
-            <MKBox shadow="lg" borderRadius="lg" p={2} mt={2}>
+            <MKBox shadow="lg" borderRadius="lg" p={2} mt={2} bgColor="white">
               {renderRoutes}
             </MKBox>
           </MKBox>
@@ -605,7 +605,7 @@ const DefaultNavbar: FC<DefaultNavbarProps> = ({
           }}
         >
           <MKBox ml={2.5} mt={-2.5} borderRadius="lg">
-            <MKBox shadow="lg" borderRadius="lg" py={1.5} px={1} mt={2}>
+            <MKBox shadow="lg" borderRadius="lg" py={1.5} px={1} mt={2} bgColor="white">
               {renderNestedRoutesV2}
             </MKBox>
           </MKBox>

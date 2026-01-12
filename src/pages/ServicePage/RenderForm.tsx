@@ -4,10 +4,10 @@ import { Grid } from "@mui/material";
 import FormGroup from "@mui/material/FormGroup";
 import { useFormSubmit } from "api/form/useFromSubmit";
 import typography from "assets/theme/base/typography";
-import CheckBoxGridDisplay from "components/Custom/CheckboxGridDisplay";
 import createSchema from "components/Custom/Form/CreateSchema";
 import CustomSnackbar from "components/Custom/Form/CustomSnackbar";
 import RenderDropdown from "components/Custom/Form/RenderDropdown";
+import RenderMultiSelect from "components/Custom/Form/RenderMultiSelect";
 import RenderTextField from "components/Custom/Form/RenderTextField";
 import SectionHeader from "components/Custom/SectionHeader";
 import MKButton from "components/MKButton";
@@ -60,6 +60,7 @@ const RenderForm: FC<RenderFormProps> = ({ jsonData }) => {
     defaultValues: {
       email: "",
       businessType: "",
+      [jsonData.checkboxes.formLabel || "services"]: [],
     },
   });
 
@@ -70,21 +71,13 @@ const RenderForm: FC<RenderFormProps> = ({ jsonData }) => {
 
   const onSubmit = async (inputData: any) => {
     const data = JSON.parse(JSON.stringify(inputData));
-    function filterCheckboxCollectionKeys() {
-      const prefix = "checkboxCollection";
-      data.meta = {
-        subService: Object.keys(data)
-          .filter((key) => key.includes(prefix) && data[key])
-          .map((key) => key.split("-")[1])
-          .join(", "),
-      };
-      Object.keys(data)
-        .filter((key) => key.includes(prefix))
-        .forEach((key) => delete data[key]);
-    }
+    const checkboxKey = jsonData.checkboxes.formLabel || "services";
+    
+    data.meta = {
+      subService: Array.isArray(data[checkboxKey]) ? data[checkboxKey].join(", ") : "",
+    };
 
     data["source"] = `WhyUs-${serviceContextData.name}`;
-    filterCheckboxCollectionKeys();
     console.log("Form Data to submit:", data);
     await submitForm(data);
   };
@@ -114,33 +107,37 @@ const RenderForm: FC<RenderFormProps> = ({ jsonData }) => {
           <Grid
             container
             className="ctaArea"
-            justifyContent="space-between"
-            alignItems="flex-end"
-            sx={{ px: { xs: 5, xl: 12 }, gap: { xs: 5, lg: 0 } }}
+            justifyContent="center"
+            alignItems="center"
+            spacing={4}
+            sx={{ px: { xs: 5, xl: 12 } }}
           >
-            <Grid item>
+            <Grid item xs={12} lg={8}>
               <Grid
                 className="options"
                 container
                 flexDirection="column"
-                sx={{ gap: { xs: 4, xl: 6 } }}
+                spacing={3}
               >
-                <Grid
-                  item
-                  sx={{ alignSelf: { xs: "flex-end", md: "flex-start" } }}
-                >
+                <Grid item>
                   <SectionHeader
                     caption={jsonData.secondaryCaption || ""}
                     title={jsonData.secondaryTitle || ""}
                     variant="h4Light"
                   />
                 </Grid>
-                <Grid item className="checkboxes">
-                  <CheckBoxGridDisplay
-                    items={(jsonData.checkboxes?.options || []).map((opt: CheckboxOption) => 
-                      typeof opt === 'string' ? opt : opt.label || opt.toString()
-                    )}
-                    itemsPerColumn={3}
+                <Grid item sx={{ width: "100%" }}>
+                  <RenderMultiSelect 
+                    input={{
+                      ...jsonData.checkboxes,
+                      type: jsonData.checkboxes.type || "multiSelect",
+                      fieldType: jsonData.checkboxes.fieldType || "multiSelect",
+                      label: jsonData.checkboxes.label || "Select Services",
+                      formLabel: jsonData.checkboxes.formLabel || "services",
+                      options: (jsonData.checkboxes?.options || []).map((opt: CheckboxOption) => 
+                        typeof opt === 'string' ? opt : opt.label || opt.toString()
+                      ),
+                    }} 
                   />
                 </Grid>
               </Grid>
@@ -149,13 +146,12 @@ const RenderForm: FC<RenderFormProps> = ({ jsonData }) => {
               className="buttons"
               item
               xs={12}
-              lg={3}
-              sx={{ px: { xs: 3, lg: 0 } }}
+              lg={4}
             >
               <Grid
                 container
                 flexDirection="column"
-                sx={{ gap: { xs: 2, lg: 4 } }}
+                spacing={2}
               >
                 <Grid item>
                   <RenderDropdown input={jsonData.dropdownBusiness} />

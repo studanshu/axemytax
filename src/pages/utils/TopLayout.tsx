@@ -9,7 +9,8 @@ const TopLayout: FC = () => {
   return (
     <>
       <DefaultNavbar
-        brand={logo}
+        brand=""
+        logo={logo}
         routes={routes as any}
         action={{
           type: "internal",

@@ -144,7 +144,7 @@ const TransparentBlogCard: FC<TransparentBlogCardProps> = ({
             component={Link}
             variant="subtitle1"
             fontWeight="regular"
-            color={action.color}
+            color="black75"
             textTransform="capitalize"
             sx={cardActionStyles}
             {...({ to: action.route } as any)}
@@ -157,7 +157,7 @@ const TransparentBlogCard: FC<TransparentBlogCardProps> = ({
             component={MuiLink}
             variant="subtitle1"
             fontWeight="regular"
-            color={action.color}
+            color="black75"
             textTransform="capitalize"
             sx={cardActionStyles}
             {...({ href: action.route, target: "_blank", rel: "noreferrer" } as any)}
