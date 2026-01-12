@@ -28,7 +28,7 @@ import boxShadow from "assets/theme/functions/boxShadow";
 // Types
 import { BoxShadowsConfig } from "types/theme.types";
 
-const { black, white, tabs, coloredShadows } = colors;
+const { black, tabs, coloredShadows } = colors;
 
 const boxShadows: BoxShadowsConfig = {
   xs: boxShadow([0, 2], [9, -5], black.main, 0.15),

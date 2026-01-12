@@ -13,28 +13,23 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-/**
-  The boxShadow() function helps you to create a box shadow for an element
- */
-
-// Material Kit 2 React helper functions
-import rgba from "assets/theme/functions/rgba";
+import { Components } from "@mui/material/styles";
+import borders from "assets/theme/base/borders";
 import pxToRem from "assets/theme/functions/pxToRem";
 
-function boxShadow(
-  offset: number[] = [],
-  radius: number[] = [],
-  color: string = "#000000",
-  opacity: number = 0,
-  inset: string = ""
-): string {
-  const [x, y] = offset;
-  const [blur, spread] = radius;
+const { borderRadius } = borders;
 
-  return `${inset} ${pxToRem(x)} ${pxToRem(y)} ${pxToRem(blur)} ${pxToRem(spread)} ${rgba(
-    color,
-    opacity
-  )}`;
-}
+const cardMedia: Components["MuiCardMedia"] = {
+  styleOverrides: {
+    root: {
+      borderRadius: borderRadius.xl,
+      margin: `${pxToRem(16)} ${pxToRem(16)} 0`,
+    },
 
-export default boxShadow;
+    media: {
+      width: "auto",
+    },
+  },
+};
+
+export default cardMedia;

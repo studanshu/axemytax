@@ -13,28 +13,27 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-/**
-  The boxShadow() function helps you to create a box shadow for an element
- */
-
-// Material Kit 2 React helper functions
-import rgba from "assets/theme/functions/rgba";
+import { Components } from "@mui/material/styles";
 import pxToRem from "assets/theme/functions/pxToRem";
 
-function boxShadow(
-  offset: number[] = [],
-  radius: number[] = [],
-  color: string = "#000000",
-  opacity: number = 0,
-  inset: string = ""
-): string {
-  const [x, y] = offset;
-  const [blur, spread] = radius;
+const svgIcon: Components["MuiSvgIcon"] = {
+  defaultProps: {
+    fontSize: "inherit",
+  },
 
-  return `${inset} ${pxToRem(x)} ${pxToRem(y)} ${pxToRem(blur)} ${pxToRem(spread)} ${rgba(
-    color,
-    opacity
-  )}`;
-}
+  styleOverrides: {
+    fontSizeInherit: {
+      fontSize: "inherit !important",
+    },
 
-export default boxShadow;
+    fontSizeSmall: {
+      fontSize: `${pxToRem(20)} !important`,
+    },
+
+    fontSizeLarge: {
+      fontSize: `${pxToRem(36)} !important`,
+    },
+  },
+};
+
+export default svgIcon;

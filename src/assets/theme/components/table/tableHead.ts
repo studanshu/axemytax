@@ -13,28 +13,25 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-/**
-  The boxShadow() function helps you to create a box shadow for an element
- */
+// @mui/material type imports
+import { Components } from "@mui/material/styles";
+
+// Material Kit 2 React base styles
+import borders from "assets/theme/base/borders";
 
 // Material Kit 2 React helper functions
-import rgba from "assets/theme/functions/rgba";
 import pxToRem from "assets/theme/functions/pxToRem";
 
-function boxShadow(
-  offset: number[] = [],
-  radius: number[] = [],
-  color: string = "#000000",
-  opacity: number = 0,
-  inset: string = ""
-): string {
-  const [x, y] = offset;
-  const [blur, spread] = radius;
+const { borderRadius } = borders;
 
-  return `${inset} ${pxToRem(x)} ${pxToRem(y)} ${pxToRem(blur)} ${pxToRem(spread)} ${rgba(
-    color,
-    opacity
-  )}`;
-}
+const tableHead: Components["MuiTableHead"] = {
+  styleOverrides: {
+    root: {
+      display: "block",
+      padding: `${pxToRem(16)} ${pxToRem(16)} 0  ${pxToRem(16)}`,
+      borderRadius: `${borderRadius.xl} ${borderRadius.xl} 0 0`,
+    },
+  },
+};
 
-export default boxShadow;
+export default tableHead;

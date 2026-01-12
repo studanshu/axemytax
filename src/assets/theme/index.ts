@@ -85,7 +85,7 @@ import tooltip from "assets/theme/components/tooltip";
 
 export default createTheme({
   breakpoints: { ...breakpoints },
-  palette: { ...colors },
+  palette: { ...colors } as any,
   typography: { ...typography },
   boxShadows: { ...boxShadows },
   borders: { ...borders },
@@ -129,7 +129,7 @@ export default createTheme({
     MuiSlider: { ...slider },
     MuiAvatar: { ...avatar },
     MuiTooltip: { ...tooltip },
-    MuiAppBar: { ...appBar },
+    MuiAppBar: { ...appBar } as any,
     MuiTabs: { ...tabs },
     MuiTab: { ...tab },
     MuiStepper: { ...stepper },
