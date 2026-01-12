@@ -42,9 +42,9 @@
 - [x] Define context types (`context.types.ts`)
 
 ### 2.2 Material-UI Theme Types
-- [ ] Create type definitions for custom theme extensions
-- [ ] Type the Material Kit 2 React theme structure
-- [ ] Create types for theme functions (pxToRem, rgba, etc.)
+- [x] Create type definitions for custom theme extensions
+- [x] Type the Material Kit 2 React theme structure
+- [x] Create types for theme functions (pxToRem, rgba, etc.)
 
 ---
 

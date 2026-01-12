@@ -395,18 +395,14 @@ export interface GlobalsConfig {
 
 // Extended theme type
 export interface CustomTheme extends MuiTheme {
-  palette: MuiTheme['palette'] & {
-    customColors?: Partial<CustomColors>;
-  };
-  borders?: BordersConfig;
-  boxShadows?: BoxShadowsConfig;
+  palette: MuiTheme['palette'];
+  borders: BordersConfig;
+  boxShadows: BoxShadowsConfig;
   typography: MuiTheme['typography'] & Partial<TypographyConfig>;
 }
 
 export type CustomThemeOptions = ThemeOptions & {
   borders?: BordersConfig;
   boxShadows?: BoxShadowsConfig;
-  palette?: ThemeOptions['palette'] & {
-    customColors?: Partial<CustomColors>;
-  };
+  palette?: ThemeOptions['palette'];
 };
