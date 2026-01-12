@@ -43,18 +43,16 @@ export default function Subscribe() {
 
   const { handleSubmit, reset } = methods;
 
-  const { submitForm, status, isSubmitting, error, response } = useFormSubmit();
+  const { submitForm, status, isSubmitting } = useFormSubmit();
 
   const onSubmit = async (data) => {
     data["source"] = "LandingPage-Subscribe";
-    console.log("Form Data to submit:", data);
     await submitForm(data);
   };
 
   const snackbarRef = useRef();
   useEffect(() => {
     if (status === "success") {
-      console.log("Form submitted successfully", response);
       reset();
       snackbarRef.current.showSnackbar(
         "Form submitted successfully! We will get back to you soon.",
@@ -65,7 +63,6 @@ export default function Subscribe() {
         "We are unable to take in your request. Please reach out to us by phone or email.",
         "error"
       );
-      console.error("Error submitting form:", error);
     } else if (isSubmitting) {
       snackbarRef.current.showSnackbar("Taking in your request", "info");
     }

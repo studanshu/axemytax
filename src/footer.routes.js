@@ -8,6 +8,7 @@ import MKTypography from "./components/MKTypography";
 
 // Images
 import { routeDict } from "routes";
+import EXTERNAL_LINKS from "constants/externalLinks";
 import logoCT from "./assets/images/default/axemytax-logo-transparent.png";
 
 const date = new Date().getFullYear();
@@ -20,19 +21,19 @@ const footerRoutes = {
   socials: [
     {
       icon: <LinkedIn />,
-      link: "https://www.linkedin.com/company/axemytax/",
+      link: EXTERNAL_LINKS.SOCIAL.LINKEDIN,
     },
     {
       icon: <FacebookIcon />,
-      link: "https://www.facebook.com/AxeMyTax/",
+      link: EXTERNAL_LINKS.SOCIAL.FACEBOOK,
     },
     {
       icon: <TwitterIcon />,
-      link: "https://twitter.com/AxeMyTax",
+      link: EXTERNAL_LINKS.SOCIAL.TWITTER,
     },
     {
       icon: <YouTubeIcon />,
-      link: "https://www.youtube.com/channel/AxeMyTax",
+      link: EXTERNAL_LINKS.SOCIAL.YOUTUBE,
     },
   ],
   menus: [
@@ -46,9 +47,9 @@ const footerRoutes = {
     {
       name: "Services",
       items: [
-        { name: "Taxation", href: routeDict["Services"]["Direct Taxation"]["target"] },
-        { name: "Accounting & Auditing", href: "https://www.axemytax.in/" },
-        { name: "FEMA & Bookeeping", href: "https://www.axemytax.in/" },
+        { name: "Direct Taxation", href: routeDict["Services"]["Direct Taxation"]["target"] },
+        { name: "Indirect Taxation", href: routeDict["Services"]["Indirect Taxation"]["target"] },
+        { name: "Business Incorporation", href: routeDict["Services"]["Business Incorporation"]["target"] },
       ],
     },
     {
@@ -57,17 +58,17 @@ const footerRoutes = {
         { name: "contact us", href: routeDict["Contact"] },
         {
           name: "knowledge center",
-          href: "https://www.axemytax.in/knowledge-center",
+          href: EXTERNAL_LINKS.KNOWLEDGE_CENTER,
         },
-        { name: "sitemap", href: "/sitemap.xml" },
+        { name: "sitemap", href: EXTERNAL_LINKS.STATIC.SITEMAP },
       ],
     },
     {
       name: "legal",
       items: [
-        { name: "terms & conditions", href: "/terms" },
-        { name: "privacy policy", href: "/privacy" },
-        { name: "licenses", href: "/license" },
+        { name: "terms & conditions", href: EXTERNAL_LINKS.LEGAL.TERMS },
+        { name: "privacy policy", href: EXTERNAL_LINKS.LEGAL.PRIVACY },
+        { name: "licenses", href: EXTERNAL_LINKS.LEGAL.LICENSE },
       ],
     },
   ],

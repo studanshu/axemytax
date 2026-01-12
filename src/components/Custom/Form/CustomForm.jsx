@@ -32,8 +32,6 @@ const CustomForm = ({ jsonData }) => {
   const serviceName = subServiceData.serviceName || serviceData.name;
   const subServiceName = subServiceData.name;
 
-  // console.log("Custom Schema", customSchema.shape);
-
   const methods = useForm({
     resolver: zodResolver(customSchema),
     defaultValues: {
@@ -46,7 +44,7 @@ const CustomForm = ({ jsonData }) => {
 
   const { handleSubmit, reset } = methods;
 
-  const { submitForm, status, isSubmitting, error } = useFormSubmit();
+  const { submitForm, status, isSubmitting } = useFormSubmit();
 
   const onSubmit = async (data) => {
     if (pageContext !== undefined) {
@@ -54,7 +52,6 @@ const CustomForm = ({ jsonData }) => {
     } else {
       data["source"] = `${serviceName}-${subServiceName}`;
     }
-    console.log("Form Data to submit:", data);
     await submitForm(data);
   };
 
@@ -71,7 +68,6 @@ const CustomForm = ({ jsonData }) => {
         "We are unable to take in your request. Please reach out to us by phone or email.",
         "error"
       );
-      console.error("Error submitting form:", error);
     } else if (isSubmitting) {
       snackbarRef.current.showSnackbar("Taking in your request", "info");
     }

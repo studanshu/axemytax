@@ -1,7 +1,6 @@
 import DefaultFormFields from "assets/data/Form/DefaultFormFields";
 import PropTypes from "prop-types";
-
-const { ServiceContext } = require("./Context");
+import { ServiceContext } from "./Context";
 
 const SERVICE_FIELD = "service";
 const OPTIONS_FIELD = "options";

@@ -13,6 +13,7 @@ import theme from "./assets/theme";
 
 // Material Kit 2 React routes
 import BlogContent from "./pages/BlogContent";
+import NotFound from "./pages/NotFound";
 import routes from "./routes";
 
 const queryClient = new QueryClient();
@@ -69,7 +70,10 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
         <CssBaseline />
-        <Routes>{getRoutes(routes)}</Routes>
+        <Routes>
+          {getRoutes(routes)}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </QueryClientProvider>
     </ThemeProvider>
   );

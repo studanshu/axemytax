@@ -1,6 +1,6 @@
-const { Grid } = require("@mui/material");
-const { default: MKTypography } = require("components/MKTypography");
-const PropTypes = require("prop-types");
+import { Grid } from "@mui/material";
+import MKTypography from "components/MKTypography";
+import PropTypes from "prop-types";
 
 const BlogMetaContent = ({ date, duration, author }) => {
   return (

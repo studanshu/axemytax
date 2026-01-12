@@ -21,7 +21,7 @@ function ChecklistAction({ inputs }) {
   });
 
   const { handleSubmit, reset } = methods;
-  const { submitForm, status, isSubmitting, error } = useFormSubmit();
+  const { submitForm, status, isSubmitting } = useFormSubmit();
 
   const snackbarRef = useRef();
   useEffect(() => {
@@ -36,7 +36,6 @@ function ChecklistAction({ inputs }) {
         "We are unable to take in your request. Please reach out to us by phone or email.",
         "error"
       );
-      console.error("Error submitting form:", error);
     } else if (isSubmitting) {
       snackbarRef.current.showSnackbar("Taking in your request", "info");
     }

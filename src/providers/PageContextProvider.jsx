@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
-
-const { PageContext } = require("./Context");
+import { PageContext } from "./Context";
 
 const PageContextProvider = ({ dict, children }) => {
   return <PageContext.Provider value={dict}>{children}</PageContext.Provider>;

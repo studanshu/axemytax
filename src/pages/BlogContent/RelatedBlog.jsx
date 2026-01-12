@@ -1,9 +1,8 @@
 import PropTypes from "prop-types";
 import { lazy, Suspense } from "react";
-
-const { Grid, Container, Box } = require("@mui/material");
-const { IsUpLgScreen } = require("assets/theme/functions/breakpoints");
-const { default: CustomSlider } = require("components/Custom/CustomSlider");
+import { Grid, Container, Box } from "@mui/material";
+import { IsUpLgScreen } from "assets/theme/functions/breakpoints";
+import CustomSlider from "components/Custom/CustomSlider";
 
 const CenteredBlogCard = lazy(
   () => import("examples/Cards/BlogCards/CenteredBlogCard")

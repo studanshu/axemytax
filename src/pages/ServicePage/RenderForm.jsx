@@ -35,7 +35,7 @@ export default function RenderForm({ jsonData }) {
 
   const { handleSubmit, reset } = methods;
 
-  const { submitForm, status, isSubmitting, error } = useFormSubmit();
+  const { submitForm, status, isSubmitting } = useFormSubmit();
   const serviceContextData = useContext(ServiceContext);
 
   const onSubmit = async (inputData) => {
@@ -72,7 +72,6 @@ export default function RenderForm({ jsonData }) {
         "We are unable to take in your request. Please reach out to us by phone or email.",
         "error"
       );
-      console.error("Error submitting form:", error);
     } else if (isSubmitting) {
       snackbarRef.current.showSnackbar("Taking in your request", "info");
     }
