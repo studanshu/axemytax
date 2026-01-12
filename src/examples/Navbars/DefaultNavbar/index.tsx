@@ -70,6 +70,8 @@ const DefaultNavbar: FC<DefaultNavbarProps> = ({
   const [nestedDropdown, setNestedDropdown] = useState<HTMLElement | null>(null);
   const [nestedDropdownEl, setNestedDropdownEl] = useState<HTMLElement | null>(null);
   const [nestedDropdownMapping, setNestedDropdownMapping] = useState<RouteCollapse[] | null>(null);
+  // @ts-ignore - used by setNestedDropdownName
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [nestedDropdownName, setNestedDropdownName] = useState<string>("");
   const [arrowRef, setArrowRef] = useState<HTMLElement | null>(null);
   const [mobileNavbar, setMobileNavbar] = useState<boolean>(false);

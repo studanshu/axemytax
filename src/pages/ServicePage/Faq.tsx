@@ -1,0 +1,89 @@
+import { Box, Container, Grid } from "@mui/material";
+import FaqQuestion from "components/Custom/FaqQuestion";
+import SectionHeader from "components/Custom/SectionHeader";
+import { FC, Suspense, useState } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
+const renderLoader = () => <></>;
+
+interface FaqItem {
+  q?: string;
+  a?: string;
+}
+
+interface FaqJsonData {
+  image?: string;
+  caption?: string;
+  title?: string;
+  faqs: FaqItem[];
+}
+
+interface FaqProps {
+  jsonData: FaqJsonData;
+}
+
+const Faq: FC<FaqProps> = ({ jsonData }) => {
+  const [openQuestionIndex, setOpenQuestionIndex] = useState<number | null>(null);
+
+  const handleToggle = (index: number) => {
+    setOpenQuestionIndex(openQuestionIndex === index ? null : index);
+  };
+  const FaqJson = jsonData;
+  return (
+    <Suspense fallback={renderLoader()}>
+      <Box className="rootFaq">
+        <Container>
+          <Grid
+            container
+            alignItems="center"
+            className="Faq"
+            justifyContent="space-between"
+            sx={{ py: { xs: 10, xl: 16 }, px: { lg: 2 } }}
+          >
+            <Grid
+              item
+              xs={0}
+              lg={5}
+              sx={{
+                display: { xs: "none", lg: "block" },
+              }}
+            >
+              <LazyLoadImage
+                src={FaqJson.image || ""}
+                alt="FAQ"
+                effect="blur"
+                style={{ maxWidth: "100%", height: "auto" }}
+              />
+            </Grid>
+            <Grid item xs={12} lg={6}>
+              <Grid container spacing={6} className="faqContent">
+                <Grid item xs={12}>
+                  <SectionHeader
+                    caption={FaqJson.caption ? FaqJson.caption : "We're here to help!"}
+                    title={FaqJson.title ? FaqJson.title : "Frequently Asked Questions"}
+                    alignItems="flex-end"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  {FaqJson.faqs.map((faq, index) => (
+                    <Box key={index} mb={1}>
+                      <FaqQuestion
+                        key={index}
+                        question={faq.q || ""}
+                        answer={faq.a || ""}
+                        isOpen={openQuestionIndex === index}
+                        toggleAnswer={() => handleToggle(index)}
+                      />
+                    </Box>
+                  ))}
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+    </Suspense>
+  );
+};
+
+export default Faq;

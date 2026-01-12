@@ -27,6 +27,7 @@ export interface MKBoxProps extends Omit<BoxProps, "color"> {
   borderRadius?: string;
   shadow?: string;
   coloredShadow?: ColoredShadow;
+  href?: string;
 }
 
 const MKBox = forwardRef<HTMLDivElement, MKBoxProps>(

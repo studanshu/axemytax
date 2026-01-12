@@ -20,7 +20,7 @@ interface IconDictConfig {
 }
 
 interface FaqQuestionProps {
-  question: string;
+  question?: string;
   answer?: string;
   isOpen: boolean;
   toggleAnswer: () => void;
@@ -30,8 +30,8 @@ interface FaqQuestionProps {
 }
 
 const FaqQuestion: FC<FaqQuestionProps> = ({
-  question,
-  answer,
+  question = "",
+  answer = "",
   isOpen,
   toggleAnswer,
   ...FaqButtonProps
