@@ -4,6 +4,9 @@ import { Theme as MuiTheme, ThemeOptions } from '@mui/material/styles';
 
 // Custom color palette
 export interface CustomColors {
+  background?: {
+    default: string;
+  };
   primary: {
     main: string;
     focus: string;
@@ -11,6 +14,16 @@ export interface CustomColors {
   secondary: {
     main: string;
     focus: string;
+  };
+  lightBlue?: {
+    main: string;
+    focus: string;
+  };
+  black75?: {
+    main: string;
+  };
+  black50?: {
+    main: string;
   };
   info: {
     main: string;
@@ -257,43 +270,43 @@ export interface TypographyConfig {
   h1: {
     fontFamily: string;
     fontSize: string;
-    fontWeight: number;
-    color: string;
+    fontWeight?: number;
+    color?: string;
     lineHeight: number;
   };
   h2: {
     fontFamily: string;
     fontSize: string;
-    fontWeight: number;
-    color: string;
+    fontWeight?: number;
+    color?: string;
     lineHeight: number;
   };
   h3: {
     fontFamily: string;
     fontSize: string;
-    fontWeight: number;
-    color: string;
+    fontWeight?: number;
+    color?: string;
     lineHeight: number;
   };
   h4: {
     fontFamily: string;
     fontSize: string;
-    fontWeight: number;
-    color: string;
+    fontWeight?: number;
+    color?: string;
     lineHeight: number;
   };
   h5: {
     fontFamily: string;
     fontSize: string;
-    fontWeight: number;
-    color: string;
+    fontWeight?: number;
+    color?: string;
     lineHeight: number;
   };
   h6: {
     fontFamily: string;
     fontSize: string;
-    fontWeight: number;
-    color: string;
+    fontWeight?: number;
+    color?: string;
     lineHeight: number;
   };
   subtitle1: {
@@ -339,21 +352,45 @@ export interface TypographyConfig {
   };
   d1?: {
     fontSize: string;
+    fontFamily?: string;
+    fontWeight?: number;
+    lineHeight?: number;
+    color?: string;
   };
   d2?: {
     fontSize: string;
+    fontFamily?: string;
+    fontWeight?: number;
+    lineHeight?: number;
+    color?: string;
   };
   d3?: {
     fontSize: string;
+    fontFamily?: string;
+    fontWeight?: number;
+    lineHeight?: number;
+    color?: string;
   };
   d4?: {
     fontSize: string;
+    fontFamily?: string;
+    fontWeight?: number;
+    lineHeight?: number;
+    color?: string;
   };
   d5?: {
     fontSize: string;
+    fontFamily?: string;
+    fontWeight?: number;
+    lineHeight?: number;
+    color?: string;
   };
   d6?: {
     fontSize: string;
+    fontFamily?: string;
+    fontWeight?: number;
+    lineHeight?: number;
+    color?: string;
   };
   size: {
     xxs: string;
