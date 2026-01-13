@@ -1,4 +1,4 @@
-import '../config/cms'; // Initialize CMS
+import 'config/cms'; // Initialize CMS
 import { usePosts, useCategories } from '@studanshu/google-sheets-cms';
 import MKBox from 'components/MKBox';
 import MKTypography from 'components/MKTypography';

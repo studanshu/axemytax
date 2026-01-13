@@ -20,7 +20,8 @@ import SubServiceNav from "./SubServiceNav";
 // Import JSON
 import SectionHeader from "components/Custom/SectionHeader";
 import { ServiceContext } from "providers/Context";
-import routes, { routeDict } from "routes";
+import routes from "routes";
+import { routeDict } from "routeDict";
 import { ReactNode } from "react";
 
 const renderLoader = () => <></>;

@@ -169,7 +169,7 @@ const Considerations: FC<ConsiderationsProps> = ({ jsonData }) => {
                         )
                       )}
                   </Grid>
-                  <Grid item className="ctaButton" pb={4}>
+                  <Grid item className="ctaButton" pb={4} pt={4}>
                     <MKButton
                       size="large"
                       variant="contained"

@@ -1,16 +1,17 @@
+import 'config/cms'; // Initialize CMS
+import { useContactForm, CaptureField } from '@studanshu/google-sheets-cms';
 import { zodResolver } from "@hookform/resolvers/zod";
 import SendIcon from "@mui/icons-material/Send";
 import { Grid } from "@mui/material";
 import typography from "assets/theme/base/typography";
 import createSchema from "components/Custom/Form/CreateSchema";
-import CustomSnackbar from "components/Custom/Form/CustomSnackbar";
+import CustomSnackbar, { CustomSnackbarHandle } from "components/Custom/Form/CustomSnackbar";
 import RenderTextField from "components/Custom/Form/RenderTextField";
 import MKButton from "components/MKButton";
 import { SubServiceContext } from "providers/Context";
 import { FC, Suspense, useContext, useEffect, useRef } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
-import { useFormSubmit } from "../../api/form/useFromSubmit";
 
 const { size } = typography;
 const renderLoader = () => <></>;
@@ -30,39 +31,65 @@ interface ChecklistActionProps {
 }
 
 const ChecklistAction: FC<ChecklistActionProps> = ({ inputs }) => {
+  const customSchema = z.object(createSchema(inputs)).refine(
+    (data) => {
+      // At least one of email or phone must be filled
+      const hasEmail = data.email && data.email.trim().length > 0;
+      const hasPhone = data.phone && data.phone.trim().length > 0;
+      return hasEmail || hasPhone;
+    },
+    {
+      message: "Please provide either email or phone number",
+      path: ["email"], // Show error on email field
+    }
+  );
+
   const methods = useForm({
-    resolver: zodResolver(z.object(createSchema(inputs))),
+    resolver: zodResolver(customSchema),
   });
 
   const { handleSubmit, reset } = methods;
-  const { submitForm, status, isSubmitting } = useFormSubmit();
+  
+  // Use the google-sheets-cms contact form hook
+  const { mutate: submitContactForm, isPending, isSuccess, isError, error } = useContactForm({
+    capture: [CaptureField.UserAgent],
+  });
 
-  const snackbarRef = useRef<any>(null);
+  const snackbarRef = useRef<CustomSnackbarHandle>(null);
 
   useEffect(() => {
-    if (status === "success") {
+    if (isSuccess) {
       reset();
       snackbarRef.current?.showSnackbar(
         "Form submitted successfully! We will get back to you soon.",
         "success"
       );
-    } else if (status === "error") {
+    } else if (isError) {
+      if (error) console.error('Form submission error:', error);
       snackbarRef.current?.showSnackbar(
         "We are unable to take in your request. Please reach out to us by phone or email.",
         "error"
       );
-    } else if (isSubmitting) {
+    } else if (isPending) {
       snackbarRef.current?.showSnackbar("Taking in your request", "info");
     }
-  }, [status, isSubmitting, reset]);
+  }, [isSuccess, isError, isPending, reset, error]);
 
   const subServiceContextData = useContext(SubServiceContext);
 
-  const onSubmit = async (data: any) => {
-    data["source"] =
-      `${subServiceContextData.serviceName}-${subServiceContextData.name}`;
-    console.log("Form data to submit:", data);
-    await submitForm(data);
+  const onSubmit = (data: any) => {
+    const phoneInfo = data.phone ? `\n\nPhone: ${data.phone}` : '';
+    
+    const contactData = {
+      name: data.name || 'Website Visitor',
+      email: data.email || 'noreply@axemytax.com',
+      subject: `${subServiceContextData.serviceName} - ${subServiceContextData.name}`,
+      message: `Request callback for document checklist${phoneInfo}`,
+      source: `${subServiceContextData.serviceName}-${subServiceContextData.name}`,
+      honeypot: '',
+    };
+    
+    submitContactForm(contactData);
   };
 
   return (
@@ -88,10 +115,10 @@ const ChecklistAction: FC<ChecklistActionProps> = ({ inputs }) => {
             <Grid item className="button">
               <MKButton
                 size="large"
-                variant={isSubmitting ? "outlined" : "contained"}
+                variant={isPending ? "outlined" : "contained"}
                 color="primary"
                 type="submit"
-                disabled={isSubmitting}
+                disabled={isPending}
                 sx={{
                   textTransform: "capitalize",
                   fontSize: size.lg,

@@ -7,7 +7,7 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import MKTypography from "./components/MKTypography";
 
 // Images
-import { routeDict } from "routes";
+import { routeDict } from "routeDict";
 import EXTERNAL_LINKS from "constants/externalLinks";
 import logoCT from "./assets/images/default/axemytax-logo-transparent.png";
 import type { FooterRoutes } from "types/route.types";

@@ -1,4 +1,4 @@
-import '../config/cms'; // Initialize CMS
+import 'config/cms'; // Initialize CMS
 import { usePost, useRelatedPosts, BlogPostContent } from '@studanshu/google-sheets-cms';
 import MKBox from 'components/MKBox';
 import MKTypography from 'components/MKTypography';
@@ -36,7 +36,7 @@ const BlogContent: FC = () => {
             Article Not Found
           </MKTypography>
           <MKTypography variant="body1" color="text">
-            The article you're looking for doesn't exist or has been removed.
+            The article you&apos;re looking for doesn&apos;t exist or has been removed.
           </MKTypography>
         </MKBox>
         <MKBox pt={6} px={1} mt={6}>

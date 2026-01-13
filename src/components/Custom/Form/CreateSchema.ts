@@ -117,7 +117,22 @@ const createSchema = (inputData: FormInputData[]): Record<string, z.ZodTypeAny> 
       case "tel":
         zodSchema[currentLabel] = z
           .string()
-          .regex(/^\d{10}$/, "Invalid Phone Number");
+          .refine(
+            (val) => {
+              if (!val || val.trim() === '') return true;
+              
+              // Extract phone number without country code  
+              let phoneOnly = val;
+              if (val.trim().startsWith('+')) {
+                const parts = val.trim().split(' ');
+                phoneOnly = parts.slice(1).join('');
+              }
+              
+              const digitsOnly = phoneOnly.replace(/\D/g, '');
+              return digitsOnly.length >= 6 && digitsOnly.length <= 15;
+            },
+            { message: "Please enter a valid phone number (6-15 digits)" }
+          );
         break;
       case "enum":
       case "nestedEnum":

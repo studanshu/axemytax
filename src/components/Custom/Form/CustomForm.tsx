@@ -1,4 +1,4 @@
-import '../config/cms'; // Initialize CMS
+import 'config/cms'; // Initialize CMS
 import { useContactForm, CaptureField } from '@studanshu/google-sheets-cms';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SendOutlined } from '@mui/icons-material';
@@ -45,6 +45,17 @@ interface CustomFormProps {
 const CustomForm = ({ jsonData }: CustomFormProps) => {
   const customSchema = z.object(
     createSchema(jsonData.inputs as any) // To avoid modifying the original data
+  ).refine(
+    (data) => {
+      // At least one of email or phone must be filled
+      const hasEmail = data.email && data.email.trim().length > 0;
+      const hasPhone = data.phone && data.phone.trim().length > 0;
+      return hasEmail || hasPhone;
+    },
+    {
+      message: "Please provide either email or phone number",
+      path: ["email"], // Show error on email field
+    }
   );
 
   const subServiceData = useContext(SubServiceContext);
@@ -67,31 +78,35 @@ const CustomForm = ({ jsonData }: CustomFormProps) => {
   const { handleSubmit, reset } = methods;
 
   // Use the google-sheets-cms contact form hook
-  const { mutate: submitContactForm, isPending, isSuccess, isError } = useContactForm({
+  const { mutate: submitContactForm, isPending, isSuccess, isError, error } = useContactForm({
     capture: [CaptureField.UserAgent], // Optionally capture user agent
   });
 
   const onSubmit = async (data: any) => {
+    // Build message with main content and additional info
+    const mainMessage = data.message || data.query || 'Contact form inquiry';
+    const additionalInfo = formatAdditionalInfo(data);
+    const fullMessage = additionalInfo 
+      ? `${mainMessage}\n\n---\nAdditional Information:\n${additionalInfo}`
+      : mainMessage;
+
     // Transform data to match ContactFormData interface
     const contactData = {
-      name: data.name || '',
-      email: data.email || '',
+      name: data.name || 'Website Visitor',
+      email: data.email || 'noreply@axemytax.com',
       subject: data.service ? `${data.service} - ${data.subService || ''}` : 'General Inquiry',
-      message: formatMessage(data),
+      message: fullMessage,
       source: pageContext !== undefined
         ? `page-${pageContext.name}`
         : `${serviceName}-${subServiceName}`,
-      honeypot: '', // Add honeypot field for spam protection
+      honeypot: '',
     };
 
     submitContactForm(contactData);
   };
 
-  // Helper function to format all form data into message
-  const formatMessage = (data: any) => {
-    let message = data.message || data.query || '';
-    
-    // Add additional fields to message
+  // Helper function to format additional information for notes field
+  const formatAdditionalInfo = (data: any) => {
     const additionalFields = [];
     
     if (data.phone) additionalFields.push(`Phone: ${data.phone}`);
@@ -105,11 +120,7 @@ const CustomForm = ({ jsonData }: CustomFormProps) => {
       additionalFields.push(`Services: ${data.services.join(', ')}`);
     }
     
-    if (additionalFields.length > 0) {
-      message += '\n\n---\nAdditional Information:\n' + additionalFields.join('\n');
-    }
-    
-    return message;
+    return additionalFields.length > 0 ? additionalFields.join('\n') : '';
   };
 
   const snackbarRef = useRef<CustomSnackbarHandle>(null);
@@ -122,6 +133,7 @@ const CustomForm = ({ jsonData }: CustomFormProps) => {
         'success'
       );
     } else if (isError) {
+      if (error) console.error('Form submission error:', error);
       snackbarRef.current?.showSnackbar(
         'We are unable to take in your request. Please reach out to us by phone or email.',
         'error'
@@ -170,7 +182,7 @@ const CustomForm = ({ jsonData }: CustomFormProps) => {
           >
             <MKButton
               variant="gradient"
-              color="lightBlue"
+              color="info"
               size="large"
               type="submit"
               disabled={isPending}

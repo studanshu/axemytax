@@ -14,7 +14,7 @@ const DefaultFormFields = {
     spacing: "half",
     label: "Phone",
     formLabel: "phone",
-    required: true,
+    required: false,
   },
   companyName: {
     type: "text",
@@ -30,7 +30,7 @@ const DefaultFormFields = {
     spacing: "half",
     label: "Email",
     formLabel: "email",
-    required: true,
+    required: false,
   },
   query: {
     type: "text",

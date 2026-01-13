@@ -27,13 +27,17 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HomeIcon from "@mui/icons-material/Home";
 import ServiceIcon from "@mui/icons-material/HomeRepairServiceOutlined";
 import RssFeedIcon from "@mui/icons-material/RssFeed";
+import { lazy, Suspense } from "react";
 
 // // Pages
 import AboutJsonData from "assets/data/About/index";
 import ContactUsJsonData from "assets/data/ContactUs/index";
 
-// CMS-powered components
-import BlogOverview from "pages/BlogOverview/BlogOverview";
+import About from "pages/About";
+import ContactUsPage from "pages/ContactUs";
+import LandingPage from "pages/LandingPage";
+import PageContextProvider from "./providers/PageContextProvider";
+import type { Route } from "types/route.types";
 
 // Import all service routes
 import DirectTaxationRoutes from "./routes/DirectTaxationRoutes";
@@ -48,11 +52,8 @@ import InvestmentAdvisoryRoutes from "./routes/InvestmentAdvisoryRoutes";
 import ConsultingRoutes from "./routes/ConsultingRoutes";
 import OthersRoutes from "./routes/OthersRoutes";
 
-import About from "pages/About";
-import ContactUsPage from "pages/ContactUs";
-import LandingPage from "pages/LandingPage";
-import PageContextProvider from "./providers/PageContextProvider";
-import type { Route } from "types/route.types";
+// Lazy load BlogOverview to avoid circular dependency
+const BlogOverview = lazy(() => import("pages/BlogOverview/BlogOverview"));
 
 const routes: Route[] = [
   {
@@ -97,7 +98,9 @@ const routes: Route[] = [
     route: "/blogs",
     component: (
       <PageContextProvider dict={{ name: "BlogOverview" }}>
-        <BlogOverview />
+        <Suspense fallback={<></>}>
+          <BlogOverview />
+        </Suspense>
       </PageContextProvider>
     ),
   },
@@ -112,25 +115,5 @@ const routes: Route[] = [
     ),
   },
 ];
-
-const getRouteDict = (currentRoute: any[]): any => {
-  return currentRoute.reduce((acc: any, route) => {
-    if (route.collapse) {
-      acc[route.name] = getRouteDict(route.collapse);
-    }
-
-    if (route.route) {
-      if (typeof acc[route.name] === "object") {
-        acc[route.name]["target"] = route.route;
-      } else {
-        acc[route.name] = route.route;
-      }
-    }
-    return acc;
-  }, {});
-};
-
-const routeDict: any = getRouteDict(JSON.parse(JSON.stringify(routes)));
-export { routeDict };
 
 export default routes;
