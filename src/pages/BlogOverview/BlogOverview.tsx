@@ -1,16 +1,25 @@
 import 'config/cms'; // Initialize CMS
-import { usePosts, useCategories } from '@studanshu/google-sheets-cms';
+import 'assets/css/blog-styles.css';
+import { 
+  usePosts, 
+  useCategories, 
+  BlogPostCard
+} from '@studanshu/google-sheets-cms';
 import MKBox from 'components/MKBox';
 import MKTypography from 'components/MKTypography';
 import MKButton from 'components/MKButton';
-import { Grid, CircularProgress } from '@mui/material';
-import TransparentBlogCard from 'examples/Cards/BlogCards/TransparentBlogCard';
+import { Grid, CircularProgress, Container } from '@mui/material';
 import { FC, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import TopLayout from 'pages/utils/TopLayout';
 import DefaultFooter from 'examples/Footers/DefaultFooter';
 import footerRoutes from 'footer.routes';
+import SectionHeader from 'components/Custom/SectionHeader';
+import InlineForm from 'components/Custom/InlineForm';
+import { DefaultContactJson } from 'assets/data/SubServicePage/DefaultContactJson';
 
 const BlogOverview: FC = () => {
+  const navigate = useNavigate();
   const [cursor, setCursor] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
   
@@ -33,108 +42,127 @@ const BlogOverview: FC = () => {
     setCursor(0);
   };
 
+  const handlePostClick = (post: any) => {
+    navigate(`/blog/${post.slug}`);
+  };
+
   return (
     <>
       <TopLayout />
       
-      <MKBox component="section" py={12}>
-        <Grid container spacing={3} sx={{ px: { xs: 3, lg: 6 } }}>
-          {/* Header */}
-          <Grid item xs={12}>
-            <MKBox textAlign="center" mb={6}>
-              <MKTypography variant="h2" fontWeight="bold" mb={2}>
-                Resources & Insights
-              </MKTypography>
-              <MKTypography variant="body1" color="text">
-                Stay updated with the latest in taxation, compliance, and business advisory
-              </MKTypography>
-            </MKBox>
-          </Grid>
-
-          {/* Category Filter */}
-          {!categoriesLoading && categories && (
+      <Container>
+        <MKBox component="section" py={24} px={4}>
+          <Grid container spacing={6}>
             <Grid item xs={12}>
-              <MKBox display="flex" gap={2} flexWrap="wrap" justifyContent="center" mb={4}>
-                <MKButton
-                  variant={!selectedCategory ? "contained" : "outlined"}
-                  color="primary"
-                  onClick={() => handleCategoryFilter(undefined)}
-                >
-                  All Posts
-                </MKButton>
-                {categories.map((category) => (
+              <SectionHeader
+                caption="Stay updated with the latest in taxation, compliance, and business advisory"
+                title="Resources & Insights"
+                variant="h2"
+                color="black"
+              />
+            </Grid>
+
+            {/* Category Filter */}
+            {!categoriesLoading && categories && (
+              <Grid item xs={12} my={4}>
+                <MKBox display="flex" gap={2} flexWrap="wrap" justifyContent="center" mb={4}>
                   <MKButton
-                    key={category.id}
-                    variant={selectedCategory === category.slug ? "contained" : "outlined"}
+                    variant={!selectedCategory ? "contained" : "outlined"}
                     color="primary"
-                    onClick={() => handleCategoryFilter(category.slug)}
+                    size="medium"
+                    onClick={() => handleCategoryFilter(undefined)}
                   >
-                    {category.name}
+                    All Posts
                   </MKButton>
-                ))}
-              </MKBox>
-            </Grid>
-          )}
-
-          {/* Loading State */}
-          {postsLoading && (
-            <Grid item xs={12}>
-              <MKBox display="flex" justifyContent="center" py={6}>
-                <CircularProgress />
-              </MKBox>
-            </Grid>
-          )}
-
-          {/* Blog Posts Grid */}
-          {!postsLoading && postsData && (
-            <>
-              {postsData.posts.map((post) => (
-                <Grid item xs={12} sm={6} lg={4} key={post.id}>
-                  <TransparentBlogCard
-                    image={post.hero_image || ''}
-                    title={post.title}
-                    description={post.excerpt || post.seo_description}
-                    action={{
-                      type: "internal",
-                      route: `/blog/${post.slug}`,
-                      color: "black75",
-                      label: "Read More",
-                    }}
-                  />
-                </Grid>
-              ))}
-
-              {/* Load More Button */}
-              {postsData.pagination.hasMore && (
-                <Grid item xs={12}>
-                  <MKBox display="flex" justifyContent="center" mt={4}>
+                  {categories.map((category) => (
                     <MKButton
-                      variant="outlined"
+                      key={category.id}
+                      variant={selectedCategory === category.slug ? "contained" : "outlined"}
                       color="primary"
-                      onClick={handleLoadMore}
+                      size="medium"
+                      onClick={() => handleCategoryFilter(category.slug)}
                     >
-                      Load More Articles
+                      {category.name}
                     </MKButton>
-                  </MKBox>
-                </Grid>
-              )}
+                  ))}
+                </MKBox>
+              </Grid>
+            )}
 
-              {/* No Results */}
-              {postsData.posts.length === 0 && (
+            {/* Loading State */}
+            {postsLoading && (
+              <Grid item xs={12}>
+                <MKBox display="flex" justifyContent="center" py={6}>
+                  <CircularProgress />
+                </MKBox>
+              </Grid>
+            )}
+
+            {/* Blog Posts Grid - Using BlogPostCard component */}
+            {!postsLoading && postsData && (
+              <>
                 <Grid item xs={12}>
-                  <MKBox textAlign="center" py={6}>
-                    <MKTypography variant="h5" color="text">
-                      No articles found in this category
-                    </MKTypography>
-                  </MKBox>
+                  <Grid container spacing={4}>
+                    {postsData.posts.map((post) => (
+                      <Grid item xs={12} sm={6} lg={4} key={post.id}>
+                        <BlogPostCard
+                          post={post}
+                          onPostClick={handlePostClick}
+                          classNames={{
+                            card: 'blog-card-overview',
+                            title: 'blog-card-title',
+                            excerpt: 'blog-card-excerpt',
+                          }}
+                        />
+                      </Grid>
+                    ))}
+                  </Grid>
                 </Grid>
-              )}
-            </>
-          )}
-        </Grid>
-      </MKBox>
 
-      <MKBox pt={6} px={1} mt={6}>
+                {/* Load More Button */}
+                {postsData.pagination.hasMore && (
+                  <Grid item xs={12}>
+                    <MKBox display="flex" justifyContent="center" mt={4}>
+                      <MKButton
+                        variant="outlined"
+                        color="info"
+                        onClick={handleLoadMore}
+                      >
+                        Load More Articles
+                      </MKButton>
+                    </MKBox>
+                  </Grid>
+                )}
+
+                {/* No Results */}
+                {postsData.posts.length === 0 && (
+                  <Grid item xs={12}>
+                    <MKBox textAlign="center" py={6}>
+                      <MKTypography variant="h5" color="text">
+                        No articles found in this category
+                      </MKTypography>
+                    </MKBox>
+                  </Grid>
+                )}
+              </>
+            )}
+
+            {/* Contact Section - Using InlineForm for consistency */}
+            <Grid item xs={12}>
+              <Container sx={{ my: 24 }}>
+                <MKBox px={4}>
+                  <InlineForm
+                    FormJson={DefaultContactJson as any}
+                    flexDirection="row"
+                  />
+                </MKBox>
+              </Container>
+            </Grid>
+          </Grid>
+        </MKBox>
+      </Container>
+
+      <MKBox pt={2} px={1}>
         <DefaultFooter content={footerRoutes} />
       </MKBox>
     </>

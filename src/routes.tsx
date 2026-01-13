@@ -65,7 +65,7 @@ const routes: Route[] = [
   {
     name: "Services",
     icon: <ServiceIcon />,
-    route: "/services",
+    route: "",
     columns: 6,
     rowsPerColumn: 2,
     collapse: [

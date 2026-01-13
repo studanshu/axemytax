@@ -12,13 +12,11 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 const { size } = typography;
 
 interface ContactIconProps {
-  relative?: boolean;
   logo?: string;
   link?: string;
 }
 
 const ContactIcon: FC<ContactIconProps> = ({
-  relative = false,
   logo = defaultLogo,
   link = "/",
 }) => {
@@ -27,12 +25,13 @@ const ContactIcon: FC<ContactIconProps> = ({
       sx={{
         position: "fixed",
         zIndex: 1000,
-        bottom: IsUpSmScreen() ? 160 : 2,
-        right: { xs: "auto", sm: 120, xxl: 320 },
-        width: "100%",
+        bottom: IsUpSmScreen() ? "4rem" : "1rem",
+        right: IsUpSmScreen() ? { xs: "4rem", sm: "3rem", lg: "2rem" } : "auto",
+        width: IsUpSmScreen() ? "auto" : "100%",
+        maxWidth: IsUpSmScreen() ? "64px" : "100%",
         display: "flex",
         justifyContent: IsUpSmScreen() ? "flex-end" : "center",
-        backgroundColor: "white",
+        padding: "0 !important",
       }}
       component={MuiLink}
       href={link}
@@ -42,13 +41,20 @@ const ContactIcon: FC<ContactIconProps> = ({
         <Box
           component="img"
           src={logo}
+          alt="WhatsApp Chat"
           sx={{
-            py: 1.5,
-            px: 1.5,
-            borderRadius: "50%",
-            width: "4rem",
-            position: relative ? "relative" : "absolute",
+            width: "64px",
+            height: "64px",
+            padding: "12px",
+            borderRadius: "12px",
             bgcolor: "primary.main",
+            boxShadow: "0px 4px 20px rgba(71, 148, 32, 0.4)",
+            transition: "all 0.3s ease",
+            cursor: "pointer",
+            "&:hover": {
+              transform: "scale(1.05)",
+              boxShadow: "0px 6px 24px rgba(71, 148, 32, 0.5)",
+            },
           }}
         />
       ) : (
@@ -61,6 +67,7 @@ const ContactIcon: FC<ContactIconProps> = ({
             textTransform: "capitalize",
             fontSize: size.lg,
             width: "100%",
+            margin: "0 1rem 0.5rem 1rem",
             boxShadow:
               "0px 105.68352508544922px 84.54682159423828px 0px rgba(0, 0, 0, 7%), 0px 44.15205383300781px 35.3216438293457px 0px rgba(0, 0, 0, 5%), 0px 23.605802536010742px 18.884639739990234px 0px rgba(0, 0, 0, 4%), 0px 13.2332181930542px 10.586573600769043px 0px rgba(0, 0, 0, 4%), 0px 7.0280632972717285px 5.62244987487793px 0px rgba(0, 0, 0, 3%), 0px 2.924534320831299px 2.339627265930176px 0px rgba(0, 0, 0, 2%);",
           }}
