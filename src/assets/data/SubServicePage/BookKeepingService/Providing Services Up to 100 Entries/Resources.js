@@ -1,29 +1,31 @@
 // filepath: c:\Users\sbahety\OneDrive\Documents\Personal\axemytax\src\assets\data\SubServicePage\BookKeepingService\Providing Services Up to 100 Entries\Resources.js
-import LogoImage from "assets/images/default/logo.png";
-import PanCardImage from "assets/images/default/pan_card.png";
-import BankStatementImage from "assets/images/default/bank_statement.png";
-
 export const ResourcesJson = {
-  title: "Additional Resources",
-  caption: "Learn More",
+  caption: "Get to know more about",
+  title: "Book Keeping & Accounting Resources",
   details: [
     {
-      title: "Benefits of Professional Bookkeeping",
-      des: "Discover how professional bookkeeping can help small businesses maintain financial health and make informed decisions.",
-      icon: LogoImage,
-      link: "https://example.com/bookkeeping-benefits",
+      title: "MCA - Accounting Standards",
+      description:
+        "Official Indian Accounting Standards (Ind AS) and compliance requirements from Ministry of Corporate Affairs.",
+      link: "https://www.mca.gov.in/MinistryV2/accountingstandards.html",
+      image:
+        "https://www.mca.gov.in/sites/all/themes/mca_theme/logo.png",
     },
     {
-      title: "Financial Record-Keeping Guide",
-      des: "Learn best practices for organizing and maintaining your financial records to simplify bookkeeping and tax preparation.",
-      icon: PanCardImage,
-      link: "https://example.com/record-keeping",
+      title: "ICAI - Accounting Standards Board",
+      description:
+        "Professional accounting standards, guidance notes, and technical resources from ICAI.",
+      link: "https://www.icai.org/post/accounting-standards-board",
+      image:
+        "https://resource.cdn.icai.org/77453icailogo.jpg",
     },
     {
-      title: "Understanding Financial Statements",
-      des: "A simple guide to reading and interpreting common financial statements like income statements and balance sheets.",
-      icon: BankStatementImage,
-      link: "https://example.com/financial-statements",
+      title: "GST - Books of Accounts Guidelines",
+      description:
+        "Mandatory requirements for maintaining books of accounts and records under GST law.",
+      link: "https://tutorial.gst.gov.in/userguide/returns/index.htm",
+      image:
+        "https://www.gst.gov.in/assets/img/gst_logo.png",
     },
   ],
 };

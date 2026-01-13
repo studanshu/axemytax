@@ -1,30 +1,30 @@
-export const Resources = {
-  caption: "Expand your understanding of fixed asset verification with these valuable resources.",
-  title: "Resources for Fixed Asset Verification",
+export const ResourcesJson = {
+  caption: "Get to know more about",
+  title: "Fixed Asset Verification Resources",
   details: [
     {
-      title: "Fixed Asset Accounting Standards",
-      description: "Ind AS 16/AS 10 guidelines on recognition, measurement, and disclosure of fixed assets.",
-      link: "https://www.icai.org/post.html?post_id=3582",
-      linkText: "View Accounting Standards"
+      title: "Ind AS 16 / AS 10 - Fixed Assets",
+      description:
+        "Accounting standards for recognition, measurement, depreciation, and disclosure of fixed assets.",
+      link: "https://www.icai.org/",
+      image:
+        "https://resource.cdn.icai.org/77453icailogo.jpg",
     },
     {
-      title: "Depreciation Rules",
-      description: "Income Tax Act provisions related to depreciation of fixed assets.",
-      link: "https://www.incometaxindia.gov.in/Pages/acts/income-tax-act.aspx",
-      linkText: "View Depreciation Rules"
+      title: "Income Tax Act - Depreciation Rules",
+      description:
+        "Tax provisions for depreciation rates, block of assets, and capital gains on fixed assets.",
+      link: "https://www.incometax.gov.in/Pages/acts/income-tax-act.aspx",
+      image:
+        "https://www.incometax.gov.in/PublishingImages/IncomeTaxBanner.jpg",
     },
     {
-      title: "Asset Management Best Practices",
-      description: "Guidance on best practices for fixed asset management and verification.",
-      link: "https://www.icai.org/resource/audit-guidance",
-      linkText: "View Best Practices"
+      title: "Companies Act - Asset Management",
+      description:
+        "Legal requirements for maintaining fixed asset registers and periodic verification under Companies Act.",
+      link: "https://www.mca.gov.in/Ministry/pdf/CompaniesAct2013.pdf",
+      image:
+        "https://www.mca.gov.in/sites/all/themes/mca_theme/logo.png",
     },
-    {
-      title: "Asset Tagging Systems",
-      description: "Information on modern asset tagging and tracking technologies.",
-      link: "https://www.astm.org/standards/asset-management-standards.html",
-      linkText: "Learn More"
-    }
-  ]
+  ],
 };

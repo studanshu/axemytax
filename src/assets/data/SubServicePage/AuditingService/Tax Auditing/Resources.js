@@ -1,31 +1,30 @@
-
-export const Resources = {
-  caption: "Expand your understanding of tax audits with these valuable resources.",
-  title: "Resources for Tax Audits",
+export const ResourcesJson = {
+  caption: "Get to know more about",
+  title: "Tax Audit Resources",
   details: [
     {
-      title: "Income Tax Act, Section 44AB",
-      description: "The primary legislation governing tax audit requirements in India.",
-      link: "https://www.incometaxindia.gov.in/Pages/acts/income-tax-act.aspx",
-      linkText: "View Income Tax Act"
+      title: "Income Tax Act - Section 44AB",
+      description:
+        "Primary legislation governing tax audit requirements, thresholds, and compliance in India.",
+      link: "https://www.incometax.gov.in/Pages/acts/income-tax-act.aspx",
+      image:
+        "https://www.incometax.gov.in/PublishingImages/IncomeTaxBanner.jpg",
     },
     {
-      title: "Form 3CA/3CB & 3CD",
-      description: "Standard forms used for tax audit reporting as prescribed by the Income Tax Department.",
-      link: "https://www.incometaxindia.gov.in/Pages/downloads/tax-audit-report.aspx",
-      linkText: "Download Forms"
+      title: "Tax Audit Forms 3CA/3CB/3CD",
+      description:
+        "Download official tax audit report forms and utilities from Income Tax Department.",
+      link: "https://www.incometax.gov.in/iec/foportal/help/individual/return-applicable-audit-report",
+      image:
+        "https://www.incometax.gov.in/Style%20Library/Images/logo.png",
     },
     {
-      title: "ICAI Guidance Note on Tax Audit",
-      description: "Comprehensive guidance issued by the Institute of Chartered Accountants of India for conducting tax audits.",
-      link: "https://www.icai.org/resource/38714audit-guidance-note.pdf",
-      linkText: "View Guidance Note"
+      title: "ICAI - Tax Audit Guidance",
+      description:
+        "Professional standards and guidance notes for conducting tax audits issued by ICAI.",
+      link: "https://www.icai.org/",
+      image:
+        "https://resource.cdn.icai.org/77453icailogo.jpg",
     },
-    {
-      title: "Tax Audit FAQs by Income Tax Department",
-      description: "Official clarifications on common questions related to tax audits.",
-      link: "https://www.incometaxindia.gov.in/Pages/faqs.aspx",
-      linkText: "View FAQs"
-    }
-  ]
+  ],
 };

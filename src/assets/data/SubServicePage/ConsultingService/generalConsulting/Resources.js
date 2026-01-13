@@ -1,31 +1,31 @@
 // filepath: c:\Users\sbahety\OneDrive\Documents\Personal\axemytax\src\assets\data\SubServicePage\ConsultingService\generalConsulting\Resources.js
 export const ResourcesJson = {
   caption: "Get to know more about",
-  title: "Consulting Resources",
+  title: "Business Consulting Resources",
   details: [
     {
-      title: "Business Strategy Framework Guide",
+      title: "Invest India - Business Setup",
       description:
-        "Comprehensive overview of proven business strategy frameworks and when to apply them.",
-      link: "https://hbr.org/topic/strategy",
+        "National Investment Promotion Agency providing business setup guidance and regulatory information.",
+      link: "https://www.investindia.gov.in/",
       image:
-        "https://hbr.org/resources/images/hbr_opengraph.jpg",
+        "https://www.investindia.gov.in/themes/investindia/image/logo.png",
     },
     {
-      title: "Financial Analysis Essentials",
+      title: "Startup India Portal",
       description:
-        "Guide to understanding key financial metrics and their implications for business decisions.",
-      link: "https://corporatefinanceinstitute.com/resources/knowledge/finance/",
+        "Government initiatives, tax exemptions, compliance guidelines, and funding support for startups.",
+      link: "https://www.startupindia.gov.in/",
       image:
-        "https://corporatefinanceinstitute.com/static/images/og-cfi-1200x630.png",
+        "https://www.startupindia.gov.in/content/dam/invest-india/newinvestindia/startupindia_logo.png",
     },
     {
-      title: "Change Management Best Practices",
+      title: "Make in India - Sector Regulations",
       description:
-        "Resource for effectively implementing organizational change with minimal disruption.",
-      link: "https://www.prosci.com/resources/articles",
+        "Sector-specific regulatory frameworks, compliance requirements, and business opportunities.",
+      link: "https://www.makeinindia.com/",
       image:
-        "https://www.prosci.com/hubfs/logos/Prosci%20Logo/RGB/Prosci_Logo_RGB.png",
+        "https://www.makeinindia.com/assets/images/logo.png",
     },
   ],
 };

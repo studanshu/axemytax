@@ -1,31 +1,30 @@
-
-export const Resources = {
-  caption: "Expand your understanding of internal audits with these valuable resources.",
-  title: "Resources for Internal Audits",
+export const ResourcesJson = {
+  caption: "Get to know more about",
+  title: "Internal Audit Resources",
   details: [
     {
-      title: "IIA Standards",
-      description: "International Standards for the Professional Practice of Internal Auditing by the Institute of Internal Auditors.",
-      link: "https://na.theiia.org/standards-guidance/Pages/Standards-and-Guidance-IPPF.aspx",
-      linkText: "View IIA Standards"
+      title: "Institute of Internal Auditors - India",
+      description:
+        "Professional body providing standards, guidance, and best practices for internal auditing in India.",
+      link: "https://www.iiaindia.org/",
+      image:
+        "https://www.iiaindia.org/images/logo.png",
     },
     {
-      title: "COSO Framework",
-      description: "Committee of Sponsoring Organizations (COSO) framework for internal control.",
-      link: "https://www.coso.org/Pages/default.aspx",
-      linkText: "Learn About COSO"
+      title: "Companies Act - Internal Audit Requirements",
+      description:
+        "Legal provisions mandating internal audit for companies under Companies Act, 2013.",
+      link: "https://www.mca.gov.in/Ministry/pdf/CompaniesAct2013.pdf",
+      image:
+        "https://www.mca.gov.in/sites/all/themes/mca_theme/logo.png",
     },
     {
-      title: "Risk Management Guidelines",
-      description: "ISO 31000 guidance on risk management principles and implementation.",
-      link: "https://www.iso.org/iso-31000-risk-management.html",
-      linkText: "View ISO 31000"
+      title: "ICAI - Internal Audit Standards",
+      description:
+        "Professional standards and guidance notes for conducting internal audits issued by ICAI.",
+      link: "https://www.icai.org/",
+      image:
+        "https://resource.cdn.icai.org/77453icailogo.jpg",
     },
-    {
-      title: "Internal Audit Best Practices",
-      description: "Guidance on internal audit best practices by the Institute of Internal Auditors - India.",
-      link: "https://www.iiaindia.co/",
-      linkText: "Visit IIA India"
-    }
-  ]
+  ],
 };

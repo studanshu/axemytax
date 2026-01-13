@@ -1,31 +1,30 @@
-
-export const Resources = {
-  caption: "Expand your understanding of stock audits with these valuable resources.",
-  title: "Resources for Stock Audits",
+export const ResourcesJson = {
+  caption: "Get to know more about",
+  title: "Stock Audit Resources",
   details: [
     {
-      title: "Inventory Accounting Standards",
-      description: "Ind AS 2/AS 2 guidelines on inventory valuation and disclosure requirements.",
-      link: "https://www.icai.org/post.html?post_id=3563",
-      linkText: "View Accounting Standards"
+      title: "Ind AS 2 / AS 2 - Inventories",
+      description:
+        "Accounting standards for inventory valuation, measurement, and disclosure requirements.",
+      link: "https://www.icai.org/",
+      image:
+        "https://resource.cdn.icai.org/77453icailogo.jpg",
     },
     {
-      title: "Stock Audit Guidelines by Banks",
-      description: "Framework used by banks for conducting stock audits as part of their credit monitoring process.",
-      link: "https://www.iibf.org.in/documents/stock-audit.pdf",
-      linkText: "View Bank Guidelines"
+      title: "RBI Guidelines on Stock Audit",
+      description:
+        "Reserve Bank of India guidelines for stock audit as part of bank credit monitoring process.",
+      link: "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=9837",
+      image:
+        "https://rbidocs.rbi.org.in/rdocs/content/images/RBI_LOGO1.png",
     },
     {
-      title: "Physical Verification Best Practices",
-      description: "ICAI guidance on best practices for physical verification of inventory.",
-      link: "https://www.icai.org/resource/audit-guidance",
-      linkText: "View Best Practices"
+      title: "ICAI - Inventory Verification Guidance",
+      description:
+        "Professional guidance on physical verification and audit of inventory and stock.",
+      link: "https://www.icai.org/post/auditing-assurance-standards-board",
+      image:
+        "https://resource.cdn.icai.org/77453icailogo.jpg",
     },
-    {
-      title: "Inventory Management Systems",
-      description: "Information on modern inventory management systems and technologies.",
-      link: "https://www.ibef.org/blogs/inventory-management-in-india",
-      linkText: "Learn More"
-    }
-  ]
+  ],
 };
