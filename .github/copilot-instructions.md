@@ -217,7 +217,7 @@ routeDict["Contact"]
 ## API Integration
 
 ### Form Submission Endpoint
-- **Environment Variable:** `REACT_APP_FORM_URL`
+- **Environment Variable:** `REACT_APP_GAS_URL`
 - **Method:** POST
 - **Mode:** no-cors
 - **Content-Type:** application/json
@@ -365,7 +365,7 @@ ComponentName.defaultProps = {
 
 ## Environment Variables
 Required:
-- `REACT_APP_FORM_URL`: Form submission endpoint
+- `REACT_APP_GAS_URL`: Google Apps Script deployment URL for blog CMS and form submission
 
 Optional:
 - `NODE_ENV`: Auto-set by React Scripts (development/production)

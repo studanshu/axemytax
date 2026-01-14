@@ -8,6 +8,6 @@ interface AppConstants {
 
 export const Constants: AppConstants = {
   form: {
-    endpoint: process.env.REACT_APP_FORM_URL,
+    endpoint: process.env.REACT_APP_GAS_URL,
   },
 };
