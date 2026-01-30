@@ -1,9 +1,9 @@
 // filepath: c:\Users\sbahety\OneDrive\Documents\Personal\axemytax\src\assets\data\SubServicePage\TDSService\TAN Creation\DocumentChecklist.js
 import PanCardImage from "assets/images/default/pan_card.png";
 import AadharCardImage from "assets/images/default/aadhar.png";
+import BankStatementImage from "assets/images/default/bank_statement.png";
 import DefaultFormFields from "../../../Form/DefaultFormFields";
 import BusinessOutlinedIcon from "@mui/icons-material/BusinessOutlined";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import SignpostOutlinedIcon from "@mui/icons-material/SignpostOutlined";
 
 export const DocumentChecklist = {
@@ -28,7 +28,7 @@ export const DocumentChecklist = {
     {
       title: "Residential Address Proof",
       des: "Utility bill, property tax receipt, or bank statement as proof of responsible person's address.",
-      icon: HomeOutlinedIcon,
+      image: BankStatementImage,
     },
     {
       title: "Business Address Proof",

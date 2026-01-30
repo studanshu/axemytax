@@ -19,6 +19,7 @@ import CustomSnackbar, { CustomSnackbarHandle } from './CustomSnackbar';
 import RenderDropdown from './RenderDropdown';
 import RenderTextField from './RenderTextField';
 import RenderMultiSelect from './RenderMultiSelect';
+import { useFormTracking } from 'hooks/useFormTracking';
 
 const { size } = typography;
 
@@ -43,6 +44,8 @@ interface CustomFormProps {
 }
 
 const CustomForm = ({ jsonData }: CustomFormProps) => {
+  const { trackFormView, trackFormStart, trackFormSubmit } = useFormTracking();
+  
   const customSchema = z.object(
     createSchema(jsonData.inputs as any) // To avoid modifying the original data
   ).refine(
@@ -124,15 +127,22 @@ const CustomForm = ({ jsonData }: CustomFormProps) => {
   };
 
   const snackbarRef = useRef<CustomSnackbarHandle>(null);
+
+  // Track form view on mount
+  useEffect(() => {
+    trackFormView('Contact Request Form');
+  }, [trackFormView]);
   
   useEffect(() => {
     if (isSuccess) {
+      trackFormSubmit('Contact Request Form', true);
       reset();
       snackbarRef.current?.showSnackbar(
         'Form submitted successfully! We will get back to you soon.',
         'success'
       );
     } else if (isError) {
+      trackFormSubmit('Contact Request Form', false);
       if (error) console.error('Form submission error:', error);
       snackbarRef.current?.showSnackbar(
         'We are unable to take in your request. Please reach out to us by phone or email.',
@@ -141,12 +151,12 @@ const CustomForm = ({ jsonData }: CustomFormProps) => {
     } else if (isPending) {
       snackbarRef.current?.showSnackbar('Taking in your request', 'info');
     }
-  }, [isSuccess, isError, isPending, reset]);
+  }, [isSuccess, isError, isPending, reset, error, trackFormSubmit]);
 
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Grid item xs={12} className="formContent">
+        <Grid item xs={12} className="formContent" onClick={() => trackFormStart('Contact Request Form')}>
           <Grid
             container
             className="formInputs"

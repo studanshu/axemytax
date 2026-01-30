@@ -2,10 +2,10 @@
 import PanCardImage from "assets/images/default/pan_card.png";
 import AadharCardImage from "assets/images/default/aadhar.png";
 import PassportImage from "assets/images/default/passport.png";
+import BankStatementImage from "assets/images/default/bank_statement.png";
 import DefaultFormFields from "../../../Form/DefaultFormFields";
 import BusinessOutlinedIcon from "@mui/icons-material/BusinessOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import AccountBalanceOutlinedIcon from "@mui/icons-material/AccountBalanceOutlined";
 
 export const DocumentChecklist = {
   caption: "Prepare with confidence",
@@ -39,7 +39,7 @@ export const DocumentChecklist = {
     {
       title: "Bank Statement/Utility Bill",
       des: "Recent statement/bill as address proof of directors and registered office.",
-      icon: AccountBalanceOutlinedIcon,
+      image: BankStatementImage,
     },
   ],
   inputs: [

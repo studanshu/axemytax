@@ -11,6 +11,11 @@ import { ThemeProvider } from "@mui/material/styles";
 // Theme
 import theme from "./assets/theme";
 
+// Analytics
+import AnalyticsProvider from "./providers/AnalyticsProvider";
+import EventTrackingProvider from "./providers/EventTrackingProvider";
+import { usePageTracking } from "./hooks/usePageTracking";
+
 // Material Kit 2 React routes
 import BlogContent from "./pages/BlogContent/BlogContent";
 import NotFound from "./pages/NotFound";
@@ -18,8 +23,12 @@ import routes from "./routes";
 
 const queryClient = new QueryClient();
 
-export default function App() {
+// Inner App component to use analytics hooks
+function AppRoutes() {
   const { pathname, hash, key } = useLocation();
+
+  // Automatic page tracking on route changes
+  usePageTracking();
 
   // Setting page scroll to 0 when changing the route
   useEffect(() => {
@@ -61,14 +70,27 @@ export default function App() {
     });
 
   return (
+    <Routes>
+      {getRoutes(routes)}
+      <Route path="/blog/:slug" element={<BlogContent />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  );
+}
+
+export default function App() {
+  return (
     <ThemeProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
-        <CssBaseline />
-        <Routes>
-          {getRoutes(routes)}
-          <Route path="/blog/:slug" element={<BlogContent />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <AnalyticsProvider
+          trackingId={process.env.REACT_APP_GA_TRACKING_ID}
+          debug={process.env.NODE_ENV === "development"}
+        >
+          <EventTrackingProvider>
+            <CssBaseline />
+            <AppRoutes />
+          </EventTrackingProvider>
+        </AnalyticsProvider>
       </QueryClientProvider>
     </ThemeProvider>
   );

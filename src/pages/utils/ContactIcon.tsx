@@ -8,6 +8,8 @@ import { IsUpSmScreen } from "assets/theme/functions/breakpoints";
 import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useInteractionTracking } from "hooks/useInteractionTracking";
+import { useLocation } from "react-router-dom";
 
 const { size } = typography;
 
@@ -20,6 +22,13 @@ const ContactIcon: FC<ContactIconProps> = ({
   logo = defaultLogo,
   link = "/",
 }) => {
+  const { trackWhatsAppClick } = useInteractionTracking();
+  const location = useLocation();
+
+  const handleClick = () => {
+    trackWhatsAppClick(location.pathname);
+  };
+
   return (
     <Container
       sx={{
@@ -35,6 +44,7 @@ const ContactIcon: FC<ContactIconProps> = ({
       }}
       component={MuiLink}
       href={link}
+      onClick={handleClick}
       rel="noreferrer"
     >
       {IsUpSmScreen() ? (

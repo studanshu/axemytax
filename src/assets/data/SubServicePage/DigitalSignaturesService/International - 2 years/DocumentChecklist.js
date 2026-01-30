@@ -2,9 +2,9 @@
 import AadharCardImage from "assets/images/default/aadhar.png";
 import PanCardImage from "assets/images/default/pan_card.png";
 import PassportImage from "assets/images/default/passport.png";
+import BankStatementImage from "assets/images/default/bank_statement.png";
 import DefaultFormFields from "../../../Form/DefaultFormFields";
 import PhotoCameraOutlinedIcon from "@mui/icons-material/PhotoCameraOutlined";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import BusinessOutlinedIcon from "@mui/icons-material/BusinessOutlined";
 
@@ -35,7 +35,7 @@ export const DocumentChecklist = {
     {
       title: "Address Proof",
       des: "Utility bill, bank statement, or other valid address proof (not older than 3 months).",
-      icon: HomeOutlinedIcon,
+      image: BankStatementImage,
     },
     {
       title: "Business Registration",

@@ -369,6 +369,58 @@ Required:
 
 Optional:
 - `NODE_ENV`: Auto-set by React Scripts (development/production)
+- `REACT_APP_GA_TRACKING_ID`: Google Analytics tracking ID (G-XXXXXXXXXX for GA4)
+
+---
+
+## Analytics Integration
+
+### Architecture
+The project uses a context-based Google Analytics implementation with automatic event tracking:
+
+**Core Components:**
+- **AnalyticsProvider** (`src/providers/AnalyticsProvider.tsx`): Initializes gtag.js and provides tracking functions
+- **EventTrackingProvider** (`src/providers/EventTrackingProvider.tsx`): Automatically tracks contextual events based on Service/SubService/Page context
+- **useAnalytics** (`src/hooks/useAnalytics.ts`): Core hook for tracking functions
+- **useFormTracking** (`src/hooks/useFormTracking.ts`): Specialized hook for form event tracking
+- **useBlogTracking** (`src/hooks/useBlogTracking.ts`): Specialized hook for blog event tracking
+- **useInteractionTracking** (`src/hooks/useInteractionTracking.ts`): Specialized hook for user interaction tracking
+
+### Automatic Tracking
+The following events are automatically tracked:
+1. **Page Views**: All route changes with contextual titles (service/subservice/page names)
+2. **Service Navigation**: When users view service or subservice pages
+3. **Form Events**: View, start, submit (success/error) for all contact forms
+4. **FAQ Interactions**: When users expand FAQ questions
+5. **WhatsApp Contact**: When users click the floating WhatsApp button (with source page)
+
+### Manual Tracking Usage
+Use specialized hooks for additional tracking:
+
+```typescript
+// Form tracking
+const { trackFormSubmit, trackFormStart } = useFormTracking();
+
+// Blog tracking
+const { trackBlogView, trackCategoryFilter } = useBlogTracking();
+
+// Interaction tracking
+const { trackButtonClick, trackServiceCardClick } = useInteractionTracking();
+```
+
+### Debug Mode
+- Enabled automatically in development (`NODE_ENV === 'development'`)
+- All events logged to console
+- No actual data sent to Google Analytics in development
+
+### Event Categories
+- **Navigation**: Page views, service views, subservice views
+- **Form**: View, start, submit_success, submit_error, field_interaction
+- **Blog**: View, share, filter_category, related_post_click
+- **User Interaction**: Button clicks, link clicks, FAQ expansion
+- **Service Selection**: Service card clicks
+- **Contact**: WhatsApp, phone, email clicks
+- **Outbound Link**: External link clicks
 
 ---
 

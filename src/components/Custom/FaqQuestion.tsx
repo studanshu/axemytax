@@ -3,6 +3,7 @@ import colors from "assets/theme/base/colors";
 import MKTypography from "components/MKTypography";
 import { FC, ComponentType } from "react";
 import FaqButton from "./FaqButton";
+import { useInteractionTracking } from "hooks/useInteractionTracking";
 
 interface IconConfig {
   openIcon?: ComponentType;
@@ -36,6 +37,15 @@ const FaqQuestion: FC<FaqQuestionProps> = ({
   toggleAnswer,
   ...FaqButtonProps
 }) => {
+  const { trackFaqExpand } = useInteractionTracking();
+
+  const handleToggle = () => {
+    if (!isOpen) {
+      trackFaqExpand(question);
+    }
+    toggleAnswer();
+  };
+
   return (
     <Grid container flexDirection="column" spacing={2}>
       <Grid item>
@@ -44,7 +54,7 @@ const FaqQuestion: FC<FaqQuestionProps> = ({
             <FaqButton
               isOpen={isOpen}
               question={question}
-              toggleAnswer={toggleAnswer}
+              toggleAnswer={handleToggle}
               variant={isOpen ? "body2" : "body1"}
               color={isOpen ? "secondary" : "black75"}
               {...FaqButtonProps}
