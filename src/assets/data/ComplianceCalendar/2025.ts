@@ -1,0 +1,153 @@
+import { YearData } from "./types";
+
+export const data2025: YearData = {
+  year: 2025,
+  months: [
+    {
+      month: 1,
+      name: "January",
+      deadlines: [
+        { day: 7, category: "Income Tax", description: "Deposit TDS/TCS deducted in December via Challan 281 — mandatory for all deductors" },
+        { day: 10, category: "GST", description: "Monthly GSTR-1 — report all outward B2B and B2C sales invoices for December" },
+        { day: 11, category: "GST", description: "IFF (Invoice Furnishing Facility) upload for QRMP scheme taxpayers — Q3 B2B invoices" },
+        { day: 13, category: "PF/ESI/Labour", description: "Monthly deposit of Provident Fund (ECR) and ESI contributions for employee salaries" },
+        { day: 20, category: "GST", description: "GSTR-3B — monthly summary of sales, input tax credit, and net GST liability for December" },
+        { day: 31, category: "Income Tax", description: "Q3 TDS return (Oct–Dec) — file Form 24Q/26Q/27Q reporting all deductions and deposits" },
+      ],
+    },
+    {
+      month: 2,
+      name: "February",
+      deadlines: [
+        { day: 7, category: "Income Tax", description: "Deposit TDS/TCS deducted in January via Challan 281 — mandatory for all deductors" },
+        { day: 11, category: "GST", description: "Monthly GSTR-1 — report all outward B2B and B2C sales invoices for January" },
+        { day: 15, category: "PF/ESI/Labour", description: "Monthly deposit of Provident Fund (ECR) and ESI contributions for employee salaries" },
+        { day: 20, category: "GST", description: "GSTR-3B — monthly summary of sales, input tax credit, and net GST liability for January" },
+      ],
+    },
+    {
+      month: 3,
+      name: "March",
+      deadlines: [
+        { day: 7, category: "Income Tax", description: "Deposit TDS/TCS deducted in February via Challan 281 — mandatory for all deductors" },
+        { day: 11, category: "GST", description: "Monthly GSTR-1 — report all outward B2B and B2C sales invoices for February" },
+        { day: 13, category: "Income Tax", description: "Advance Tax (80% installment) — for senior citizens under presumptive taxation scheme" },
+        { day: 13, category: "PF/ESI/Labour", description: "Monthly deposit of Provident Fund (ECR) and ESI contributions for employee salaries" },
+        { day: 20, category: "GST", description: "GSTR-3B — monthly summary of sales, input tax credit, and net GST liability for February" },
+        { day: 31, category: "Income Tax", description: "Final Advance Tax installment — pay 100% of estimated tax liability to avoid interest under Sec 234B/C" },
+      ],
+    },
+    {
+      month: 4,
+      name: "April",
+      deadlines: [
+        { day: 7, category: "Income Tax", description: "Deposit TDS/TCS deducted in March via Challan 281 — mandatory for all deductors" },
+        { day: 11, category: "GST", description: "Monthly GSTR-1 — report all outward B2B and B2C sales invoices for March" },
+        { day: 13, category: "GST", description: "IFF upload for QRMP scheme taxpayers — Q4 (Jan–Mar) B2B invoice data" },
+        { day: 15, category: "PF/ESI/Labour", description: "Monthly deposit of Provident Fund (ECR) and ESI contributions for employee salaries" },
+        { day: 20, category: "GST", description: "GSTR-3B — monthly summary of sales, input tax credit, and net GST liability for March" },
+        { day: 30, category: "Income Tax", description: "Q4 TDS return (Jan–Mar) — file Form 24Q/26Q/27Q reporting all deductions and deposits" },
+      ],
+    },
+    {
+      month: 5,
+      name: "May",
+      deadlines: [
+        { day: 7, category: "Income Tax", description: "Deposit TDS/TCS deducted in April via Challan 281 — mandatory for all deductors" },
+        { day: 11, category: "GST", description: "Monthly GSTR-1 — report all outward B2B and B2C sales invoices for April" },
+        { day: 13, category: "PF/ESI/Labour", description: "Monthly deposit of Provident Fund (ECR) and ESI contributions for employee salaries" },
+        { day: 15, category: "Income Tax", description: "Updated ITR (ITR-U) deadline for Q4 — file revised return if any omission or error in original filing" },
+        { day: 20, category: "GST", description: "GSTR-3B — monthly summary of sales, input tax credit, and net GST liability for April" },
+        { day: 30, category: "ROC", description: "Form 11 LLP — annual return reporting partner details, changes, and capital contribution (MCA portal)" },
+        { day: 30, category: "ROC", description: "PAS-6 — half-yearly reconciliation of share capital audit report for unlisted public companies" },
+      ],
+    },
+    {
+      month: 6,
+      name: "June",
+      deadlines: [
+        { day: 7, category: "Income Tax", description: "Deposit TDS/TCS deducted in May via Challan 281 — mandatory for all deductors" },
+        { day: 11, category: "GST", description: "Monthly GSTR-1 — report all outward B2B and B2C sales invoices for May" },
+        { day: 15, category: "Income Tax", description: "Advance Tax Q1 — first installment, minimum 15% of estimated annual tax liability for FY 2025–26" },
+        { day: 15, category: "PF/ESI/Labour", description: "Monthly deposit of Provident Fund (ECR) and ESI contributions for employee salaries" },
+        { day: 20, category: "GST", description: "GSTR-3B — monthly summary of sales, input tax credit, and net GST liability for May" },
+        { day: 30, category: "ROC", description: "DPT-3 — annual return of outstanding loans and deposits received by the company (MCA portal)" },
+      ],
+    },
+    {
+      month: 7,
+      name: "July",
+      deadlines: [
+        { day: 7, category: "Income Tax", description: "Deposit TDS/TCS deducted in June via Challan 281 — mandatory for all deductors" },
+        { day: 11, category: "GST", description: "Monthly GSTR-1 — report all outward B2B and B2C sales invoices for June" },
+        { day: 13, category: "GST", description: "IFF upload for QRMP scheme taxpayers — Q1 (Apr–Jun) B2B invoice data" },
+        { day: 15, category: "PF/ESI/Labour", description: "Monthly deposit of Provident Fund (ECR) and ESI contributions for employee salaries" },
+        { day: 20, category: "GST", description: "GSTR-3B — monthly summary of sales, input tax credit, and net GST liability for June" },
+        { day: 31, category: "Income Tax", description: "ITR filing for individuals, HUFs, and non-tax audit cases (AY 2025–26) — last date without penalty" },
+      ],
+    },
+    {
+      month: 8,
+      name: "August",
+      deadlines: [
+        { day: 7, category: "Income Tax", description: "Deposit TDS/TCS deducted in July via Challan 281 — mandatory for all deductors" },
+        { day: 15, category: "GST", description: "Monthly GSTR-1 — report all outward B2B and B2C sales invoices for July" },
+        { day: 15, category: "PF/ESI/Labour", description: "Monthly deposit of Provident Fund (ECR) and ESI contributions for employee salaries" },
+        { day: 20, category: "GST", description: "GSTR-3B — monthly summary of sales, input tax credit, and net GST liability for July" },
+        { day: 31, category: "Income Tax", description: "Deadline for completing statutory audit of company accounts for FY 2024–25" },
+      ],
+    },
+    {
+      month: 9,
+      name: "September",
+      deadlines: [
+        { day: 7, category: "Income Tax", description: "Deposit TDS/TCS deducted in August via Challan 281 — mandatory for all deductors" },
+        { day: 11, category: "GST", description: "Monthly GSTR-1 — report all outward B2B and B2C sales invoices for August" },
+        { day: 15, category: "Income Tax", description: "Advance Tax Q2 — cumulative 45% of estimated annual tax liability must be paid by this date" },
+        { day: 15, category: "PF/ESI/Labour", description: "Monthly deposit of Provident Fund (ECR) and ESI contributions for employee salaries" },
+        { day: 20, category: "GST", description: "GSTR-3B — monthly summary of sales, input tax credit, and net GST liability for August" },
+        { day: 30, category: "ROC", description: "AGM (Annual General Meeting) — mandatory shareholder meeting required under Companies Act 2013" },
+        { day: 30, category: "Income Tax", description: "Tax Audit Report (Form 3CA/3CB/3CD) — upload signed report for businesses above turnover threshold" },
+        { day: 30, category: "Income Tax", description: "ITR for tax audit cases — businesses and professionals required to get accounts audited under Sec 44AB" },
+      ],
+    },
+    {
+      month: 10,
+      name: "October",
+      deadlines: [
+        { day: 7, category: "Income Tax", description: "Deposit TDS/TCS deducted in September via Challan 281 — mandatory for all deductors" },
+        { day: 11, category: "GST", description: "Monthly GSTR-1 — report all outward B2B and B2C sales invoices for September" },
+        { day: 15, category: "Income Tax", description: "Extended deadline for ITR filing — tax audit cases granted extension under Section 139" },
+        { day: 15, category: "PF/ESI/Labour", description: "Monthly deposit of Provident Fund (ECR) and ESI contributions for employee salaries" },
+        { day: 20, category: "GST", description: "GSTR-3B — monthly summary of sales, input tax credit, and net GST liability for September" },
+        { day: 31, category: "ROC", description: "AOC-4 — annual filing of financial statements (P&L, balance sheet) with Registrar of Companies (MCA portal)" },
+        { day: 31, category: "Income Tax", description: "Form 8 LLP — statement of accounts and solvency of LLP for FY 2024–25 (MCA portal)" },
+        { day: 31, category: "Income Tax", description: "Q2 TDS return (Jul–Sep) — file Form 24Q/26Q/27Q reporting all deductions and deposits" },
+      ],
+    },
+    {
+      month: 11,
+      name: "November",
+      deadlines: [
+        { day: 7, category: "Income Tax", description: "Deposit TDS/TCS deducted in October via Challan 281 — mandatory for all deductors" },
+        { day: 11, category: "GST", description: "Monthly GSTR-1 — report all outward B2B and B2C sales invoices for October" },
+        { day: 15, category: "PF/ESI/Labour", description: "Monthly deposit of Provident Fund (ECR) and ESI contributions for employee salaries" },
+        { day: 20, category: "GST", description: "GSTR-3B — monthly summary of sales, input tax credit, and net GST liability for October" },
+        { day: 20, category: "ROC", description: "MGT-7 — annual return containing company ownership, shareholder, and management details (MCA portal)" },
+        { day: 30, category: "Income Tax", description: "ITR for Transfer Pricing cases — businesses with international transactions requiring Form 3CEB audit" },
+      ],
+    },
+    {
+      month: 12,
+      name: "December",
+      deadlines: [
+        { day: 7, category: "Income Tax", description: "Deposit TDS/TCS deducted in November via Challan 281 — mandatory for all deductors" },
+        { day: 11, category: "GST", description: "Monthly GSTR-1 — report all outward B2B and B2C sales invoices for November" },
+        { day: 15, category: "Income Tax", description: "Advance Tax Q3 — cumulative 75% of estimated annual tax liability must be paid by this date" },
+        { day: 15, category: "PF/ESI/Labour", description: "Monthly deposit of Provident Fund (ECR) and ESI contributions for employee salaries" },
+        { day: 20, category: "GST", description: "GSTR-3B — monthly summary of sales, input tax credit, and net GST liability for November" },
+        { day: 31, category: "GST", description: "GSTR-9 annual return — comprehensive reconciliation of all monthly GST returns for FY 2024–25" },
+      ],
+    },
+  ],
+};

@@ -39,12 +39,20 @@ const routeStructure = [
     ],
   },
   {
-    name: "About",
-    route: "/about",
-  },
-  {
-    name: "Blogs",
-    route: "/blogs",
+    name: "More",
+    route: "",
+    collapse: [
+      { name: "About", route: "/about" },
+      { name: "Blogs", route: "/blogs" },
+      {
+        name: "Compliance Calendar",
+        route: "",
+        collapse: [
+          { name: "2025", route: "/compliance-calendar/2025" },
+          // { name: "2026", route: "/compliance-calendar/2026" },
+        ],
+      },
+    ],
   },
   {
     name: "Contact",

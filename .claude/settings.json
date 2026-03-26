@@ -1,0 +1,6 @@
+{
+  "enabledPlugins": {
+    "uber-dev@agent-marketplace": false,
+    "uber-reviewer@agent-marketplace": false
+  }
+}

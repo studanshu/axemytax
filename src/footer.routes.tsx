@@ -42,8 +42,9 @@ const footerRoutes: FooterRoutes = {
     {
       name: "company",
       items: [
-        { name: "about us", href: routeDict["About"] as string },
-        { name: "blog", href: routeDict["Blogs"] as string },
+        { name: "about us", href: (routeDict["More"] as any)["About"] as string },
+        { name: "blog", href: (routeDict["More"] as any)["Blogs"] as string },
+        { name: "compliance calendar", href: (routeDict["More"] as any)["Compliance Calendar"]["2025"] as string },
       ],
     },
     {

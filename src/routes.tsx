@@ -24,13 +24,16 @@
 // @mui material components
 import { ContactPageOutlined } from "@mui/icons-material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import HomeIcon from "@mui/icons-material/Home";
 import ServiceIcon from "@mui/icons-material/HomeRepairServiceOutlined";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import RssFeedIcon from "@mui/icons-material/RssFeed";
 import { lazy, Suspense } from "react";
 
 // // Pages
 import AboutJsonData from "assets/data/About/index";
+import { ComplianceCalendar2025 } from "assets/data/ComplianceCalendar/index";
 import ContactUsJsonData from "assets/data/ContactUs/index";
 
 import About from "pages/About";
@@ -52,8 +55,9 @@ import InvestmentAdvisoryRoutes from "./routes/InvestmentAdvisoryRoutes";
 import ConsultingRoutes from "./routes/ConsultingRoutes";
 import OthersRoutes from "./routes/OthersRoutes";
 
-// Lazy load BlogOverview to avoid circular dependency
+// Lazy load to avoid circular dependency
 const BlogOverview = lazy(() => import("pages/BlogOverview/BlogOverview"));
+const ComplianceCalendarPage = lazy(() => import("pages/ComplianceCalendar/index"));
 
 const routes: Route[] = [
   {
@@ -83,26 +87,53 @@ const routes: Route[] = [
     ],
   },
   {
-    name: "About",
-    icon: <AccountCircleIcon />,
-    route: "/about",
-    component: (
-      <PageContextProvider dict={{ name: "About" }}>
-        <About jsonData={AboutJsonData} />
-      </PageContextProvider>
-    ),
-  },
-  {
-    name: "Blogs",
-    icon: <RssFeedIcon />,
-    route: "/blogs",
-    component: (
-      <PageContextProvider dict={{ name: "BlogOverview" }}>
-        <Suspense fallback={<></>}>
-          <BlogOverview />
-        </Suspense>
-      </PageContextProvider>
-    ),
+    name: "More",
+    icon: <MoreHorizIcon />,
+    route: "",
+    collapse: [
+      {
+        name: "About",
+        icon: <AccountCircleIcon />,
+        route: "/about",
+        component: (
+          <PageContextProvider dict={{ name: "About" }}>
+            <About jsonData={AboutJsonData} />
+          </PageContextProvider>
+        ),
+      },
+      {
+        name: "Blogs",
+        icon: <RssFeedIcon />,
+        route: "/blogs",
+        component: (
+          <PageContextProvider dict={{ name: "BlogOverview" }}>
+            <Suspense fallback={<></>}>
+              <BlogOverview />
+            </Suspense>
+          </PageContextProvider>
+        ),
+      },
+      {
+        name: "Compliance Calendar",
+        icon: <CalendarMonthIcon />,
+        route: "",
+        collapse: [
+          {
+            name: "2025",
+            route: "/compliance-calendar/2025",
+            component: (
+              <PageContextProvider dict={{ name: "ComplianceCalendar" }}>
+                <Suspense fallback={<></>}>
+                  <ComplianceCalendarPage jsonData={ComplianceCalendar2025} />
+                </Suspense>
+              </PageContextProvider>
+            ),
+          },
+          // To add 2026: import ComplianceCalendar2026 from assets/data/ComplianceCalendar/index
+          // and add { name: "2026", route: "/compliance-calendar/2026", component: (...) }
+        ],
+      },
+    ],
   },
   {
     name: "Contact",
