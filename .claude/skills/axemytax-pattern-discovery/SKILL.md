@@ -50,6 +50,12 @@ Every new route touches exactly 3 files:
 - `src/routeDict.ts` — structure only (no components, used for links)
 - `src/footer.routes.tsx` — footer menu links via `routeDict`
 
+**Navbar structure (current):**
+- `Home` | `Services` (multi-column dropdown) | `More` (nested dropdown) | `Contact`
+- `More` contains: About, Blogs, Compliance Calendar (with year sub-dropdown)
+- New secondary pages should be added inside the `"More"` collapse, not as top-level routes
+- `routeDict["More"]["Page Name"]` resolves to the URL
+
 ### 5. Context Providers
 Page-level context identifies the current page for analytics:
 ```tsx

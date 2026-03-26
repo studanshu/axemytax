@@ -68,6 +68,37 @@ const NewPage = lazy(() => import("pages/NewPage/index"));
 },
 ```
 
+## `routes.tsx` — Nesting inside an existing dropdown ("More")
+
+Pages that aren't primary navigation (e.g., About, Blogs, Compliance Calendar) live inside the `"More"` dropdown. Add them as a new collapse item inside the existing `"More"` entry:
+
+```tsx
+// Inside the "More" collapse array:
+{
+  name: "New Section",
+  icon: <NewIcon />,
+  route: "/new-section",   // or "" if it has its own sub-dropdown
+  component: (
+    <PageContextProvider dict={{ name: "NewSection" }}>
+      <NewPage jsonData={...} />
+    </PageContextProvider>
+  ),
+},
+```
+
+For `routeDict.ts`, mirror inside the `"More"` collapse:
+```ts
+{ name: "More", route: "", collapse: [
+  ...existing items,
+  { name: "New Section", route: "/new-section" },
+]},
+```
+
+For `footer.routes.tsx`, update the href path:
+```ts
+{ name: "new section", href: (routeDict["More"] as any)["New Section"] as string },
+```
+
 ---
 
 ## `routeDict.ts` — Always Mirror routes.tsx Structure (without components)
