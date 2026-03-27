@@ -1,6 +1,8 @@
 import MKBox from "components/MKBox";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 import footerRoutes from "footer.routes";
+import PaymentSection from "components/Custom/PaymentSection";
+import { PaymentConfig } from "assets/data/Payment/index";
 import { lazy, Suspense, FC, LazyExoticComponent } from "react";
 
 interface AboutJsonData {
@@ -44,6 +46,7 @@ const About: FC<AboutProps> = ({ jsonData }) => {
           </Suspense>
         );
       })}
+      <PaymentSection jsonData={PaymentConfig} />
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
       </MKBox>

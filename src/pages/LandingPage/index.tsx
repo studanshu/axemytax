@@ -5,6 +5,8 @@ import Card from "@mui/material/Card";
 import MKBox from "components/MKBox";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 import footerRoutes from "footer.routes";
+import ReviewsSection from "components/Custom/ReviewsSection";
+import { ReviewsData } from "assets/data/Reviews/index";
 
 // Self - Created
 import Blogs from "./Blogs";
@@ -36,6 +38,7 @@ const LandingPage: FC = () => {
         <HighLevelServices />
         <OurServices />
         <Team />
+        <ReviewsSection jsonData={ReviewsData} />
         <Blogs />
         <LocateUs />
         <Subscribe />

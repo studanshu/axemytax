@@ -6,6 +6,7 @@ import Grid from "@mui/material/Grid";
 import { Stack } from "@mui/system";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
+import MapEmbed from "components/Custom/MapEmbed";
 
 import jsonData from "assets/data/LandingPage/LocateUs.json";
 import theme from "assets/theme";
@@ -76,6 +77,9 @@ const LocateUs: FC = () => {
             </Stack>
           </Grid>
         </Grid>
+        <MKBox mt={6} px={4}>
+          <MapEmbed query={jsonData["mapQuery"]} height="350px" />
+        </MKBox>
       </Container>
     </MKBox>
   );

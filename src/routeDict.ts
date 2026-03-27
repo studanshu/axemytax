@@ -39,6 +39,10 @@ const routeStructure = [
     ],
   },
   {
+    name: "Contact",
+    route: "/contact",
+  },
+  {
     name: "More",
     route: "",
     collapse: [
@@ -49,14 +53,9 @@ const routeStructure = [
         route: "",
         collapse: [
           { name: "2025", route: "/compliance-calendar/2025" },
-          // { name: "2026", route: "/compliance-calendar/2026" },
         ],
       },
     ],
-  },
-  {
-    name: "Contact",
-    route: "/contact",
   },
 ];
 

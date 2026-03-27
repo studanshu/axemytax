@@ -87,6 +87,16 @@ const routes: Route[] = [
     ],
   },
   {
+    name: "Contact",
+    icon: <ContactPageOutlined />,
+    route: "/contact",
+    component: (
+      <PageContextProvider dict={{ name: "Contact" }}>
+        <ContactUsPage jsonData={ContactUsJsonData} />
+      </PageContextProvider>
+    ),
+  },
+  {
     name: "More",
     icon: <MoreHorizIcon />,
     route: "",
@@ -129,21 +139,9 @@ const routes: Route[] = [
               </PageContextProvider>
             ),
           },
-          // To add 2026: import ComplianceCalendar2026 from assets/data/ComplianceCalendar/index
-          // and add { name: "2026", route: "/compliance-calendar/2026", component: (...) }
         ],
       },
     ],
-  },
-  {
-    name: "Contact",
-    icon: <ContactPageOutlined />,
-    route: "/contact",
-    component: (
-      <PageContextProvider dict={{ name: "Contact" }}>
-        <ContactUsPage jsonData={ContactUsJsonData} />
-      </PageContextProvider>
-    ),
   },
 ];
 

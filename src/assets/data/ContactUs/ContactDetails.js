@@ -23,4 +23,5 @@ export const ContactDetailsJson = {
       des: "S - 819, Manipal Center, Bengaluru, KA - 560042, India",
     },
   ],
+  mapQuery: "S-819, Manipal Center, Dickenson Road, Bengaluru, Karnataka 560042",
 };
