@@ -14,7 +14,6 @@ import theme from "./assets/theme";
 // Analytics
 import AnalyticsProvider from "./providers/AnalyticsProvider";
 import EventTrackingProvider from "./providers/EventTrackingProvider";
-import { usePageTracking } from "./hooks/usePageTracking";
 
 // Material Kit 2 React routes
 import BlogContent from "./pages/BlogContent/BlogContent";
@@ -27,8 +26,8 @@ const queryClient = new QueryClient();
 function AppRoutes() {
   const { pathname, hash, key } = useLocation();
 
-  // Automatic page tracking on route changes
-  usePageTracking();
+  // The Google tag records the initial view and SPA history changes.
+  // Do not also emit manual page views here.
 
   // Setting page scroll to 0 when changing the route
   useEffect(() => {

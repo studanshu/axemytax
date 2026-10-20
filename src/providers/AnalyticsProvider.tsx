@@ -42,14 +42,14 @@ const AnalyticsProvider = ({
 
     // Initialize dataLayer
     window.dataLayer = window.dataLayer || [];
-    window.gtag = function gtag(...args: any[]) {
-      window.dataLayer!.push(args);
+    window.gtag = function gtag() {
+      window.dataLayer!.push(arguments);
     };
 
     // Configure gtag
     window.gtag("js", new Date());
     window.gtag("config", trackingId, {
-      send_page_view: false, // We'll handle page views manually
+      send_page_view: true, // Initial view + enhanced measurement handles SPA history
     });
 
     // Load Google Analytics script
@@ -62,13 +62,7 @@ const AnalyticsProvider = ({
       console.log(`Google Analytics initialized with ID: ${trackingId}`);
     }
 
-    return () => {
-      // Cleanup script on unmount
-      const scripts = document.querySelectorAll(
-        `script[src*="googletagmanager.com/gtag/js"]`
-      );
-      scripts.forEach((script) => script.remove());
-    };
+    // Keep the shared tag loaded across provider remounts.
   }, [trackingId, debug]);
 
   const trackEvent = ({ category, action, label, value }: AnalyticsEvent) => {
