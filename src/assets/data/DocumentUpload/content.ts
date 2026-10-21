@@ -5,7 +5,7 @@ export const uploadCopy: UploadCopy = {
   description: "Prepare your tax documents for a simpler filing experience.",
   preview: "Document extraction",
   notice:
-    "Selecting a file keeps it in your browser. Choose Extract fields to send it through AxeMyTax to Doc Extract for OCR and document detection. Results stay in this session. Google Drive storage is not enabled yet.",
+    "Selecting a file keeps it in your browser. Choose Extract fields to send it directly to Doc Extract for OCR and document detection. Results stay in this session. Google Drive storage is not enabled yet.",
   steps: ["Choose documents", "Review details", "Save to Drive"],
   dropTitle: "Drop your documents here",
   dropDescription: "Form 16, PAN, AIS, bank statements and more.",
@@ -23,6 +23,12 @@ export const uploadCopy: UploadCopy = {
   types: [
     "Not selected",
     "Form 16",
+    "Form 16A",
+    "Form 15G",
+    "Form 15H",
+    "Form 15CA",
+    "Form 15CB",
+    "Form 121",
     "Form 26AS",
     "Annual Information Statement (AIS)",
     "PAN card",
@@ -40,7 +46,7 @@ export const uploadCopy: UploadCopy = {
     "Review the detected type and extracted fields against your original document. OCR can make mistakes. Google Drive storage is not enabled yet.",
   fields: "Extracted information",
   fieldsNote:
-    "Choose Extract fields on a document to see its standardized JSON. PAN, Aadhaar, passports, Form 16 and ITR are supported. Form 14/15 variants, AIS and 26AS are not listed as dedicated types yet.",
+    "Choose Extract fields to view standardized JSON from Doc Extract. Review the output against your original document. Fields and form coverage depend on the deployed backend version.",
   storageTitle: "Organized for your tax filing",
   storageNote:
     "Extract and review your document details here. Saving originals and extracted fields to Google Drive will be added separately.",

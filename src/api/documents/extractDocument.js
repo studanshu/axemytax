@@ -1,11 +1,15 @@
 export default async function extractDocument(file, signal) {
   const body = new FormData();
   body.append("file", file);
-  const response = await fetch("/api/documents/extract", {
+  const baseUrl = (
+    process.env.REACT_APP_DOC_EXTRACT_URL ||
+    "https://doc-extract-studanshus-projects.vercel.app"
+  ).replace(/\/$/, "");
+  const response = await fetch(`${baseUrl}/extract`, {
     method: "POST",
     body,
     signal,
-    credentials: "same-origin",
+    credentials: "omit",
     cache: "no-store",
   });
   const result = await response.json();
