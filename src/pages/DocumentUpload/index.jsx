@@ -11,7 +11,11 @@ export default function DocumentUpload({ jsonData }) {
     <>
       <Suspense fallback={null}>
         <Hero jsonData={jsonData.Hero} />
+      </Suspense>
+      <Suspense fallback={null}>
         <UploadSection c={jsonData.Upload} />
+      </Suspense>
+      <Suspense fallback={null}>
         <Contact jsonData={jsonData.Contact} />
       </Suspense>
       <MKBox pt={2} px={1}>

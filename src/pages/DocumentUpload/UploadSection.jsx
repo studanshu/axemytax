@@ -9,8 +9,6 @@ import {
   DialogContent,
   DialogActions,
   Grid,
-  MenuItem,
-  TextField,
 } from "@mui/material";
 import CloudUploadOutlined from "@mui/icons-material/CloudUploadOutlined";
 import DescriptionOutlined from "@mui/icons-material/DescriptionOutlined";
@@ -19,6 +17,10 @@ import MKBox from "components/MKBox";
 import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
 import extractDocument from "api/documents/extractDocument";
+import SectionHeader from "components/Custom/SectionHeader";
+import DropdownField from "components/Custom/Form/DropdownField";
+import ResultReview from "./ResultReview";
+import borders from "assets/theme/base/borders";
 
 export default function UploadSection({ c }) {
   const input = useRef(null);
@@ -102,7 +104,21 @@ export default function UploadSection({ c }) {
     update({ processing: true, extractionError: false });
     try {
       const result = await extractDocument(item.file, controller.signal);
-      if (!controller.signal.aborted) update({ result, processing: false });
+      if (!controller.signal.aborted)
+        setFiles((old) =>
+          old.map((f) =>
+            f.id === item.id
+              ? {
+                  ...f,
+                  result,
+                  processing: false,
+                  type: f.manualType
+                    ? f.type
+                    : result.document_type_label || c.types[0],
+                }
+              : f,
+          ),
+        );
     } catch {
       update({ processing: false, extractionError: true });
     } finally {
@@ -111,9 +127,16 @@ export default function UploadSection({ c }) {
     }
   };
   return (
-    <MKBox component="section" py={6}>
+    <MKBox component="section" py={8}>
       <Container>
-        <MKBox px={{ xs: 1, md: 4 }}>
+        <MKBox px={{ xs: 2, md: 4 }}>
+          <SectionHeader
+            caption={c.sectionCaption}
+            title={c.sectionTitle}
+            variant="h3"
+            color="secondary"
+            sx={{ mb: 4 }}
+          />
           <Alert severity="info" sx={{ mb: 4 }}>
             <strong>{c.preview}. </strong>
             {c.notice}
@@ -143,17 +166,20 @@ export default function UploadSection({ c }) {
                     add(e.dataTransfer.files);
                   }}
                   sx={{
-                    border: `2px dashed ${dragging ? "#0288d1" : "#bacbd9"}`,
-                    borderRadius: 4,
-                    bgcolor: dragging ? "#e0f2fe" : "#f8fbff",
-                    p: { xs: 3, md: 5 },
+                    border: "2px dashed",
+                    borderColor: dragging ? "info.main" : "grey.300",
+                    borderRadius: borders.borderRadius.lg,
+                    bgcolor: "light.main",
+                    p: { xs: 3, md: 4 },
                     textAlign: "center",
                   }}
                 >
                   <CloudUploadOutlined
-                    sx={{ fontSize: 52, color: "#0288d1", mb: 2 }}
+                    sx={{ fontSize: 48, color: "info.main", mb: 2 }}
                   />
-                  <MKTypography variant="h4">{c.dropTitle}</MKTypography>
+                  <MKTypography variant="h5" color="secondary">
+                    {c.dropTitle}
+                  </MKTypography>
                   <MKTypography variant="body2" color="text" mt={1} mb={3}>
                     {c.dropDescription}
                   </MKTypography>
@@ -183,7 +209,9 @@ export default function UploadSection({ c }) {
               )}
               {review && (
                 <MKBox mb={3}>
-                  <MKTypography variant="h4">{c.reviewTitle}</MKTypography>
+                  <MKTypography variant="h3" color="secondary">
+                    {c.reviewTitle}
+                  </MKTypography>
                   <MKTypography variant="body2" color="text" mt={1}>
                     {c.reviewNote}
                   </MKTypography>
@@ -205,7 +233,7 @@ export default function UploadSection({ c }) {
                 mt={4}
                 mb={2}
               >
-                <MKTypography variant="h5">
+                <MKTypography variant="h5" color="secondary">
                   {c.queue} ({files.length})
                 </MKTypography>
                 {files.length > 0 && (
@@ -224,9 +252,10 @@ export default function UploadSection({ c }) {
                   <MKBox
                     key={item.id}
                     sx={{
-                      border: "1px solid #e0e7ee",
-                      borderRadius: 3,
-                      p: { xs: 2, md: 3 },
+                      border: "1px solid",
+                      borderColor: "grey.300",
+                      borderRadius: borders.borderRadius.lg,
+                      p: 3,
                       mb: 2,
                     }}
                   >
@@ -252,76 +281,43 @@ export default function UploadSection({ c }) {
                       sx={{ mt: 1 }}
                     >
                       <Grid item xs={12} sm={7}>
-                        <TextField
+                        <DropdownField
                           fullWidth
-                          select
                           label={c.type}
-                          size="small"
+                          options={Array.from(new Set([...c.types, item.type]))}
                           value={item.type}
                           onChange={(e) =>
                             setFiles((old) =>
                               old.map((f) =>
                                 f.id === item.id
-                                  ? { ...f, type: e.target.value }
+                                  ? {
+                                      ...f,
+                                      type: e.target.value,
+                                      manualType: true,
+                                    }
                                   : f,
                               ),
                             )
                           }
-                        >
-                          {c.types.map((type) => (
-                            <MenuItem key={type} value={type}>
-                              {type}
-                            </MenuItem>
-                          ))}
-                        </TextField>
+                        />
                       </Grid>
                       <Grid item xs={12} sm={5}>
                         <MKTypography variant="caption" color="text">
-                          {item.type === c.types[0] ? c.pending : c.manual}
+                          {item.manualType
+                            ? c.manual
+                            : item.result
+                              ? c.autoDetected
+                              : c.pending}
                         </MKTypography>
                       </Grid>
                     </Grid>
-                    {item.result && (
-                      <MKBox mt={2}>
-                        <MKTypography variant="body2">
-                          {c.detected}:{" "}
-                          {item.result.document_type_label ||
-                            item.result.document_type}
-                        </MKTypography>
-                        <MKTypography variant="caption" color="text">
-                          {c.extracted}
-                        </MKTypography>
-                        <MKBox
-                          component="pre"
-                          sx={{
-                            bgcolor: "#f5f8fc",
-                            p: 2,
-                            borderRadius: 2,
-                            maxHeight: 360,
-                            overflow: "auto",
-                            fontSize: "0.75rem",
-                            whiteSpace: "pre-wrap",
-                            overflowWrap: "anywhere",
-                          }}
-                        >
-                          {JSON.stringify(
-                            {
-                              document_type: item.result.document_type,
-                              fields: item.result.fields,
-                              document_specific: item.result.document_specific,
-                            },
-                            null,
-                            2,
-                          )}
-                        </MKBox>
-                      </MKBox>
-                    )}
+                    {item.result && <ResultReview result={item.result} c={c} />}
                     {item.extractionError && (
                       <Alert severity="error" sx={{ mt: 2 }}>
                         {c.extractionError}
                       </Alert>
                     )}
-                    <MKBox display="flex" gap={1} mt={1}>
+                    <MKBox display="flex" gap={1} mt={2} flexWrap="wrap">
                       <MKButton
                         variant="text"
                         color="info"
@@ -380,15 +376,27 @@ export default function UploadSection({ c }) {
               </MKBox>
             </Grid>
             <Grid item xs={12} md={4}>
-              <MKBox sx={{ bgcolor: "#f5f8fc", borderRadius: 4, p: 3 }}>
+              <MKBox
+                sx={{
+                  bgcolor: "light.main",
+                  borderRadius: borders.borderRadius.lg,
+                  p: 3,
+                }}
+              >
                 <FolderOutlined
-                  sx={{ fontSize: 36, color: "#0288d1", mb: 2 }}
+                  sx={{ fontSize: 36, color: "info.main", mb: 2 }}
                 />
-                <MKTypography variant="h5">{c.storageTitle}</MKTypography>
+                <MKTypography variant="h5" color="secondary">
+                  {c.storageTitle}
+                </MKTypography>
                 <MKTypography variant="body2" color="text" mt={2}>
                   {c.storageNote}
                 </MKTypography>
-                <MKBox mt={3} pt={3} sx={{ borderTop: "1px solid #dce5ef" }}>
+                <MKBox
+                  mt={3}
+                  pt={3}
+                  sx={{ borderTop: "1px solid", borderColor: "grey.300" }}
+                >
                   <MKTypography variant="h6">{c.fields}</MKTypography>
                   <MKTypography variant="body2" color="text" mt={1}>
                     {c.fieldsNote}
@@ -474,6 +482,9 @@ UploadSection.propTypes = {
     storageNote: PropTypes.string.isRequired,
     storageTitle: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
+    autoDetected: PropTypes.string.isRequired,
+    sectionCaption: PropTypes.string.isRequired,
+    sectionTitle: PropTypes.string.isRequired,
     types: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   }).isRequired,
 };

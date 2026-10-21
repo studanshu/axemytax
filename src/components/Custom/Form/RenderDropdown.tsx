@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import { FormControl, Grid, MenuItem, TextField } from "@mui/material";
-import MKTypography from "components/MKTypography";
+import { FormControl, Grid } from "@mui/material";
+import DropdownField from "./DropdownField";
 import { Controller, useFormContext } from "react-hook-form";
 import { errorText } from "./utils";
 
@@ -35,26 +35,22 @@ const RenderDropdown = ({ input, gap = 2 }: RenderDropdownProps) => {
     formState: { errors },
     watch,
   } = useFormContext();
-  
+
   const selectedOption = watch(input.formLabel) as string | undefined;
 
   const isNestedDropdown = input.type === "nestedEnum";
 
-  const renderMenuItems = () => {
+  const getOptions = () => {
     let optionList: string[] = [];
     if (isNestedDropdown && input.options) {
-      optionList = Object.keys(input.options as Record<string, NestedEnumOption>);
+      optionList = Object.keys(
+        input.options as Record<string, NestedEnumOption>,
+      );
     } else if (input.options) {
       optionList = input.options as string[];
     }
 
-    return optionList.map((key, index) => (
-      <MenuItem key={index} value={key}>
-        <MKTypography variant="subtitle1" color="secondary">
-          {key}
-        </MKTypography>
-      </MenuItem>
-    ));
+    return optionList;
   };
 
   const error = errors[input.formLabel];
@@ -68,39 +64,32 @@ const RenderDropdown = ({ input, gap = 2 }: RenderDropdownProps) => {
             control={control}
             name={input.formLabel}
             render={({ field }) => (
-              <TextField
+              <DropdownField
                 {...field}
-                select
+                options={getOptions()}
                 label={input.label}
                 required={input.required || false}
                 error={!!error}
                 helperText={errorText(errorMessage)}
-                InputProps={{
-                  style: {
-                    minHeight: '56px',
-                  },
-                }}
-                SelectProps={{
-                  displayEmpty: true,
-                  style: {
-                    minHeight: '40px',
-                  },
-                }}
-              >
-                {renderMenuItems()}
-              </TextField>
+              />
             )}
           />
         </FormControl>
       </Grid>
-      {isNestedDropdown && selectedOption && input.options && typeof input.options === 'object' && !Array.isArray(input.options) && (
-        <Grid item>
-          <RenderDropdown 
-            input={(input.options as Record<string, DropdownInput>)[selectedOption]} 
-            gap={gap} 
-          />
-        </Grid>
-      )}
+      {isNestedDropdown &&
+        selectedOption &&
+        input.options &&
+        typeof input.options === "object" &&
+        !Array.isArray(input.options) && (
+          <Grid item>
+            <RenderDropdown
+              input={
+                (input.options as Record<string, DropdownInput>)[selectedOption]
+              }
+              gap={gap}
+            />
+          </Grid>
+        )}
     </Grid>
   );
 };
