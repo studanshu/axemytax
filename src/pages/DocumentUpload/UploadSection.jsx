@@ -16,7 +16,9 @@ import FolderOutlined from "@mui/icons-material/FolderOutlined";
 import MKBox from "components/MKBox";
 import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
-import extractDocument from "api/documents/extractDocument";
+import extractDocument, {
+  getDocumentTypes,
+} from "api/documents/extractDocument";
 import SectionHeader from "components/Custom/SectionHeader";
 import DropdownField from "components/Custom/Form/DropdownField";
 import ResultReview from "./ResultReview";
@@ -30,6 +32,21 @@ export default function UploadSection({ c }) {
   const [error, setError] = useState("");
   const [dragging, setDragging] = useState(false);
   const [review, setReview] = useState(false);
+  const [catalogue, setCatalogue] = useState([]);
+  useEffect(() => {
+    const controller = new AbortController();
+    getDocumentTypes(controller.signal)
+      .then((types) => {
+        if (!controller.signal.aborted)
+          setCatalogue(
+            types.map((type) => type.label).sort((a, b) => a.localeCompare(b)),
+          );
+      })
+      .catch(() => {
+        /* Keep the local catalogue available while offline. */
+      });
+    return () => controller.abort();
+  }, []);
   const [preview, setPreview] = useState(null);
   useEffect(() => {
     const active = urls.current;
@@ -284,7 +301,14 @@ export default function UploadSection({ c }) {
                         <DropdownField
                           fullWidth
                           label={c.type}
-                          options={Array.from(new Set([...c.types, item.type]))}
+                          options={Array.from(
+                            new Set([
+                              c.types[0],
+                              ...catalogue,
+                              ...c.types.slice(1),
+                              item.type,
+                            ]),
+                          )}
                           value={item.type}
                           onChange={(e) =>
                             setFiles((old) =>

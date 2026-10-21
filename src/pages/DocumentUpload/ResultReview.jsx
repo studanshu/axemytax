@@ -1,3 +1,13 @@
+import {
+  Alert,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from "@mui/material";
 import PropTypes from "prop-types";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
@@ -14,13 +24,26 @@ function entries(value, labels, prefix = "") {
     if (
       item == null ||
       item === "" ||
-      ["review_required", "extraction_scope", "warnings"].includes(key)
+      [
+        "review_required",
+        "extraction_scope",
+        "warnings",
+        "transactions",
+        "unparsed_rows",
+        "layout_validation",
+        "validation",
+        "schedules_parsed",
+      ].includes(key)
     )
       return [];
     const path = prefix ? `${prefix}.${key}` : key;
     const label = labels[path] || labels[key] || humanize(key);
     if (Array.isArray(item))
-      return item.length ? [{ key: path, label, value: item.join(", ") }] : [];
+      return item.flatMap((element, index) =>
+        element && typeof element === "object"
+          ? entries(element, labels, `${path}.${index + 1}`)
+          : [{ key: `${path}.${index}`, label, value: String(element) }],
+      );
     if (typeof item === "object") {
       if ("amount" in item) {
         if (item.amount == null) return [];
@@ -42,6 +65,15 @@ function entries(value, labels, prefix = "") {
 }
 
 export default function ResultReview({ result, c }) {
+  const transactions = result.document_specific?.transactions || [];
+  const warnings = result.document_specific?.warnings || [];
+  const displayMoney = (value) =>
+    value?.amount == null
+      ? "—"
+      : new Intl.NumberFormat("en-IN", {
+          style: "currency",
+          currency: value.currency || "INR",
+        }).format(value.amount);
   const groups = Object.entries({
     ...result.fields,
     document_specific: result.document_specific || {},
@@ -60,6 +92,60 @@ export default function ResultReview({ result, c }) {
       <MKTypography variant="body2" color="text" mt={1}>
         {c.resultNote}
       </MKTypography>
+      {warnings.length > 0 && (
+        <Alert severity="warning" sx={{ mt: 2 }}>
+          {warnings.join(" ")}
+        </Alert>
+      )}
+      {transactions.length > 0 && (
+        <MKBox mt={3}>
+          <MKTypography variant="h6" color="secondary" mb={2}>
+            Statement transactions
+          </MKTypography>
+          <TableContainer
+            component={Paper}
+            variant="outlined"
+            sx={{ maxHeight: 480 }}
+          >
+            <Table
+              size="small"
+              stickyHeader
+              aria-label="Extracted bank statement transactions"
+            >
+              <TableHead>
+                <TableRow>
+                  {["Date", "Description", "Debit", "Credit", "Balance"].map(
+                    (label) => (
+                      <TableCell key={label}>
+                        <MKTypography variant="caption" fontWeight="bold">
+                          {label}
+                        </MKTypography>
+                      </TableCell>
+                    ),
+                  )}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {transactions.map((row, index) => (
+                  <TableRow key={`${row.source_line}-${index}`}>
+                    {[
+                      row.transaction_date,
+                      row.description || "—",
+                      displayMoney(row.debit),
+                      displayMoney(row.credit),
+                      displayMoney(row.balance),
+                    ].map((value, cell) => (
+                      <TableCell key={cell}>
+                        <MKTypography variant="body2">{value}</MKTypography>
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </MKBox>
+      )}
       {!groups.length && (
         <MKTypography variant="body2" color="text" mt={2}>
           {c.noFields}

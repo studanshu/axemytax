@@ -25,3 +25,27 @@ export default async function extractDocument(file, signal) {
   }
   return result;
 }
+
+export async function getDocumentTypes(signal) {
+  const baseUrl = (
+    process.env.REACT_APP_DOC_EXTRACT_URL ||
+    "https://doc-extract-studanshus-projects.vercel.app"
+  ).replace(/\/$/, "");
+  const response = await fetch(`${baseUrl}/document-types`, {
+    signal,
+    credentials: "omit",
+    cache: "no-store",
+  });
+  const result = await response.json();
+  if (
+    !response.ok ||
+    !result.success ||
+    result.api_version !== "2.0" ||
+    !Array.isArray(result.document_types)
+  )
+    throw new Error("CATALOGUE_FAILED");
+  return result.document_types.filter(
+    (item) =>
+      item && typeof item.label === "string" && typeof item.type === "string",
+  );
+}

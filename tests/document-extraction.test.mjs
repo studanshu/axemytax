@@ -5,7 +5,7 @@ const source = await readFile(
   new URL("../src/api/documents/extractDocument.js", import.meta.url),
   "utf8",
 );
-const { default: extractDocument } = await import(
+const { default: extractDocument, getDocumentTypes } = await import(
   `data:text/javascript;base64,${Buffer.from(source).toString("base64")}`
 );
 const file = new File(["synthetic"], "synthetic.pdf", {
@@ -59,4 +59,27 @@ test("client rejects incompatible extraction responses", async (t) => {
     json: async () => ({ success: true, api_version: "1.0" }),
   }));
   await assert.rejects(extractDocument(file), /EXTRACTION_FAILED/);
+});
+
+test("document catalogue exposes passports and corporate returns", async (t) => {
+  t.mock.method(globalThis, "fetch", async (url, options) => {
+    assert.equal(
+      url,
+      "https://doc-extract-studanshus-projects.vercel.app/document-types",
+    );
+    assert.equal(options.credentials, "omit");
+    return {
+      ok: true,
+      json: async () => ({
+        success: true,
+        api_version: "2.0",
+        document_types: [
+          { type: "indian_passport", label: "Indian Passport" },
+          { type: "itr_6", label: "ITR-6" },
+          null,
+        ],
+      }),
+    };
+  });
+  assert.equal((await getDocumentTypes()).length, 2);
 });
