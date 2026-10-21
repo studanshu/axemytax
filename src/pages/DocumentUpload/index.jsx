@@ -6,6 +6,7 @@ import footerRoutes from "footer.routes";
 const Hero = lazy(() => import("./Hero"));
 const UploadSection = lazy(() => import("./UploadSection"));
 const Contact = lazy(() => import("./Contact"));
+const ProfileInspector = lazy(() => import("./ProfileInspector"));
 export default function DocumentUpload({ jsonData }) {
   return (
     <>
@@ -14,6 +15,9 @@ export default function DocumentUpload({ jsonData }) {
       </Suspense>
       <Suspense fallback={null}>
         <UploadSection c={jsonData.Upload} />
+      </Suspense>
+      <Suspense fallback={null}>
+        <ProfileInspector />
       </Suspense>
       <Suspense fallback={null}>
         <Contact jsonData={jsonData.Contact} />

@@ -9,6 +9,8 @@ import {
   DialogContent,
   DialogActions,
   Grid,
+  Checkbox,
+  FormControlLabel,
 } from "@mui/material";
 import CloudUploadOutlined from "@mui/icons-material/CloudUploadOutlined";
 import DescriptionOutlined from "@mui/icons-material/DescriptionOutlined";
@@ -33,6 +35,7 @@ export default function UploadSection({ c }) {
   const [dragging, setDragging] = useState(false);
   const [review, setReview] = useState(false);
   const [catalogue, setCatalogue] = useState([]);
+  const [includeTrace, setIncludeTrace] = useState(false);
   useEffect(() => {
     const controller = new AbortController();
     getDocumentTypes(controller.signal)
@@ -129,6 +132,7 @@ export default function UploadSection({ c }) {
         item.file,
         controller.signal,
         requestedType,
+        includeTrace,
       );
       if (!controller.signal.aborted)
         setFiles((old) =>
@@ -167,6 +171,29 @@ export default function UploadSection({ c }) {
             <strong>{c.preview}. </strong>
             {c.notice}
           </Alert>
+          <MKBox mb={3}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={includeTrace}
+                  onChange={(event) => setIncludeTrace(event.target.checked)}
+                />
+              }
+              label={
+                <MKTypography variant="body2">
+                  Show extraction steps (includes document text)
+                </MKTypography>
+              }
+            />
+            <MKButton
+              component="a"
+              href="#document-profiles"
+              variant="text"
+              color="info"
+            >
+              View document fields and requirements
+            </MKButton>
+          </MKBox>
           <MKBox display="flex" gap={2} mb={4} flexWrap="wrap">
             {c.steps.map((step, i) => (
               <Chip
@@ -356,14 +383,20 @@ export default function UploadSection({ c }) {
                       <MKButton
                         variant="text"
                         color="info"
-                        disabled={item.processing || !!item.result}
+                        disabled={
+                          item.processing ||
+                          (!!item.result &&
+                            (!includeTrace || !!item.result.trace))
+                        }
                         onClick={() => extract(item)}
                       >
                         {item.processing
                           ? c.extracting
-                          : item.result
-                            ? c.extracted
-                            : c.extract}
+                          : item.result && includeTrace && !item.result.trace
+                            ? "Extract with steps"
+                            : item.result
+                              ? c.extracted
+                              : c.extract}
                       </MKButton>
                       <MKButton
                         variant="text"

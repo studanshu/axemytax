@@ -5,7 +5,11 @@ const source = await readFile(
   new URL("../src/api/documents/extractDocument.js", import.meta.url),
   "utf8",
 );
-const { default: extractDocument, getDocumentTypes } = await import(
+const {
+  default: extractDocument,
+  getDocumentTypes,
+  getProfileCatalogue,
+} = await import(
   `data:text/javascript;base64,${Buffer.from(source).toString("base64")}`
 );
 const file = new File(["synthetic"], "synthetic.pdf", {
@@ -27,9 +31,69 @@ test("browser uploads directly to Doc Extract with no credentials", async (t) =>
     );
     assert.equal(options.body.get("file").name, "synthetic.pdf");
     assert.equal(options.credentials, "omit");
+    assert.equal(options.body.has("include_trace"), false);
     return { ok: true, json: async () => expected };
   });
   assert.deepEqual(await extractDocument(file), expected);
+});
+
+test("diagnostics and selected profile are explicitly requested", async (t) => {
+  t.mock.method(globalThis, "fetch", async (_url, options) => {
+    assert.equal(options.body.get("include_trace"), "true");
+    assert.equal(options.body.get("document_type"), "indian_passport");
+    return {
+      ok: true,
+      json: async () => ({
+        success: true,
+        api_version: "3.0",
+        document_type: "indian_passport",
+        data: {},
+        profile: { field_paths: [] },
+      }),
+    };
+  });
+  await extractDocument(file, undefined, "indian_passport", true);
+});
+
+test("field guide loads profile requirements and global definitions", async (t) => {
+  const controller = new AbortController();
+  const profiles = [
+    {
+      document_type: "indian_passport",
+      field_paths: ["personal.full_name"],
+      required_paths: ["personal.full_name"],
+    },
+  ];
+  const fields = { "personal.full_name": { json_schema: { type: "string" } } };
+  t.mock.method(globalThis, "fetch", async (url, options) => {
+    assert.equal(options.credentials, "omit");
+    assert.equal(options.signal, controller.signal);
+    return {
+      ok: true,
+      json: async () => ({
+        success: true,
+        api_version: "3.0",
+        ...(url.endsWith("/schema") ? { fields } : { profiles }),
+      }),
+    };
+  });
+  assert.deepEqual(await getProfileCatalogue(controller.signal), {
+    profiles,
+    fields,
+  });
+});
+
+test("field guide rejects incompatible schema responses", async (t) => {
+  t.mock.method(globalThis, "fetch", async (url) => ({
+    ok: true,
+    json: async () => ({
+      success: true,
+      api_version: url.endsWith("/schema") ? "1.0" : "3.0",
+      profiles: [],
+      fields: {},
+    }),
+  }));
+  await assert.rejects(getProfileCatalogue(), /PROFILE_CATALOGUE_FAILED/);
 });
 test("configured endpoint and cancellation signal pass through", async (t) => {
   const old = process.env.REACT_APP_DOC_EXTRACT_URL;

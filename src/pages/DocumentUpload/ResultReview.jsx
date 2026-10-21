@@ -12,6 +12,7 @@ import PropTypes from "prop-types";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import { selectProfileData } from "./reviewData";
+import ExtractionTrace from "./ExtractionTrace";
 import borders from "assets/theme/base/borders";
 
 function humanize(value) {
@@ -217,6 +218,7 @@ export default function ResultReview({ result, c }) {
           </MKBox>
         </MKBox>
       ))}
+      <ExtractionTrace trace={result.trace} />
     </MKBox>
   );
 }
@@ -234,6 +236,7 @@ ResultReview.propTypes = {
     }),
     document_type: PropTypes.string.isRequired,
     document_type_label: PropTypes.string,
+    trace: PropTypes.object,
   }).isRequired,
   c: PropTypes.shape({
     detected: PropTypes.string.isRequired,
