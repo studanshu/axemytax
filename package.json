@@ -5,7 +5,7 @@
   "author": "Hemanshu Bahety",
   "description": "Tax Consultation Website",
   "engines": {
-    "node": "22.x",
+    "node": "18.x",
     "npm": ">=8"
   },
   "dependencies": {
