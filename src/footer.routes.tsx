@@ -59,6 +59,7 @@ const footerRoutes: FooterRoutes = {
       name: "help & support",
       items: [
         { name: "contact us", href: routeDict["Contact"] as string },
+        { name: "upload documents", href: routeDict["More"]["Upload Documents"] as string },
         {
           name: "knowledge center",
           href: EXTERNAL_LINKS.KNOWLEDGE_CENTER,

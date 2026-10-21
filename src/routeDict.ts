@@ -46,6 +46,7 @@ const routeStructure = [
     name: "More",
     route: "",
     collapse: [
+      { name: "Upload Documents", route: "/upload-documents" },
       { name: "About", route: "/about" },
       { name: "Blogs", route: "/blogs" },
       {

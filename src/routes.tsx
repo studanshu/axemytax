@@ -32,6 +32,8 @@ import RssFeedIcon from "@mui/icons-material/RssFeed";
 import { lazy, Suspense } from "react";
 
 // // Pages
+import { DocumentUploadData } from "assets/data/DocumentUpload";
+import CloudUploadOutlined from "@mui/icons-material/CloudUploadOutlined";
 import AboutJsonData from "assets/data/About/index";
 import { ComplianceCalendar2025 } from "assets/data/ComplianceCalendar/index";
 import ContactUsJsonData from "assets/data/ContactUs/index";
@@ -56,6 +58,7 @@ import ConsultingRoutes from "./routes/ConsultingRoutes";
 import OthersRoutes from "./routes/OthersRoutes";
 
 // Lazy load to avoid circular dependency
+const DocumentUpload = lazy(() => import("pages/DocumentUpload"));
 const BlogOverview = lazy(() => import("pages/BlogOverview/BlogOverview"));
 const ComplianceCalendarPage = lazy(() => import("pages/ComplianceCalendar/index"));
 
@@ -101,6 +104,12 @@ const routes: Route[] = [
     icon: <MoreHorizIcon />,
     route: "",
     collapse: [
+      {
+        name: "Upload Documents",
+        icon: <CloudUploadOutlined />,
+        route: "/upload-documents",
+        component: <PageContextProvider dict={{ name: "DocumentUpload" }}><Suspense fallback={null}><DocumentUpload jsonData={DocumentUploadData} /></Suspense></PageContextProvider>,
+      },
       {
         name: "About",
         icon: <AccountCircleIcon />,
