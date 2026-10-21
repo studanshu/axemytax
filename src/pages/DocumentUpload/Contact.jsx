@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Container } from "@mui/material";
 import MKBox from "components/MKBox";
 import InlineForm from "components/Custom/InlineForm";
@@ -10,3 +11,7 @@ export default function Contact({ jsonData }) {
     </Container>
   );
 }
+
+Contact.propTypes = {
+  jsonData: PropTypes.object.isRequired,
+};

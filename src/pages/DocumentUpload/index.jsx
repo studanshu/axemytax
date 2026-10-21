@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { lazy, Suspense } from "react";
 import MKBox from "components/MKBox";
 import DefaultFooter from "examples/Footers/DefaultFooter";
@@ -19,3 +20,11 @@ export default function DocumentUpload({ jsonData }) {
     </>
   );
 }
+
+DocumentUpload.propTypes = {
+  jsonData: PropTypes.shape({
+    Hero: PropTypes.object.isRequired,
+    Upload: PropTypes.object.isRequired,
+    Contact: PropTypes.object.isRequired,
+  }).isRequired,
+};

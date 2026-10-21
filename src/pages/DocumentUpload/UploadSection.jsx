@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useRef, useState, useEffect } from "react";
 import {
   Alert,
@@ -354,3 +355,38 @@ export default function UploadSection({ c }) {
     </MKBox>
   );
 }
+
+UploadSection.propTypes = {
+  c: PropTypes.shape({
+    back: PropTypes.string.isRequired,
+    choose: PropTypes.string.isRequired,
+    clear: PropTypes.string.isRequired,
+    close: PropTypes.string.isRequired,
+    dropDescription: PropTypes.string.isRequired,
+    dropTitle: PropTypes.string.isRequired,
+    duplicate: PropTypes.string.isRequired,
+    empty: PropTypes.string.isRequired,
+    fields: PropTypes.string.isRequired,
+    fieldsNote: PropTypes.string.isRequired,
+    formats: PropTypes.string.isRequired,
+    invalid: PropTypes.string.isRequired,
+    limit: PropTypes.string.isRequired,
+    manual: PropTypes.string.isRequired,
+    notice: PropTypes.string.isRequired,
+    pending: PropTypes.string.isRequired,
+    preview: PropTypes.string.isRequired,
+    previewFile: PropTypes.string.isRequired,
+    queue: PropTypes.string.isRequired,
+    remove: PropTypes.string.isRequired,
+    review: PropTypes.string.isRequired,
+    reviewNote: PropTypes.string.isRequired,
+    reviewTitle: PropTypes.string.isRequired,
+    save: PropTypes.string.isRequired,
+    status: PropTypes.string.isRequired,
+    steps: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    storageNote: PropTypes.string.isRequired,
+    storageTitle: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    types: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  }).isRequired,
+};

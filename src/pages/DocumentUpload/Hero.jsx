@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Container, Chip } from "@mui/material";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
@@ -31,3 +32,11 @@ export default function Hero({ jsonData: c }) {
     </>
   );
 }
+
+Hero.propTypes = {
+  jsonData: PropTypes.shape({
+    caption: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+  }).isRequired,
+};
