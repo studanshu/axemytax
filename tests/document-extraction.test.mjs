@@ -15,9 +15,10 @@ const file = new File(["synthetic"], "synthetic.pdf", {
 test("browser uploads directly to Doc Extract with no credentials", async (t) => {
   const expected = {
     success: true,
-    api_version: "2.0",
+    api_version: "3.0",
     document_type: "pan_card",
-    fields: {},
+    data: {},
+    profile: { field_paths: [] },
   };
   t.mock.method(globalThis, "fetch", async (url, options) => {
     assert.equal(
@@ -45,9 +46,10 @@ test("configured endpoint and cancellation signal pass through", async (t) => {
       ok: true,
       json: async () => ({
         success: true,
-        api_version: "2.0",
+        api_version: "3.0",
         document_type: "pan_card",
-        fields: {},
+        data: {},
+        profile: { field_paths: [] },
       }),
     };
   });
@@ -72,7 +74,7 @@ test("document catalogue exposes passports and corporate returns", async (t) => 
       ok: true,
       json: async () => ({
         success: true,
-        api_version: "2.0",
+        api_version: "3.0",
         document_types: [
           { type: "indian_passport", label: "Indian Passport" },
           { type: "itr_6", label: "ITR-6" },

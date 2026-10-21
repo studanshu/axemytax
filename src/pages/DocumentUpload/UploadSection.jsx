@@ -39,7 +39,7 @@ export default function UploadSection({ c }) {
       .then((types) => {
         if (!controller.signal.aborted)
           setCatalogue(
-            types.map((type) => type.label).sort((a, b) => a.localeCompare(b)),
+            types.slice().sort((a, b) => a.label.localeCompare(b.label)),
           );
       })
       .catch(() => {
@@ -120,7 +120,16 @@ export default function UploadSection({ c }) {
       );
     update({ processing: true, extractionError: false });
     try {
-      const result = await extractDocument(item.file, controller.signal);
+      const requestedType = item.manualType
+        ? catalogue.find((type) => type.label === item.type)?.type
+        : undefined;
+      if (item.manualType && !requestedType)
+        throw new Error("PROFILE_UNAVAILABLE");
+      const result = await extractDocument(
+        item.file,
+        controller.signal,
+        requestedType,
+      );
       if (!controller.signal.aborted)
         setFiles((old) =>
           old.map((f) =>
@@ -304,12 +313,13 @@ export default function UploadSection({ c }) {
                           options={Array.from(
                             new Set([
                               c.types[0],
-                              ...catalogue,
+                              ...catalogue.map((type) => type.label),
                               ...c.types.slice(1),
                               item.type,
                             ]),
                           )}
                           value={item.type}
+                          disabled={item.processing}
                           onChange={(e) =>
                             setFiles((old) =>
                               old.map((f) =>
@@ -317,7 +327,9 @@ export default function UploadSection({ c }) {
                                   ? {
                                       ...f,
                                       type: e.target.value,
-                                      manualType: true,
+                                      manualType: e.target.value !== c.types[0],
+                                      result: null,
+                                      extractionError: false,
                                     }
                                   : f,
                               ),

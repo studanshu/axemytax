@@ -1,28 +1,25 @@
-name: Deploy to Vercel
+name: AxeMyTax document contracts
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
 
+permissions:
+  contents: read
+
+# Vercel's connected Git integration owns deployments. CI validates the contract
+# without a second token-based deploy of an independently rebuilt artifact.
 jobs:
-  deploy:
+  document-contracts:
     runs-on: ubuntu-latest
-
+    timeout-minutes: 5
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
-          node-version: "24.x"
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build the app
-        run: NODE_ENV=production npm run build
-
-      - name: Deploy to Vercel
-        run: npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --force
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - run: node --test tests/*.test.mjs tests/*.test.cjs

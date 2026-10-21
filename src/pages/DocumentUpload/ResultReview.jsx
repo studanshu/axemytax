@@ -11,6 +11,7 @@ import {
 import PropTypes from "prop-types";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
+import { selectProfileData } from "./reviewData";
 import borders from "assets/theme/base/borders";
 
 function humanize(value) {
@@ -25,6 +26,9 @@ function entries(value, labels, prefix = "") {
       item == null ||
       item === "" ||
       [
+        "id",
+        "scope",
+        "reconciliation",
         "review_required",
         "extraction_scope",
         "warnings",
@@ -65,8 +69,10 @@ function entries(value, labels, prefix = "") {
 }
 
 export default function ResultReview({ result, c }) {
-  const transactions = result.document_specific?.transactions || [];
-  const warnings = result.document_specific?.warnings || [];
+  const data = selectProfileData(result);
+  const transactions = data.banking?.transactions || [];
+  const warnings = result.validation?.warnings || [];
+  const missing = result.validation?.missing_required_fields || [];
   const displayMoney = (value) =>
     value?.amount == null
       ? "—"
@@ -74,10 +80,7 @@ export default function ResultReview({ result, c }) {
           style: "currency",
           currency: value.currency || "INR",
         }).format(value.amount);
-  const groups = Object.entries({
-    ...result.fields,
-    document_specific: result.document_specific || {},
-  })
+  const groups = Object.entries(data)
     .map(([key, value]) => ({
       key,
       label: c.groupLabels[key] || humanize(key),
@@ -95,6 +98,22 @@ export default function ResultReview({ result, c }) {
       {warnings.length > 0 && (
         <Alert severity="warning" sx={{ mt: 2 }}>
           {warnings.join(" ")}
+        </Alert>
+      )}
+      {missing.length > 0 && (
+        <Alert severity="info" sx={{ mt: 2 }}>
+          Please check missing required details:{" "}
+          {missing.map((path) => humanize(path.split(".").pop())).join(", ")}.
+        </Alert>
+      )}
+      {data.banking?.reconciliation && (
+        <Alert
+          severity={data.banking.reconciliation.passed ? "success" : "warning"}
+          sx={{ mt: 2 }}
+        >
+          {data.banking.reconciliation.passed
+            ? "Running balances match the parsed transactions. Check the original for completeness."
+            : "Some statement balances or rows need review against the original."}
         </Alert>
       )}
       {transactions.length > 0 && (
@@ -201,8 +220,14 @@ export default function ResultReview({ result, c }) {
 
 ResultReview.propTypes = {
   result: PropTypes.shape({
-    fields: PropTypes.object.isRequired,
-    document_specific: PropTypes.object,
+    data: PropTypes.object.isRequired,
+    profile: PropTypes.shape({
+      field_paths: PropTypes.arrayOf(PropTypes.string).isRequired,
+    }).isRequired,
+    validation: PropTypes.shape({
+      warnings: PropTypes.arrayOf(PropTypes.string),
+      missing_required_fields: PropTypes.arrayOf(PropTypes.string),
+    }),
     document_type: PropTypes.string.isRequired,
     document_type_label: PropTypes.string,
   }).isRequired,
