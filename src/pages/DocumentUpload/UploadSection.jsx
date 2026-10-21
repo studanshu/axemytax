@@ -18,10 +18,12 @@ import FolderOutlined from "@mui/icons-material/FolderOutlined";
 import MKBox from "components/MKBox";
 import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
+import extractDocument from "api/documents/extractDocument";
 
 export default function UploadSection({ c }) {
   const input = useRef(null);
   const urls = useRef(new Set());
+  const requests = useRef(new Map());
   const [files, setFiles] = useState([]);
   const [error, setError] = useState("");
   const [dragging, setDragging] = useState(false);
@@ -29,7 +31,11 @@ export default function UploadSection({ c }) {
   const [preview, setPreview] = useState(null);
   useEffect(() => {
     const active = urls.current;
-    return () => active.forEach((url) => URL.revokeObjectURL(url));
+    const activeRequests = requests.current;
+    return () => {
+      active.forEach((url) => URL.revokeObjectURL(url));
+      activeRequests.forEach((controller) => controller.abort());
+    };
   }, []);
   const add = (incoming) => {
     const next = [...files];
@@ -38,7 +44,7 @@ export default function UploadSection({ c }) {
       if (
         !["application/pdf", "image/jpeg", "image/png"].includes(file.type) ||
         file.size <= 0 ||
-        file.size > 10 * 1024 * 1024
+        file.size > 4 * 1024 * 1024
       ) {
         messages.add(c.invalid);
         return;
@@ -67,11 +73,15 @@ export default function UploadSection({ c }) {
     setReview(false);
   };
   const remove = (item) => {
+    requests.current.get(item.id)?.abort();
+    requests.current.delete(item.id);
     URL.revokeObjectURL(item.url);
     urls.current.delete(item.url);
     setFiles((old) => old.filter((f) => f.id !== item.id));
   };
   const clear = () => {
+    requests.current.forEach((controller) => controller.abort());
+    requests.current.clear();
     files.forEach((f) => {
       URL.revokeObjectURL(f.url);
       urls.current.delete(f.url);
@@ -79,6 +89,26 @@ export default function UploadSection({ c }) {
     setFiles([]);
     setReview(false);
     setError("");
+  };
+  const extract = async (item) => {
+    if (requests.current.has(item.id)) return;
+    const controller = new AbortController();
+    requests.current.set(item.id, controller);
+    const timeout = setTimeout(() => controller.abort(), 115000);
+    const update = (patch) =>
+      setFiles((old) =>
+        old.map((f) => (f.id === item.id ? { ...f, ...patch } : f)),
+      );
+    update({ processing: true, extractionError: false });
+    try {
+      const result = await extractDocument(item.file, controller.signal);
+      if (!controller.signal.aborted) update({ result, processing: false });
+    } catch {
+      update({ processing: false, extractionError: true });
+    } finally {
+      clearTimeout(timeout);
+      requests.current.delete(item.id);
+    }
   };
   return (
     <MKBox component="section" py={6}>
@@ -251,7 +281,59 @@ export default function UploadSection({ c }) {
                         </MKTypography>
                       </Grid>
                     </Grid>
+                    {item.result && (
+                      <MKBox mt={2}>
+                        <MKTypography variant="body2">
+                          {c.detected}:{" "}
+                          {item.result.document_type_label ||
+                            item.result.document_type}
+                        </MKTypography>
+                        <MKTypography variant="caption" color="text">
+                          {c.extracted}
+                        </MKTypography>
+                        <MKBox
+                          component="pre"
+                          sx={{
+                            bgcolor: "#f5f8fc",
+                            p: 2,
+                            borderRadius: 2,
+                            maxHeight: 360,
+                            overflow: "auto",
+                            fontSize: "0.75rem",
+                            whiteSpace: "pre-wrap",
+                            overflowWrap: "anywhere",
+                          }}
+                        >
+                          {JSON.stringify(
+                            {
+                              document_type: item.result.document_type,
+                              fields: item.result.fields,
+                              document_specific: item.result.document_specific,
+                            },
+                            null,
+                            2,
+                          )}
+                        </MKBox>
+                      </MKBox>
+                    )}
+                    {item.extractionError && (
+                      <Alert severity="error" sx={{ mt: 2 }}>
+                        {c.extractionError}
+                      </Alert>
+                    )}
                     <MKBox display="flex" gap={1} mt={1}>
+                      <MKButton
+                        variant="text"
+                        color="info"
+                        disabled={item.processing || !!item.result}
+                        onClick={() => extract(item)}
+                      >
+                        {item.processing
+                          ? c.extracting
+                          : item.result
+                            ? c.extracted
+                            : c.extract}
+                      </MKButton>
                       <MKButton
                         variant="text"
                         color="info"
@@ -366,6 +448,11 @@ UploadSection.propTypes = {
     dropTitle: PropTypes.string.isRequired,
     duplicate: PropTypes.string.isRequired,
     empty: PropTypes.string.isRequired,
+    extract: PropTypes.string.isRequired,
+    extracting: PropTypes.string.isRequired,
+    extracted: PropTypes.string.isRequired,
+    extractionError: PropTypes.string.isRequired,
+    detected: PropTypes.string.isRequired,
     fields: PropTypes.string.isRequired,
     fieldsNote: PropTypes.string.isRequired,
     formats: PropTypes.string.isRequired,
