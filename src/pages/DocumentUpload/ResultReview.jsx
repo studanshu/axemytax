@@ -90,7 +90,10 @@ export default function ResultReview({ result, c }) {
   return (
     <MKBox mt={3}>
       <MKTypography variant="body2" color="info" fontWeight="medium">
-        {c.detected}: {result.document_type_label || result.document_type}
+        {result.classification?.source === "user"
+          ? "Selected document type"
+          : c.detected}
+        : {result.document_type_label || result.document_type}
       </MKTypography>
       <MKTypography variant="body2" color="text" mt={1}>
         {c.resultNote}
@@ -220,6 +223,7 @@ export default function ResultReview({ result, c }) {
 
 ResultReview.propTypes = {
   result: PropTypes.shape({
+    classification: PropTypes.shape({ source: PropTypes.string }),
     data: PropTypes.object.isRequired,
     profile: PropTypes.shape({
       field_paths: PropTypes.arrayOf(PropTypes.string).isRequired,
