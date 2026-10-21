@@ -314,7 +314,6 @@ export default function UploadSection({ c }) {
                             new Set([
                               c.types[0],
                               ...catalogue.map((type) => type.label),
-                              ...c.types.slice(1),
                               item.type,
                             ]),
                           )}
