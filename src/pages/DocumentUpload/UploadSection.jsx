@@ -116,7 +116,7 @@ export default function UploadSection({ c }) {
     if (requests.current.has(item.id)) return;
     const controller = new AbortController();
     requests.current.set(item.id, controller);
-    const timeout = setTimeout(() => controller.abort(), 115000);
+    const timeout = setTimeout(() => controller.abort(), 290000);
     const update = (patch) =>
       setFiles((old) =>
         old.map((f) => (f.id === item.id ? { ...f, ...patch } : f)),
