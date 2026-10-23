@@ -149,3 +149,54 @@ test("document catalogue exposes passports and corporate returns", async (t) => 
   });
   assert.equal((await getDocumentTypes()).length, 2);
 });
+
+test("failed API responses retain trace, diagnostics and status for the review screen", async (t) => {
+  const trace = {
+    trace_id: "synthetic-trace",
+    status: "failed",
+    steps: [
+      { step: "text_extraction", status: "completed" },
+      {
+        step: "extraction_model",
+        status: "failed",
+        error: { reason: "invalid_model_schema" },
+      },
+    ],
+  };
+  t.mock.method(globalThis, "fetch", async () => ({
+    ok: false,
+    status: 422,
+    json: async () => ({
+      success: false,
+      api_version: "3.0",
+      trace,
+      error: {
+        code: "model_output_requires_review",
+        message: "Output could not be verified.",
+        diagnostics: { stage: "extraction_model" },
+      },
+    }),
+  }));
+  await assert.rejects(extractDocument(file), (error) => {
+    assert.equal(error.httpStatus, 422);
+    assert.deepEqual(error.trace, trace);
+    assert.equal(error.diagnostics.stage, "extraction_model");
+    assert.equal(error.userMessage, "Output could not be verified.");
+    return true;
+  });
+});
+
+test("gateway errors preserve HTTP status without pretending to have a server trace", async (t) => {
+  t.mock.method(globalThis, "fetch", async () => ({
+    ok: false,
+    status: 504,
+    json: async () => {
+      throw new SyntaxError("HTML gateway page");
+    },
+  }));
+  await assert.rejects(extractDocument(file), (error) => {
+    assert.equal(error.httpStatus, 504);
+    assert.equal(error.trace, undefined);
+    return true;
+  });
+});

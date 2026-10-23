@@ -12,7 +12,6 @@ import PropTypes from "prop-types";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import { selectProfileData } from "./reviewData";
-import ExtractionTrace from "./ExtractionTrace";
 import borders from "assets/theme/base/borders";
 
 function humanize(value) {
@@ -276,7 +275,6 @@ export default function ResultReview({ result, c }) {
             )}
         </>
       )}
-      <ExtractionTrace trace={result.trace} />
     </MKBox>
   );
 }

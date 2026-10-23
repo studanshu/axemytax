@@ -19,7 +19,16 @@ export default async function extractDocument(
     credentials: "omit",
     cache: "no-store",
   });
-  const result = await response.json();
+  let result;
+  try {
+    result = await response.json();
+  } catch {
+    const error = new Error(
+      "The extraction service returned an unreadable response.",
+    );
+    error.httpStatus = response.status;
+    throw error;
+  }
   if (
     !response.ok ||
     !result.success ||
@@ -29,7 +38,15 @@ export default async function extractDocument(
     !Array.isArray(result.profile?.field_paths) ||
     !result.document_type
   ) {
-    throw new Error("EXTRACTION_FAILED");
+    const error = new Error("EXTRACTION_FAILED");
+    error.httpStatus = response.status;
+    if (result.api_version === "3.0") {
+      error.trace = result.trace;
+      error.code = result.error?.code;
+      error.userMessage = result.error?.message;
+      error.diagnostics = result.error?.diagnostics;
+    }
+    throw error;
   }
   return result;
 }

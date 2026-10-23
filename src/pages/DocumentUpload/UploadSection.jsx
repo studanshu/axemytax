@@ -24,6 +24,7 @@ import extractDocument, {
 import SectionHeader from "components/Custom/SectionHeader";
 import DropdownField from "components/Custom/Form/DropdownField";
 import ResultReview from "./ResultReview";
+import ExtractionAttempts from "./ExtractionAttempts";
 import borders from "assets/theme/base/borders";
 
 export default function UploadSection({ c }) {
@@ -121,7 +122,39 @@ export default function UploadSection({ c }) {
       setFiles((old) =>
         old.map((f) => (f.id === item.id ? { ...f, ...patch } : f)),
       );
-    update({ processing: true, extractionError: false });
+    const attempt = {
+      id: crypto.randomUUID(),
+      number: (item.attemptCount || 0) + 1,
+      startedAt: new Date().toISOString(),
+      status: "Waiting",
+    };
+    setFiles((old) =>
+      old.map((f) =>
+        f.id === item.id
+          ? {
+              ...f,
+              processing: true,
+              extractionError: false,
+              result: null,
+              attemptCount: attempt.number,
+              attempts: [...(f.attempts || []), attempt].slice(-5),
+            }
+          : f,
+      ),
+    );
+    const finishAttempt = (details) =>
+      setFiles((old) =>
+        old.map((f) =>
+          f.id === item.id
+            ? {
+                ...f,
+                attempts: f.attempts.map((entry) =>
+                  entry.id === attempt.id ? { ...entry, ...details } : entry,
+                ),
+              }
+            : f,
+        ),
+      );
     try {
       const requestedType = item.manualType
         ? catalogue.find((type) => type.label === item.type)?.type
@@ -134,6 +167,11 @@ export default function UploadSection({ c }) {
         requestedType,
         includeTrace,
       );
+      finishAttempt({
+        status: "Completed",
+        httpStatus: 200,
+        trace: result.trace,
+      });
       if (!controller.signal.aborted)
         setFiles((old) =>
           old.map((f) =>
@@ -149,7 +187,16 @@ export default function UploadSection({ c }) {
               : f,
           ),
         );
-    } catch {
+    } catch (failure) {
+      finishAttempt({
+        status: "Failed",
+        httpStatus: failure.httpStatus,
+        trace: failure.trace,
+        error: controller.signal.aborted
+          ? "The request timed out or was cancelled. The server may still be processing it; its final status is unknown."
+          : failure.userMessage ||
+            "Extraction failed before a verified result was received.",
+      });
       update({ processing: false, extractionError: true });
     } finally {
       clearTimeout(timeout);
@@ -374,6 +421,10 @@ export default function UploadSection({ c }) {
                       </Grid>
                     </Grid>
                     {item.result && <ResultReview result={item.result} c={c} />}
+                    <ExtractionAttempts
+                      attempts={item.attempts}
+                      processing={item.processing}
+                    />
                     {item.extractionError && (
                       <Alert severity="error" sx={{ mt: 2 }}>
                         {c.extractionError}
@@ -383,19 +434,17 @@ export default function UploadSection({ c }) {
                       <MKButton
                         variant="text"
                         color="info"
-                        disabled={
-                          item.processing ||
-                          (!!item.result &&
-                            (!includeTrace || !!item.result.trace))
-                        }
+                        disabled={item.processing}
                         onClick={() => extract(item)}
                       >
                         {item.processing
                           ? c.extracting
-                          : item.result && includeTrace && !item.result.trace
+                          : item.result &&
+                              includeTrace &&
+                              !item.result.trace?.includes_document_contents
                             ? "Extract with steps"
                             : item.result
-                              ? c.extracted
+                              ? "Extract again"
                               : c.extract}
                       </MKButton>
                       <MKButton
