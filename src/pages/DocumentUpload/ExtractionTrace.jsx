@@ -101,7 +101,10 @@ export default function ExtractionTrace({ trace, attemptId = "current" }) {
                         error: step.error,
                         events: step.events,
                         ...step.details,
-                        output: step.output,
+                        output:
+                          step.output === undefined
+                            ? step.details?.output
+                            : step.output,
                       },
                       null,
                       2,
