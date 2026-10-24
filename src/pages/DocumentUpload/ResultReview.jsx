@@ -12,6 +12,7 @@ import PropTypes from "prop-types";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import { selectProfileData } from "./reviewData";
+import ExtractionOverview from "./ExtractionOverview";
 import borders from "assets/theme/base/borders";
 
 function humanize(value) {
@@ -89,6 +90,9 @@ export default function ResultReview({ result, c }) {
     .filter((group) => group.rows.length);
   return (
     <MKBox mt={3}>
+      {(result.processing || result.trace) && (
+        <ExtractionOverview result={result} trace={result.trace} />
+      )}
       {result.documents?.length ? (
         <>
           <MKTypography variant="body2" color="secondary" fontWeight="medium">
@@ -293,6 +297,7 @@ ResultReview.propTypes = {
     document_type: PropTypes.string.isRequired,
     document_type_label: PropTypes.string,
     trace: PropTypes.object,
+    processing: PropTypes.object,
     documents: PropTypes.arrayOf(
       PropTypes.shape({
         document_id: PropTypes.string.isRequired,

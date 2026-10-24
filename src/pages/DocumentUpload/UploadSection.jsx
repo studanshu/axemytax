@@ -171,6 +171,7 @@ export default function UploadSection({ c }) {
         status: "Completed",
         httpStatus: 200,
         trace: result.trace,
+        result,
       });
       if (!controller.signal.aborted)
         setFiles((old) =>
@@ -192,6 +193,7 @@ export default function UploadSection({ c }) {
         status: "Failed",
         httpStatus: failure.httpStatus,
         trace: failure.trace,
+        partialResult: failure.partialResult,
         error: controller.signal.aborted
           ? "The request timed out or was cancelled. The server may still be processing it; its final status is unknown."
           : failure.userMessage ||
@@ -422,6 +424,7 @@ export default function UploadSection({ c }) {
                     </Grid>
                     {item.result && <ResultReview result={item.result} c={c} />}
                     <ExtractionAttempts
+                      c={c}
                       attempts={item.attempts}
                       processing={item.processing}
                     />

@@ -7,11 +7,14 @@ import {
 import PropTypes from "prop-types";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
+import ExtractionOverview from "./ExtractionOverview";
+import ResultReview from "./ResultReview";
 import ExtractionTrace from "./ExtractionTrace";
 
 export default function ExtractionAttempts({
   attempts = [],
   processing = false,
+  c,
 }) {
   if (!attempts.length) return null;
   return (
@@ -42,6 +45,28 @@ export default function ExtractionAttempts({
               </MKTypography>
             )}
             {attempt.error && <Alert severity="error">{attempt.error}</Alert>}
+            {attempt.status === "Failed" && !attempt.partialResult && (
+              <ExtractionOverview
+                result={attempt.partialResult}
+                trace={attempt.trace}
+              />
+            )}
+            {attempt.partialResult && (
+              <ResultReview
+                result={{ ...attempt.partialResult, trace: attempt.trace }}
+                c={c}
+              />
+            )}
+            {attempt.result &&
+              attempt.id !== attempts[attempts.length - 1].id && (
+                <MKBox mt={2}>
+                  <Alert severity="info">
+                    Previously parsed result from this attempt. This is separate
+                    from the latest request.
+                  </Alert>
+                  <ResultReview result={attempt.result} c={c} />
+                </MKBox>
+              )}
             {attempt.trace ? (
               <ExtractionTrace trace={attempt.trace} attemptId={attempt.id} />
             ) : attempt.status !== "Waiting" ? (
@@ -58,6 +83,7 @@ export default function ExtractionAttempts({
 }
 ExtractionAttempts.propTypes = {
   processing: PropTypes.bool,
+  c: PropTypes.object.isRequired,
   attempts: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -67,6 +93,8 @@ ExtractionAttempts.propTypes = {
       httpStatus: PropTypes.number,
       error: PropTypes.string,
       trace: PropTypes.object,
+      result: PropTypes.object,
+      partialResult: PropTypes.object,
     }),
   ),
 };

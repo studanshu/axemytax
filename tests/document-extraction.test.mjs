@@ -151,6 +151,10 @@ test("document catalogue exposes passports and corporate returns", async (t) => 
 });
 
 test("failed API responses retain trace, diagnostics and status for the review screen", async (t) => {
+  const partialResult = {
+    documents: [{ document_type: "pan_card" }],
+    extraction_status: "partial",
+  };
   const trace = {
     trace_id: "synthetic-trace",
     status: "failed",
@@ -170,6 +174,7 @@ test("failed API responses retain trace, diagnostics and status for the review s
       success: false,
       api_version: "3.0",
       trace,
+      partial_result: partialResult,
       error: {
         code: "model_output_requires_review",
         message: "Output could not be verified.",
@@ -180,6 +185,7 @@ test("failed API responses retain trace, diagnostics and status for the review s
   await assert.rejects(extractDocument(file), (error) => {
     assert.equal(error.httpStatus, 422);
     assert.deepEqual(error.trace, trace);
+    assert.deepEqual(error.partialResult, partialResult);
     assert.equal(error.diagnostics.stage, "extraction_model");
     assert.equal(error.userMessage, "Output could not be verified.");
     return true;
