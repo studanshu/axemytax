@@ -12,6 +12,7 @@ import PropTypes from "prop-types";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import { selectProfileData } from "./reviewData";
+import UnverifiedFields from "./UnverifiedFields";
 import ExtractionOverview from "./ExtractionOverview";
 import borders from "assets/theme/base/borders";
 
@@ -118,6 +119,9 @@ export default function ResultReview({ result, c }) {
           </MKTypography>
           <MKTypography variant="body2" color="text" mt={1}>
             {c.resultNote}
+          </MKTypography>
+          <MKTypography variant="h6" mt={3}>
+            Source-checked extracted fields
           </MKTypography>
           {warnings.length > 0 && (
             <Alert severity="warning" sx={{ mt: 2 }}>
@@ -247,6 +251,11 @@ export default function ResultReview({ result, c }) {
               </MKBox>
             </MKBox>
           ))}
+          <UnverifiedFields
+            candidates={result.unverified_fields}
+            allowed={result.profile?.field_paths}
+            accepted={data}
+          />
           {result.evidence?.field_evidence &&
             Object.keys(result.evidence.field_evidence).length > 0 && (
               <MKBox component="details" mt={3}>
@@ -296,6 +305,7 @@ ResultReview.propTypes = {
     }),
     document_type: PropTypes.string.isRequired,
     document_type_label: PropTypes.string,
+    unverified_fields: PropTypes.array,
     trace: PropTypes.object,
     processing: PropTypes.object,
     documents: PropTypes.arrayOf(

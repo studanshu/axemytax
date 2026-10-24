@@ -7,6 +7,7 @@ import {
 import PropTypes from "prop-types";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
+import UnverifiedFields from "./UnverifiedFields";
 import ExtractionOverview from "./ExtractionOverview";
 import ResultReview from "./ResultReview";
 import ExtractionTrace from "./ExtractionTrace";
@@ -46,10 +47,15 @@ export default function ExtractionAttempts({
             )}
             {attempt.error && <Alert severity="error">{attempt.error}</Alert>}
             {attempt.status === "Failed" && !attempt.partialResult && (
-              <ExtractionOverview
-                result={attempt.partialResult}
-                trace={attempt.trace}
-              />
+              <>
+                <MKTypography variant="h6" mt={2}>
+                  Source-checked extracted fields
+                </MKTypography>
+                <ExtractionOverview
+                  result={attempt.partialResult}
+                  trace={attempt.trace}
+                />
+              </>
             )}
             {attempt.partialResult && (
               <ResultReview
@@ -57,16 +63,25 @@ export default function ExtractionAttempts({
                 c={c}
               />
             )}
-            {attempt.result &&
-              attempt.id !== attempts[attempts.length - 1].id && (
-                <MKBox mt={2}>
+            {attempt.result && (
+              <MKBox mt={2}>
+                {attempt.id !== attempts[attempts.length - 1].id && (
                   <Alert severity="info">
                     Previously parsed result from this attempt. This is separate
                     from the latest request.
                   </Alert>
-                  <ResultReview result={attempt.result} c={c} />
-                </MKBox>
-              )}
+                )}
+                <ResultReview result={attempt.result} c={c} />
+              </MKBox>
+            )}
+            {attempt.unverifiedResult && (
+              <UnverifiedFields
+                candidates={attempt.unverifiedResult.fields}
+                allowed={attempt.unverifiedResult.expected_fields}
+                accepted={{}}
+                rawOutput={attempt.unverifiedResult.raw_output}
+              />
+            )}
             {attempt.trace ? (
               <ExtractionTrace trace={attempt.trace} attemptId={attempt.id} />
             ) : attempt.status !== "Waiting" ? (
@@ -95,6 +110,7 @@ ExtractionAttempts.propTypes = {
       trace: PropTypes.object,
       result: PropTypes.object,
       partialResult: PropTypes.object,
+      unverifiedResult: PropTypes.object,
     }),
   ),
 };

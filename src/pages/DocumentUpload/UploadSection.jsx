@@ -23,8 +23,8 @@ import extractDocument, {
 } from "api/documents/extractDocument";
 import SectionHeader from "components/Custom/SectionHeader";
 import DropdownField from "components/Custom/Form/DropdownField";
-import ResultReview from "./ResultReview";
 import ExtractionAttempts from "./ExtractionAttempts";
+import UnverifiedFields from "./UnverifiedFields";
 import borders from "assets/theme/base/borders";
 
 export default function UploadSection({ c }) {
@@ -194,6 +194,7 @@ export default function UploadSection({ c }) {
         httpStatus: failure.httpStatus,
         trace: failure.trace,
         partialResult: failure.partialResult,
+        unverifiedResult: failure.unverifiedResult,
         error: controller.signal.aborted
           ? "The request timed out or was cancelled. The server may still be processing it; its final status is unknown."
           : failure.userMessage ||
@@ -422,7 +423,6 @@ export default function UploadSection({ c }) {
                         </MKTypography>
                       </Grid>
                     </Grid>
-                    {item.result && <ResultReview result={item.result} c={c} />}
                     <ExtractionAttempts
                       c={c}
                       attempts={item.attempts}
@@ -430,7 +430,10 @@ export default function UploadSection({ c }) {
                     />
                     {item.extractionError && (
                       <Alert severity="error" sx={{ mt: 2 }}>
-                        {c.extractionError}
+                        {item.attempts?.[item.attempts.length - 1]
+                          ?.unverifiedResult
+                          ? "Extraction needs review. Unverified candidates are available above."
+                          : c.extractionError}
                       </Alert>
                     )}
                     <MKBox display="flex" gap={1} mt={2} flexWrap="wrap">
@@ -525,6 +528,41 @@ export default function UploadSection({ c }) {
               </MKBox>
             </Grid>
           </Grid>
+          <MKBox component="details" mt={4}>
+            <MKTypography
+              component="summary"
+              variant="body2"
+              sx={{ cursor: "pointer" }}
+            >
+              Try a sample field review
+            </MKTypography>
+            <Alert severity="info" sx={{ mt: 2 }}>
+              Sample values only. This example does not upload a document or
+              call a model.
+            </Alert>
+            <MKTypography variant="h6" mt={2}>
+              Sample source-checked fields
+            </MKTypography>
+            <MKTypography variant="body2">
+              Full name: EXAMPLE PERSON
+            </MKTypography>
+            <UnverifiedFields
+              accepted={{ personal: { full_name: "EXAMPLE PERSON" } }}
+              allowed={[
+                "personal.full_name",
+                "document.place_of_birth",
+                "personal.date_of_birth",
+              ]}
+              candidates={[
+                {
+                  path: "personal.place_of_birth",
+                  value: "EXAMPLE CITY",
+                  reason: "invalid_model_schema",
+                  source: { page: 1, line_start: 12, line_end: 12 },
+                },
+              ]}
+            />
+          </MKBox>
           <Dialog
             open={!!preview}
             onClose={() => setPreview(null)}

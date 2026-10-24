@@ -48,9 +48,9 @@ export default function ExtractionOverview({ result, trace }) {
         {trace?.status === "failed"
           ? overview.extracted
             ? "Extraction stopped. Results below are from documents that completed validation; remaining documents need review."
-            : "Extraction stopped before any fields completed validation. Available processing metadata is shown below. Rejected model values are not accepted results."
+            : "Extraction stopped before any fields completed validation. Available processing metadata is shown below. Model candidates that failed checks appear separately under Unverified extracted fields when available."
           : overview.needsReview
-            ? "Some details need review. Source-checked values are shown below; unsupported values are withheld."
+            ? "Some details need review. Source-checked values are shown below; unsupported values appear separately for your review."
             : "Extracted values passed the available source checks. Review them against the original document."}
       </Alert>
       <MKBox display="flex" gap={1} flexWrap="wrap" mb={2}>

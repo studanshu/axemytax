@@ -43,6 +43,7 @@ export default async function extractDocument(
     if (result.api_version === "3.0") {
       error.trace = result.trace;
       error.partialResult = result.partial_result;
+      error.unverifiedResult = result.unverified_result;
       error.code = result.error?.code;
       error.userMessage = result.error?.message;
       error.diagnostics = result.error?.diagnostics;
