@@ -85,7 +85,18 @@ function Candidate({ candidate, allowed, currentData, onAccept }) {
         label={`Map ${candidate.path} to`}
         value={target}
         onChange={(event) => setTarget(event.target.value)}
-        sx={{ my: 1 }}
+        InputLabelProps={{ shrink: true }}
+        SelectProps={{ displayEmpty: true }}
+        sx={{
+          my: 2,
+          "& .MuiOutlinedInput-root": { minHeight: 52 },
+          "& .MuiSelect-select": {
+            py: "14px !important",
+            minHeight: "1.4em",
+            display: "flex",
+            alignItems: "center",
+          },
+        }}
       >
         <MenuItem value="">Choose a field</MenuItem>
         {allowed.map((key) => (
@@ -222,30 +233,62 @@ export default function UnverifiedFields({
             this page unless you download it.
           </Alert>
           {Object.keys(decisions).map((path) => (
-            <Chip
+            <MKBox
               key={path}
-              label={`${path} · user accepted`}
-              onDelete={() =>
-                setDecisions((old) => {
-                  const next = { ...old };
-                  delete next[path];
-                  return next;
-                })
-              }
-              sx={{ m: 0.5 }}
-            />
+              p={2}
+              my={1}
+              sx={{ bgcolor: "light.main", borderRadius: 1 }}
+            >
+              <Chip
+                label={`${path} · user accepted`}
+                onDelete={() =>
+                  setDecisions((old) => {
+                    const next = { ...old };
+                    delete next[path];
+                    return next;
+                  })
+                }
+                sx={{
+                  mb: 1,
+                  maxWidth: "100%",
+                  "& .MuiChip-label": {
+                    whiteSpace: "normal",
+                    overflowWrap: "anywhere",
+                  },
+                  height: "auto",
+                  minHeight: 32,
+                }}
+              />
+              <MKTypography
+                variant="body2"
+                sx={{ whiteSpace: "pre-wrap", overflowWrap: "anywhere" }}
+              >
+                {typeof decisions[path].value === "object"
+                  ? JSON.stringify(decisions[path].value, null, 2)
+                  : String(decisions[path].value)}
+              </MKTypography>
+            </MKBox>
           ))}
-          <MKBox
-            component="pre"
-            sx={{
-              maxHeight: 360,
-              overflow: "auto",
-              whiteSpace: "pre-wrap",
-              overflowWrap: "anywhere",
-              fontSize: 12,
-            }}
-          >
-            {JSON.stringify(result, null, 2)}
+          <MKBox component="details" my={2}>
+            <MKTypography
+              component="summary"
+              variant="body2"
+              sx={{ cursor: "pointer" }}
+            >
+              Reviewed JSON
+            </MKTypography>
+            <MKBox
+              component="pre"
+              sx={{
+                maxHeight: 360,
+                overflow: "auto",
+                whiteSpace: "pre-wrap",
+                overflowWrap: "anywhere",
+                fontSize: 12,
+              }}
+            >
+              {JSON.stringify(result, null, 2)}
+            </MKBox>
           </MKBox>
           <MKButton color="info" onClick={exportResult}>
             Download reviewed JSON
