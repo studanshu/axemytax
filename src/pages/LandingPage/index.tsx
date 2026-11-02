@@ -16,6 +16,7 @@ import HighLevelServices from "./HighLevelServices";
 import LocateUs from "./LocateUs";
 import OurServices from "./OurServices";
 import Subscribe from "./Subscribe";
+import ClientWork from "./ClientWork";
 import Team from "./Team";
 
 const LandingPage: FC = () => {
@@ -41,6 +42,7 @@ const LandingPage: FC = () => {
         <ReviewsSection jsonData={ReviewsData} />
         <Blogs />
         <LocateUs />
+        <ClientWork />
         <Subscribe />
       </Card>
       <MKBox px={4}>
