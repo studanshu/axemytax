@@ -49,6 +49,7 @@ const routeStructure = [
       { name: "Upload Documents", route: "/upload-documents" },
       { name: "About", route: "/about" },
       { name: "Blogs", route: "/blogs" },
+      { name: "Work", route: "/work" },
       {
         name: "Compliance Calendar",
         route: "",

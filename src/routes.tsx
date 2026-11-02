@@ -28,6 +28,7 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import HomeIcon from "@mui/icons-material/Home";
 import ServiceIcon from "@mui/icons-material/HomeRepairServiceOutlined";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import RssFeedIcon from "@mui/icons-material/RssFeed";
 import { lazy, Suspense } from "react";
 
@@ -35,10 +36,12 @@ import { lazy, Suspense } from "react";
 import { DocumentUploadData } from "assets/data/DocumentUpload";
 import CloudUploadOutlined from "@mui/icons-material/CloudUploadOutlined";
 import AboutJsonData from "assets/data/About/index";
+import WorkJsonData from "assets/data/Work/index";
 import { ComplianceCalendar2025 } from "assets/data/ComplianceCalendar/index";
 import ContactUsJsonData from "assets/data/ContactUs/index";
 
 import About from "pages/About";
+import Work from "pages/Work";
 import ContactUsPage from "pages/ContactUs";
 import LandingPage from "pages/LandingPage";
 import PageContextProvider from "./providers/PageContextProvider";
@@ -129,6 +132,16 @@ const routes: Route[] = [
             <Suspense fallback={<></>}>
               <BlogOverview />
             </Suspense>
+          </PageContextProvider>
+        ),
+      },
+      {
+        name: "Work",
+        icon: <WorkOutlineIcon />,
+        route: "/work",
+        component: (
+          <PageContextProvider dict={{ name: "Work" }}>
+            <Work jsonData={WorkJsonData} />
           </PageContextProvider>
         ),
       },
